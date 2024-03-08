@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Data • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Data+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <style></style>
+<article class="page">
+    <h1 class="page-title" id="page-title">
+        Data Homework
+    </h1>
+
+    <div class="page-content">
+        
+
+        <ol>
+  <li>
+    <p>Perform the following number conversions:</p>
+
+    <p>(a) (1 point) <code class="language-plaintext highlighter-rouge">0x42A0FD</code> to binary</p>
+
+    <p>(b) (1 point) <code class="language-plaintext highlighter-rouge">0b1010111001101001</code> to hexadecimal</p>
+
+    <p>(c) (1 point) <code class="language-plaintext highlighter-rouge">81</code> to hexadecimal</p>
+  </li>
+  <li>
+    <p>Without converting the numbers to decimal or binary, solve the following problems. Write the answers in hex.</p>
+
+    <p>(a) (1 point) <code class="language-plaintext highlighter-rouge">0x935a + 0x8</code></p>
+
+    <p>(b) (1 point) <code class="language-plaintext highlighter-rouge">0x935a - 0x60</code></p>
+
+    <p>(c) (1 point) <code class="language-plaintext highlighter-rouge">0x935a + 64</code></p>
+
+    <p>(d) (1 point) <code class="language-plaintext highlighter-rouge">0x93ff - 0x935a</code></p>
+  </li>
+  <li>
+    <p>For the following scenarios, pick which is the best data type to use, <code class="language-plaintext highlighter-rouge">short</code>, <code class="language-plaintext highlighter-rouge">unsigned short</code>, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">unsigned int</code>, or <code class="language-plaintext highlighter-rouge">float</code>. Explain why you picked that type.</p>
+
+    <p>(a) (1 point) A variable that keeps track of how many visitors enter an amusement park.</p>
+
+    <p>(b) (1 point) A variable that records the minimum daily temperature for Provo for a given month in Celsius.</p>
+
+    <p>(c) (1 point) A variable that counts the number of people on earth to the nearest thousands</p>
+  </li>
+  <li>
+    <p>(1 point) Write the decimal number 54 in binary as a <code class="language-plaintext highlighter-rouge">short</code> data type in both little endian notation and big endian notation.</p>
+  </li>
+  <li>
+    <p>(1 point) Write the decimal number 54 in binary as a <code class="language-plaintext highlighter-rouge">char</code> data type in both little endian notation and big endian notation.</p>
+  </li>
+  <li>
+    <p>Apply the following bitwise operations on the following numbers. Write the numbers in binary format.</p>
+
+    <p>(a) (1 point) <code class="language-plaintext highlighter-rouge">0b01101100 &amp; 0b11110011</code></p>
+
+    <p>(b) (1 point) <code class="language-plaintext highlighter-rouge">0b01101100 | 0b11110011</code></p>
+
+    <p>(c) (1 point) <code class="language-plaintext highlighter-rouge">0b01101100 ^ 0b11110011</code></p>
+
+    <p>(d) (1 point) <code class="language-plaintext highlighter-rouge">∼0b01101100</code></p>
+
+    <p>(e) (1 point) <code class="language-plaintext highlighter-rouge">0x41 &amp; 0xF3</code></p>
+  </li>
+  <li>
+    <p>Apply the following shift operations to the following numbers. Write the numbers in hex format.</p>
+
+    <p>(a) (1 point) <code class="language-plaintext highlighter-rouge">0x6C &lt;&lt; 3</code></p>
+
+    <p>(b) (1 point) <code class="language-plaintext highlighter-rouge">0x6C &gt;&gt; 3</code></p>
+  </li>
+  <li>
+    <p>Apply the following logic operators on the following numbers. Write the number in decimal format.</p>
+
+    <p>(a) (1 point) <code class="language-plaintext highlighter-rouge">01101100 &amp;&amp; 11110011</code></p>
+
+    <p>(b) (1 point) <code class="language-plaintext highlighter-rouge">01101100 || 11110011</code></p>
+
+    <p>(c) (1 point) <code class="language-plaintext highlighter-rouge">!01101100</code></p>
+  </li>
+  <li>
+    <p>(1 point) What is the hexadecimal representation of the string “hello”?</p>
+  </li>
+  <li>
+    <p>Write the 8-bit twos complement representation in binary of the following numbers.</p>
+
+    <p>(a) (1 point) <code class="language-plaintext highlighter-rouge">86</code></p>
+
+    <p>(b) (1 point) <code class="language-plaintext highlighter-rouge">-86</code></p>
+
+    <p>(c) (1 point) <code class="language-plaintext highlighter-rouge">-2</code></p>
+  </li>
+  <li>(1 point) What does the following C program print out?
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">x</span> <span class="o">=</span> <span class="mh">0x3039</span><span class="p">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mh">0xF000</span><span class="p">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0xFF00</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">"x = 0x%x</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>(1 point) Write the floating point number representation for 6,841,721.</p>
+  </li>
+  <li>
+    <p>(1 point) Write the decimal number for the following floating point representation: <code class="language-plaintext highlighter-rouge">1100 0011 0101 1100 1100 0010 1110 1010</code>.</p>
+  </li>
+  <li>(2 points) In the following code, what value would you set <code class="language-plaintext highlighter-rouge">x</code> equal to so that the printf statement printed “224”?
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span> <span class="c1">// Print x as if it is an array of characters</span>
+</code></pre></div>    </div>
+  </li>
+  <li>(5 points) Write a homework question that you think would be good for future students to answer to help them learn more about what has been covered in lecture so far.</li>
+</ol>
+
+
+        
+    </div>
+</article>
+
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

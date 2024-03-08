@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Git Walkthrough</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href=/ecen224/css/walkthrough.css>
+    <link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+</head>
+
+<body>
+    <div id="frame">
+        <header>
+            <div class="siteblock">
+                <h1><a href="/ecen224/">BYU ECEn 224</a></h1>
+            </div>
+        </header>
+        <main>
+            <div class="title">Git Walkthrough</div>
+            <article>
+                <p>Git is a Distributed Version Control System which means that it:</p>
+
+<ul>
+  <li>Manages source code</li>
+  <li>Tracks all changes, who made them, and when</li>
+  <li>Coordinates multiple people working on the same project</li>
+  <li>Saves you from mistakes</li>
+  <li>Protects you from hardware or software failures</li>
+</ul>
+
+<p><a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a> isn’t the first or only Version Control system. An early and popular one was CVS (Concurrent Versions System). <a href="https://www.mercurial-scm.org/" target="_blank" rel="noopener noreferrer">Mercurial</a> remains popular and Microsoft SourceSafe was integrated into Visual Studio for many years.</p>
+
+<p>Git was created in 2005 by Linus Torvalds as a better system for managing development of Linux. Since then it has gained enormous popularity.</p>
+
+<p>Git is not the same thing as <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>. Git can synchronize with remote source code repositories including <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> (which we will use in this class), <a href="https://sourceforge.net/" target="_blank" rel="noopener noreferrer">SourceForge</a>, <a href="https://bitbucket.org/" target="_blank" rel="noopener noreferrer">Bitbucket</a>, and <a href="https://about.gitlab.com/" target="_blank" rel="noopener noreferrer">GitLab</a>.</p>
+
+<h2 id="git-vocabulary">Git Vocabulary</h2>
+<ul>
+  <li>Repo – A repository of source code that is managed by Git</li>
+  <li>Commit – A set of source code changes that are committed to the repo.</li>
+  <li>Remote – A shared copy of a repository on a managed service such as GitHub</li>
+  <li>Push – Copy your commits to a remote</li>
+  <li>Pull – Retrieve and merge commits from a remote</li>
+  <li>Sync – Pull then push</li>
+  <li>Branch – A set of commits that are isolated from the main trunk with the intention of merging them later.</li>
+  <li>Fork – A copy of a repo on which new commits are made that diverge from the original.</li>
+  <li>Pull request – A request for a repo manager to merge in a set of commits from a branch or fork.</li>
+</ul>
+
+<h2 id="installing-git">Installing Git</h2>
+<p>Git is included with most Linux distributions. For Windows and Mac, install from here: <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">https://git-scm.com/downloads</a>.</p>
+
+<p>The Git installer has 12 pages of options. In most cases, the default settings are best. Here are my preferences for non-defaults:</p>
+
+<ul>
+  <li>(Windows 11 only) Turn on “Add a Git Bash Profile to Windows Terminal”. This facilitates you using Bash as a Windows shell.</li>
+  <li>
+<strong>Important:</strong> Set the “default editor used by Git” to “Use Visual Studio Code as Git’s default editor.”</li>
+  <li>Set “Override the default branch name for new repositories” to “main”.</li>
+  <li>If you often use Windows PowerShell and/or the legacy “Command Prompt” then turning on “Use Git and optional Unix tools from the Command Prompt” will let you use Linux commands like “ls”, “grep”, “find”, and “sort” from the legacy Windows command line. But first check the warning on this setting.</li>
+</ul>
+
+<p>On Windows, Git will include Git Bash which is a Unix-Style Bash shell running on Windows.</p>
+
+<h2 id="basic-walkthrough">Basic Walkthrough</h2>
+
+<p>Open a command line that has access to Git. This could be on a Linux box, on the macOS Terminal, Git Bash on Windows, or the Linux Subsystem for Windows. It doesn’t much matter.</p>
+
+<p>Make sure Git is installed and check the version number.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git -v
+</code></pre></div></div>
+
+<p>Create a directory for your repository and change to that directory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir MyRepo
+cd MyRepo
+</code></pre></div></div>
+
+<p>Create a file called <code class="language-plaintext highlighter-rouge">README.md</code>` with some text in it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo Some Text &gt;README.md
+</code></pre></div></div>
+
+<p>You now have a directory with one file in it. We will make this directory into a Git <strong>repo</strong> (repository); set all files to be tracked by Git (there’s only one); and commit those changes to the repo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git add *
+git commit -m "My first commit."
+</code></pre></div></div>
+
+<blockquote>
+  <p>Be careful when you commit changes from the command line. The <code class="language-plaintext highlighter-rouge">-m</code> option indicates a message that describes the commit. If you leave that option off, then Git will launch its default text editor and wait for you enter a message. If that editor is not familiar to you (e.g. Nano) then you may have a hard time figuring out what to do.</p>
+</blockquote>
+
+<p>Add some text to the <code class="language-plaintext highlighter-rouge">README.md</code> file. You can do that using the command below or open it in your favorite text editor.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo Some more text &gt;&gt;README.md
+</code></pre></div></div>
+
+<p>Check the status of your repo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+</code></pre></div></div>
+
+<p>It tells you that you have one file that has been modified since your last commit. Now commit those changes.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add *
+git commit -m "My second commit."
+</code></pre></div></div>
+
+<p>Now let’s look at your commit history.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log
+</code></pre></div></div>
+
+<p>It shows you all commits you have made with the most recent one first. You may have to type <code class="language-plaintext highlighter-rouge">q</code> to get out of the pagination. Each commit is identified by a big number. That number is the <a href="https://en.wikipedia.org/wiki/SHA-1" target="_blank" rel="noopener noreferrer">SHA-1 Hash</a> of all contents of that particular commit.</p>
+
+<blockquote>
+  <p>While SHA-1 is deprecated for cryptographic purposes, Git simply uses the hash as a unique identifier of the commit. Accordingly, using the algorithm in this context is not a significant security risk.</p>
+</blockquote>
+
+<h3 id="create-a-repo-on-github">Create a repo on GitHub</h3>
+
+<p>Now, you will make a remote copy of your repo on GitHub. To do this, open <a href="https://github.com" target="_blank" rel="noopener noreferrer">https://github.com</a> in your web browser.</p>
+<ul>
+  <li>In the <code class="language-plaintext highlighter-rouge">Repositories</code> panel on the left click <code class="language-plaintext highlighter-rouge">New</code>
+</li>
+  <li>No Repository Template</li>
+  <li>Choose your own account as the owner</li>
+  <li>Name the repository something like <code class="language-plaintext highlighter-rouge">MyRepo</code>. Typically the name of the repo on GitHub will match the name of the directory on your local machine. This reduces confusion.</li>
+  <li>Set the repo to be private - unless you want to share it wit the world.</li>
+  <li>For this round, do not add a README, a .gitignore, or a license.</li>
+  <li>Click <code class="language-plaintext highlighter-rouge">Create repository</code>
+</li>
+</ul>
+
+<h3 id="connect-your-local-repo-to-the-one-on-github">Connect your local repo to the one on GitHub</h3>
+
+<p>Conveniently, GitHub shows you the exact commands you need to do this. On your command-line type the following (for <code class="language-plaintext highlighter-rouge">git remote add origin</code> substitute the path that GitHub includes in the instructions)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/&lt;your username&gt;/MyRepo.git
+git branch -M main
+git push -u origin main
+</code></pre></div></div>
+
+<blockquote>
+  <p>Git may prompt you for your GitHub username and password. If so, your username is simply the one you use to log into GitHub. However, for security reasons it will not accept your regular GitHub password. Instead, follow the instructions <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic" target="_blank" rel="noopener noreferrer">here</a> to create a Classic Personal Access Token and use that token to as the password.</p>
+</blockquote>
+
+<p>These commands do the following:</p>
+<ol>
+  <li>Connect the remote copy on GitHub to your local repo.</li>
+  <li>Rename the current branch to “main”. Depending on your Git settings it may already be “main” or it might be “master”.</li>
+  <li>Push everything from your local repo to the remote copy on GitHub.</li>
+</ol>
+
+<h3 id="make-one-more-change-commit-it-and-push-it-to-github">Make one more change, commit it, and push it to GitHub</h3>
+
+<p>Make one more change to your repo. You could add another file, add a line to README.md, or use an editor to make a change to README.md.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo One more change &gt;&gt;README.md
+</code></pre></div></div>
+
+<p>Commit that change.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add *
+git commit -m "One more change."
+</code></pre></div></div>
+
+<p>Push the change to GitHub</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push
+</code></pre></div></div>
+
+<p>If you are using Visual Studio Code for your editor, you can use the GUI to do the same thing. Enter a commit message and click “Commit”, then click “Sync Changes”.</p>
+
+<h3 id="view-the-repo-on-github">View the repo on GitHub</h3>
+
+<p>Now that you have a copy of your repo on GitHub you can view it there. Refresh the page and it will show your README.md file, the number of commits you have made, and a bunch of other information. Click on “commits” and it will show you your history. Click on any one of those commits and it will show the changes made in that commit.</p>
+
+<h3 id="clone-the-repo-to-a-new-directory-and-make-a-change">Clone the repo to a new directory and make a change</h3>
+
+<p>Typically you would clone a repo if you need the code on a different machine. Or you would clone a repo if you are switching to a new computer or if you are collaborating with others on the same project. However, for this project we will simply clone the repo into another directory - just to show how it’s done.</p>
+
+<p>Change to the parent directory and create a new directory for the clone.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ..
+mkdir MyClone
+cd MyClone
+</code></pre></div></div>
+
+<p>To clone the repo you need the URL of the repo on GitHub. From the home page of the repo click on the big green “Code” button and it will show you the URL of your repo. It should end in “.git” and it will be the same URL you used with the <code class="language-plaintext highlighter-rouge">git remote add origin</code> command. Substitute that URL in the command below:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/&lt;your username&gt;/MyRepo.git
+</code></pre></div></div>
+
+<p>The clone will be in a subdirectory of <code class="language-plaintext highlighter-rouge">MyClone</code> called <code class="language-plaintext highlighter-rouge">MyRepo</code>. Change to that directory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd MyRepo
+</code></pre></div></div>
+
+<p>Make a change in the clone such as adding a file, adding a line to README.md or editing a file.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo Enter the clones &gt;&gt;README.md
+</code></pre></div></div>
+
+<p>Commit the change and push it to GitHub</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add *
+git commit -m "Clone change"
+git push
+</code></pre></div></div>
+
+<h3 id="go-back-to-the-original-directory-and-pull-the-change-from-github">Go back to the original directory and pull the change from GitHub</h3>
+
+<p>Switch back to the original directory</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ../../MyRepo
+</code></pre></div></div>
+
+<p>Pull the latest changes</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull
+</code></pre></div></div>
+
+<p>Look at the files and see that the changes you made in the clone are also in the original directory.</p>
+
+            </article>
+        </main>
+    </div>
+
+</body>
+
+</html>

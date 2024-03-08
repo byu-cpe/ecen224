@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Command Line • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Command%20Line+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Command Line
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li><a href="#explore-common-linux-commands">Explore Common Linux Commands</a></li>
+      <li>
+<a href="#keyboard-shortcuts">Keyboard Shortcuts</a>
+        <ul>
+          <li><a href="#command-history">Command History</a></li>
+          <li><a href="#command-editing">Command Editing</a></li>
+          <li><a href="#command-completion">Command Completion</a></li>
+        </ul>
+      </li>
+      <li><a href="#set-and-read-environment-variables">Set and Read Environment Variables</a></li>
+      <li><a href="#get-familiar-with-a-command-line-text-editor">Get Familiar with a Command Line Text Editor</a></li>
+      <li><a href="#shell-challenge">Shell Challenge</a></li>
+    </ul>
+  </li>
+  <li><a href="#lab-submission">Lab Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+
+<ul>
+  <li>Become familiar with the Linux environment, commands, and some applications.</li>
+  <li>Be able to navigate a directory tree from the command line.</li>
+  <li>Use a text editor to create and edit text files.</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, <code class="language-plaintext highlighter-rouge">ssh</code> into your Raspberry Pi and clone the repository into your Raspberry Pi’s home directory. This lab must be done on your Raspberry Pi. As a reminder, to <code class="language-plaintext highlighter-rouge">ssh</code> into your Rapsberry Pi, plug it in, and run this command on the terminal of your lab computer:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="o">[</span>your-user-name]@doorbell-[your-netid].local
+</code></pre></div></div>
+
+<p>Fill in your username and NetID with your information. To clone the repository, follow the instructions on the <a href="/ecen224/lab-setup/">Lab Setup</a> page.</p>
+
+<p><strong>This lab should be done in the terminal, not VSCode.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>In this lab you will learn some basic Linux features and skills that are useful throughout a technical career. The Linux environment is used commonly in the engineering, scientific and research communities. One of the reasons for this stems from the openness of Linux and the many applications that run on it. The source code to most everything that runs on Linux, and the <a href="http://www.kernel.org/" target="_blank" rel="noopener noreferrer">kernel</a> itself, is available on the Web. If you don’t like something or want to improve it, nothing is stopping you from getting the source code and changing it. You are encouraged to learn and explore beyond what is presented here on your own. We can only touch on a few Linux features. Discovering the flexibility that is available to the creative mind is left to you.</p>
+
+<h3 id="explore-common-linux-commands">Explore Common Linux Commands</h3>
+<p>Work through <strong>Modules 1, 2, 3 (skip the printing commands), and 4</strong> of the <a href="http://linuxsurvival.com/" target="_blank" rel="noopener noreferrer">Linux Survival tutorial</a>. It has a simulated Linux terminal for practicing what you learn in the modules.</p>
+
+<p>For a brief list of commonly used commands, see the <a href="/ecen224/resources#linux_commands_summary/">Linux Command Summary</a>.</p>
+
+<h3 id="keyboard-shortcuts">Keyboard Shortcuts</h3>
+<p>Even though using the command line to do things in Linux may seem like a lot of typing, there are shortcuts in place that can tremendously reduce the number of keystrokes. With a little practice, the shortcuts become a natural part of doing work on the command line and can even be more efficient than pointing, clicking, and navigating menus in a graphical interface. With a graphical interface, a user will often need to move their hand back and forth between the keyboard and the mouse. This motion is inefficient, even though most of us get used to it. With command line operation, our fingers never need to leave the keyboard and reach for the mouse.</p>
+
+<h4 id="command-history">Command History</h4>
+<p>When you type a command on the keyboard, there is a good chance you will want to execute it again, exactly the same way, or with a small variation. <strong>Using the up and down arrows on the keyboard allows you to navigate through a history of commands you have typed on the command line</strong>. When you hit the up arrow key the first time, the last command you executed will appear on the command line. If you hit up arrow again, you will see the next to the last and so forth. Typing down arrow will show more recent commands. After you have selected a previous command with the arrow keys, hitting the <code class="language-plaintext highlighter-rouge">Enter</code> key will execute the command.</p>
+
+<h4 id="command-editing">Command Editing</h4>
+<p>Once you have selected a prior command with the up and down arrow keys, you may want to slightly change it before you execute it again. <strong>The left and right arrow keys allow you to move the cursor to a location where you want to change the command.</strong> Use the backspace key to remove characters and then type new text at that location. When satisfied with the modified command, hit <code class="language-plaintext highlighter-rouge">Enter</code> to execute it. This is useful, for example, when you want to execute the same command on a different filename. Just hit up arrow to get the previous command, then backspace over the old file name and type the new one.</p>
+
+<h4 id="command-completion">Command Completion</h4>
+<p>Another helpful shortcut is called tab completion. If the tab key is pressed while a partial command or file name is typed, the shell will complete the rest of the text based on what has already been typed. Open a terminal window to your home directory (you can do this by typing <code class="language-plaintext highlighter-rouge">Ctrl</code>+<code class="language-plaintext highlighter-rouge">Alt</code>+<code class="language-plaintext highlighter-rouge">T</code> and then <code class="language-plaintext highlighter-rouge">ssh</code>ing into your Raspberry Pi) and type the following and then hit <code class="language-plaintext highlighter-rouge">Tab</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> /d
+</code></pre></div></div>
+
+<p>After hitting <code class="language-plaintext highlighter-rouge">Tab</code> you should see that “/d” was extended to “/dev/”. Now type <code class="language-plaintext highlighter-rouge">Enter</code> to execute the command. When navigating deep directory hierarchies, tab completion can assist in typing what could otherwise be very long path names. For example, tab can be pressed multiple times to keep extending the path name after typing a few characters, enough to make the name unique.</p>
+
+<p>Command names can also be tab completed. In a terminal window, type the following and then hit <code class="language-plaintext highlighter-rouge">Tab</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkd
+</code></pre></div></div>
+
+<p>Pressing the tab key should complete the command to mkdir. Press <code class="language-plaintext highlighter-rouge">Enter</code> to start the web browser. If you press <code class="language-plaintext highlighter-rouge">Tab</code> and you don’t get a response, you have mistyped the leading characters or there are other options that are ambiguous. Typing <code class="language-plaintext highlighter-rouge">Tab</code> again a second time will list the remaining options that begin with the characters you have typed. For example type in</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mk
+</code></pre></div></div>
+
+<p>Now hit <code class="language-plaintext highlighter-rouge">Tab</code> a couple of times and you should see something like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir        mk_modmap    mksh         mktemp       mkvinfo      mkvpropedit  
+mkfifo       mknod        mksh-static  mkvextract   mkvmerge
+</code></pre></div></div>
+
+<p>You can <code class="language-plaintext highlighter-rouge">Tab</code> through the possible commands and hit <code class="language-plaintext highlighter-rouge">Enter</code> to select the highlighted command.</p>
+
+<h3 id="set-and-read-environment-variables">Set and Read Environment Variables</h3>
+<p>The Linux environment holds configuration variables used by application programs. These variables are set in the environment by a user or by the system as needed. Knowing how to set environment variables and view them is important, since some Linux application programs may depend on you setting these up properly before running them. For example, the shell inside your terminal uses environment variables to indicate the location of where all the commands are stored. Now let’s see how to set an environment variable. The following example will set the variable MYLAB to a value of 02.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MYLAB</span><span class="o">=</span>02
+</code></pre></div></div>
+
+<p>After typing the command in the terminal, you can view the value that was last set by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nv">$MYLAB</span>
+</code></pre></div></div>
+<p>Notice that you have to put a <code class="language-plaintext highlighter-rouge">$</code> in front of the variable name in order to refer to it.</p>
+
+<p>You can also see your variable among all the others by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">env</span>
+</code></pre></div></div>
+
+<p>You can read some more about environment variables <a href="https://www.cherryservers.com/blog/how-to-set-list-and-manage-linux-environment-variables" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<h3 id="get-familiar-with-a-command-line-text-editor">Get Familiar with a Command Line Text Editor</h3>
+<p>Several text editors are installed on your system, for example, <code class="language-plaintext highlighter-rouge">code</code>, <code class="language-plaintext highlighter-rouge">gedit</code>, <code class="language-plaintext highlighter-rouge">nano</code>, <code class="language-plaintext highlighter-rouge">vim</code>, and <code class="language-plaintext highlighter-rouge">emacs</code>. Some applications can only be run from the command line, while others can be launched graphically by clicking on its icon in the application screen. Choose an editor, and use it to create a new file. <strong>Hint: If you are doing this lab SSHed into your Pi Z2W, <code class="language-plaintext highlighter-rouge">code</code> and <code class="language-plaintext highlighter-rouge">gedit</code> will not work because they require a GUI. <code class="language-plaintext highlighter-rouge">emacs</code> can also be terminal based (and is a great option - google the debate between <code class="language-plaintext highlighter-rouge">vim</code> and <code class="language-plaintext highlighter-rouge">emacs</code>) - but will need to be installed before you can use it.</strong></p>
+
+<p>Open a new file in the cloned lab directory using <code class="language-plaintext highlighter-rouge">nano</code> and create a note to yourself. Experiment with deleting text, copying, and pasting. Save the file. Quit out of <code class="language-plaintext highlighter-rouge">nano</code> and type <code class="language-plaintext highlighter-rouge">ls -l</code> to see details about the text file you created.</p>
+
+<h3 id="shell-challenge">Shell Challenge</h3>
+
+<p>To round out your shell learning experience, you are <strong>required</strong> to complete the shell challenge. In the lab repo, uncompress the <code class="language-plaintext highlighter-rouge">challenge.tar.xz</code> package; you will want to Google on how to do this. Notice that the file has two layers - the .tar and the .xz. In order to view the contents of the folder you must remove both (this can be done in one command). Inside the resulting directory, complete the various levels of the challenge to finish the lab.</p>
+
+<p>In order to complete this lab, you will need to use Google. If you don’t know how to do something, Google will help you find the answer. You will likely want to search things like:</p>
+
+<ul>
+  <li>
+    <p>How to uncompress a tar.xz file</p>
+  </li>
+  <li>
+    <p>How to make a script executable in Linux</p>
+  </li>
+</ul>
+
+<p><strong>To ensure this is graded successfully, make sure you commit the decompressed files!</strong></p>
+
+<h2 id="lab-submission">Lab Submission</h2>
+
+<ul>
+  <li>
+    <p>Answer the questions in the <code class="language-plaintext highlighter-rouge">README.md</code>. (This is one OUTSIDE of the challenge folder)</p>
+  </li>
+  <li>
+    <p>Pass off to a TA by showing the correct output of your <code class="language-plaintext highlighter-rouge">tree</code> command.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+
+<ul>
+  <li><a href="http://ubuntu.com/tutorials/command-line-for-beginners" target="_blank" rel="noopener noreferrer">The Linux Command Line for Beginners (tutorial)</a></li>
+  <li><a href="http://linuxcommand.org/tlcl.php" target="_blank" rel="noopener noreferrer">The Linux Command Line (book online)</a></li>
+  <li><a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html" target="_blank" rel="noopener noreferrer">Shell (bash) Built-in Commands - cd, pwd, echo, etc.</a></li>
+  <li><a href="https://www.gnu.org/software/coreutils/manual/html_node/index.html" target="_blank" rel="noopener noreferrer">GNU Coreutils - cp, mv, rm, mkdir, chown, etc.</a></li>
+  <li><a href="https://dev.to/abdfnx/oh-my-zsh-powerlevel10k-cool-terminal-1no0" target="_blank" rel="noopener noreferrer">Oh My Zsh + PowerLevel10k</a></li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

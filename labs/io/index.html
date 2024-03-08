@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    I/O • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+I/O+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        I/O
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li>
+<a href="#scanning-the-folder">Scanning the Folder</a>
+        <ul>
+          <li><a href="#dir-pointer">DIR Pointer</a></li>
+          <li><a href="#folder-operations">Folder operations</a></li>
+          <li><a href="#parsing-through-the-folder">Parsing through the Folder</a></li>
+          <li><a href="#filtering-files">Filtering Files</a></li>
+        </ul>
+      </li>
+      <li>
+<a href="#reading-files">Reading Files</a>
+        <ul>
+          <li><a href="#file-pointers">FILE Pointers</a></li>
+          <li><a href="#file-operations">File Operations</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#requirements">Requirements</a></li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+
+<ul>
+  <li>Read in files into a program</li>
+  <li>Create the necessary logic to handle an interface</li>
+  <li>Filter out files by pattern</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. <strong>This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>Learning to interact with the peripherals of the Pi Z2W is what allows us to take a simple single-board computer and turn it into a system with a more directed purpose. You may have noticed by looking at the future lab names of this class that the culmination of this project is to make a smart doorbell system. To that end, a HAT with an LCD screen and some buttons has been provided. Its purpose is to provide a way for a user of your smart doorbell to directly interact with the computer that is powering it.</p>
+
+<p>In the last lab you were able to draw practically anything to the LCD screen by utilizing the provided vendor libraries. You were also able to correlate these drawing events with button presses. In this lab we will take this practice and put it towards a more practical use: creating a photo and log viewer for your doorbell.</p>
+
+<p>The photo and log viewer of this lab consists of several components: scanning the folder where the intended files live, filtering out any files that the photo and log viewer doesn’t care about, and displaying the intended content of each file.</p>
+
+<h3 id="scanning-the-folder">Scanning the Folder</h3>
+<p>In this lab you are expected to scan through a current folder and make a list of strings that indicate the contents of that folder. While this is as trivial as a simple <code class="language-plaintext highlighter-rouge">ls -al</code> command in the shell, it becomes more challenging when trying to achieve the same objective in C. Implement the following directions from the sections below to create an array of strings that contain all of the files of interest inside the <code class="language-plaintext highlighter-rouge">viewer</code> folder. Your scanning function should filter out anything that doesn’t end in <code class="language-plaintext highlighter-rouge">.bmp</code> or <code class="language-plaintext highlighter-rouge">.log</code>.</p>
+
+<h4 id="dir-pointer">DIR Pointer</h4>
+<p>Before we can read in the contents of a directory in C, we will need a variable that holds some information about the directory that we are reading. For this, we use a <code class="language-plaintext highlighter-rouge">DIR</code> pointer. This object will allow us to look at the location of where our directory lives and then use this a pointer to iterate through files in a directory and (for our purposes) retrieve those file names. To make this pointer:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">DIR</span> <span class="o">*</span><span class="n">dp</span><span class="p">;</span>    <span class="c1">// Creates a directory pointer dp</span>
+</code></pre></div></div>
+
+<h4 id="folder-operations">Folder operations</h4>
+<p>With our newly allocated <code class="language-plaintext highlighter-rouge">DIR</code> pointer, we can use the following functions that will help us interface with the directory in our code.</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">opendir()</code> and <code class="language-plaintext highlighter-rouge">closedir()</code></p>
+
+    <p>In order to open a directory while using the <code class="language-plaintext highlighter-rouge">DIR</code> pointer, you can do the following:</p>
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="kt">DIR</span> <span class="o">*</span><span class="n">dp</span><span class="p">;</span>
+  <span class="n">dp</span> <span class="o">=</span> <span class="n">opendir</span><span class="p">(</span><span class="s">"my-folder"</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">dp</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Folder does not exist</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Use dp to read the contents of the folder</span>
+</code></pre></div>    </div>
+
+    <p>This opens the <code class="language-plaintext highlighter-rouge">my-folder</code> directory into code and puts the <code class="language-plaintext highlighter-rouge">dp</code> pointer at the top of this directory. When we are done iterating through the directory, you will need to close it by using the following call to <code class="language-plaintext highlighter-rouge">closedir()</code>:</p>
+
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="n">closedir</span><span class="p">(</span><span class="n">dp</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="parsing-through-the-folder">Parsing through the Folder</h4>
+<p>While iterating through a directory, you will need to have an object that corresponds to the files that are inside the directory. This object is known as the <code class="language-plaintext highlighter-rouge">struct dirent</code> pointer and is the return value of <code class="language-plaintext highlighter-rouge">readdir()</code>. In other words, when we call <code class="language-plaintext highlighter-rouge">readdir()</code> on a <code class="language-plaintext highlighter-rouge">DIR</code> pointer, it will iterate through a linked-list that returns the files in the form of a <code class="language-plaintext highlighter-rouge">dirent</code> struct pointer. Once we have finished iterating through all of the files in a <code class="language-plaintext highlighter-rouge">DIR</code> pointer, <code class="language-plaintext highlighter-rouge">readdir()</code> will return <code class="language-plaintext highlighter-rouge">NULL</code>:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">readdir()</code> example:</p>
+
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="k">struct</span> <span class="n">dirent</span> <span class="o">*</span> <span class="n">entry</span><span class="p">;</span>    <span class="c1">// Current folder object</span>
+
+  <span class="k">while</span> <span class="p">((</span><span class="n">entry</span> <span class="o">=</span> <span class="n">readdir</span><span class="p">(</span><span class="n">dp</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Do something with the directory...</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">d_name</code>
+  The <code class="language-plaintext highlighter-rouge">d_name</code> value inside of the <code class="language-plaintext highlighter-rouge">dirent</code> struct holds the file name of the file we are looking at. To see what the name of the current file is from a <code class="language-plaintext highlighter-rouge">readdir()</code> operation, do the following:</p>
+
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="n">entry</span> <span class="o">=</span> <span class="n">readdir</span><span class="p">(</span><span class="n">dp</span><span class="p">);</span>                      <span class="c1">// Get the current file object</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Item name: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">entry</span><span class="o">-&gt;</span><span class="n">d_name</span><span class="p">);</span> <span class="c1">// Print out name</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="filtering-files">Filtering Files</h4>
+<p>While reading in your files using the folder operations, you may want to filter out some folders or files that are not of interest to you such as the <code class="language-plaintext highlighter-rouge">.</code> and <code class="language-plaintext highlighter-rouge">..</code> files that exist in every directory. To do this, you can check the name of the filename with the <code class="language-plaintext highlighter-rouge">strncmp()</code>. If the files match a certain value (i.e. the last 3 characters of the name are <code class="language-plaintext highlighter-rouge">bmp</code> or <code class="language-plaintext highlighter-rouge">log</code>), you can add them to a list, else you can ignore it. More reading on how to use <code class="language-plaintext highlighter-rouge">strncmp()</code> is found in the <strong>Explore More!</strong> section below.</p>
+
+<h3 id="reading-files">Reading Files</h3>
+<p>In this lab, you will be expected to read both <code class="language-plaintext highlighter-rouge">.bmp</code> and <code class="language-plaintext highlighter-rouge">.log</code> files from the <code class="language-plaintext highlighter-rouge">viewer</code> folder. Then you must show them on the LCD screen of your Pi Z2W. In order for your program to input these files in code so you can interact with them, you will need to become familiar with some basic C constructs such as <code class="language-plaintext highlighter-rouge">FILE</code> streams and their associated functions. The information in the following section should help you learn about reading files into C and writing them to a different destination (i.e. in this case, to your LCD screen).</p>
+
+<h4 id="file-pointers">FILE Pointers</h4>
+<p>Interacting with a file will require you to make a <code class="language-plaintext highlighter-rouge">FILE</code> stream pointer. This pointer represents the current position of where a read or a write action is inside of a file. For example, if you open a file to read for the first time, the pointer will be at the beginning of the document. As you read words by advancing the pointer position with functions such as <code class="language-plaintext highlighter-rouge">fscanf()</code> or <code class="language-plaintext highlighter-rouge">fread()</code>, the pointer value will increment. For this lab, we will use <code class="language-plaintext highlighter-rouge">FILE</code> pointers only in the context of the functions needed for the file operations described below. To declare a FILE pointer:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>    <span class="c1">// This declares a file pointer that is read to be used in file operations</span>
+</code></pre></div></div>
+
+<h4 id="file-operations">File Operations</h4>
+<p>There are a few essential file operations that exist in the <code class="language-plaintext highlighter-rouge">stdio.h</code> library. The following is a selection of functions that will help you with to input files into a location in your code.</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fopen()</code> and <code class="language-plaintext highlighter-rouge">fclose()</code></p>
+
+    <p>This function takes in a <code class="language-plaintext highlighter-rouge">FILE</code> stream pointer, a file path, and some special strings to indicate the mode as arguments for opening a file. For example:</p>
+
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>    <span class="c1">// File pointer for interacting with file.</span>
+  <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"fancy_output.log"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+</code></pre></div>    </div>
+
+    <p>This code will create a <code class="language-plaintext highlighter-rouge">FILE</code> stream pointer called <code class="language-plaintext highlighter-rouge">fp</code>. We then use <code class="language-plaintext highlighter-rouge">fopen</code> to set the location of <code class="language-plaintext highlighter-rouge">fp</code> to the beginning of the <code class="language-plaintext highlighter-rouge">fancy_output.log</code> file in the current directory with the <code class="language-plaintext highlighter-rouge">r</code>ead mode (look at the <strong>Explore More!</strong> section for different file modes).</p>
+
+    <p>Once we have done everything that we want to with the file, we must be responsible and release the pointer back to the system. This is done by closing the file using <code class="language-plaintext highlighter-rouge">fclose()</code>. To do this, simply do the following:</p>
+
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>    <span class="c1">// Closes the file that was attached to the fp pointer</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fread()</code></p>
+
+    <p>Once we have a file open, how do we use the <code class="language-plaintext highlighter-rouge">FILE</code> stream pointer to get data? This is where functions like <code class="language-plaintext highlighter-rouge">fread</code> come into play. This function reads data from a file pointer. Specifically, it takes a buffer to read data into, the size of the data, the length of the data, and the file pointer.</p>
+
+    <div class="language-c highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>            <span class="c1">// Creates a string that can hold up to 256 characters </span>
+  <span class="n">fread</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>   <span class="c1">// Reads up to 256 bytes (or characters) from the file</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="requirements">Requirements</h2>
+
+<p>In this lab you should accomplish the following:</p>
+
+<ul>
+  <li>Create a simple menu that lists all of the files in the <code class="language-plaintext highlighter-rouge">viewer</code> folder:
+    <ul>
+      <li>
+        <p>Filter out any file that does not end in <code class="language-plaintext highlighter-rouge">.bmp</code> or <code class="language-plaintext highlighter-rouge">.log</code>.</p>
+      </li>
+      <li>
+        <p>File names should be drawn in 8pt font.</p>
+      </li>
+      <li>
+        <p>A selection bar should highlight which file you are about to open. When the up and down buttons are pressed, the selection bar should move up and down to the next or previous entry. The selection bar should scroll around from the top to the bottom and the bottom to the top. This means if your selection bar is at the top of the list and you press up, it should move to the bottom of the list. The same thing should be true for the bottom of the list and pressing down.</p>
+      </li>
+    </ul>
+  </li>
+  <li>When the center button is pressed do the following:
+    <ul>
+      <li>
+        <p>If the file is a <code class="language-plaintext highlighter-rouge">.bmp</code> image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.</p>
+      </li>
+      <li>
+        <p>If the file is a <code class="language-plaintext highlighter-rouge">.log</code> file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>You only need to show up to 8 items on the display. You can ignore the rest of the items if there are more than 8.</p>
+  </li>
+  <li>To perform these tasks, we have given you three functions that you must implement and use in your main function: <code class="language-plaintext highlighter-rouge">get_entries</code>, <code class="language-plaintext highlighter-rouge">draw_menu</code>, and <code class="language-plaintext highlighter-rouge">draw_file</code>. Also, use the <code class="language-plaintext highlighter-rouge">#define</code>d variables at the top of the file to help implement these functions.</li>
+</ul>
+
+<p>Here is a demo showing the different features of the lab:</p>
+
+<div class="row">
+    <div class="mx-auto">
+        <video height="500" controls="">
+            <source src="/ecen224/assets/io/demo.mp4" type="video/mp4"></source>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<h2 id="submission">Submission</h2>
+
+<ul>
+  <li>
+    <p>Answer the questions in the <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
+  </li>
+  <li>
+    <p>To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+<ul>
+  <li>
+    <p><a href="https://stackoverflow.com/questions/4204666/how-to-list-files-in-a-directory-in-a-c-program" target="_blank" rel="noopener noreferrer">List Files in Folder in C</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.programiz.com/c-programming/c-file-input-output#:~:text=()%20returns%20NULL.-,rb,Open%20for%20writing." target="_blank" rel="noopener noreferrer">Opening and Closing a File in C Tutorial</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">fscanf()</code> Tutorial</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.tutorialspoint.com/c_standard_library/c_function_strncmp.htm" target="_blank" rel="noopener noreferrer">Comparing strings in C</a></p>
+  </li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

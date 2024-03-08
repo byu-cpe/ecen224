@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Display • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Display+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Display
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li>
+<a href="#bcm2835-library">BCM2835 Library</a>
+        <ul>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#compiling-into-a-project">Compiling into a Project</a></li>
+          <li><a href="#executing">Executing</a></li>
+        </ul>
+      </li>
+      <li>
+<a href="#drawing-to-the-screen">Drawing to the Screen</a>
+        <ul>
+          <li><a href="#orientation-and-dimensions">Orientation and Dimensions</a></li>
+          <li><a href="#colors">Colors</a></li>
+          <li><a href="#fonts">Fonts</a></li>
+        </ul>
+      </li>
+      <li><a href="#interacting-with-buttons">Interacting with Buttons</a></li>
+      <li><a href="#device-delay">Device delay</a></li>
+      <li><a href="#logging">Logging</a></li>
+    </ul>
+  </li>
+  <li><a href="#requirements">Requirements</a></li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+
+<ul>
+  <li>Become familiar with the LCD and button shield for the Pi Z2W.</li>
+  <li>Learn to use a “vendor” library to control different hardware accessories.</li>
+  <li>Associate graphical events with specific inputs.</li>
+  <li>Get experience using a Makefile</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. <strong>This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="/ecen224/assets/display/lcd-button-shield.png" alt="Units of the course.">
+  <figcaption style="text-align: center;">The Waveshare 1.44" LCD and button module. This is known as a Hardware Attached on Top module, or a HAT for short.</figcaption>
+</figure>
+
+<p>One of the remarkable features of single board computers like the Pi Z2W is its extensibility through hardware add-ons in the form of HATs (short for Hardware Attached on Top) or “shields” (a term that describes the same idea in the <a href="https://www.arduino.cc/" target="_blank" rel="noopener noreferrer">Arduino</a> community). These useful extensions take advantage of the most attractive feature of most single board computers: the GPIO pins.</p>
+
+<p>GPIO (General Purpose Input/Output) pins are the main mode to connect novel hardware peripherals to a single board computer. A peripheral is a device that is connected to a computer to enhance its functionality (i.e a mouse, keyboard, monitor, printer, etc). The Pi Z2W GPIO pins allows for potentially many peripherals such as sensors, motors, etc. to be connected all at once. This makes it a very approachable computer to use in custom systems that interface with specialty hardware.</p>
+
+<p>In this lab we will use the Waveshare 1.44” HAT which connects to all of the GPIO pins on the Pi Z2W. In return, the HAT provides a small Liquid Crystal Display (LCD) screen, a directional button pad (d-pad), and a set of action keys.</p>
+
+<h3 id="bcm2835-library">BCM2835 Library</h3>
+
+<h4 id="installation">Installation</h4>
+<p>In order to interface with the GPIO of the Pi Z2W, we need to install a library.</p>
+
+<ol>
+  <li>
+    <p>First make sure that you are in your home directory on the Pi Z2W:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ~
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Then use <code class="language-plaintext highlighter-rouge">wget</code> to download the compressed archive with the library from the developer’s website:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.71.tar.gz
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Once the file has downloaded, uncompress the archive using the <code class="language-plaintext highlighter-rouge">tar</code> utility:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">tar </span>xvfz bcm2835-1.71.tar.gz
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Go into the uncompressed directory:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">cd </span>bcm2835-1.71
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the <code class="language-plaintext highlighter-rouge">configure</code> script. This will provide operating system information to the library so it knows how to configure itself to work specifically on the Pi Z2W architecture:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> ./configure
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Once the <code class="language-plaintext highlighter-rouge">configure</code> script has prepared the necessary modifications, run the <code class="language-plaintext highlighter-rouge">make</code> command to compile library’s source files (i.e all its <code class="language-plaintext highlighter-rouge">.c</code> files)</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> make
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Finally, move the compiled binaries to the folder in the operating system where your <code class="language-plaintext highlighter-rouge">gcc</code> compiler looks for system libraries:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="compiling-into-a-project">Compiling into a Project</h4>
+
+<p>Now that the <code class="language-plaintext highlighter-rouge">bcm2835</code> library is installed, we can use it in any C program that we like! This comes especially in handy for our new LCD and button HAT. However, since this is an installed library and not a default one, we have to let <code class="language-plaintext highlighter-rouge">gcc</code> know that we are trying to include it in the compilation process. This is done by adding the <code class="language-plaintext highlighter-rouge">-lbcm2835</code> flag to our normal <code class="language-plaintext highlighter-rouge">gcc</code> compilation command. The <code class="language-plaintext highlighter-rouge">-l</code> lets <code class="language-plaintext highlighter-rouge">gcc</code> know we are including a custom system library, while the <code class="language-plaintext highlighter-rouge">bcm2835</code> part is just the name of the library itself.</p>
+
+<h4 id="executing">Executing</h4>
+
+<p>Accessing the HAT hardware requires special permissions.  After compiling your project, you will need to run it with <code class="language-plaintext highlighter-rouge">sudo</code> (e.g., <code class="language-plaintext highlighter-rouge">sudo ./main</code>) otherwise you will likely see a <code class="language-plaintext highlighter-rouge">segmentation fault</code>.</p>
+
+<h3 id="drawing-to-the-screen">Drawing to the Screen</h3>
+
+<p>In this lab you will be responsible for writing a <code class="language-plaintext highlighter-rouge">main.c</code> file that will draw shapes and images to the LCD screen. The library responsible for this is found in the <code class="language-plaintext highlighter-rouge">lib/display.h</code> library file. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the <code class="language-plaintext highlighter-rouge">display.h</code> and read their corresponding comments.</p>
+
+<h4 id="orientation-and-dimensions">Orientation and Dimensions</h4>
+<p>When drawing on the screen, it is important to have a good mental model of what the coordinate system of the screen is like. For this particular LCD module, we have set up the axes like so:</p>
+
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="/ecen224/assets/display/axes.png" alt="Units of the course.">
+</figure>
+
+<p>The height and width of the screen are <code class="language-plaintext highlighter-rouge">#define</code>d in the <code class="language-plaintext highlighter-rouge">display.h</code> file as <code class="language-plaintext highlighter-rouge">DISPLAY_WIDTH</code> and <code class="language-plaintext highlighter-rouge">DISPLAY_HEIGHT</code>. These values can be useful if you are trying to define coordinates for shapes relative to those points.</p>
+
+<h4 id="colors">Colors</h4>
+<p>Most of the <code class="language-plaintext highlighter-rouge">display</code> functions take in a color parameter to give color to the shapes you are drawing or the text that you are writing. These colors are <code class="language-plaintext highlighter-rouge">#define</code>d in the <code class="language-plaintext highlighter-rouge">lib/colors.h</code> file.</p>
+
+<p>Example:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display_draw_rectangle</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">BYU_ORANGE</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+<p>where <code class="language-plaintext highlighter-rouge">BYU_ORANGE</code> is <code class="language-plaintext highlighter-rouge">#define</code>d in <code class="language-plaintext highlighter-rouge">colors.h</code>.</p>
+
+<h4 id="fonts">Fonts</h4>
+<p>Part of the <code class="language-plaintext highlighter-rouge">display</code> library allows you to draw strings on the screen. One of the parameters for drawing the string to the screen is selecting a font. These fonts are all located in the <code class="language-plaintext highlighter-rouge">fonts</code> folder and are accessible through the <code class="language-plaintext highlighter-rouge">fonts.h</code> library. Each font represents different font sizes. To use the fonts in the <code class="language-plaintext highlighter-rouge">display_draw_string()</code> function, you will need to pass the address of the font you desire:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display_draw_string</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">"Hello, World!"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Font8</span><span class="p">,</span> <span class="n">WHITE</span><span class="p">,</span> <span class="n">BLACK</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The following fonts are available:</p>
+<ul>
+  <li>Font8</li>
+  <li>Font12</li>
+  <li>Font16</li>
+  <li>Font20</li>
+  <li>Font24</li>
+</ul>
+
+<p>Before the LCD can be used, you will need to call the <code class="language-plaintext highlighter-rouge">display_init()</code> function once in your code at the beginning.</p>
+
+<h3 id="interacting-with-buttons">Interacting with Buttons</h3>
+
+<p>To read the state of the d-pad you will be using the functions found defined in the <code class="language-plaintext highlighter-rouge">buttons.h</code> library interface. When a button is actively being pressed, the function to read it will return a <code class="language-plaintext highlighter-rouge">0</code>, else if it unpressed, it will return a <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<p>Example:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">button_up</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something upon detecting button press</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">button_up</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Do something while the button is pressed</span>
+        <span class="n">delay_ms</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Do something while the button is not pressed</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Before the buttons can be used, you will need to call the <code class="language-plaintext highlighter-rouge">buttons_init()</code> function once in your code at the beginning. <em>If you don’t call <code class="language-plaintext highlighter-rouge">buttons_init()</code> before you start using the buttons, weird things can happen!</em> You’re code might work, but then when you reboot or rerun your code, it might not!
+Note that you must call <code class="language-plaintext highlighter-rouge">display_init()</code> before you call <code class="language-plaintext highlighter-rouge">buttons_init()</code> or you will get a segmentation fault.</p>
+
+<h3 id="device-delay">Device delay</h3>
+<p>You will see in your <code class="language-plaintext highlighter-rouge">main.c</code> function that your code will loop infinitely. This means that anything inside the <code class="language-plaintext highlighter-rouge">while(true)</code> loop will repeat over and over until the program is terminated by the user through the shell. Running a <code class="language-plaintext highlighter-rouge">while(true)</code> loop without any sort of control can cause system resources to be eaten up and cause your program to be run inefficiently. For this, we have provided the <code class="language-plaintext highlighter-rouge">delay_ms()</code> inside the <code class="language-plaintext highlighter-rouge">device.h</code> library. This will allow you to essentially create a wait time in the execution of your loop. This is handy if you want to draw something to the screen and have it only appear for a certain amount of time before the logic in your program goes on.</p>
+
+<h3 id="logging">Logging</h3>
+<p>We also give you <code class="language-plaintext highlighter-rouge">log.h</code> and <code class="language-plaintext highlighter-rouge">log.c</code> files that you can find under the <code class="language-plaintext highlighter-rouge">/lib</code> folder. The functions in these files (<code class="language-plaintext highlighter-rouge">log_info()</code> or <code class="language-plaintext highlighter-rouge">log_debug()</code> for example) can be used like printfs to output data to the terminal (or optionally a log file). However, these only print to the terminal if the current <strong>log level</strong> is equal to or lower than the log command.  For example, if the log level is set to <code class="language-plaintext highlighter-rouge">LOG_INFO</code>, then <code class="language-plaintext highlighter-rouge">log_debug()</code> messages won’t show, but <code class="language-plaintext highlighter-rouge">log_info()</code> through <code class="language-plaintext highlighter-rouge">log_fatal()</code> messages will.  You can change the current log level with the <code class="language-plaintext highlighter-rouge">log_set_level()</code> function. These tools can be used to have printfs that you don’t need to remove, but that can be turned on/off when you are debugging.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<p>You must demonstrate your understanding of the <code class="language-plaintext highlighter-rouge">display</code> and <code class="language-plaintext highlighter-rouge">buttons</code> libraries and how to use them by accomplishing the following:</p>
+
+<ol>
+  <li>
+    <p>If no button is pressed nothing should change on your display.</p>
+  </li>
+  <li>When the up button is pressed:
+    <ul>
+      <li>Clear the screen to white.</li>
+      <li>Draw filled in green rectangle that covers the first 20 rows of pixels at the top of the screen.</li>
+      <li>Draw filled in red rectangle that covers the last 20 rows of pixels at the bottom of the screen.</li>
+      <li>In the center of the screen, draw a pound-sign (bang/hash/etc.) that is exactly centered using a black color and a 3 px line weight. Its dimensions should 50x50px.</li>
+      <li>The previous hash should be inside and centered in a yellow circle with a 3 px line width and a 30 px radius.</li>
+      <li>The rest of the screen should be white.</li>
+    </ul>
+  </li>
+  <li>When the down button is pressed:
+    <ul>
+      <li>Clear the screen to white.</li>
+    </ul>
+  </li>
+  <li>When the right button is pressed:
+    <ul>
+      <li>Clear the screen to white.</li>
+      <li>Draw “Hello world!” centered vertically and horizontally repeating 5 times in Font8 in different colors.</li>
+    </ul>
+  </li>
+  <li>When the left button is pressed:
+    <ul>
+      <li>Clear the screen to white.</li>
+      <li>Experiment with drawing different numbers and characters of different sizes and colors.</li>
+      <li>The screen should have at least 10 digits and 10 characters.</li>
+    </ul>
+  </li>
+  <li>When the center button is pressed:
+    <ul>
+      <li>Clear the screen to white</li>
+      <li>Display the <code class="language-plaintext highlighter-rouge">byu_og.bmp</code> image from the <code class="language-plaintext highlighter-rouge">pic</code> directory.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="submission">Submission</h2>
+
+<ul>
+  <li>
+    <p>Answer the questions in the <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
+  </li>
+  <li>
+    <p>To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+<ul>
+  <li><a href="https://www.waveshare.com/1.44inch-lcd-hat.htm" target="_blank" rel="noopener noreferrer">Waveshare 1.44” LCD HAT</a></li>
+  <li><a href="https://pinout.xyz" target="_blank" rel="noopener noreferrer">Raspberry Pi GPIO Breakdown</a></li>
+  <li><a href="https://www.pishop.us/product-category/raspberry-pi/raspberry-pi-hats/" target="_blank" rel="noopener noreferrer">Different types of Pi HATs</a></li>
+  <li><a href="https://pihw.wordpress.com/guides/mini-retro-pi-setup/" target="_blank" rel="noopener noreferrer">Retro Handheld Console with LCD HAT</a></li>
+  <li><a href="https://sss.readthedocs.io/en/latest/Hardware/Final%20product/" target="_blank" rel="noopener noreferrer">Crazy Pi GPIO Usage</a></li>
+</ul>
+
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

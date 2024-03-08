@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gdb Walkthrough</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href=/ecen224/css/walkthrough.css>
+    <link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+</head>
+
+<body>
+    <div id="frame">
+        <header>
+            <div class="siteblock">
+                <h1><a href="/ecen224/">BYU ECEn 224</a></h1>
+            </div>
+        </header>
+        <main>
+            <div class="title">Gdb Walkthrough</div>
+            <article>
+                <p>So far, we have been using gcc to compile C code into executable programs and, occasionally, into assembly language. For the upcoming homework and labs it we need to expand our palette to include <code class="language-plaintext highlighter-rouge">objdump</code> and <code class="language-plaintext highlighter-rouge">gdb</code>.</p>
+
+<p>To get started, you need to make sure the tools are installed in your Linux installation (whether a physical machine, a VM, or Windows Subsystem for Linux). <em>If you are using a lab computer, everything is already there.</em> For other cases, use the following commands to install the tools:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt update
+sudo apt install gcc build-essential
+sudo apt install gcc-multilib
+sudo apt install gdb
+</code></pre></div></div>
+
+<p><em>gcc-multilib</em> lets you compile for 32-bit as well as 64-bit.
+<em>gdb</em> installs the debugger.</p>
+
+<h2 id="gcc-compilerlinker">
+<strong>gcc</strong> Compiler/Linker</h2>
+<p>Compiles code in C, C++, and a variety of other languages and links code from multiple modules and libraries into an executable file.</p>
+
+<h3 id="commonly-used-options">Commonly-used options</h3>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">-m32</code><br>Compile and link for 32-bit mode</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-O0</code><br>Turn off all optimizations. Usually this makes assembly code easier to read and debug. (That’s capital “O” followed by zero.)</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-O1</code> <code class="language-plaintext highlighter-rouge">-O2</code> <code class="language-plaintext highlighter-rouge">-O3</code><br>Add varying degrees of optimization. These certainly make the code more efficient and sometimes make it easier to understand.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-Os</code><br>Optimize for size (instead of performance). This may also make the generated code more intelligible.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-S</code><br>Compile to assembly language - to see how things are done. (That’s a capital ‘S’.)</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-S -masm=intel</code><br>Compile to intel-syntax assembly language.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-S -masm=att</code><br>Compile to AT&amp;T-syntax assembly language. (Not really necessary because that’s the default.)</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-c</code><br>Compile to an object file to be linked or dumped.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-fno-asynchronous-unwind-tables -fno-pie -no-pie -mpreferred-stack-boundary=3</code><br>Remove extra stuff from the generated code so you can see just what the compiler is doing. For details on what these mean see <a href="https://stackoverflow.com/questions/38552116/how-to-remove-noise-from-gcc-clang-assembly-output" target="_blank" rel="noopener noreferrer">this article</a>, <a href="https://stackoverflow.com/questions/50105581/how-do-i-get-rid-of-call-x86-get-pc-thunk-ax" target="_blank" rel="noopener noreferrer">this article</a>, and <a href="https://stackoverflow.com/questions/10251203/gcc-mpreferred-stack-boundary-option" target="_blank" rel="noopener noreferrer">this article</a> from StackOverflow.</li>
+  <li><code class="language-plaintext highlighter-rouge">-fverbose-asm</code></li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-ggdb</code><br>Include debugging symbols</li>
+</ul>
+
+<h3 id="example">Example</h3>
+
+<p>Create a file called <code class="language-plaintext highlighter-rouge">add.c</code> with the following contents:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int add(int a, int b)
+{
+  return a + b;
+}
+</code></pre></div></div>
+
+<p>Compile it to assembly using the following command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -m32 -O0 -S -fno-asynchronous-unwind-tables -fno-pie -mpreferred-stack-boundary=3 add.c
+</code></pre></div></div>
+
+<p>This will produce a file called <code class="language-plaintext highlighter-rouge">add.s</code> with the assembly language version of the code.</p>
+
+<p>Try the same thing without the -m32 option to see how 64-bit code differs from the 32-bit version.</p>
+
+<h2 id="objdump-object-and-executable-file-dump-tool">
+<strong>objdump</strong> Object and executable file dump tool</h2>
+<p>Dumps the contents of object and executable files including disassembling machine code.</p>
+
+<blockquote>
+  <p><em>Disassembling</em> means to take machine code and convert it into the equivalent assembly-language code. It’s very useful when you don’t have access to the source code of a program and you want to <em>reverse engineer</em> it to figure out how it works. You will need to disassemble code to complete the upcoming <em>bomb</em> and <em>attack</em> labs.</p>
+</blockquote>
+
+<h3 id="commonly-used-options-1">Commonly-used options</h3>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">-d</code><br>Disassemble all .text (code) sections.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-M intel</code><br>Use Intel syntax when disassembling code.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-s</code><br>Binary dump all sections.</li>
+</ul>
+
+<h3 id="example-1">Example</h3>
+
+<p>Use the same <code class="language-plaintext highlighter-rouge">add.c</code> file from the <strong>gcc</strong> example. Compile it to an object file with the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -O0 -c -fno-asynchronous-unwind-tables -fno-pie add.c
+</code></pre></div></div>
+<p>This produces an <em>object</em> (machine-language) file called <code class="language-plaintext highlighter-rouge">add.o</code>.</p>
+
+<p>Now dump the contents using the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>objdump -d -s add.o
+</code></pre></div></div>
+
+<p>You will notice that the object file has three sections. The <code class="language-plaintext highlighter-rouge">.text</code> section contains the machine code. Since we used both the -d and the -s options, it also disassembles the .txt section to show us the assembly language version. If you look at the hexadecimal dump of the <code class="language-plaintext highlighter-rouge">.text</code> section it’s the same as the hexadecimal machine language to the left of the disassembled code. I think you’ll agree that it’s much easier to interpret the assembly language than the machine language.</p>
+
+<h2 id="gdb-gnu-debugger">
+<strong>gdb</strong> GNU Debugger</h2>
+<p>Loads a program and lets you examine it while running including setting breakpoints, examining register contents, examining variables, changing values and so forth.</p>
+
+<h3 id="example-2">Example</h3>
+<p>Update <code class="language-plaintext highlighter-rouge">add.c</code> with the following contents:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+
+int add(int a, int b)
+{
+  return a + b;
+}
+
+int main(int argc, char **argv)
+{
+  printf("%d\n", add(3, 5));
+}
+</code></pre></div></div>
+
+<p>Compile and link the program with the following command. Note the options that make the code easier to read and include symbols for the debugger to use.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -O0 -fno-asynchronous-unwind-tables -fno-pie -no-pie -ggdb add.c
+</code></pre></div></div>
+
+<p>Start gdb by specifying the program to be debugged on the command line.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb a.out
+</code></pre></div></div>
+
+<h3 id="common-gdb-commands">Common GDB Commands</h3>
+<p>Once GDB is loaded you type commands to debug the code. Here are some of the most commonly-used commands:</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">disassemble &lt;name&gt;</code><br>Disassemble the named function</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">list</code><br>List the source code in the vicinity of the current location.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">break &lt;name&gt;</code><br>Set a breakpoint on the named function</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">break *&lt;address&gt;</code><br>Set a breakpoint at the specified address</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">run</code><br>Start the program from the beginning</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">continue</code><br>Continue running the program after reaching a breakpoint</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">stepi</code><br>Step through the next assembly instruction, diving into functions when called</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">nexti</code><br>Step through the next assembly instruction, skipping over function calls</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">step</code><br>Step through the next source code line, diving into functions when called</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">next</code><br>Step through the next source code line skipping over function calls</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">info registers</code><br>Show the contents of all registers</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">info register rax</code><br>Show the contents of one register</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">print a</code><br>Print the value of a variable</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">set $rax = 42</code><br>Set the value of a register</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">set var a = 42</code><br>Set the value of a variable</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout asm</code><br>Change the screen layout to show the disassembly.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout regs</code><br>Change the screen layout to show the registers.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">set disassembly-flavor intel</code><br>Disassemble in Intel syntax</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">set disassembly-flavor att</code><br>Disassemble in AT&amp;T syntax (this is the default)</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">exit</code><br>Exit the debugger</li>
+</ul>
+
+<p>With the program loaded into the debugger, use the following commands to get started:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disassemble add
+disassemble main
+break add
+run
+list
+info registers
+backtrace
+continue
+</code></pre></div></div>
+
+<p>Through those steps you were able to examine the two functions. Set a breakpoint on the <code class="language-plaintext highlighter-rouge">add</code> function. Run until it stopped at the breakpoint. List the source code. Examine the contents of the registers. Look at the call stack. And let the program run to completion.</p>
+
+<p>Next, we’ll do some more advanced work in the debugger. First, we’ll change to “TUI” (Textual User Interface) which keeps valuable information on the screen.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>layout regs
+</code></pre></div></div>
+<p>This shows the disassembly of the code to be run and the contents of the registers on the screen.</p>
+
+<p>Now, let it run until the breakpoint again.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>run
+</code></pre></div></div>
+<p>Now you can see that the <code class="language-plaintext highlighter-rouge">instruction pointer</code> is positioned on the first actual code of the <code class="language-plaintext highlighter-rouge">add</code> function. It has skipped over the preamble. The code you are looking at is about to move the argument <code class="language-plaintext highlighter-rouge">a</code> into register <code class="language-plaintext highlighter-rouge">%edx</code>.</p>
+
+<p>Let’s single-step through that operation.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stepi
+</code></pre></div></div>
+<p>In the registers, it highlights things that have changed. <code class="language-plaintext highlighter-rouge">rip</code> changed to point at the next instruction. <code class="language-plaintext highlighter-rouge">rdx</code> got loaded with a 3 which is the value of variable <code class="language-plaintext highlighter-rouge">a</code>.</p>
+
+<p>We’re going to modify that value to manipulate the output of the program.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set $rdx = 2
+</code></pre></div></div>
+
+<p>Let the program run to completion.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>continue
+</code></pre></div></div>
+<p>You see that the program printed <code class="language-plaintext highlighter-rouge">7</code> which is the result of <code class="language-plaintext highlighter-rouge">2 + 5</code> instead of <code class="language-plaintext highlighter-rouge">3 + 5</code>.</p>
+
+<h3 id="tui-display-commands">TUI Display Commands</h3>
+<p>The “Textual User Interface” is helpful as it can show disassembly, source code, registers and more. Here are some of the commands you can use to control the TUI mode.</p>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">ctrl-x ctrl-a</code><br>Toggle the TUI mode on and off (Hold ctrl while pressing x, a)</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">win</code><br>Turn the TUI on</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout src</code><br>Use the <code class="language-plaintext highlighter-rouge">source</code> TUI mode which shows the source code near the current instruction pointer</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout asm</code><br>Use the <code class="language-plaintext highlighter-rouge">asm</code> TUI mode which shows the disassembled machine code</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout regs</code><br>Use the <code class="language-plaintext highlighter-rouge">regs</code> TUI mode which shows the registers and the disassembled machine code</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout split</code><br>Use the <code class="language-plaintext highlighter-rouge">split</code> TUI mode which shows the source code and the disassembled machine code</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout next</code> and <code class="language-plaintext highlighter-rouge">layout prev</code><br>Apply the next or previous TUI layout.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">help layout</code><br>Show available <code class="language-plaintext highlighter-rouge">layout</code> commands.</li>
+</ul>
+
+<p>Experiment with the different display modes and see how they help you understand how the program is working.</p>
+
+<h3 id="examining-memory">Examining Memory</h3>
+<p>The <code class="language-plaintext highlighter-rouge">x</code> command stands for “eXamine.” It is used for examining the contents of memory. Try the following command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x/16xb add
+</code></pre></div></div>
+<p>This tells the debugger to eXamine 16 bytes in hexadecimal format starting at the beginning of the function <code class="language-plaintext highlighter-rouge">add</code>. For detail on the options for formatting (hex, decimal, etc.) word size (byte, half word, word, etc.), amount to print and address type <code class="language-plaintext highlighter-rouge">help x</code>.</p>
+
+<p>Try different display modes. Place breakpoints in different places. Change values in registers and in variables. See if you can get the program to crash.</p>
+
+<p>We can only get you started in this walkthrough. More detail can be found here: <a href="https://www.geeksforgeeks.org/gdb-step-by-step-introduction/" target="_blank" rel="noopener noreferrer">GDB Step By Step Introduction</a>.</p>
+
+            </article>
+        </main>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Make Walkthrough</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href=/ecen224/css/walkthrough.css>
+    <link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+</head>
+
+<body>
+    <div id="frame">
+        <header>
+            <div class="siteblock">
+                <h1><a href="/ecen224/">BYU ECEn 224</a></h1>
+            </div>
+        </header>
+        <main>
+            <div class="title">Make Walkthrough</div>
+            <article>
+                <p>Make is a tool for building both simple and complicated projects. It can be used with pretty much any development tool that can be run from the command line. It’s most common use is building compiled programs from source code. But it would be equally effective applying visual filters to raw camera images.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>For this walkthrough we’ll be using the <code class="language-plaintext highlighter-rouge">gcc</code> C compiler and the Gnu <code class="language-plaintext highlighter-rouge">make</code> utility. You will also need a text editor. By now you probably have a development setup with these tools or you’re working on a lab machine.</p>
+
+<p>To be sure your <code class="language-plaintext highlighter-rouge">gcc</code> and <code class="language-plaintext highlighter-rouge">make</code> are installed use the following command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">--version</span>
+make <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>If you find they aren’t installed you can install them with the following commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>gcc
+<span class="nb">sudo </span>apt <span class="nb">install </span>make
+</code></pre></div></div>
+
+<p>Let’s start with a simple C program consisting of three source files. Create a folder (directory) for your project. In that folder create two .c and one .h source code files with the following contents:</p>
+
+<p><strong>pasta.c</strong></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">"servings.h"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">servings</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ounces</span> <span class="o">=</span> <span class="n">servings2ounces</span><span class="p">(</span><span class="n">servings</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"You need %d ounces of dry pasta to make %d servings.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ounces</span><span class="p">,</span> <span class="n">servings</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>servings.h</strong></p>
+<pre><code class="language-h">int servings2ounces(int servings);
+</code></pre>
+
+<p><strong>servings.c</strong></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"servings.h"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">servings2ounces</span><span class="p">(</span><span class="kt">int</span> <span class="n">servings</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">servings</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You can build this program with the following command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc pasta.c servings.c <span class="nt">-o</span> pasta
+</code></pre></div></div>
+
+<p>Then you can run it with this command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./pasta
+</code></pre></div></div>
+
+<h2 id="compiling-and-linking">Compiling and Linking</h2>
+<p>The previous command actually performed three operations:</p>
+<ol>
+  <li>Compile pasta.c to machine language</li>
+  <li>Compile math.c to machine language</li>
+  <li>Link the machine language produced in steps 1 and 2 with the runtime libraries and put the result into the <code class="language-plaintext highlighter-rouge">pasta</code> executable file.</li>
+</ol>
+
+<p>You can do these steps separately as follows:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-c</span> pasta.c
+gcc <span class="nt">-c</span> servings.c
+gcc pasta.o servings.o <span class="nt">-o</span> pasta
+</code></pre></div></div>
+
+<p>Each of the compile steps produced a corresponding <em>object</em> file with a <code class="language-plaintext highlighter-rouge">.o</code> extension. The object files contain the machine code of the functions from the source files plus information needed to link them together into a executable program. The third, linking, step combines these files plus runtime libraries that into the executable file - with no extension.</p>
+
+<p>But why do this in separate steps when the simple one-step build works?</p>
+
+<p>Suppose you have a large application with dozens of source code files. Then you would only want to compile the files that have changed before linking everything together. That saves build time. Make orchestrates complicated build processes and does it in a simple way.</p>
+
+<h2 id="makefiles">Makefiles</h2>
+
+<p>A make file is composed of rules. Each rule has three parts; plus it may have a comment:</p>
+
+<p><img src="images/MakeRule.svg" alt="Anatomy of a Make Rule"></p>
+
+<ul>
+  <li>The <strong>target</strong> is the thing that the rule is intended to create. If you were making a cake, it would be the cake itself.</li>
+  <li>The <strong>prerequisites</strong> are the inputs for creating the target. Sort of like the ingredients to the cake.</li>
+  <li>The <strong>recipe</strong> is the set of commands required to produce the target from the prerequisites.</li>
+</ul>
+
+<p>A <strong>Makefile</strong> is a text file containing a set of rules. By default, the file is named just that, “Makefile” without any extension. Let’s create one for our project.</p>
+
+<p><strong>Makefile</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pasta: pasta.c servings.c servings.h
+	gcc pasta.c servings.c -o pasta
+</code></pre></div></div>
+<p>IMPORTANT: You must use a tab to indent the lines of the recipe. Spaces won’t work. So, in the second line of this Makefile, be sure to use a tab.</p>
+
+<p>This is a very simple makefile with only one rule. It says that <code class="language-plaintext highlighter-rouge">pasta</code> (the executable file) depends on <code class="language-plaintext highlighter-rouge">pasta.c</code>, <code class="language-plaintext highlighter-rouge">servings.c</code>, and <code class="language-plaintext highlighter-rouge">servings.h</code>. If any of those files changes, then the recipe commands are executed to re-create it.</p>
+
+<p>Let’s run the make file. At the command-line just type the following:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+</code></pre></div></div>
+
+<p>Make automatically looks for a <code class="language-plaintext highlighter-rouge">Makefile</code> in the current directory and executes the rules in that file. When necessary, you can use the <code class="language-plaintext highlighter-rouge">-f</code> option to specify a different filename for the Makefile but that’s uncommon.</p>
+
+<p>If you already built <code class="language-plaintext highlighter-rouge">pasta</code> using the <code class="language-plaintext highlighter-rouge">gcc</code> command then make simply responds with “‘pasta’ is up to date.” and does nothing. How does it know that that <code class="language-plaintext highlighter-rouge">pasta</code> is up to date? By checking the file modification dates. If the date modified on <code class="language-plaintext highlighter-rouge">pasta</code> is more recent than all of its prerequisites then the recipe doesn’t need to be executed.</p>
+
+<p>Let’s test this. Make a change to <code class="language-plaintext highlighter-rouge">pasta.c</code>. You could change the message, add a comment, anything. In this example I changed “You” to “We” in the message:</p>
+
+<p><strong>pasta.c</strong></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">"servings.h"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">servings</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ounces</span> <span class="o">=</span> <span class="n">servings2ounces</span><span class="p">(</span><span class="n">servings</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"We need %d ounces of dry pasta to make %d servings.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ounces</span><span class="p">,</span> <span class="n">servings</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now run make:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+</code></pre></div></div>
+
+<p>This time it executes the command to build <code class="language-plaintext highlighter-rouge">pasta</code>. Run <code class="language-plaintext highlighter-rouge">make</code> again and it will report that <code class="language-plaintext highlighter-rouge">pasta</code> is up to date.</p>
+
+<p>Of course, this simple make file just builds the whole thing whenever something changes. A better <code class="language-plaintext highlighter-rouge">Makefile</code> would only build what’s necessary.</p>
+
+<h2 id="multiple-rules">Multiple Rules</h2>
+
+<p>Update your <code class="language-plaintext highlighter-rouge">Makefile</code> as follows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pasta: pasta.o servings.o
+	gcc pasta.o servings.o -o pasta
+
+pasta.o: pasta.c servings.h
+	gcc -c pasta.c
+
+servings.o: servings.c servings.h
+	gcc -c servings.c
+</code></pre></div></div>
+<p>Again, make sure those are tabs on the indents and not spaces. Conveniently, most editors such as VS code recognize <code class="language-plaintext highlighter-rouge">Makefile</code> as a particular format and insert literal tabs when you press the <code class="language-plaintext highlighter-rouge">Tab</code> key.</p>
+
+<p>Run this version of the Makefile</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+</code></pre></div></div>
+
+<p>This version compiles each .c file separately and then links them together. Of course, the rules are in the opposite order with the linking coming first and then the compiling of each source file. This is because the first target in a <code class="language-plaintext highlighter-rouge">Makefile</code> is the default - the final result that the Makefile is supposed to build.</p>
+
+<p>Run the <code class="language-plaintext highlighter-rouge">make</code> again and it will report that everything is up to date.</p>
+
+<h2 id="touch">Touch</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">touch</code> command is handy when experimenting with <code class="language-plaintext highlighter-rouge">make</code>. <code class="language-plaintext highlighter-rouge">touch</code> simply updates the modified date of a file. So, <code class="language-plaintext highlighter-rouge">make</code> will treat that file as if it has been modified.</p>
+
+<p>Run the following commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>servings.c
+make
+</code></pre></div></div>
+
+<p>It compiles <code class="language-plaintext highlighter-rouge">servings.c</code> into <code class="language-plaintext highlighter-rouge">servings.o</code> and then links everything together. It didn’t need to recompile <code class="language-plaintext highlighter-rouge">pasta.c</code> because it hadn’t changed.</p>
+
+<p>Try this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>servings.h
+make
+</code></pre></div></div>
+
+<p>This time it compiles both source files. That’s because they both depend on <code class="language-plaintext highlighter-rouge">servings.h</code>.</p>
+
+<h2 id="other-targets">Other Targets</h2>
+
+<p>Add a <code class="language-plaintext highlighter-rouge">clean:</code> target to your <code class="language-plaintext highlighter-rouge">Makefile</code> so it looks like this:</p>
+
+<p><strong>Makefile</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pasta: pasta.o servings.o
+	gcc pasta.o servings.o -o pasta
+
+clean:
+	rm *.o
+	rm pasta
+
+pasta.o: pasta.c servings.h
+	gcc -c pasta.c
+
+servings.o: servings.c servings.h
+	gcc -c servings.c
+</code></pre></div></div>
+
+<p>Notice that the <code class="language-plaintext highlighter-rouge">clean:</code> rule comes after the <code class="language-plaintext highlighter-rouge">pasta:</code> rule. That’s because we want to keep <code class="language-plaintext highlighter-rouge">pasta:</code> as the default rule.</p>
+
+<p>Type the following command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make clean
+</code></pre></div></div>
+
+<p>It removes all <code class="language-plaintext highlighter-rouge">.o</code> object files and the final <code class="language-plaintext highlighter-rouge">pasta</code> executable file leaving the directory with just the source files.</p>
+
+<p>Now type:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+</code></pre></div></div>
+
+<p>It rebuilds the whole project from scratch.</p>
+
+<h2 id="more-make">More Make</h2>
+
+<p>Make has a lot of options for more sophisticated Makefiles than these. It has variables, pattern rules, string substitution and more. The <a href="https://makefiletutorial.com" target="_blank" rel="noopener noreferrer">Makefile Tutorial</a> is an excellent resource for learning the details. But for our purposes, the simple rules in this walkthrough are sufficient.</p>
+
+            </article>
+        </main>
+    </div>
+
+</body>
+
+</html>

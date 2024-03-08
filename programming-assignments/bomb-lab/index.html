@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Bomb Lab: Mastering x86-64 assembly and a Debugger • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Bomb%20Lab:%20Mastering%20x86-64%20assembly%20and%20a%20Debugger+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Bomb Lab: Mastering x86-64 assembly and a Debugger
+    </h1>
+
+    <div class="page-content">
+        
+
+        <h2 id="getting-started">Getting Started</h2>
+
+<p>You must complete this lab on one of the Digital Lab computers. You can either go physically into the lab and use one of the computers, or you can SSH into one. If you are off campus, you can not SSH into them directly. You must first SSH into <code class="language-plaintext highlighter-rouge">ssh.et.byu.edu</code> with your CAEDM username and password. From there, you can SSH into the a Digital Lab computer, <code class="language-plaintext highlighter-rouge">digital-##.ee.byu.edu</code>, where ## can be a number 01 to 60. Again, use your CAEDM username and password to log into those machines. For example, run the following commands</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh foo@ssh.et.byu.edu
+<span class="c"># Once SSH'd into the CAEDM computer</span>
+ssh foo@digital-06.ee.byu.edu
+</code></pre></div></div>
+
+<p>Assuming your CAEDM username is foo and the Digital Lab computer you want to log into is 06. It doesn’t matter which computer you log into. Your home directory is mounted to your J Drive so all folders will be synced between computers. From this SSH session, you will can solve your bomb.</p>
+
+<h3 id="download-instructions">Download Instructions</h3>
+<p>Go to the Bomb Lab assignment in the LearningSuite schedule. There you will find links to the assignment and the scoreboard.</p>
+
+<h2 id="introduction">Introduction</h2>
+<p>The nefarious Dr. Evil has planted a slew of “binary bombs” on the ECEn Department’s Digital Lab machines. A binary bomb is a program that consists of a sequence of phases. Each phase expects you to type a particular string on <code class="language-plaintext highlighter-rouge">stdin</code>. If you type the correct string, then the phase is <em>defused</em> and the bomb proceeds to the next phase. Otherwise, the bomb <em>explodes</em> by printing “<code class="language-plaintext highlighter-rouge">BOOM!!!</code>” and then terminating. The bomb is defused when every phase has been defused.</p>
+
+<p>There are too many bombs for us to deal with, so we are giving each student a bomb to defuse. Your mission, which you have no choice but to accept, is to defuse your bomb before the due date. Good luck, and welcome to the bomb squad!</p>
+
+<h2 id="step-1-get-your-bomb">Step 1: Get Your Bomb</h2>
+<p>To obtain your bomb, follow the instructions on the web page for this lab. (You point your Web browser at a particular server, fill out a bomb request form, and the server will deliver a custom bomb to you in the form of a <code class="language-plaintext highlighter-rouge">tar</code> file named <code class="language-plaintext highlighter-rouge">bombK.tar</code>, where <code class="language-plaintext highlighter-rouge">K</code> is the unique number of your bomb.)</p>
+
+<p>Save the <code class="language-plaintext highlighter-rouge">bombK.tar</code> file to a (protected) directory in which you plan to do your work. Then give the
+command: <code class="language-plaintext highlighter-rouge">tar -xvf bombK.tar</code>. This will create a directory called <code class="language-plaintext highlighter-rouge">./bombK</code> with the following files:</p>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">README</code>: Identifies the bomb and its owners.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">bomb</code>: The executable binary bomb.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">bomb.c</code>: Source file with the bomb’s main routine and a friendly greeting from Dr. Evil.</li>
+</ul>
+
+<p>If for some reason you request multiple bombs, this is not a problem. Choose one bomb to work on and delete the rest.</p>
+
+<h2 id="step-2-defuse-your-bomb">Step 2: Defuse Your Bomb</h2>
+<p>Your job for this lab is to defuse your bomb.</p>
+
+<p>You must do the assignment on one of the Digital Lab machines. In fact, there is a rumor that Dr. Evil really is evil, and the bomb will always blow up if run elsewhere. There are several other tamper-proofing devices built into the bomb as well, or so we hear.</p>
+
+<p>You can use many tools to help you defuse your bomb. Please look at the <strong>hints</strong> section for some tips and ideas. The best way is to use your favorite debugger to step through the disassembled binary.</p>
+
+<p>Each time your bomb explodes it notifies the bomblab server, and you lose 1/2 point (up to a max of 20 points) in the final score for the lab. So there are consequences to exploding the bomb. You must be careful!</p>
+
+<p>The first four phases are worth 10 points each. Phases 5 and 6 are a little more difficult, so they are worth 15 points each. So the maximum score you can get is 70 points.</p>
+
+<p>Although phases get progressively harder to defuse, the expertise you gain as you move from phase to phase should offset this difficulty. However, the last phase will challenge even the best students, so please don’t wait until the last minute to start.</p>
+
+<p>The bomb ignores blank input lines. If you run your bomb with a command line argument, for example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>linux&gt; ./bomb psol.txt
+</code></pre></div></div>
+<p>then it will read the input lines from <code class="language-plaintext highlighter-rouge">psol.txt</code> until it reaches EOF (end of file), and then switch over
+to <code class="language-plaintext highlighter-rouge">stdin</code>. In a moment of weakness, Dr. Evil added this feature so you don’t have to keep retyping the solutions to phases you have already defused.</p>
+
+<p>To avoid accidentally detonating the bomb, you will need to learn how to single-step through the assembly code and how to set breakpoints. You will also need to learn how to inspect both the registers and the memory states. One of the nice side-effects of doing the lab is that you will get very good at using a
+debugger. This is a crucial skill that will pay big dividends the rest of your career.</p>
+
+<h2 id="scoring-grading">Scoring Grading</h2>
+<p>The bomb will notify your instructor automatically about your progress as you work on it. You can keep track of how you are doing by looking at the class scoreboard. (A link to the scoreboard is given on LearningSuite assignment.)</p>
+
+<p>The scoreboard includes penalties for setting off the bomb. This is for the friendly competition with your classmates. Penalities will not be applied to your grade on this assignment.</p>
+
+<p>When you have completed the assignment (fully or partially) submit the answers to your bomb in the assignment on LearningSuite.</p>
+
+<h2 id="hints-please-read-this">Hints <em>(Please read this!)</em>
+</h2>
+<p>There are many ways of defusing your bomb. You can examine it in great detail without ever running the program, and figure out exactly what it does. This is a useful technique, but it not always easy to do. You can also run it under a debugger, watch what it does step by step, and use this information to defuse it. This is probably the fastest way of defusing it.</p>
+
+<p>We do make one request: <em>please do not use brute force!</em> You could conceivably write a program that will try every possible key to find the right one. But this is a bad idea for several reasons:</p>
+<ul>
+  <li>You lose 1/2 point (up to a max of 20 points) every time you guess incorrectly and the bomb explodes.</li>
+  <li>Every time you guess wrong, a message is sent to the bomblab server. You could very quickly saturate the network with these messages, and cause the system administrators to revoke your computer access.</li>
+  <li>We haven’t told you how long the strings are, nor have we told you what characters are in them. Even if you made the (incorrect) assumptions that they all are less than 80 characters long and only contain letters, then you would have 26<sup>80</sup> guesses for each phase. This will take a very long time to run, and you will not get the answer before the assignment is due.</li>
+</ul>
+
+<p>There are many tools which are designed to help you figure out both how programs work, and what is wrong when they don’t work. Here is a list of some of the tools you may find useful in analyzing your bomb, and hints on how to use them.</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">gdb</code></p>
+
+    <p>The GNU debugger, this is a command-line debugger tool available on virtually every platform. You can trace through a program line by line, examine memory and registers, look at both the source code and assembly code (we are not giving you the source code for most of your bomb), set breakpoints, set memory watch points, and write scripts.</p>
+
+    <p>The CS:APP web site:</p>
+
+    <p><a href="http://csapp.cs.cmu.edu/public/students.html" target="_blank" rel="noopener noreferrer">http://csapp.cs.cmu.edu/public/students.html</a></p>
+
+    <p>has a very handy single-page <code class="language-plaintext highlighter-rouge">gdb</code> summary that you can print out and use as a reference.</p>
+
+    <p>Here are some other tips for using <code class="language-plaintext highlighter-rouge">gdb</code>:</p>
+    <ul>
+      <li>To keep the bomb from blowing up every time you type in a wrong input, you’ll want to learn how to set breakpoints.</li>
+      <li>For online documentation, type “<code class="language-plaintext highlighter-rouge">help</code>” at the <code class="language-plaintext highlighter-rouge">gdb</code> command prompt, or type “<code class="language-plaintext highlighter-rouge">man gdb</code>”, or “<code class="language-plaintext highlighter-rouge">info gdb</code>” at a Unix prompt. Some people also like to run <code class="language-plaintext highlighter-rouge">gdb</code> under <code class="language-plaintext highlighter-rouge">gdb-mode</code> in <code class="language-plaintext highlighter-rouge">emacs</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">objdump -t</code></p>
+
+    <p>This will print out the bomb’s symbol table. The symbol table includes the names of all functions and global variables in the bomb, the names of all the functions the bomb calls, and their addresses. You may learn something by looking at the function names!</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">objdump -d</code></p>
+
+    <p>Use this to disassemble all of the code in the bomb. You can also just look at individual functions. Reading the assembler code can tell you how the bomb works.</p>
+
+    <p>Although <code class="language-plaintext highlighter-rouge">objdump -d</code> gives you a lot of information, it doesn’t tell you the whole story. Calls to system-level functions are displayed in a cryptic form. For example, a call to <code class="language-plaintext highlighter-rouge">sscanf</code> might appear as:</p>
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  8048c36: e8 99 fc ff ff call 80488d4 &lt;_init+0x1a0&gt;
+</code></pre></div>    </div>
+    <p>To determine that the call was to <code class="language-plaintext highlighter-rouge">sscanf</code>, you would need to disassemble within gdb.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">strings</code></p>
+
+    <p>This utility will display the printable strings in your bomb.</p>
+  </li>
+</ul>
+
+<p>Looking for a particular tool? How about documentation? Don’t forget, the commands <code class="language-plaintext highlighter-rouge">apropos</code>, <code class="language-plaintext highlighter-rouge">man</code>, and <code class="language-plaintext highlighter-rouge">info</code> are your friends. In particular, <code class="language-plaintext highlighter-rouge">man ascii</code> might come in useful. <code class="language-plaintext highlighter-rouge">info gas</code> will give you more than you ever wanted to know about the GNU Assembler. Also, the web may also be a treasure trove of information. If you get stumped, please consult the TAs or your instructor.</p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li>
+    <p><a href="/ecen224/assets/GDB%20Quick%20Reference.pdf">GDB Quick Reference</a></p>
+  </li>
+  <li>
+    <p><a href="https://web.stanford.edu/class/cs107/resources/x86-64-reference.pdf" target="_blank" rel="noopener noreferrer">x86-64 Reference Sheet</a></p>
+  </li>
+  <li>
+    <p><a href="https://stackoverflow.com/questions/9617877/assembly-jg-jnle-jl-jnge-after-cmp" target="_blank" rel="noopener noreferrer">Jump Instructions</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.timdbg.com/posts/fakers-guide-to-assembly/" target="_blank" rel="noopener noreferrer">Article on reading assembly</a></p>
+  </li>
+  <li>
+    <p><a href="https://godbolt.org" target="_blank" rel="noopener noreferrer">Compiler Explorer</a>. Compare C code with its corresponding assembly code.</p>
+  </li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

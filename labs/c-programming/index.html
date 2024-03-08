@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    C Programming • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+C%20Programming+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        C Programming
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li>
+<a href="#a-simple-c-program">A simple C Program</a>
+        <ul>
+          <li><a href="#comments">Comments</a></li>
+          <li><a href="#compiler-directives">Compiler Directives</a></li>
+          <li><a href="#main-function">main() Function</a></li>
+          <li><a href="#printf">printf()</a></li>
+          <li><a href="#return-values">Return Values</a></li>
+          <li><a href="#compiling-with-gcc">Compiling with GCC</a></li>
+        </ul>
+      </li>
+      <li>
+<a href="#data-types">Data Types</a>
+        <ul>
+          <li><a href="#casting">Casting</a></li>
+          <li><a href="#stdinth">stdint.h</a></li>
+        </ul>
+      </li>
+      <li><a href="#printf-1">printf</a></li>
+    </ul>
+  </li>
+  <li><a href="#lab-submission">Lab Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+<ul>
+  <li>Understand basic C syntax</li>
+  <li>Know the difference between the standard data types</li>
+  <li>Experiment with <code class="language-plaintext highlighter-rouge">printf</code> a bit and different data types</li>
+  <li>Compilation of a program by using <code class="language-plaintext highlighter-rouge">gcc</code>
+</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. <strong>This lab should be done in VSCode.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>For the rest of the labs this semester, we will be focusing on building a strong foundation of programming using the C programming language. C is a old, yet very important language that is still actively used in development today. The creators of C, <a href="https://computerhistory.org/profile/dennis-ritchie/" target="_blank" rel="noopener noreferrer">Dennis Ritchie</a> and <a href="https://computerhistory.org/profile/ken-thompson/" target="_blank" rel="noopener noreferrer">Ken Thompson</a> are also the creators of the Unix operating system, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide good insight into how most computers work in general.</p>
+
+<p>The philosophy of this lab is that the best way to learn something is to jump in and do it. Most of this page will be reference for all the problems and programming challenges in the lab README.md.</p>
+
+<h3 id="a-simple-c-program">A simple C Program</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This is a single line comment.</span>
+
+<span class="cm">/* 
+This is a multi-line comment.
+Any text that is between the slash-star and
+the star-slash will be ignored.
+*/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello, World!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>Above is a simple <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program" target="_blank" rel="noopener noreferrer">Hello World</a> program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in it interfaces with the computer. Let’s take a look at it line by line and break down some essential components.</p>
+
+<h4 id="comments">Comments</h4>
+<p>When writing a program, especially more complex ones, leaving comments in the code is essential to increase its readability. There are two types of comments: the single and multi-line comments.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This is a single line comment.</span>
+</code></pre></div></div>
+
+<p>Any text written after the <code class="language-plaintext highlighter-rouge">//</code> symbols wil be ignored during the compilation process of the program. These comments are most helpful when trying to provide clarity to the purpose of a line code or even to demarcate sections of code.</p>
+
+<p>If you want to take up several lines to describe a complicated concept or simply put some detailed notes in your program, you can use the multi-line comment.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+This is a multi-line comment.
+Any text that is between the slash-star and
+the star-slash will be ignored.
+*/</span>
+</code></pre></div></div>
+<p>Anything between the <code class="language-plaintext highlighter-rouge">/*</code> and <code class="language-plaintext highlighter-rouge">*/</code> will also be ignored during the compilation process of the program. One example for good use of multi-line comments is explaining the purpose of a function and it parameters right before its declaration.</p>
+
+<p>Although the <em>where</em> and <em>how</em> you use comments in your code are of little importance to the execution the program, they are imperative in making your code easier to understand and be reused by yourself and different people in the future.</p>
+
+<h4 id="compiler-directives">Compiler Directives</h4>
+<p>C is a <a href="https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/" target="_blank" rel="noopener noreferrer">compiled language</a>. This means that the entirety of the code you write in C must go through a special process of being converted into a <a href="https://en.wikipedia.org/wiki/Executable" target="_blank" rel="noopener noreferrer">binary executable</a> before it can be read and executed by the processor of your computer.</p>
+
+<p>The process of taking all the code you have written in C and translating it into binary is called <strong>compilation</strong>. This process is performed by a program called a <strong>compiler</strong>. In this class, we will use the <code class="language-plaintext highlighter-rouge">gcc</code> compiler (short for GNU Compiler Collection).</p>
+
+<p>Although it may seem compilers only perform the simple task of converting a higher level language to machine language, the truth is that they are much more robust and advanced than that. Many compilers analyze the code being passed in and optimize it so that it can be executed in the fewest amount of instructions possible.</p>
+
+<p>Before compiling your code, a pre-compiler is run which handles special statements called <strong>directives</strong>. Directives aid in deciding which parts of a written program in C are included during the compilation process. You can normally spot these because they start with a <code class="language-plaintext highlighter-rouge">#</code> sign.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">#include</code> directive looks at a file that exists in the operating system and includes it (essentially copying and pasting it) into your code. For example, <code class="language-plaintext highlighter-rouge">stdio.h</code> is a file that contains code that deals with the <strong>st</strong>andar<strong>d</strong> <strong>i</strong>nput and <strong>o</strong>utput that can be used in your program (i.e. reading from your keyboard and writing to a terminal). This is where the definition of the <code class="language-plaintext highlighter-rouge">printf()</code> function resides. Without including <code class="language-plaintext highlighter-rouge">stdio.h</code>, the “hello world” code would not know what the <code class="language-plaintext highlighter-rouge">printf()</code> function was or where it was defined and thus would not be able to execute correctly.</p>
+
+<p>Other interesting compiler directives are <code class="language-plaintext highlighter-rouge">#define</code>, <code class="language-plaintext highlighter-rouge">#if</code>/<code class="language-plaintext highlighter-rouge">#else</code>/<code class="language-plaintext highlighter-rouge">#endif</code>. You will need to look these up and know what they mean for the lab questions.</p>
+
+<h4 id="main-function">main() Function</h4>
+<p>Every program written in C must have a <code class="language-plaintext highlighter-rouge">main()</code> function. This is the function that will be run upon executing the program. All other functions that might need to be read in the execution of the program must be called in one form or another from the <code class="language-plaintext highlighter-rouge">main()</code> function.</p>
+
+<p>To declare a function in C, you must write its <strong>return type</strong> (more on that below), its name, and then any parameters it accepts in parentheses:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>In the declaration above, we assert that the return type for the <code class="language-plaintext highlighter-rouge">main()</code> function is an <code class="language-plaintext highlighter-rouge">int</code> and that we expect no parameters to be passed into it <code class="language-plaintext highlighter-rouge">()</code>.</p>
+
+<p>To maintain the scope of a function, everything written between curly braces <code class="language-plaintext highlighter-rouge">{}</code> is considered to be a part of the function declaration that came before it.</p>
+
+<h4 id="printf">printf()</h4>
+<p>This function, which comes from <code class="language-plaintext highlighter-rouge">stdio.h</code> as we learned earlier, allows us to write values to the terminal screen from our program. In this example</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="s">"Hello, World!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>prints out <code class="language-plaintext highlighter-rouge">Hello, World!</code> and then moves the cursor to the next line.</p>
+
+<h4 id="return-values">Return Values</h4>
+<p>Functions that completes execution in a C program have a single (optional) return value that is passed up to the function that calls it. For example if I wanted to write a quick function that took the sum of two numbers, I could write it like so:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If I call this function in my main function:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I can expect that the program will print out <code class="language-plaintext highlighter-rouge">5</code> because the <strong>return value</strong> that the <code class="language-plaintext highlighter-rouge">sum()</code> provided was an <code class="language-plaintext highlighter-rouge">int</code> which was the sum  of <code class="language-plaintext highlighter-rouge">a + b</code>.</p>
+
+<p>If I wanted to have my value return the value as a <code class="language-plaintext highlighter-rouge">float</code>, I would rewrite the signature of my function as:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">float</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If the <code class="language-plaintext highlighter-rouge">main()</code> function is the outermost function that we can have in a C program, why does it have a return value? Well, this return value is often used to indicate if the program finished correctly or crashed in a specific way. Take the following example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This is example code, it will not run because some of these values have not been defined.</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">err_type</span> <span class="o">==</span> <span class="s">"Crash"</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">err_type</span> <span class="o">==</span> <span class="s">"Insufficient data"</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="c1">// This assumes no errors</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If the program runs into specific errors, it will return different values to the outermost function. But since the <code class="language-plaintext highlighter-rouge">main()</code> function is the outermost function, it is the shell that receives the error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in <code class="language-plaintext highlighter-rouge">echo $?</code>.</p>
+
+<h4 id="compiling-with-gcc">Compiling with GCC</h4>
+<p>Now that we understand what each line of our simple C program does, it is time to run it. In your lab repository, create a new file called <code class="language-plaintext highlighter-rouge">simple.c</code> in your lab directory. Inside that file, copy and paste the code at the top of the <strong>A Simple C Program</strong> section and save and close the file.</p>
+
+<p>To compile this code, we will use <code class="language-plaintext highlighter-rouge">gcc</code> to turn it into a binary executable program:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc simple.c
+</code></pre></div></div>
+
+<p>This will create a new file in our directory called <code class="language-plaintext highlighter-rouge">a.out</code> which we can run by:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./a.out
+</code></pre></div></div>
+
+<p>If you followed these steps correctly, your code should output the following to the terminal:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello, World!
+
+</code></pre></div></div>
+
+<p>If you are not content with all of your binary executables being named <code class="language-plaintext highlighter-rouge">a.out</code> every time you compile your C project, you can use the <code class="language-plaintext highlighter-rouge">-o</code> flag on the <code class="language-plaintext highlighter-rouge">gcc</code> program to name the output file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc simple.c <span class="nt">-o</span> myprogram
+</code></pre></div></div>
+
+<p>This with create a new file named <code class="language-plaintext highlighter-rouge">myprogram</code> instead of <code class="language-plaintext highlighter-rouge">a.out</code>.</p>
+
+<h3 id="data-types">Data Types</h3>
+<p>Now that we have dissected our first C program, it is time to dive a little deeper into some details of the details.</p>
+
+<p>In order to successfully create a meaningful program in any language, you need to know how to correctly store and portray information. Unlike some modern languages, C is a <strong>strongly-typed</strong> language. This means that every time we declare a new variable, we need to specify what <strong>type</strong> it is. The native data types (i.e. no <code class="language-plaintext highlighter-rouge">#include</code>ing libraries are necessary) in C are the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td>Stores an integer (or a letter, which are the same thing)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td>Stores an integer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td>Stores an integer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td>Stores an integer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">float</code></td>
+      <td>One way to store a real number with a floating decimal point (i.e. you can put it anywhere in the number)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td>Larger version of a float</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It would be impractical to go over every data type that exists in C and explain its function in a lab setting. It will be your responsibility to understand what these data types mean and how they can be used as they come up. Google is your friend.</p>
+
+<h4 id="casting">Casting</h4>
+<p>Sometimes it will be necessary to take the result of one number and represent it in a different type of variable. The process of the translating from one data type to another is known as <strong>casting</strong> and will be a very useful tool in this and other labs.</p>
+
+<p>For example, let’s say I have a variable that was stored as an <code class="language-plaintext highlighter-rouge">int</code> and another variable that is a <code class="language-plaintext highlighter-rouge">float</code>. :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">num_f</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If I want to create a new variable where the <code class="language-plaintext highlighter-rouge">7</code> in <code class="language-plaintext highlighter-rouge">num</code> is treated as a floating point number, (i.e. <code class="language-plaintext highlighter-rouge">7.0</code>), I can cast it by doing the following.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num_f</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">num</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="stdinth">stdint.h</h4>
+<p>Another treasure trove of information on data types exists in the <code class="language-plaintext highlighter-rouge">stdint.h</code> library. This contains specialized data types such as <code class="language-plaintext highlighter-rouge">uint8_t</code> and others that have specialized characteristics for specific needs.</p>
+
+<p>For example, if you need to use a data <strong>t</strong>ype that stores an <strong>int</strong>eger that is <strong>u</strong>nsigned (can never be negative) and has  <strong>8</strong> bit length, you would <code class="language-plaintext highlighter-rouge">#include &lt;stdint.h&gt;</code> and use the <code class="language-plaintext highlighter-rouge">uint8_t</code> type. This can be useful because the all of the bit patterns possibly contained in the 8 bit value are used to represent numbers above 0 (ex. 0-255). In a normal int, <strong>about but not quite</strong> half of those bit paterns map to negative numbers (thus decreasing the maximum number that can be represented). You should be learning more about this in the lecture portion of class!</p>
+
+<p>To understand more about the types of data types that exist in <code class="language-plaintext highlighter-rouge">stdint.h</code>, you can check out the <a href="https://man7.org/linux/man-pages/man0/stdint.h.0p.html" target="_blank" rel="noopener noreferrer">documentation for this file</a>.</p>
+
+<h3 id="printf-1">printf</h3>
+<p>As you have seen in our simple C program, we can use the <code class="language-plaintext highlighter-rouge">printf()</code> function to send text out to the terminal from our program.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="s">"Hello, World!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>However, you may have noticed in other examples the use of strange characters such as <code class="language-plaintext highlighter-rouge">%d</code> or <code class="language-plaintext highlighter-rouge">%s</code> that pop in the strings that we are trying to print:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">grade</span> <span class="o">=</span> <span class="mi">87</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Final grade:</span><span class="se">\t</span><span class="s">%d"</span><span class="p">,</span> <span class="n">grade</span><span class="p">);</span>  <span class="c1">// This should print out "Final grade:    87"</span>
+</code></pre></div></div>
+
+<p>Characters with a <code class="language-plaintext highlighter-rouge">%</code> followed by a letter represent a placeholder/format specifier for certain types of data which are additionally passed into our <code class="language-plaintext highlighter-rouge">printf()</code> message as arguments. For example, <code class="language-plaintext highlighter-rouge">%d</code> means that the value of the passed in argument should be interpreted as <strong>d</strong>ecimal number when it is printed to the screen. In our example above, the <code class="language-plaintext highlighter-rouge">%d</code> would be replaced with the variable <code class="language-plaintext highlighter-rouge">grade</code>.</p>
+
+<p>Multiple values can also be passed into the <code class="language-plaintext highlighter-rouge">printf()</code> statement, as shown below:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">num3</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"First num:</span><span class="se">\t</span><span class="s">%d</span><span class="se">\n</span><span class="s">Second num:</span><span class="se">\t</span><span class="s">%d</span><span class="se">\n</span><span class="s">Third num:</span><span class="se">\t</span><span class="s">%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">,</span> <span class="n">num3</span><span class="p">);</span>
+
+<span class="c1">// The code above should print out:</span>
+<span class="c1">// First num:    0</span>
+<span class="c1">// Second num:   1</span>
+<span class="c1">// Third num:    2</span>
+</code></pre></div></div>
+
+<p>The following table is a useful cheat sheet and will give you an idea of the different types of formatting specifiers that can be used in the <code class="language-plaintext highlighter-rouge">printf()</code> statement:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%c</code></td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%d</code></td>
+      <td>decimal (integer) number (base 10)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%e</code></td>
+      <td>exponential floating-point number</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%f</code></td>
+      <td>floating-point number</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%i</code></td>
+      <td>integer (base 10)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%o</code></td>
+      <td>octal number (base 8)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%s</code></td>
+      <td>a string of characters</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%u</code></td>
+      <td>unsigned decimal (integer) number</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%x</code></td>
+      <td>number in hexadecimal (base 16)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
+      <td>print a percent sign</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\%</code></td>
+      <td>print a percent sign</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="lab-submission">Lab Submission</h2>
+
+<ul>
+  <li>
+    <p>Answer the questions and complete the challenges found in the <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">README.md</code> walks you through creating a new file called <code class="language-plaintext highlighter-rouge">data.c</code> with some requirements. Show the source code and program execution of <code class="language-plaintext highlighter-rouge">data.c</code> to the TA.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+
+<ul>
+  <li><a href="https://kitras.io/linux/man-pages/" target="_blank" rel="noopener noreferrer">Understanding <code class="language-plaintext highlighter-rouge">man</code> pages</a></li>
+  <li><a href="https://alvinalexander.com/programming/printf-format-cheat-sheet/" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">printf()</code> Cheatsheet</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank" rel="noopener noreferrer">C data types</a></li>
+  <li><a href="https://www.tutorialspoint.com/cprogramming/c_type_casting.htm" target="_blank" rel="noopener noreferrer">Casting in C</a></li>
+  <li><a href="https://www.cs.binghamton.edu/~rhainin1/walkthroughs/gccbasics.html" target="_blank" rel="noopener noreferrer">GCC Basics</a></li>
+  <li><a href="https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/" target="_blank" rel="noopener noreferrer">Compiled v. Interpreted Languages</a></li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

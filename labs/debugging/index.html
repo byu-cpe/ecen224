@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Debugging • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Debugging+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Debugging
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li><a href="#intentional-and-incremental-programming">Intentional and Incremental Programming</a></li>
+      <li><a href="#trace-debugging">Trace debugging</a></li>
+      <li>
+<a href="#using-a-debugger">Using a Debugger</a>
+        <ul>
+          <li><a href="#vscode-cc">VSCode C/C++</a></li>
+          <li><a href="#breakpoints">Breakpoints</a></li>
+          <li><a href="#step-over">Step Over</a></li>
+          <li><a href="#step-inout">Step In/Out</a></li>
+        </ul>
+      </li>
+      <li><a href="#analyzing-assembly">Analyzing Assembly</a></li>
+    </ul>
+  </li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+
+<ul>
+  <li>Become familiar with the different styles of debugging</li>
+  <li>Become familiar with GDB through VSCode and the terminal</li>
+  <li>Gain exposure to the process of analyzing the assembly of a compiled C program</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. <strong>This lab should be done in VSCode on your Raspberry Pi.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>Debugging is an essential part of software development, and debugging in C or assembly requires you to be able to use a combination of tools and techniques to identify and fix errors in the code. The process of debugging involves identifying the cause of the problem, developing a hypothesis, testing the hypothesis, and implementing a solution. By using intentional and incremental programming, print statements, and GDB, you can effectively debug your programs and ensure that they run as expected.</p>
+
+<h3 id="intentional-and-incremental-programming">Intentional and Incremental Programming</h3>
+<p>Intentional and incremental programming are two important mindsets to have while diving into software development. Intentional programming is a mindset that prioritizes writing code that is <strong>clear, concise, and easy to understand</strong>. In other words, the emphasis is on writing code that accurately reflects the your intentions rather than trying whatever and seeing if it sticks. Approaching a solution in code intentionally will inevitably be a lot more productive and easier to maintain and extend in the future.</p>
+
+<p>Incremental programming, on the other hand, involves <strong>dividing the solution you are trying to create into small, manageable chunks</strong> that can be developed and tested individually. This allows for a more flexible, iterative approach to software development. This means that changes can be made easily and quickly, without having to completely overhaul the entire solution when something crashes.</p>
+
+<p>Handling large amounts of data in C is no small task (as you will see in the next lab). It requires attention to detail and a good understanding of the code you are writing and what it does. As the projects in this and other programming-centric classes become more complex and involved, it is important to remember that <strong>the best line of defense against buggy code is a good offense: intentional and incremental programming.</strong></p>
+
+<h3 id="trace-debugging">Trace debugging</h3>
+<p>Trace debugging is a technique used to identify the root cause of a problem in a program by logging the values of variables and other information at specific points in time. This trace data can provide insight into how your program is actually behaving.</p>
+
+<p>One form of trace debugging is performing manual checks on data by adding <code class="language-plaintext highlighter-rouge">printf()</code> statements to a program. Printing out the value of a buggy variable every time it gets modified can help you track the changes and note where the algorithm goes wrong.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">modify_string</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">in_str</span><span class="p">){</span>
+    <span class="c1">// Implementation of function here</span>
+    <span class="c1">//      ...     </span>
+<span class="p">}</span>
+
+<span class="p">...</span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">"Original Str:</span><span class="se">\t</span><span class="s">%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">original_str</span><span class="p">);</span>    <span class="c1">// &lt;--- Trace debug print statement (sees the original string value)</span>
+
+<span class="n">modify_string</span><span class="p">(</span><span class="n">original_str</span><span class="p">);</span> 
+
+<span class="n">printf</span><span class="p">(</span><span class="s">"Modified Str:</span><span class="se">\t</span><span class="s">%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">original_str</span><span class="p">);</span>    <span class="c1">// &lt;--- Trace debug print statement (sees the modified string value)</span>
+
+</code></pre></div></div>
+
+<p>And that’s really all there is to this method! You’ll be surprised to see how effectively simply logging/printing variable values as you go can ensure a smoother development experience. By using trace debugging, you can quickly identify and fix bugs, improve the performance of your program, and improve the overall reliability of your software.</p>
+
+<p><strong>In the lab files for this repository, there are three files of interest: <code class="language-plaintext highlighter-rouge">main.c</code>, <code class="language-plaintext highlighter-rouge">math.c</code>, and <code class="language-plaintext highlighter-rouge">math.h</code>. Buggy functions have been included in the <code class="language-plaintext highlighter-rouge">math.c</code> file. Your job is to debug them using the trace debugging method and ensure that all of them work properly. To compile the program, you can pass both C files to gcc:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc main.c math.c
+</code></pre></div></div>
+
+<p><strong>Answer the questions in the README.md file as you debug <code class="language-plaintext highlighter-rouge">math.c</code>.</strong></p>
+
+<h3 id="using-a-debugger">Using a Debugger</h3>
+
+<p>While trace debugging may seem like the most practical way to address small bugs or issues in your code, sometimes it is not enough. Have you every printed out the contents of a double or even triple-nested <code class="language-plaintext highlighter-rouge">for</code> loop and tried to find out where your logic went wrong? Sometimes there are so many values to test or the code gets so complicated that having too many print statements makes things even harder.</p>
+
+<p>The simple solution to this is to use a debugger! A debugger is a program that controls the execution of a program, and allows us to pause it whenever we want and examine the values of variables and how they change during runtime. For this class we will be using the GDB debugger. To ensure it is installed on your Pi Z2W, run the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>gdb
+</code></pre></div></div>
+
+<p>According to their <a href="https://www.sourceware.org/gdb/" target="_blank" rel="noopener noreferrer">homepage</a>, “GDB, the GNU Project debugger, allows you to see what is going on `inside’ another program while it executes – or what another program was doing at the moment it crashed.” This is the default program we will be using to debug the code in this class. This program has several modes of operation, including a terminal and graphical interface. You will be using GDB for the <a href="/ecen224/programming-assignments/bomb-lab/">Bomb programming assignment</a>, so it is worth spending some time now to get familiar with it.</p>
+
+<h4 id="vscode-cc">VSCode C/C++</h4>
+<p>More modern tools like VSCode have built-in extensions to interface with GDB and provide a more modern experience. To use this, VSCode requires the “C/C++” extension. You should have installed this in the last lab, but if you haven’t, do so using the following steps. These steps should be run from the VSCode session that is connected to your Raspberry Pi:</p>
+
+<ol>
+  <li>
+    <p>Click on the Extensions button on the left-side menu.</p>
+  </li>
+  <li>
+    <p>In the search bar, type “C/C++” and select the “C/C++” extension by Microsoft.</p>
+  </li>
+  <li>
+    <p>Click the Install button to install the C/C++ extension. If you see a Disable button, that means you have already installed the extension.</p>
+  </li>
+</ol>
+
+<p>Once you have ensured the extension is installed, open the <code class="language-plaintext highlighter-rouge">main.c</code> file (if it is not open already). Next, click on the play button with bug in the upper right corner. If your debugger was configured properly, you should not see any errors and a new debugger view should show. You should see a menu pop up in the middle top of your screen. These are the controls that will help you run through your program.</p>
+
+<p><strong>Follow the corresponding questions on the README.md for this lab as you learn the following techniques of graphical debugging.</strong></p>
+
+<h4 id="breakpoints">Breakpoints</h4>
+<p>A breakpoint is a point in the code where the debugger stops the execution of the program. Breakpoints can be set in VSCode by clicking next to the line number of the code that you want your debugger to pause on. Once the program has stopped at a breakpoint you can step through one line at a time.</p>
+
+<h4 id="step-over">Step Over</h4>
+<p>Stepping over a function means that you will call/execute the full function and receive its outputs in one step. If you are certain that a function is working well or you do not want to step into system/library functions, use this option. This is done by clicking on the button with the arched arrow and circle.</p>
+
+<h4 id="step-inout">Step In/Out</h4>
+<p>If you come across a function that you want to examine, put a breakpoint on where it is called. Then when you reach the paused line, click on the down arrow in the debug ribbon at the top of the screen. This will allow you to look at how the function is executing. To finish the function and continue the flow of the program, click on the up button.</p>
+
+<p><strong>Answer the questions on the <code class="language-plaintext highlighter-rouge">README.md</code> and don’t forget to include screenshots.</strong></p>
+
+<h3 id="analyzing-assembly">Analyzing Assembly</h3>
+
+<p><strong>This exercise will be done on the <code class="language-plaintext highlighter-rouge">unknown</code> binary in your lab repo.</strong></p>
+
+<p>Not only can you build your project to analyze the source code, you can also use it to analyze the machine instructions (also called assembly instructions) that are getting passed to the processor. This is useful, especially in digital forensics, penetration testing, and reverse engineering. We will be doing this alot later in the Bomb and Attack Programming Assignments!
+<!-- Not every executable you want to analyze was compiled with the `-g` option to let a debugger look at the source code. --></p>
+
+<p>Analyzing assembly in VSCode tends to be a little trickier and require you to use <code class="language-plaintext highlighter-rouge">gdb</code> in the terminal. You can get started by typing in your terminal</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb unknown
+</code></pre></div></div>
+
+<p>Once you are inside of the command line version of <code class="language-plaintext highlighter-rouge">gdb</code>, you will see another shell that looks something like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb)&gt; _
+</code></pre></div></div>
+
+<p>To view the assembly instructions of the file, type in <code class="language-plaintext highlighter-rouge">layout asm</code>. To view the register values (or hardware processor variables - you’ll learn more about this later on), type in <code class="language-plaintext highlighter-rouge">layout reg</code>. You will want to run these commands every time you bring up <code class="language-plaintext highlighter-rouge">gdb</code>.</p>
+
+<p>Some helpful GDB commands to get you going:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+<code class="language-plaintext highlighter-rouge">break</code> or <code class="language-plaintext highlighter-rouge">b</code>
+</td>
+      <td>Sets a breakpoint on function name.</td>
+    </tr>
+    <tr>
+      <td>
+<code class="language-plaintext highlighter-rouge">print varname</code> or <code class="language-plaintext highlighter-rouge">p</code>
+</td>
+      <td>Prints out the value of the variable <code class="language-plaintext highlighter-rouge">varname</code>.</td>
+    </tr>
+    <tr>
+      <td>
+<code class="language-plaintext highlighter-rouge">step</code> or <code class="language-plaintext highlighter-rouge">s</code>
+</td>
+      <td>Step through your code. Similar to step into.</td>
+    </tr>
+    <tr>
+      <td>
+<code class="language-plaintext highlighter-rouge">next</code> or <code class="language-plaintext highlighter-rouge">n</code>
+</td>
+      <td>Step program, proceeding through subroutine calls. Similar to step over.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">continue</code></td>
+      <td>Run to the next breakpoint</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">run</code></td>
+      <td>Run your loaded gdb code</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are just a few of the commands, some helpful resources have been provided in the links at the bottom of the lab.</p>
+
+<p>To debug this program, you might run something like this in GDB:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>layout asm
+layout reg
+break main
+run
+</code></pre></div></div>
+
+<p>This sets up your GDB session and puts a breakpoint at the beginning of main. It then runs the executable, running until the program finishes or until it hits a breakpoint.</p>
+
+<p><strong>In this exercise, you are expected to apply your knowledge about debugging that you learned in the last section to the unfamiliar environment of assembly. Answer the corresponding questions on the <code class="language-plaintext highlighter-rouge">README.md</code> file to finish this section.</strong></p>
+
+<h2 id="submission">Submission</h2>
+
+<ul>
+  <li>
+    <p>Complete all the activities and answer the questions in the <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+  <li>
+    <p>To pass off to a TA, show your README.md on GitHub.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+<ul>
+  <li><a href="https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf" target="_blank" rel="noopener noreferrer">GDB Cheatsheet</a></li>
+  <li><a href="https://sourceware.org/gdb/onlinedocs/gdb/index.html#SEC_Contents" target="_blank" rel="noopener noreferrer">GDB Debuggin Guide</a></li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

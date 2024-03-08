@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Command-Line Interface and Data Representation</title>
+    <link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+<style>
+
+    :root {
+        background-color: black;
+        color: white;
+        font-size: 20pt;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        min-width: 133vh;
+        max-width: 140vh;
+        margin: 0 auto;
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+    }
+
+    .col1, .col2 {
+        flex: 1 1 0;
+        padding: 1em;
+    }
+
+    .vertborder {
+        background-image: linear-gradient(black, #808080, #808080, black);
+        flex: 0 0 0.1in;
+    }
+
+    .pretitle {
+        margin-top: 5rem;
+        font-style: italic;
+        text-align: center;
+    }
+
+    .title {
+        margin-top: 0;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .subtitle {
+        text-align: center;
+    }
+
+    code {
+        background-color: #404040;
+    }
+
+    .countdown {
+        margin: 5em auto 0 auto;
+        font-family: Consolas, fixed;
+        font-size: 2em;
+        color: black;
+        text-align: center;
+        width: 7em;
+        background-color: white;
+    }
+
+    .quiz {
+        margin: 5em auto 0 auto;
+        border: 2px solid black;
+        padding: 0.1em;
+    }
+
+    .quiz ul {
+        margin-left: 1.5em;
+    }
+
+    .quizpw {
+        font-size: 2em;
+        text-align: center;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    article {
+        font-size: 24pt;
+    }
+
+    .col2 ul {
+        margin-left: 0.5em;
+    }
+
+    .col2 ul>li>ul {
+        margin-bottom: 0;
+    }
+
+    .col2 img {
+        display: block;
+        max-width: 100%;
+        max-height: 25em;
+        margin: 1em auto 0 auto;
+    }
+
+</style>
+</head>
+
+<body>
+    <div class="col1">
+        <div class="pretitle">Recitation</div>
+        <div class="title">Command-Line Interface and Data Representation</div>
+        <div class="subtitle">ECEn 224 - R01</div>
+        <div class="countdown" id="countdown" onclick="startCountdown()">Start</div>
+        <div class="hidden" id="quiz">
+            <div>Quiz</div>
+            <ul>
+                <li>10 Minutes (though you can continue after we start the lecture)</li>
+                <li>Closed book, closed internet, closed notes, closed neighbor, etc.</li>
+            </ul>
+            <div>Password:</div>
+            <div class="quizpw"></div>
+        </div>
+    </div>
+    <div class="vertborder">
+    </div>
+    <div class="col2">
+        <h2>Announcements:</h2>
+        <article>
+            <div style="color: darkred; font-weight: bold;">We are not on fire (so far as I can tell).</div>
+
+<ul>
+  <li>Recitation sessions will be on Fridays at <strong>Noon</strong> and <strong>3:00pm</strong>. These were the majority preferred times in the student survey. Coincidentally, they match the times we chose for the first week.</li>
+  <li>Both sessions will be the same so you only need to attend one or the other (unless you really need a lot of help).</li>
+  <li>Also see “Intro to Linux Shell” linked to in <code class="language-plaintext highlighter-rouge">LearningSuite &gt; schedule</code>.</li>
+</ul>
+
+<p>“A recitation is a presentation by an … instructor … that supplements course materials. In recitations that supplement lectures, the leader will often review the lecture, expand on the concepts, and carry on a discussion with the students.<br>… Scientific classes, such as biology, chemistry, and physics, often employ the use of recitation sections to help students clarify subject matter that was either not fully understood or inadequately addressed in the limited time of lecture. These recitation sections may be conducted by the professor or a student teaching assistant. These sections provide students with an opportunity to receive additional instruction on confusing subject matter or receive personal assistance with problems or questions assigned as homework in the lecture section”<br>- Wikipedia</p>
+
+        </article>
+    </div>
+
+    <script>
+
+        // Offset of the bell from UTC in milliseconds.
+        const bellOffset = 0 * 60000;
+        
+        let eleCountdown = document.getElementById("countdown");
+        let timer;
+
+        function tick()
+        {
+            let remaining = Math.floor((3600000 - ((Date.now()-bellOffset) % 3600000)) / 100);
+            const tenths = remaining % 10;
+            remaining = (remaining - tenths) / 10
+            const seconds = remaining % 60;
+            const minutes = (remaining - seconds) / 60;
+            if (minutes < 40)
+            {
+                eleCountdown.textContent = minutes.toString().padStart(2,'0') + ":" + seconds.toString().padStart(2,'0') + "." + tenths.toString();
+            }
+            else
+            {
+                eleCountdown.textContent = "00:00.0";
+                let sound = new Audio('/ecen224/recitation/res/timpani.mp3');
+                sound.play();
+                window.clearInterval(timer);
+            }
+        }
+
+        function startCountdown() {
+            let eleCountdown = document.getElementById("countdown");
+            eleCountdown.onclick = undefined;
+            timer = window.setInterval(tick, 100);
+        }
+
+
+        function showQuizInfo() {
+            document.getElementById('countdown').className = 'hidden';
+            document.getElementById('quiz').className = 'quiz';
+        }
+
+        function onKeyDown(e)
+        {
+            if (e.keyCode == 81) { // Letter Q
+                showQuizInfo();
+            }
+            else if (e.keyCode == 82) {
+                startCountdown();
+            }
+        }
+
+        document.addEventListener('keydown', onKeyDown);
+
+    </script>
+
+</body>
+
+</html>

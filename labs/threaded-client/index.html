@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Threaded Client • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Threaded%20Client+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Threaded Client
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li><a href="#creating-a-thread">Creating a Thread</a></li>
+      <li>
+<a href="#passing-in-arguments-to-a-thread">Passing in Arguments to a Thread</a>
+        <ul>
+          <li><a href="#void--the-generic-pointer">void *: The Generic Pointer</a></li>
+          <li><a href="#example">Example</a></li>
+        </ul>
+      </li>
+      <li><a href="#return-values-from-threads">Return Values from Threads</a></li>
+      <li><a href="#technical-debt">Technical Debt</a></li>
+    </ul>
+  </li>
+  <li><a href="#requirements">Requirements</a></li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+
+<ul>
+  <li>Deal with technical debt</li>
+  <li>Learn to multitask in C</li>
+  <li>Create a POSIX thread with arguments</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. <strong>This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>One of the last fundamentals to know about programming in general is how to make your program do multiple things at once. Until this point, we have written <strong>single-threaded programs</strong>. This means that our programs have only followed a single path of execution while it runs (i.e., the program can only focus on one task at a time). However, many of the problems that we solve in the real-world are much more complex and may require us to interact with many facets of the problem simultaneously. In the lab for this class, creating a useful smart doorbell is definitely one of those multifaceted problems. Consider the following:</p>
+
+<ul>
+  <li>
+    <p>How can I upload my photo to the server while viewing it?</p>
+  </li>
+  <li>
+    <p>How can I actively be monitoring the status of my upload while also drawing to my screen in a loop?</p>
+  </li>
+</ul>
+
+<p>While considering the previous questions, you may have noticed that with your current skill set, these problems seem difficult to solve without a complex algorithm or multiple programs running at once. By using threads, we can sidestep a lot of this headache by grouping different tasks/functions into distinct threads and call them from our main thread.</p>
+
+<h3 id="creating-a-thread">Creating a Thread</h3>
+
+<p>Threads in Linux programming are known as <a href="https://en.wikipedia.org/wiki/POSIX" target="_blank" rel="noopener noreferrer">POSIX</a> threads (or pthreads for short). <code class="language-plaintext highlighter-rouge">pthread_t</code> is the data type used to uniquely identify a thread:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="cp">
+</span>
+<span class="n">pthread_t</span> <span class="n">my_thread</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>This object is used inside a range of different functions found inside the <code class="language-plaintext highlighter-rouge">pthread.h</code> library. The most important function for this lab is <code class="language-plaintext highlighter-rouge">pthread_create()</code>, which allows us to spawn a new thread and provide the function that it will run. Consider the simple threading program below:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="c1">   // Library that includes sleep()</span><span class="cp">
+#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="c1">  // Library that includes pthreading types and functions</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="o">*</span><span class="nf">print_msg</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">unused</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"I'm in a thread!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>     <span class="c1">// Sleeps for 2 seconds</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">pthread_t</span> <span class="n">my_thread</span><span class="p">;</span>
+    <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_thread</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">print_msg</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"I'm in main!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To compile using the <code class="language-plaintext highlighter-rouge">pthread.h</code> library, you will need to add <code class="language-plaintext highlighter-rouge">-pthread</code> to your normal <code class="language-plaintext highlighter-rouge">gcc</code> compile command.</p>
+
+<p>Let’s take a closer look at what is going on in the <code class="language-plaintext highlighter-rouge">pthread_create()</code> function. The arguments that are expected in the function are as follows:</p>
+
+<ol>
+  <li>
+    <p>The address of your thread struct. This is how your program will know how to identify your thread in the program.</p>
+  </li>
+  <li>
+    <p>This argument expects a special <code class="language-plaintext highlighter-rouge">pthread_attr_t</code> struct pointer. Since we are covering the basics of threading in this class, this field is ignored by putting a <code class="language-plaintext highlighter-rouge">NULL</code> in its place.</p>
+  </li>
+  <li>
+    <p>A pointer to the function we are calling. Function pointers can be provided by giving the name of the function. Make sure you only provide the name, and don’t <em>call</em> the function (eg. <code class="language-plaintext highlighter-rouge">print_msg</code> instead of <code class="language-plaintext highlighter-rouge">print_msg()</code>). If you like, you can put a <code class="language-plaintext highlighter-rouge">&amp;</code> in front of the function name to make it more obvious it’s a function pointer (eg. <code class="language-plaintext highlighter-rouge">&amp;print_msg</code>), but this is not required by the compiler.</p>
+  </li>
+  <li>
+    <p>A pointer you provide to this argument will be passed as an argument to the function you are running in the new thread. This is a great way to provide information to the new thread. Notice that for this example it is <code class="language-plaintext highlighter-rouge">NULL</code> since our function doesn’t require any special arguments. The next section has more information about how to pass arguments into a thread.</p>
+  </li>
+</ol>
+
+<p>You’ll notice that both our <code class="language-plaintext highlighter-rouge">main()</code> function and our <code class="language-plaintext highlighter-rouge">print_msg()</code> function have <code class="language-plaintext highlighter-rouge">while(1)</code> loops that will run indefinitely. Because threading allows us to run different functions simultaneously, we will see output that looks something like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I'm in a thread!
+I'm in main!
+I'm in main!
+I'm in a thread!
+I'm in main!
+I'm in main!
+I'm in a thread!
+I'm in main!
+I'm in main!
+I'm in a thread!
+I'm in main!
+I'm in main!
+...
+</code></pre></div></div>
+
+<h3 id="passing-in-arguments-to-a-thread">Passing in Arguments to a Thread</h3>
+
+<p>While the previous example may have been interesting in the sense that we’ve learned to use threads, it is pretty lackluster in the sense that we can’t get any information into or out of the thread. To do this, we will need to understand working with <code class="language-plaintext highlighter-rouge">void *</code> and allocating memory.</p>
+
+<h4 id="void--the-generic-pointer">void *: The Generic Pointer</h4>
+<p>A <code class="language-plaintext highlighter-rouge">void *</code> is the generic pointer in C. It is used to store a memory address, but does not indicate the type of data stored at the address. This means that any type of pointer can be cast to or from a <code class="language-plaintext highlighter-rouge">void *</code> object. It is up to you, as the programmer, to know what you passed into the function and cast it to the correct pointer type. This datatype is very useful when using threading functions because it allows us to pass in the address of <em>any</em> type of data to the function we are spawning. The threading function also <em>returns</em> a <code class="language-plaintext highlighter-rouge">void *</code> data type, allowing it to pass back a pointer to any type of data. This accounts for why our <code class="language-plaintext highlighter-rouge">print_msg()</code> function in the previous example program’s return type was a <code class="language-plaintext highlighter-rouge">void *</code>.</p>
+
+<h4 id="example">Example</h4>
+<p>Consider the following program:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="c1">  // Library that includes sleep()</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="c1">  // Library that includes malloc()</span><span class="cp">
+#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="c1"> // Library that includes pthreading types and functions</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="o">*</span><span class="nf">print_num</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Notice that we have to cast the void * back to an int * and then we use the * to get the value inside</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"The number is:</span><span class="se">\t</span><span class="s">%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="p">((</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">arg</span><span class="p">));</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>     <span class="c1">// Sleeps for 2 seconds</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>    <span class="c1">// Create an int pointer and give it enough space to hold an int.</span>
+    <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                                  <span class="c1">// Set the value inside the pointer to 0</span>
+
+    <span class="n">pthread_t</span> <span class="n">my_thread</span><span class="p">;</span>
+
+    <span class="c1">// Notice that we have to cast i to a void *</span>
+    <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_thread</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">print_num</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="n">i</span><span class="p">);</span> 
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>                      <span class="c1">// Increment the value inside of i</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"I'm in main!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s take a closer look at this code example. The <code class="language-plaintext highlighter-rouge">pthread_create()</code> function is spawning a new thread to run the <code class="language-plaintext highlighter-rouge">print_num</code> function. We want to pass an integer to this function. Since we always use a <code class="language-plaintext highlighter-rouge">void *</code> to pass data to a function run by <code class="language-plaintext highlighter-rouge">pthread_create()</code>, we need to allocate memory for an integer and provide it’s address as the last argument to <code class="language-plaintext highlighter-rouge">pthread_create()</code>.</p>
+
+<p>You’ll notice some things about how we’ve done this:</p>
+
+<ul>
+  <li>
+    <p>We have allocated the space for the integer using <code class="language-plaintext highlighter-rouge">malloc</code>. While we could have simply declared an integer (<code class="language-plaintext highlighter-rouge">int i;</code>), this would create the integer on the stack. In general, it’s bad practice to pass addresses on the stack to other threads as they may continue to execute after stack variable goes out of scope. Another alternative to <code class="language-plaintext highlighter-rouge">malloc</code> is to declare the integer as a global variable.</p>
+  </li>
+  <li>
+    <p>To set the value of the integer to zero, we needed to refer to the pointer’s contents: <code class="language-plaintext highlighter-rouge">*i = 0;</code></p>
+  </li>
+  <li>
+    <p>When we passed it into <code class="language-plaintext highlighter-rouge">pthread_create()</code>, we needed to cast it from a <code class="language-plaintext highlighter-rouge">int *</code> to a <code class="language-plaintext highlighter-rouge">void *</code>.</p>
+  </li>
+</ul>
+
+<p>Now that we have provided the address of our integer to <code class="language-plaintext highlighter-rouge">pthread_create()</code>, let’s take a look at how it is received by the <code class="language-plaintext highlighter-rouge">print_num()</code> function:</p>
+
+<ul>
+  <li>
+    <p>The address is provided as an argument to the function with type <code class="language-plaintext highlighter-rouge">void *</code>.</p>
+  </li>
+  <li>
+    <p>To use <code class="language-plaintext highlighter-rouge">arg</code> we need to do two things:</p>
+
+    <ol>
+      <li>
+        <p>Cast <code class="language-plaintext highlighter-rouge">arg</code> back into the type that we expect (in this case an <code class="language-plaintext highlighter-rouge">int *</code>).</p>
+      </li>
+      <li>
+        <p>Deference it with a <code class="language-plaintext highlighter-rouge">*</code> to get the integer value pointed to by this address (the <code class="language-plaintext highlighter-rouge">*</code> in front of the cast statement).</p>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="return-values-from-threads">Return Values from Threads</h3>
+<p>To get a return value from a thread in C, you would need to use the <code class="language-plaintext highlighter-rouge">pthread_join()</code> function. For the purposes of this lab, we will not be using <code class="language-plaintext highlighter-rouge">pthread_join()</code>, but you can read more about it in the <strong>Explore More!</strong> section. <code class="language-plaintext highlighter-rouge">pthread_join()</code> is <strong>NOT</strong> recommended for this lab.</p>
+
+<h3 id="technical-debt">Technical Debt</h3>
+<p>Technical debt is the idea that when you code something for the first time, it is normally not the most polished code. When you need to go back and improve the functionality of your code, there will need to be some refactoring done.</p>
+
+<p>You may have noticed at this point that threading is very function heavy. This means that to use it in your doorbell code, you will need to have nice functions that group code together for certain tasks. If you have not been using functions up to this point, you are likely in some technical debt. You will need to encapsulate some functionality into functions as described in the <strong>Requirements</strong> sections below.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li>
+    <p>Copy all of your code, except for the <code class="language-plaintext highlighter-rouge">README.md</code> file from last lab into your newly cloned repository.</p>
+  </li>
+  <li>In order to use the threading library, you need to include the library in source code and your compilation.
+    <ul>
+      <li>Add <code class="language-plaintext highlighter-rouge">#include &lt;pthread.h&gt;</code> and <code class="language-plaintext highlighter-rouge">#include &lt;unistd.h&gt;</code> to your headers in <code class="language-plaintext highlighter-rouge">main.c</code>.</li>
+      <li>Add <code class="language-plaintext highlighter-rouge">-pthread</code> to the <code class="language-plaintext highlighter-rouge">CFLAGS</code> variable in your Makefile.</li>
+      <li>Before you go any farther, try making your project to make sure everything is still working.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Write a function called <code class="language-plaintext highlighter-rouge">send_image</code>. This function should take care of connecting to the server, sending the image, receiving the response, and closing the socket. You need to figure out the correct signature for this function.</p>
+  </li>
+  <li>
+    <p>Run your code using this newly created function (not using threads) to make sure that everything is still working as expected. Notice that sending data to the server is slow and your menu gets blocked while you are waiting to send the data.</p>
+  </li>
+  <li>
+    <p>Instead of calling <code class="language-plaintext highlighter-rouge">send_image</code> directly, use a thread to call the function instead. Now that calling <code class="language-plaintext highlighter-rouge">send_image</code> is no longer blocking, you might need to refactor your code to not call <code class="language-plaintext highlighter-rouge">free</code> right after the thread is started. <strong>Warning: you should not call any display functions in a thread.</strong> The display functions are not thread-safe, meaning that if multiple threads call the same function, weird things can happen. You should only call the display functions in your main loop.</p>
+  </li>
+  <li>
+    <p>Create a status bar the size of your highlight bar at the bottom of the screen with a blue background:</p>
+
+    <ul>
+      <li>
+        <p>When your image is being sent in a thread, the text of the bar should say “Sending…” with the bar as a blue background.</p>
+      </li>
+      <li>
+        <p>When your image is sent successfully (i.e. the thread reached the end successfully), change the color of the status bar to green and show “Sent!” as the text. <em>How are you going to know when the thread is done sending? A global variable that helps you to maintain what state you are in might be helpful.</em></p>
+      </li>
+      <li>
+        <p>The status bar should should stay green with the sent message for 2 seconds. After the 2 seconds hide the status bar. <em>How do you know when it has been 2 seconds? Consider editing your <code class="language-plaintext highlighter-rouge">send_image</code>.</em></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Here is a demo showing the different features of the lab:</p>
+
+<div class="row">
+    <div class="mx-auto">
+        <video height="500" controls="">
+            <source src="/ecen224/assets/threaded-client/demo.mp4" type="video/mp4"></source>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<h2 id="submission">Submission</h2>
+
+<ul>
+  <li>
+    <p>Answer the questions in the <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
+  </li>
+  <li>
+    <p>To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+
+<ul>
+  <li><a href="https://man7.org/linux/man-pages/man3/sleep.3.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">sleep()</code> man page</a></li>
+  <li><a href="https://man7.org/linux/man-pages/man3/pthread_create.3.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pthread_create()</code> man page</a></li>
+  <li><a href="https://man7.org/linux/man-pages/man3/pthread_join.3.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pthread_join()</code> man page</a></li>
+  <li><a href="https://www.geeksforgeeks.org/multithreading-in-c/#" target="_blank" rel="noopener noreferrer">pthreads in C</a></li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

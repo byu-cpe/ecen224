@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Compile-To-Assembly Walkthrough</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href=/ecen224/css/walkthrough.css>
+    <link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+</head>
+
+<body>
+    <div id="frame">
+        <header>
+            <div class="siteblock">
+                <h1><a href="/ecen224/">BYU ECEn 224</a></h1>
+            </div>
+        </header>
+        <main>
+            <div class="title">Compile-To-Assembly Walkthrough</div>
+            <article>
+                <p>The Binary Bomb lab has six phases. To decode each phase, you need to understand how a more complex C construct appears in Assembly language. One tool to help understand things is to compile your own code to assembly language and look at the result.</p>
+
+<p>If you use the following compile options, the compiler will produce a rich, commented assembly language file for you to examine:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -S -O0 -fverbose-asm -fno-asynchronous-unwind-tables -fno-pie yourcode.c
+</code></pre></div></div>
+<p>The options are:</p>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">-S</code> Compile to assembly language</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-O0</code> Use optimization level 0 (no optimization). Other options are <code class="language-plaintext highlighter-rouge">-O1</code>, <code class="language-plaintext highlighter-rouge">-O2</code>, and <code class="language-plaintext highlighter-rouge">-O3</code>.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-fverbose-asm</code> Writes detailed comments into the assembly language</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">-fno-asynchronous-unwind-tables -fno-pie</code> Removes extra code that makes it harder to understand what’s going on. (Look up the options for details)</li>
+</ul>
+
+<h2 id="useful-links">Useful Links</h2>
+
+<p>Before trying to decode assembly, it’s valuable to have a reference for the opcodes. Here are some good choices:</p>
+
+<ul>
+  <li><a href="https://www.felixcloutier.com/x86/" target="_blank" rel="noopener noreferrer">Alphabetical Instruction Reference</a></li>
+  <li><a href="https://web.stanford.edu/class/cs107/resources/x86-64-reference.pdf" target="_blank" rel="noopener noreferrer">Stanford X86-64 Reference Sheet</a></li>
+  <li><a href="http://ref.x86asm.net/" target="_blank" rel="noopener noreferrer">X86 opcode and Instruction Reference</a></li>
+  <li><a href="https://web.stanford.edu/class/cs107/resources/" target="_blank" rel="noopener noreferrer">X86 Instruction Listings (https://en.wikipedia.org/wiki/X86_instruction_listings)</a></li>
+</ul>
+
+<blockquote>
+  <p>For most instructions, the opcode is the same in AT&amp;T and Intel syntax except that AT&amp;T syntax adds a suffix representing the size of the operand. One exception is <code class="language-plaintext highlighter-rouge">cltq</code> which means “Convert Long to Quad”. In Intel syntax the opcode is <code class="language-plaintext highlighter-rouge">cdqe</code> meaning “Convert Double to Quad Extend”. Just another way of saying the same thing. When no operand is given, <code class="language-plaintext highlighter-rouge">cdqe</code> operates on <code class="language-plaintext highlighter-rouge">rax</code>. Related instructions are <code class="language-plaintext highlighter-rouge">cwde</code> (Intel <code class="language-plaintext highlighter-rouge">cwtl</code>) which converts 16-bit words to 32-bit double-words and <code class="language-plaintext highlighter-rouge">cbw</code> (Intel <code class="language-plaintext highlighter-rouge">cbtw</code>) which converts bytes to 16-bit words.</p>
+</blockquote>
+
+<h2 id="for-loop">For Loop</h2>
+
+<p>First, let’s try a <code class="language-plaintext highlighter-rouge">for</code> loop that generates multiples of 5 and writes them into an array.</p>
+
+<p>Put this in a file called <code class="language-plaintext highlighter-rouge">loop.c</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void loop() {
+    int a[10];
+    for (int i=0; i&lt;10; ++i) {
+        a[i] = i*5;
+    }
+}
+</code></pre></div></div>
+
+<p>Compile it to assembly:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -S -O0 -fverbose-asm -fno-asynchronous-unwind-tables -fno-pie loop.c
+</code></pre></div></div>
+
+<p>The annotated assembly code will be in a text file named <code class="language-plaintext highlighter-rouge">loop.s</code>. Examine the contents. Notice how it places a test for <code class="language-plaintext highlighter-rouge">i&lt;=9</code> (instead of <code class="language-plaintext highlighter-rouge">i&lt;10</code>) at the end of the loop and jumps to the end before looping back to the top of the loop.</p>
+
+<ul>
+  <li>Right as the loop begins, it does an XOR of %eax with %eax. What does that accomplish?</li>
+  <li>Can you tell where the variable <code class="language-plaintext highlighter-rouge">i</code> is stored?</li>
+  <li>Can you tell where the array <code class="language-plaintext highlighter-rouge">a</code> is stored?</li>
+  <li>There’s no <code class="language-plaintext highlighter-rouge">mul</code> opcode. How does it go about multiplying by 5?
+    <ul>
+      <li>Hint: Look for <code class="language-plaintext highlighter-rouge">sal</code> which is <code class="language-plaintext highlighter-rouge">shift arithmetic left</code> followed by an <code class="language-plaintext highlighter-rouge">add</code>. Remember the suffixes for operand size.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="switch-statement">Switch Statement</h2>
+
+<p>Put this in a file called <code class="language-plaintext highlighter-rouge">switch.c</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int switchit(int a) {
+    switch(a) {
+        case 1:
+            return 12;
+        case 2:
+            return 9;
+        case 3:
+            return 42;
+        default:
+            return 0;
+    }
+}
+</code></pre></div></div>
+
+<p>Compile it to assembly using the options listed above. Examine the result.</p>
+
+<p>In the branching section you find a series of <code class="language-plaintext highlighter-rouge">cmpl</code> statements followed by <code class="language-plaintext highlighter-rouge">je</code>, <code class="language-plaintext highlighter-rouge">jl</code>, or <code class="language-plaintext highlighter-rouge">jg</code> statements. The <code class="language-plaintext highlighter-rouge">cmp</code> opcode performs a subtraction and sets the flags but doesn’t store the result. Among the flags are <code class="language-plaintext highlighter-rouge">zero</code> and <code class="language-plaintext highlighter-rouge">negative</code>. The <code class="language-plaintext highlighter-rouge">jx</code> operations are conditional jumps:</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">jl</code>: Jump if less - Jump if the negative flag is set.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">je</code>: Jump if equal - Jump if the zero flag is set. (The <code class="language-plaintext highlighter-rouge">jz</code> opcode means “Jump if zero” and compiles to the same machine code.)</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">jg</code>: Jump if greater - Jump if the negative flag and the zero flag are both zero.</p>
+  </li>
+  <li>Can you find the assembly labels for the code corresponding to each case in the switch statement?</li>
+  <li>How are the jump statements organized?</li>
+  <li>If there were ten cases do you think there would be ten comparisons or would the compiler find a different optimization?</li>
+</ul>
+
+<blockquote>
+  <p>The binary bomb takes a different approach to switch statements. Likely because of different optimization settings. Try experimenting with different optimization levels (<code class="language-plaintext highlighter-rouge">-O0</code>, <code class="language-plaintext highlighter-rouge">-O1</code>, <code class="language-plaintext highlighter-rouge">-O2</code> or <code class="language-plaintext highlighter-rouge">-O3</code>) to see the effect.</p>
+</blockquote>
+
+<h2 id="pointer">Pointer</h2>
+
+<p>Put this in a file called <code class="language-plaintext highlighter-rouge">pointer.c</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// The argument passed to this function should
+// be an array of at least three integers.
+int add(int *p) {
+    return *p + *(p+1) + *(p+2);
+}
+</code></pre></div></div>
+
+<p>Compile to assembly using the options above and review the result.</p>
+
+<ul>
+  <li>Can you see how it references the values *p, *(p+1), and *(p+2)?</li>
+  <li>Where does it accumulate the results of the two additions?</li>
+  <li>What happens when you use different levels of optimization?</li>
+</ul>
+
+
+            </article>
+        </main>
+    </div>
+
+</body>
+
+</html>

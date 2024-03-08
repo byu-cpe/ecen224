@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Camera • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Camera+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Camera
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li><a href="#creating-large-buffers">Creating Large Buffers</a></li>
+      <li><a href="#writing-to-a-file">Writing to a File</a></li>
+    </ul>
+  </li>
+  <li><a href="#requirements">Requirements</a></li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+
+<ul>
+  <li>Take a picture with the camera</li>
+  <li>Handle raw data in a buffer</li>
+  <li>Write a <code class="language-plaintext highlighter-rouge">.bmp</code> file</li>
+  <li>Update viewer interface</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. <strong>This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>In the past labs, much time has been spent making sure the files of the camera are easily accessible and represented on the LCD screen of your Pi Z2W kits. In this lab you will be expected to integrate a camera module to your design and take pictures.</p>
+
+<p>In the <a href="/ecen224/labs/getting-started/">Getting Started Lab</a>, you should have already physically installed your camera, using the <strong>longer</strong> of the two ribbon cables in the correct orientation.</p>
+
+<h3 id="creating-large-buffers">Creating Large Buffers</h3>
+<p>The skills that you need to complete this lab are very closely related to the skills you needed for the last lab. You are expected to capture a very large buffer of information that comes from a camera and store it in a buffer (<code class="language-plaintext highlighter-rouge">uint8_t *</code>) in C.</p>
+
+<p>Normally, if we knew the size of these buffers, we would be able to create a regular array in C:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">uint8_t</span> <span class="n">my_new_buf</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>    <span class="c1">// Create a buffer of a known size</span>
+</code></pre></div></div>
+
+<p>However, this becomes difficult when our buffers become very large. For example, the buffers that you dealt with in the <strong>Image</strong> lab had millions of values in it! This is much too large for variables that are declared on the stack. Instead, you will need to use <code class="language-plaintext highlighter-rouge">malloc()</code> in conjunction with an unbounded array:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">uint8_t</span> <span class="o">*</span><span class="n">my_new_buf</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span> <span class="o">*</span> <span class="n">SIZEOFYOURBUFFER</span><span class="p">);</span>
+
+<span class="c1">// Whenever we are done with a malloc'd buffer in C, don't forget to call the following line:</span>
+<span class="n">free</span><span class="p">(</span><span class="n">my_new_buf</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Malloc takes one argument, the number of bytes to allocate for the buffer. It is common to provide the size of the data type the buffer will be (in this case, <code class="language-plaintext highlighter-rouge">uint8_t</code> so <code class="language-plaintext highlighter-rouge">sizeof(uint8_t)</code>) and the number of elements you want. This creates your buffer in the <em>heap</em> where there is much more space for larger variables like this. However, whenever we declare something in C and manage its memory, we must remember to call <code class="language-plaintext highlighter-rouge">free()</code> on the object once we are done. If this is not done, then there will be memory leaks inside of your program which could potentially grind your system to a halt.</p>
+
+<h3 id="writing-to-a-file">Writing to a File</h3>
+<p>You’ll notice in your lab files for this lab, you are provided with a <code class="language-plaintext highlighter-rouge">camera.h</code> and a partially filled in <code class="language-plaintext highlighter-rouge">camera.c</code>.</p>
+
+<p>In this lab you will be expected to capture image data from a camera, save it to a file, and then show it on the screen of your new smart doorbell. In order to write information to files in C, you will be expected to know one more function than you already do: <code class="language-plaintext highlighter-rouge">fwrite()</code>.</p>
+
+<p>Much like reading a files as you did in the last lab, to write, you will need to open a file using <code class="language-plaintext highlighter-rouge">fopen()</code>. You may be thinking, how can I open a file when it doesn’t exist yet? With <code class="language-plaintext highlighter-rouge">fopen()</code> you can name the file you want to create and what kind of mode you want to create it in by using <code class="language-plaintext highlighter-rouge">fopen()</code>. For example, to create a new file named “banana.txt”, I would do the following:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"banana.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The second argument in <code class="language-plaintext highlighter-rouge">fopen()</code> is mode we want to open the file in. This allows the operating system to know what type of content will be written to the file. In our example above, we want to write ASCII text to the file (as implied with the <code class="language-plaintext highlighter-rouge">.txt</code> extension), so we use the <code class="language-plaintext highlighter-rouge">w</code> mode. Other special modes for <code class="language-plaintext highlighter-rouge">fopen()</code> can be seen in the following table below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mode</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">r</code></td>
+      <td>Open text file for reading.  The stream is positioned at the beginning of the file.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">r+</code></td>
+      <td>Open for reading and writing.  The stream is positioned at the beginning of the file.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">w</code></td>
+      <td>Truncate file to zero length or create text file for writing.  The stream is positioned at the beginning of the file.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">w+</code></td>
+      <td>Open for reading and writing.  The file is created if it does not exist, otherwise it is truncated.  The stream is positioned at the beginning of the file.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">a</code></td>
+      <td>Open for appending (writing at end of file).  The file is created if it does not exist.  The stream is positioned at the end of the file.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">a+</code></td>
+      <td>Open for reading and appending (writing at end of file). The file is created if it does not exist.  Output is always appended to the end of the file.  POSIX is silent on what the initial read position is when using this mode. For glibc, the initial file position for reading is at the beginning of the file, but for Android/BSD/MacOS, the initial file position for reading is at the end of the file.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It is considered good practice to add a <code class="language-plaintext highlighter-rouge">b</code> at the end of the letter if you intend to write to a file in a binary format (i.e. <code class="language-plaintext highlighter-rouge">.bmp</code> files) to indicate your intent, however this extra <code class="language-plaintext highlighter-rouge">b</code> is not enforced on many modern systems like Linux.</p>
+
+<p>After the file is opened, you can then use the <code class="language-plaintext highlighter-rouge">fwrite()</code> command to write to this opened file. Instructions on how to use <code class="language-plaintext highlighter-rouge">fwrite()</code> can be found in the corresponding link in the <strong>Explore More!</strong> section at the bottom of the page. Don’t forget to use <code class="language-plaintext highlighter-rouge">fclose()</code> on the file pointer when you are done writing the file!</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li>First verify your camera is working. To do that, run the following command. If this command succeeds, that means you have correctly connected the camera. If the command fails, such as a camera not found error, then you need to fix the connection.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>libcamera-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bmp
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>Copy the three functions you implemented (<code class="language-plaintext highlighter-rouge">get_entries</code>, <code class="language-plaintext highlighter-rouge">draw_menu</code>, and <code class="language-plaintext highlighter-rouge">draw_file</code>) and your <code class="language-plaintext highlighter-rouge">main</code> function from last lab into your main.c for this lab.</p>
+  </li>
+  <li>
+    <p>Copy your <code class="language-plaintext highlighter-rouge">remove_color_channel</code> and <code class="language-plaintext highlighter-rouge">or_filter</code> functions into <code class="language-plaintext highlighter-rouge">image.c</code> from your Image Lab code. You will be using this code later on.</p>
+  </li>
+  <li>
+    <p>We have change the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn’t fix it.</p>
+  </li>
+  <li>
+    <p>Assign the right button to do what the center button did in the previous lab. When you push the d-pad to the right position, the file that is selected should be displayed.</p>
+  </li>
+  <li>Reassign the center button to do the following:
+    <ul>
+      <li>
+        <p>Clear the screen and write a message telling the person you are taking a picture. You can write what ever you want (e.g., “Say Cheese!”).</p>
+      </li>
+      <li>
+        <p>Take a picture with the Pi Z2W’s camera using the <code class="language-plaintext highlighter-rouge">camera_capture_data</code> function found in <code class="language-plaintext highlighter-rouge">camera.c</code>.</p>
+      </li>
+      <li>
+        <p>Save the raw data received from the capture to a <code class="language-plaintext highlighter-rouge">.bmp</code> file. You will have to implement the <code class="language-plaintext highlighter-rouge">camera_save_to_file</code> function found in <code class="language-plaintext highlighter-rouge">camera.c</code>. The file must be named <code class="language-plaintext highlighter-rouge">doorbell.bmp</code> and saved in the <code class="language-plaintext highlighter-rouge">viewer</code> folder.</p>
+      </li>
+      <li>
+        <p>Update the contents of your menu. It should now include the newly saved file.</p>
+      </li>
+      <li>
+        <p>Display the contents of the picture using the newly added <code class="language-plaintext highlighter-rouge">display_draw_image_data</code> function. However, before you can use that function, you must convert the raw <code class="language-plaintext highlighter-rouge">uint8_t *</code> buffer into a <code class="language-plaintext highlighter-rouge">Bitmap</code> struct. This is because <code class="language-plaintext highlighter-rouge">camera_campture_data</code> returns the bytes of the BMP image file, which includes the BMP header. <code class="language-plaintext highlighter-rouge">display_draw_image_data</code> is expecting raw pixels values without a header. To process the header and pixel values, call <code class="language-plaintext highlighter-rouge">create_bmp</code> located in image.c. This function will parse the header and set the <code class="language-plaintext highlighter-rouge">pxl_data</code> struct field to just the raw pixel data. A diagram of this process can be seen <a href="/ecen224/assets/camera/data_flow.png">here</a>.</p>
+      </li>
+      <li>
+        <p>While the contents of the picture is showing, you must handle the following:</p>
+        <ul>
+          <li>If the right button of the d-pad is pressed, filter out the red color of the image.</li>
+          <li>If the left button of the d-pad is pressed, filter out the blue color of the image.</li>
+          <li>If the up button of the d-pad is pressed, filter out the green color of the image.</li>
+          <li>If the down button of the d-pad is pressed, or-filter the image.</li>
+          <li>If the center button of the d-pad is pressed, exit from the submenu by clearing the picture and displaying the menu.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Your program must not have any memory leaks. This means for every <code class="language-plaintext highlighter-rouge">malloc</code>, you need to have a corresponding <code class="language-plaintext highlighter-rouge">free</code> call. <code class="language-plaintext highlighter-rouge">create_bmp</code> allocates memory for the <code class="language-plaintext highlighter-rouge">Bitmap</code> struct using <code class="language-plaintext highlighter-rouge">malloc</code>. You must free that space by calling <code class="language-plaintext highlighter-rouge">destroy_bmp</code> when you are done with the struct.</p>
+  </li>
+  <li>All other functionality should stay the same.</li>
+</ul>
+
+<p>Here is a demo showing the different features of the lab:</p>
+
+<div class="row">
+    <div class="mx-auto">
+        <video height="500" controls="">
+            <source src="/ecen224/assets/camera/demo.mp4" type="video/mp4"></source>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<h2 id="submission">Submission</h2>
+
+<ul>
+  <li>
+    <p>Answer the questions in the <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
+  </li>
+  <li>
+    <p>To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above. You must also show the TAs where you are calling <code class="language-plaintext highlighter-rouge">free</code> and <code class="language-plaintext highlighter-rouge">destroy_bmp</code>.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+
+<ul>
+  <li>
+    <p><a href="https://www.tutorialspoint.com/c_standard_library/c_function_fwrite.htm" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">fwrite()</code> in C</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/" target="_blank" rel="noopener noreferrer">Memory Allocation in C</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.arducam.com/raspberry-pi-camera-pinout/" target="_blank" rel="noopener noreferrer">Connect Camera to Raspberry Pi</a></p>
+  </li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>

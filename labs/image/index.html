@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Image • ECEn 224: Intro to Computer Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen224/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<link rel="icon" type="image/png" sizes="96x96" href=/ecen224/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen224/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen224/icon/favicon-16x16.png>
+
+<script src="https://kit.fontawesome.com/624d595ebf.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen224/"><img src="/ecen224/icon/icon.svg">
+                ECEn 224</a>
+        </div>
+
+        <div class="list-group list-group-flush">
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/overview/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/resources/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-book"></i>
+                
+                Resources
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/coding-standard/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-terminal"></i>
+                
+                Coding Standard
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/lab-setup/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/ta-hours/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fas fa-user-clock"></i>
+                
+                TA Hours
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="http://diglabqueue.groups.et.byu.net" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-handshake-angle"></i>
+                
+                Help Queue
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="https://learningsuite.byu.edu/.N7cA/cid-qWPtDGbD9Vq6/calendar" class="list-group-item list-group-item-action sidebar-item" target="_blank" rel="noopener noreferrer">
+                
+                <i class="fa-duotone fa-calendar"></i>
+                
+                Schedule
+            </a>
+            
+            
+            <!-- Look for specific front-matter tag -->
+            
+            <a href="/ecen224/recitations/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-podium"></i>
+                
+                Recitations
+            </a>
+            
+            
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/labs/getting-started/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Getting Started
+            </a>
+            
+            <a href="/ecen224/labs/command-line/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Command Line
+            </a>
+            
+            <a href="/ecen224/labs/c-programming/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                C Programming
+            </a>
+            
+            <a href="/ecen224/labs/debugging/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Debugging
+            </a>
+            
+            <a href="/ecen224/labs/image/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Image
+            </a>
+            
+            <a href="/ecen224/labs/display/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                Display
+            </a>
+            
+            <a href="/ecen224/labs/io/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                I/O
+            </a>
+            
+            <a href="/ecen224/labs/camera/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">8</span>
+                Camera
+            </a>
+            
+            <a href="/ecen224/labs/client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">9</span>
+                Client
+            </a>
+            
+            <a href="/ecen224/labs/threaded-client/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">10</span>
+                Threaded Client
+            </a>
+            
+            <a href="/ecen224/labs/doorbell/" class="list-group-item list-group-item-action sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">11</span>
+                Doorbell
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Programming Assignments</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/programming-assignments/bomb-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bomb"></i>
+                
+                Bomb Lab
+            </a>
+            
+            <a href="/ecen224/programming-assignments/attack-lab/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-bow-arrow"></i>
+                
+                Attack Lab
+            </a>
+            
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen224/homework/data/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-binary"></i>
+                
+                Data
+            </a>
+            
+            <a href="/ecen224/homework/c/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-brackets-curly"></i>
+                
+                C
+            </a>
+            
+            <a href="/ecen224/homework/assembly/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-microchip"></i>
+                
+                Assembly
+            </a>
+            
+            <a href="/ecen224/homework/memory/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-memory"></i>
+                
+                Memory
+            </a>
+            
+            <a href="/ecen224/homework/io/" class="list-group-item list-group-item-action sidebar-item">
+                
+                <i class="fa-duotone fa-server"></i>
+                
+                I/O
+            </a>
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+    <button class="btn btn-brand" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer noopener noreferrer" href="https://github.com/byu-cpe/ecen224/issues/new?title=Suggestions+for+Image+Page"><i class="fab fa-github"></i> Suggest
+                Edits</a>
+        </li>
+    </ul>
+    
+</nav>
+
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Image
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#overview">Overview</a>
+    <ul>
+      <li><a href="#bitmap-struct">Bitmap Struct</a></li>
+      <li><a href="#bitmasking">Bitmasking</a></li>
+      <li><a href="#pixel-values-in-bmp-file">Pixel Values in BMP file</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#requirements">Requirements</a>
+    <ul>
+      <li><a href="#remove-color-channel">Remove Color Channel</a></li>
+      <li><a href="#grayscale">Grayscale</a></li>
+      <li><a href="#or-filter">OR Filter</a></li>
+    </ul>
+  </li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#explore-more">Explore More!</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+
+<ul>
+  <li>Gain experience with manipulating bytes in C by modifying image files</li>
+  <li>Learn how to use <code class="language-plaintext highlighter-rouge">enum</code> values</li>
+  <li>Learn the structure of a multi-file C program (.h and .c files)</li>
+  <li>Get more practice with compilation of a program by using <code class="language-plaintext highlighter-rouge">gcc</code>
+</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. <strong>This lab should be done in VSCode on your Raspberry Pi.</strong></p>
+
+<h2 id="overview">Overview</h2>
+
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="/ecen224/assets/image/original.bmp">
+  <figcaption style="text-align: center;">Original bitmap image that you will be editing in the lab.</figcaption>
+</figure>
+
+<p>In this lab we will be exploring the utility of data manipulation in a practical application by editing an image in C. <strong>This lab will be programming heavy</strong> and a little more involved than previous labs. <strong>Make sure you allow yourself enough time to complete this lab.</strong></p>
+
+<h3 id="bitmap-struct">Bitmap Struct</h3>
+
+<p>Unlike other programming languages that you may be familiar with, the C programming language is not an object oriented programming language. This means that there are no <code class="language-plaintext highlighter-rouge">class</code> objects that allow you to associate groups of data together.</p>
+
+<p>To accomplish this, C uses a <code class="language-plaintext highlighter-rouge">struct</code> data structure, which is actually a predecessor to the <code class="language-plaintext highlighter-rouge">class</code> object we see in C++ programs. Below is the <code class="language-plaintext highlighter-rouge">struct</code> included in the <code class="language-plaintext highlighter-rouge">image.h</code> library in the code for this lab:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="kt">FILE</span> <span class="o">*</span> <span class="n">img</span><span class="p">;</span>
+    <span class="kt">uint8_t</span> <span class="n">file_header</span><span class="p">[</span><span class="n">BMP_FILE_HEADER_SIZE</span><span class="p">];</span>  <span class="c1">// 14 bytes</span>
+    <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">dib_header</span><span class="p">;</span>                       <span class="c1">// Variable</span>
+    <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">pxl_data</span><span class="p">;</span>                         <span class="c1">// Pixel data for image</span>
+    <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">pxl_data_cpy</span><span class="p">;</span>                     <span class="c1">// Copy of pixel data</span>
+    <span class="kt">uint8_t</span> <span class="n">pxl_data_offset</span><span class="p">;</span>                    <span class="c1">// Location of pxl data in img</span>
+    <span class="kt">uint32_t</span> <span class="n">img_width</span><span class="p">;</span>                         <span class="c1">// Image width</span>
+    <span class="kt">uint32_t</span> <span class="n">img_height</span><span class="p">;</span>                        <span class="c1">// Image height</span>
+    <span class="kt">uint32_t</span> <span class="n">file_size</span><span class="p">;</span>                         <span class="c1">// Size of the file</span>
+    <span class="kt">uint32_t</span> <span class="n">pxl_data_size</span><span class="p">;</span>                     <span class="c1">// Size of pixel data array</span>
+<span class="p">}</span> <span class="n">Bitmap</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Much like a <code class="language-plaintext highlighter-rouge">class</code>, a <code class="language-plaintext highlighter-rouge">struct</code> is a collection of different variable values all associated together. In the <code class="language-plaintext highlighter-rouge">Bitmap struct</code> we see many properties associated with the file, including:</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">pxl_data</code>: This is a pointer to a one dimensional list of <code class="language-plaintext highlighter-rouge">uint8_t</code> values that represent pixel values in the image.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">pxl_data_cpy</code>: This is a pointer to a copy of the list of <code class="language-plaintext highlighter-rouge">uint8_t</code> values that represent pixel values in the image. This will be helpful with some of the algorithms later on in the lab.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">img_width</code>: Number of pixels in each row in the image.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">img_height</code>: Number of rows of pixels in the image.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">pxl_data_size</code>: Size (in bytes) of <code class="language-plaintext highlighter-rouge">pxl_data</code>.</li>
+</ul>
+
+<p>To access members of the <code class="language-plaintext highlighter-rouge">struct</code>, you use the dot operator or the arrow operator, depending on if the <code class="language-plaintext highlighter-rouge">struct</code> is a pointer or not. For example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Bitmap</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"width: %u, height: %u</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">image_width</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">image_height</span><span class="p">);</span>
+
+<span class="n">Bitmap</span><span class="o">*</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"width: %u, height: %u</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">image</span><span class="o">-&gt;</span><span class="n">image_width</span><span class="p">,</span> <span class="n">image</span><span class="o">-&gt;</span><span class="n">image_height</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In this example, to access the width and height of a <code class="language-plaintext highlighter-rouge">struct</code>, we used the dot symbol. However, if we have pointer to a <code class="language-plaintext highlighter-rouge">struct</code>, we must dereference the pointer first before accessing the member. This can be done using <code class="language-plaintext highlighter-rouge">(*image).image_width</code>, but this is such a common operation to do that C added special syntax for it, the arrow operator, <code class="language-plaintext highlighter-rouge">-&gt;</code>.</p>
+
+<h3 id="bitmasking">Bitmasking</h3>
+<p>Bitmasking is a method that allows us to manipulate certain bits of data (e.g., set a bit to 1 or 0). This is done general by making use of bitwise ORs, ANDs, and XORs.</p>
+
+<p>For example if we wanted to select nothing but the last two bits of the byte (in binary) <code class="language-plaintext highlighter-rouge">11101011</code> we would AND that byte with a mask consisting of 0s on all the values we don’t want and 1s on all the values we do want in our selection:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     11101011
+AND  00000011   &lt;--- This value is known as the 'mask'
+-------------
+     00000011   &lt;--- The masked value
+</code></pre></div></div>
+<p>Although this is most obvious when representing the numbers as binary, the masking principles work for any representation of numbers (because everything is just stored as bits!).</p>
+
+<p>If we wanted to recreate the following operation in C with hexademical numbers, it would be the following:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">uint8_t</span> <span class="n">number</span> <span class="o">=</span> <span class="mh">0xEB</span><span class="p">;</span>
+<span class="kt">uint8_t</span> <span class="n">mask</span>   <span class="o">=</span> <span class="mh">0x03</span><span class="p">;</span>
+
+<span class="c1">// Mask the numbers</span>
+<span class="n">number</span> <span class="o">=</span> <span class="n">number</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">;</span> <span class="c1">// number = 0x03</span>
+</code></pre></div></div>
+
+<h3 id="pixel-values-in-bmp-file">Pixel Values in BMP file</h3>
+
+<p>Images are made out of many different colored points, called pixels, all put together in a two dimensional grid. Pixels are just one color and typically really small. To demonstrate the idea, I have broken the picture into a grid. While they are not the actual pixels of the image (the grid cells in my image below are much bigger than the pixels really are), hopefully it gets the idea across.</p>
+
+<figure class="image mx-auto" style="max-width: 350px">
+  <img src="/ecen224/assets/image/image_2d.png">
+  <figcaption style="text-align: center;">Images are visualized as a two dimensional grid of pixels.</figcaption>
+</figure>
+
+<p>A computer doesn’t necessarily store the image data in a two dimensional grid. It often stores it as a long list (called an array), where each row is concatenated with the previous row.</p>
+
+<figure class="image mx-auto" style="max-width: 800px">
+  <img src="/ecen224/assets/image/image_1d.png">
+  <figcaption style="text-align: center;">Images are stored as a one dimensional list.</figcaption>
+</figure>
+
+<p>Within each pixel, the computer actually stores <strong>three values for each pixel</strong>: a red color, a blue color, and a green color. Different values of each color channels will provide different hues and shades of a pixel. If that isn’t making too much sense, there is a wonderful visualization of how different color channels create different pixel colors <a href="https://www.w3schools.com/colors/colors_picker.asp" target="_blank" rel="noopener noreferrer">here</a>. In our example, each color for each pixel is represented by a binary number that is exactly 8 bits long (or one byte). In BMP files, the pixels are typically stored bottom-up, starting in the bottom left corner, moving left to right. This is helpful to know when you debug your program.</p>
+
+<figure class="image mx-auto" style="max-width: 600px">
+  <img src="/ecen224/assets/image/pixels.png">
+  <figcaption style="text-align: center;">Each pixel value is actually made up of 3 `uint8_t` values, representing blue, green, and red.</figcaption>
+</figure>
+
+<p>Look at the <code class="language-plaintext highlighter-rouge">pxl_data</code> field in the <code class="language-plaintext highlighter-rouge">Bitmap</code> struct shown above. What type does it use? (The star means its a pointer to objects of the type uint8_t). Also remember that pointers can be used like arrays! While creating the algorithms below, keep in mind that the values are stored as colors and <strong>NOT pixels</strong>. This means that pxl_data will be 3 times longer than the image size (as determined by multiplying the width and height of the image). There are many ways of accessing the individual colors of a pixel, but one way is to navigate to a specific pixel, and then access the individual color by adding an offset:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">uint8_t</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// Randomly selected pixel number</span>
+
+<span class="kt">uint8_t</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">pxl_data</span><span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kt">uint8_t</span> <span class="n">green</span> <span class="o">=</span> <span class="n">pxl_data</span><span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+<span class="kt">uint8_t</span> <span class="n">red</span> <span class="o">=</span> <span class="n">pxl_data</span><span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>If you want to access adjacent pixels, for example accessing the blue color, you will have to jump by three integer values:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">uint8_t</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Randomly selected pixel number</span>
+
+<span class="kt">uint8_t</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">pxl_data</span><span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">];</span> <span class="c1">// Multiply by 3 because each pixel consists of BGR</span>
+<span class="kt">uint8_t</span> <span class="n">next_blue</span> <span class="o">=</span> <span class="n">pxl_data</span><span class="p">[(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">];</span> <span class="c1">// Get the blue color for the next pixel</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong> In BMPs, the width of the image must be a multiple of 4 bytes. This means if the image has a width that is not a multiple of 4, the BMP file employs padding to fulfill that requirement. We have ensured that the picture you are working with is a multiple of 4 and you do not need to worry about dealing with padding for this lab. However, if you use your lab to read in different bmp files, it might not work.</p>
+
+<h2 id="requirements">Requirements</h2>
+<p>In the code provided in this lab, you will be expected to edit the original image listed at the top of this page to provide some fun visual effects!</p>
+
+<p>Much of the code has been given for you, but you are expected to follow the comments in the files and fill in logic for the following four functions:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">remove_color_channel()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">grayscale()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">or_filter()</code></li>
+</ul>
+
+<h3 id="remove-color-channel">Remove Color Channel</h3>
+<p>In this function, you are expected to create logic that will allow a user to specify a color channel and have that color removed completely from the image. As you can see in the figures below, each image has either the red, green, or blue values set to 0.</p>
+
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="/ecen224/assets/image/red_mask.bmp">
+  <figcaption style="text-align: center;">Original.bmp with all of the red values masked out.</figcaption>
+</figure>
+
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="/ecen224/assets/image/green_mask.bmp">
+  <figcaption style="text-align: center;">Original.bmp with all of the green values masked out.</figcaption>
+</figure>
+
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="/ecen224/assets/image/blue_mask.bmp">
+  <figcaption style="text-align: center;">Original.bmp with all of the blue values masked out.</figcaption>
+</figure>
+
+<p>These images are the answer to your function! If you have done it correctly, your output should look exactly like whats above.</p>
+
+<h3 id="grayscale">Grayscale</h3>
+<p>In this function, you will be turning your image from full color into a grayscaled image. To make an pixel gray, the red, green, and blue values must be combined or made to all be the same. To turn the image grayscale, for each pixel use the following equation:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Y = 0.299 R + 0.587 G + 0.114 B
+</code></pre></div></div>
+
+<p>In the equation above, R is the red pixel value, G is the green pixel value, and B is the blue pixel value. Y is the result. After finding Y you want to set all of the values of R, G, and B to be equal to Y. For example, if a pixel was <code class="language-plaintext highlighter-rouge">RGB(0, 46, 93)</code>, the new pixel value would be calculated as</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Y = 0.299 * 0 + 0.587 * 46 + 0.114 * 93 = 37.604 = 37
+</code></pre></div></div>
+
+<p>And the new RGB value would become <code class="language-plaintext highlighter-rouge">RGB(37, 37, 37)</code>. Even though <code class="language-plaintext highlighter-rouge">Y</code> is a float, you can truncate its value.</p>
+
+<p>After applying the grayscale to the image, it should look like this:</p>
+
+<figure class="image mx-auto" style="max-width: 750px">
+  <img src="/ecen224/assets/image/grayscale.bmp">
+  <figcaption style="text-align: center;">Original.bmp grayscaled.</figcaption>
+</figure>
+
+<h3 id="or-filter">OR Filter</h3>
+
+<p>This function will be the culmination of your data manipulation knowledge that you have learned up until now. In this function you will take each color value of a pixel and bitwise OR it with the pixel color value directly above and below it. For example, if you are working on pixel x, you would OR the blue color with the blue color of the pixel above (top) and the pixel below (bottom). You would repeat this for the green and red colors. You would then move to the next pixel in your image.</p>
+
+<figure class="image mx-auto" style="max-width: 700px">
+  <img src="/ecen224/assets/image/or_filter.png">
+  <figcaption style="text-align: center;">OR filter or's the color channels of the pixel above and below a specific pixel.</figcaption>
+</figure>
+
+<p>Remember, while visually the pixels are above and below each other, they are actually stored in a long array. As part of this lab, you must figure out how to access the vertically adjacent pixels in the one dimensional array. You will also have to deal with two special cases: when you are on the top row and the bottom row. In those two conditions, you won’t be able to or filter like normal because you are missing an expected row.</p>
+
+<p>Make sure to use the <code class="language-plaintext highlighter-rouge">pxl_data_cpy</code> array as your reference data for your calculations, then update <code class="language-plaintext highlighter-rouge">pxl_data</code>. If you use the <code class="language-plaintext highlighter-rouge">pxl_data</code> as your reference data, you will have compounding effects that will cause the image to be indistinguishable. This is not correct.</p>
+
+<h2 id="submission">Submission</h2>
+
+<ul>
+  <li>
+    <p>Answer the questions in the <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
+  </li>
+  <li>
+    <p>To pass off to a TA, you must show your “or filtered” image (or_filter.bmp) and explain what is causing the image’s visual behavior.</p>
+  </li>
+  <li>
+    <p>To successfully submit your lab, you will need to follow the instructions in the <a href="/ecen224/lab-setup">Lab Setup</a> page, especially the <strong>Committing and Pushing Files</strong> section.</p>
+  </li>
+</ul>
+
+<h2 id="explore-more">Explore More!</h2>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Bitwise_operations_in_C" target="_blank" rel="noopener noreferrer">Bitwise Operations in C</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Mask_(computing)" target="_blank" rel="noopener noreferrer">Bit Masking</a></li>
+  <li><a href="https://www.tutorialspoint.com/cprogramming/c_structures.htm" target="_blank" rel="noopener noreferrer">Struct in C</a></li>
+  <li><a href="https://www.tutorialspoint.com/enum-in-c" target="_blank" rel="noopener noreferrer">Enum in C</a></li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/ecen224/js/jquery.visible.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+<!-- Copy button for code blocks -->
+<script>
+    const copyButtonLabel = "Copy";
+
+    // use a class selector if available
+    let blocks = document.querySelectorAll("pre");
+
+    blocks.forEach((block) => {
+        // only add button if browser supports Clipboard API
+        if (navigator.clipboard) {
+            let button = document.createElement("button");
+            button.className = 'btn btn-brand btn-sm';
+
+            button.innerText = copyButtonLabel;
+            block.parentNode.parentNode.insertBefore(button, block.parentNode);
+
+            button.addEventListener("click", async () => {
+                await copyCode(block, button);
+            });
+        }
+    });
+
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        await navigator.clipboard.writeText(text);
+
+        // visual feedback that task is completed
+        button.innerText = "Copied";
+
+        setTimeout(() => {
+            button.innerText = copyButtonLabel;
+        }, 700);
+    }
+</script>
+
+
+</body>
+
+</html>
