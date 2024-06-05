@@ -7,21 +7,35 @@ layout: lab
 ---
 
 ## Getting Started
+ You must complete this lab on one of the Digital Lab computers. You can either go physically into the lab and use one of the computers, or you can SSH into one. If you are off campus however, you can not SSH into them directly. Below are two ways that you use to SSH into one of the lab machines from your home computer. Method 1 is faster, but Method 2 is much more reliable.
 
-You must complete this lab on one of the Digital Lab computers. You can either go physically into the lab and use one of the computers, or you can SSH into one. If you are off campus, you can not SSH into them directly. You must first SSH into `ssh.et.byu.edu` with your CAEDM username and password. From there, you can SSH into the a Digital Lab computer, `digital-##.ee.byu.edu`, where ## can be a number 01 to 60. Again, use your CAEDM username and password to log into those machines. For example, run the following commands
-
-```bash
-ssh foo@ssh.et.byu.edu
-# Once SSH'd into the CAEDM computer
-ssh foo@digital-06.ee.byu.edu
-```
-
-Assuming your CAEDM username is foo and the Digital Lab computer you want to log into is 06. It doesn't matter which computer you log into. Your home directory is mounted to your J Drive so all folders will be synced between computers. From this SSH session, you will can solve your bomb.
-
+ Because all your files are stored in a virtual J Drive connected back to CAEDM, it doesn't matter which computer you log into. From this SSH session, you can work on and solve your bomb.
 
 ### Download Instructions
-Go to the Bomb Lab assignment in the LearningSuite schedule. There you will find links to the assignment and the scoreboard.
+ Go to the Bomb Lab assignment in the LearningSuite schedule. There you will find links to the assignment and the scoreboard. It is highly recommended to download your bomb by going to a lab machine in person, as the SSH tutorial does not cover how to copy files through SSH and you will need to do that on your own if you download the bomb on your own machine.
 
+
+### Method 1
+ You must first SSH into `ssh.et.byu.edu` with your CAEDM username and password. From there, you can SSH into a Digital Lab computer, `digital-##.ee.byu.edu`, where ## can be a number 01 to 60 (you can choose any number, and two people can use the same number). Again, use your **CAEDM username and password** to log into those machines. For example, run the following commands
+
+ ```bash
+ ssh username@ssh.et.byu.edu
+ # Once SSH'd into the CAEDM computer
+ ssh username@digital-##.ee.byu.edu
+ ```
+
+ Replace `username` with your CAEDM username and `##` with the number of the Digital Lab computer you want to log into. 
+
+### Method 2
+ You can use the CAEDM VPN to appear to be on campus and ssh into a machine. Here are the quick facts:
+ 
+ ```bash
+ Servername: vpn.et.byu.edu
+ Protocol: IKEv2
+ Authentication: EAP-MSCHAPv2
+ ```
+ 
+ If you don't already know how to set up a VPN, go to [the CAEDM VPN page](https://caedm.et.byu.edu/wiki/index.php/VPN) and scroll to the bottom, where you will find a table of link to setting up the VPN depending on your operating system. After you have gotten the VPN to connect succesfully, your computer will appear to be coming from inside the CAEDM network. This means that you can SSH in directly with `ssh username@digital-##.ee.byu.edu`, where `username` is your CAEDM username, and `##` is any number between 01 and 60.
 
 ## Introduction
 The nefarious Dr. Evil has planted a slew of “binary bombs” on the ECEn Department’s Digital Lab machines. A binary bomb is a program that consists of a sequence of phases. Each phase expects you to type a particular string on `stdin`. If you type the correct string, then the phase is *defused* and the bomb proceeds to the next phase. Otherwise, the bomb *explodes* by printing "`BOOM!!!`" and then terminating. The bomb is defused when every phase has been defused.
@@ -62,10 +76,8 @@ to `stdin`. In a moment of weakness, Dr. Evil added this feature so you don’t 
 To avoid accidentally detonating the bomb, you will need to learn how to single-step through the assembly code and how to set breakpoints. You will also need to learn how to inspect both the registers and the memory states. One of the nice side-effects of doing the lab is that you will get very good at using a
 debugger. This is a crucial skill that will pay big dividends the rest of your career.
 
-## Scoring Grading
-The bomb will notify your instructor automatically about your progress as you work on it. You can keep track of how you are doing by looking at the class scoreboard. (A link to the scoreboard is given on LearningSuite assignment.)
-
-The scoreboard includes penalties for setting off the bomb. This is for the friendly competition with your classmates. Penalities will not be applied to your grade on this assignment.
+## Scoring and Grading
+The bomb will notify your instructor automatically about your progress as you work on it. You can keep track of how you are doing by looking at the class scoreboard. (A link to the scoreboard is given on the LearningSuite assignment). Every time the bomb explodes, your overall score will drop slightly. If you feel that explosions have dropped your grade too far, you can download another bomb. Your final grade will be the highest grade of all the bombs associated to your student ID.
 
 When you have completed the assignment (fully or partially) submit the answers to your bomb in the assignment on LearningSuite.
 
