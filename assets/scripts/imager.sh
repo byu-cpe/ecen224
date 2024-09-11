@@ -9,7 +9,7 @@ IMG_FILE="raspios_lite_arm64_latest.img"
 IMG_FILE_XZ="$IMG_FILE.xz"
 BOOT_PARTITION="/media/$(whoami)/bootfs"
 
-# Function to print in in color
+# Function to print in color
 function echo_red {
     echo -e "\033[31m$1\033[0m"
 }
@@ -37,6 +37,12 @@ echo_green "We will now set up the credentials for the new account we will creat
 echo ""
 read -p "Enter NetID: " username
 
+# Validate username for special characters
+if [[ "$username" =~ [^a-zA-Z0-9] ]]; then
+    echo_red "Error: Username contains special characters. Please use only letters and numbers."
+    exit 1
+fi
+
 # Prompt for password and confirm it
 while true; do
     read -sp "Enter password: " password
@@ -53,6 +59,12 @@ done
 
 # Hash the password using openssl (sha-256)
 hashed_password=$(echo "$password" | openssl passwd -5 -stdin)
+
+# Check and clean up leftover files from a previous run
+if [ -f "$IMG_FILE" ] || [ -f "$IMG_FILE_XZ" ]; then
+    echo_green "Cleaning up leftover files from a previous run..."
+    rm -f "$IMG_FILE" "$IMG_FILE_XZ"
+fi
 
 # List available drives using lsblk, filtering for sdX drives only
 echo ""
