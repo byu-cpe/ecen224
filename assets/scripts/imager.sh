@@ -113,10 +113,21 @@ echo ""
 echo_green "Writing the image to /dev/$drive... This may take a few minutes."
 dd if="$IMG_FILE" of=/dev/$drive bs=4M status=progress conv=fsync
 
-echo ""
-echo_green "Next, we need to mount the drive. First, unplug your USB drive and plug it back in. After plugging it in, there should be two USB drive icons in the toolbar on the left. You can tell them apart by hovering your mouse over them. Click on the \"bootfs\" icon. This will mount the drive."
+# Check if the boot partition is mounted by verifying if cmdline.txt exists
+while true; do
+    echo ""
+    echo_green "Next, we need to mount the drive. First, unplug your USB drive and plug it back in. After plugging it in, there should be two USB drive icons in the toolbar on the left. You can tell them apart by hovering your mouse over them. Click on the \"bootfs\" icon. This will mount the drive."
 
-read -p "Press enter once you have mounted the drive..." proceed
+    read -p "Press enter once you have mounted the drive..." proceed
+
+    if [ -f "$BOOT_PARTITION/cmdline.txt" ]; then
+        echo_green "Boot partition is mounted correctly. Proceeding..."
+        break
+    else
+        echo_red "Error: Boot partition is not mounted."
+        echo_red "Please make sure you have plugged in the device and mounted the boot partition correctly."
+    fi
+done
 
 # Write the firstrun.sh file dynamically with the user's username and hashed password
 echo ""
