@@ -240,10 +240,10 @@ In future labs, any starter code or special resources for completing that lab wi
 Now it is time to start assembling the other parts of the kit. Shut down your Raspberry Pi with this command:
 
 ```
-sudo shutdown -h now
+sudo shutdown now
 ```
 
-The command `sudo` indicates to your Raspberry Pi that you want to perform the following command with admin-level priveleges. In this case, we are running the `shutdown` command, directing it to enter the `-h` halt state, and to do so immediately (`now`). You will need to provide your password when prompted. Be aware that unlike traditional password prompts, this one won't show any characters as you type your password. After running this command, wait for the lights to stop blinking on your Pi before unplugging the PoE adapter.
+The command `sudo` indicates to your Raspberry Pi that you want to perform the following command with admin-level priveleges. In this case, we are running the `shutdown` command, directing it shutdown immediately (`now`). You might need to provide your password when prompted. Be aware that unlike traditional password prompts, this one won't show any characters as you type your password. After running this command, wait for the lights to stop blinking on your Pi before unplugging the Pi.
 
 <!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
 ### Assemble the remaining kit
