@@ -50,7 +50,7 @@ Normally, we would encourage you to use the [Raspberry Pi Imager](https://www.ra
 
 4. Plug in the Power over Ethernet (PoE) adapter (the white brick) into the **first** micro USB port (the only one *not* circled in the figure at the beginning of this lab) to power up and supply internet to Pi Z2W. Power over Ethernet is a technology that provides both Internet and power at the same time. Only some Ethernet ports have it, but all of the ports in the Digital Lab do. It is not necessary to have power and the PoE adapter plugged in at the same time. 
 
-The boot process will take a while, so wait at least two minutes (or until the green light starts flashing) to move to the next section.
+The boot process will take a while, so wait at least **three minutes** (or until the green light starts flashing) to move to the next section.
 
 ### Connect to Pi Z2W
 Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the lab network, we are able to connect to the it remotely using `ssh`. A remote connection means that you are able to log into a computer (like the Pi Z2W) _from_ a different computer (like the lab machines). 
@@ -67,7 +67,7 @@ Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the 
     ping: doorbell-kitras.local: Name or service not known
     ```
 
-    then the Pi Z2W is not connected to the lab network. Check the ethernet cable and make sure that everything is plugged in correctly then try again. 
+    then the Pi Z2W is not connected to the lab network. Check the ethernet cable and make sure that everything is plugged in correctly then try again. Sometimes it can take awhile for the Pi Z2W to connect to the network. Wait 5 minutes and try again before asking for help.
 
     If you receive messages like:
 
