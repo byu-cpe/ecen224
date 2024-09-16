@@ -143,7 +143,7 @@ Next, we will connect to your Pi Z2W using VSCode using the **Remote - SSH** ext
 
 3. Type in `Remote - SSH` into the search bar and click the **Install** button on the entry that says **Microsoft**  underneath. 
 
-4. Once the extension has successfully installed, you can now click on the green icon in the bottom left corner as seen in the figure above.
+4. Once the extension has successfully installed, you can now click on the icon in the bottom left corner as seen in the figure above.
 
 5. Click on this icon then select **Connect to Host > Add New SSH Host**. In this input box we will put the `ssh` command we used before to connect to the Pi Z2W through the terminal: `ssh <your_username>@doorbell-<your_netid>.local`. 
 
