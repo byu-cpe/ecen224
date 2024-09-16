@@ -34,7 +34,11 @@ git clone your_github_repository
 
 Once you have finished editing all the files you need to on cloned repository, you will need to `commit` and `push` the files to synchronize them with the repository online. This will be necessary for me to view your files so I can give you a grade.
 
-First you will need to add all the files to the list of files that you wish to sync. This can be done with
+First you will need be in the folder with your git repository. If you are not in your repository folder you can run
+```
+cd your_github_repository_folder
+```
+Then you can add all the files to the list of files that you wish to sync. This can be done with
 ```bash
 git add your.txt edited.txt files.txt
 ```
