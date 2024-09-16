@@ -8,6 +8,7 @@ RPI_OS_URL="https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_
 IMG_FILE="raspios_lite_arm64_latest.img"
 IMG_FILE_XZ="$IMG_FILE.xz"
 BOOT_PARTITION="/media/$(whoami)/bootfs"
+ROOT_PARTITION="/media/$(whoami)/rootfs"
 
 # Function to print in color
 function echo_red {
@@ -116,9 +117,9 @@ dd if="$IMG_FILE" of=/dev/$drive bs=4M status=progress conv=fsync
 # Check if the boot partition is mounted by verifying if cmdline.txt exists
 while true; do
     echo ""
-    echo_green "Next, we need to mount the drive. First, unplug your USB drive and plug it back in. After plugging it in, there should be two USB drive icons in the toolbar on the left. You can tell them apart by hovering your mouse over them. Click on the \"bootfs\" icon. This will mount the drive."
+    echo_green "Next, we need to mount the drive. First, unplug your USB drive and plug it back in. After plugging it in, there should be two USB drive icons in the toolbar on the left. Click on both of them to mount both drives."
 
-    read -p "Press enter once you have mounted the drive..." proceed
+    read -p "Press enter once you have mounted both drives..." proceed
 
     if [ -f "$BOOT_PARTITION/cmdline.txt" ]; then
         echo_green "Boot partition is mounted correctly. Proceeding..."
@@ -127,7 +128,33 @@ while true; do
         echo_red "Error: Boot partition is not mounted."
         echo_red "Please make sure you have plugged in the device and mounted the boot partition correctly."
     fi
+
+    if [ -f "$ROOT_PARTITION/etc/systemd/system/" ]; then
+        echo_green "Root partition is mounted correctly. Proceeding..."
+        break
+    else
+        echo_red "Error: Root partition is not mounted."
+        echo_red "Please make sure you have plugged in the device and mounted the root partition correctly."
+    fi
+
 done
+
+# Download some extra stuff
+wget "https://raw.githubusercontent.com/Chaser2143/ecen224/fall_2023/assets/scripts/ip_addr.bin"
+chmod +x ip_addr.bin
+mv ip_addr.bin $ROOT_PARTITION/opt/
+
+cat <<EOF >ip_addr.service
+[Unit]
+Description=IP Address Display
+
+[Service]
+ExecStart=/opt/ip_addr.bin
+
+[Install]
+WantedBy=multi-user.target
+EOF
+mv ip_addr.service $ROOT_PARTITION/etc/systemd/system/
 
 # Write the firstrun.sh file dynamically with the user's username and hashed password
 echo ""
@@ -190,6 +217,8 @@ XKBOPTIONS=""
 KBEOF
     dpkg-reconfigure -f noninteractive keyboard-configuration
 fi
+
+sudo systemctl enable ip_addr.service
 
 rm -f /boot/firstrun.sh
 sed -i 's| systemd.run.*||g' /boot/cmdline.txt
