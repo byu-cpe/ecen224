@@ -6,12 +6,14 @@ icon: fa-duotone fa-wrench
 ---
 
 ### Git Configuration
-Every time you use a **new machine for the first time**, you will need to need to let the `git` program know who is making changes to any repository that you have cloned to your computer. To set the default email address and name associated 
+Every time you use a **new machine for the first time**, you will need to need to let the `git` program know who is making changes to any repository that you have cloned to your computer. To set the default email address and name associated run the following commands:
 
 ```bash
 git config --global user.name "Your name here"
 git config --global user.email your_email@email.com
 ```
+
+Your email address should be the same one you used to sign up for GitHub.
 
 ### GitHub Class Assignments
 
