@@ -32,6 +32,7 @@ For more information on the following commands, type `man` and the name of the c
 | cat        | concatenate files and print on standard output​       |
 | cd         | change the current directory to another​              |
 | chmod      | change file mode bits                                |
+| clear      | clear the terminal screen​                            |
 | cp         | copy files and directories​                           |
 | df         | report file system disk space usage                  |
 | diff       | compare files line by line                           |
