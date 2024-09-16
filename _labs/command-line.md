@@ -14,10 +14,10 @@ layout: lab
 Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, `ssh` into your Raspberry Pi and clone the repository into your Raspberry Pi's home directory. This lab must be done on your Raspberry Pi. As a reminder, to `ssh` into your Rapsberry Pi, plug it in, and run this command on the terminal of your lab computer:
 
 ```bash
-ssh [your-user-name]@doorbell-[your-netid].local
+ssh [your-netid]@doorbell-[your-netid].local
 ```
 
-Fill in your username and NetID with your information. To clone the repository, follow the instructions on the [Lab Setup]({% link _pages/lab_setup.md %}) page.
+Fill in your NetID in the command. To clone the repository, follow the instructions on the [Lab Setup]({% link _pages/lab_setup.md %}) page.
 
 **This lab should be done in the terminal, not VSCode.**
 
@@ -88,7 +88,7 @@ You can also see your variable among all the others by typing:
 env
 ```
 
-You can read some more about environment variables [here](https://www.cherryservers.com/blog/how-to-set-list-and-manage-linux-environment-variables).
+There are some **system environment variables** that are defined for you when you open a terminal window, like `$SHELL`, `$USER`, and `$HOME`. You can read some more about environment variables [here](https://www.cherryservers.com/blog/how-to-set-list-and-manage-linux-environment-variables).
 
 ### Get Familiar with a Command Line Text Editor
 Several text editors are installed on your system, for example, `code`, `gedit`, `nano`, `vim`, and `emacs`. Some applications can only be run from the command line, while others can be launched graphically by clicking on its icon in the application screen. Choose an editor, and use it to create a new file. **Hint: If you are doing this lab SSHed into your Pi Z2W, `code` and `gedit` will not work because they require a GUI. `emacs` can also be terminal based (and is a great option - google the debate between `vim` and `emacs`) - but will need to be installed before you can use it.**
@@ -111,7 +111,7 @@ In order to complete this lab, you will need to use Google. If you don’t know 
 
 - Answer the questions in the `README.md`. (This is one OUTSIDE of the challenge folder)
 
-- Pass off to a TA by showing the correct output of your `tree` command.
+- Pass off to a TA by showing the correct output of your `tree` command. Make sure to show hidden folders and files.
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 

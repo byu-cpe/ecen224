@@ -20,7 +20,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
   <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the SD card port outlined in magenta, the mini HDMI port outlined in light blue, and the power micro USB port outlined in yellow.</figcaption>
 </figure>
 
-In this class we will be using the [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/) (or Pi Z2W for short) as the platform to explore the fundamentals of computing taught throughout the semester. In this lab you will be setting up the [single board computer](https://en.wikipedia.org/wiki/Single-board_computer) so that it is capable of handling all the labs in this course. There are 3 parts to this lab:
+In this class we will be using the [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/) (or Pi Z2W for short) as the platform to explore the fundamentals of computing taught throughout the semester. The Pi Z2W is included in your lab kit that you should have already bought from the Experiential Learning Center (also known as The Shop) in CB 416. In this lab you will be setting up the [single board computer](https://en.wikipedia.org/wiki/Single-board_computer) so that it is capable of handling all the labs in this course. There are 3 parts to this lab:
 
 - Flash and configure the Pi Z2W
 - Gain remote access to the Pi Z2W 
@@ -30,48 +30,27 @@ In this class we will be using the [Raspberry Pi Zero 2 W](https://www.raspberry
 ### Setting up the SD Card 
 In order to make use of the Pi Z2W, we will need to put an operating system onto its SD card. An [**operating system**](https://en.wikipedia.org/wiki/Operating_system) (OS), simply put, is a collection of programs which allows a user to interact with a device's hardware. For users of PCs, this collection of programs is called [Microsoft Windows](https://www.microsoft.com/en-us/windows?r=1), for Mac users [macOS](https://www.apple.com/za/macos/what-is/), and for Linux users there exists a wide variety of [distros](https://itsfoss.com/what-is-linux-distribution/#:~:text=Your%20distributions%20also%20takes%20the,as%20Linux%2Dbased%20operating%20systems.) to choose from. 
 
-In this lab we will become familiar with a distinct version of Linux called [Raspberry Pi OS](https://www.raspberrypi.com/software/) (formerly known as Raspbian) which was made specifically for devices like the Pi Z2W. 
+In this lab we will become familiar with a distinct version of Linux called [Raspberry Pi OS](https://www.raspberrypi.com/software/) (formerly known as Raspbian) which was made specifically for devices like the Pi Z2W.
 
-1. In order to load Raspberry Pi OS to the SD card we will use the [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/) tool. On your lab machine go to the **Activities** menu (in the upper lefthand corner) and then type in `imager`. Click on the icon that looks like a raspberry. You should see the following window open:
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/imager-start.png %}" alt="imager-start">
-    </figure>
-2. Select the **CHOOSE OS** option. Then click on **Raspberry Pi OS (other) > Raspberry Pi OS Lite (64-bit)**. This is the OS that will be written to the SD card. Note that the **Lite** option means that there will be no point-and-click navigation with the OS like you would be used to in Windows and macOS. Instead we will use the **command line** to get around.
+Normally, we would encourage you to use the [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/) tool to download the image and write it to the SD card. However, due to the limitations of the lab machines, we will need to do it a different way.
 
-3. Next we will configure some of the OS settings by clicking on the ![gear]({% link assets/getting-started/config-gear.png %}){:width="6%"} icon. This brings you to the **Advanced Options** menu:
+1.  Download the script that will walk you through the process of imaging your SD card. A script is like a recipe of commands that will run on your computer. You will download the script by opening up the **terminal** on your lab machine. This can be done either through finding it in the **Activities** menu or simply pressing `Ctrl+Alt+T`. Once you have the terminal open, copy and paste the following commands:
 
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/advanced-options.png %}" alt="advanced-options">
-    </figure>
+    ```bash
+    wget https://byu-cpe.github.io/ecen224/assets/scripts/imager.sh
+    chmod +x imager.sh
+    ./imager.sh
+    ```
 
-4. Change the following values in the menu according to the table below:
+    *(For a long command like this, it's easiest to copy and paste it into the terminal.  Use the copy button on the top right of the command box to copy the command. Use `Ctrl+Shift+V` to paste into the terminal.)*
 
-    | Setting                    | Value                                                                       | Description                                                                                                                                                                                                               |
-    | -------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | Set hostname:              | `doorbell-<your_netid>`                                                     | This will be the name of your Pi Z2W. This will make it easier to find on the network. Replace `<your_netid>` with your actual BYU NetID.                                                                                 |
-    | Enable SSH:                | Check **Enable SSH** and select **Use password authentication**             | This allows you to login into your Pi Z2W from anywhere on the network with the `ssh` tool by using a username and password.                                                                                              |
-    | Set username and password: | Any username and password you desire (make sure it is secure).              | We change these values from the default so that you can protect your projects. You are responsible for remembering this username and password! **Any loss of these credentials may require you to re-setup your Pi Z2W.** |
-    | Configure Wireless LAN*    | SSID: **name of WiFi network at home**<br/>Password:**password of network** | In case you want to work with the Pi Z2W outside of the Digital Lab.                                                                                                                                                      |
-    | Set locale settings:       | Timezone: **America/Denver**<br/>Keyboard Layout: **us**                    | This makes sure that the region the Pi Z2W is in the MDT timezone with the US keyboard layout.                                                                                                                            |
+2. This script will take a long time to run and will ask you some questions along the way.
 
-    <p style="text-align: right; font-size: 10pt;">*optional configurations</p>
+3. Once the writing process finishes, remove the SD card from your laptop and insert it into the SD card slot of the Pi Z2W. 
 
+4. Plug in the Power over Ethernet (PoE) adapter (the white brick) into the **first** micro USB port (the only one *not* circled in the figure at the beginning of this lab) to power up and supply internet to Pi Z2W. Power over Ethernet is a technology that provides both Internet and power at the same time. Only some Ethernet ports have it, but all of the ports in the Digital Lab do. It is not necessary to have power and the PoE adapter plugged in at the same time. 
 
-5. Now that we have correctly configured the OS settings, we will write the OS to the SD card that came with your Pi Z2W kit. Make sure that your SD card is plugged into the USB adapter and that the adapter is plugged into the lab computer. 
-
-6. Select **CHOOSE STORAGE** on the imager. A window that allows you to select the SD card will pop up:
-
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/select-device.png %}" alt="select-device">
-    </figure>
-
-7. Select the SD card and click **WRITE** to start writing the OS to the SD card. A pop-up window will ask you if you want to erase all contents on the SD card before continuing, select **YES** and continue with the write process. The writing process will take a while. 
-
-8. Once the writing process finishes, remove the SD card from your laptop and insert it into the SD card slot of the Pi Z2W. 
-
-9. Plug in the Power over Ethernet (PoE) adapter (the white brick) into the **first** micro USB port (the only one *not* circled in the figure at the beginning of this lab) to power up and supply internet to Pi Z2W. Power over Ethernet is a technology that provides both Internet and power at the same time. Only some Ethernet ports have it, but all of the ports in the Digital Lab do. It is not necessary to have power and the PoE adapter plugged in at the same time. 
-
-The boot process will take a while, so wait at least two minutes (or until the green light starts flashing) to move to the next section.
+The boot process will take a while, so wait at least **three minutes** (or until the green light starts flashing) to move to the next section.
 
 ### Connect to Pi Z2W
 Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the lab network, we are able to connect to the it remotely using `ssh`. A remote connection means that you are able to log into a computer (like the Pi Z2W) _from_ a different computer (like the lab machines). 
@@ -88,7 +67,7 @@ Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the 
     ping: doorbell-kitras.local: Name or service not known
     ```
 
-    then the Pi Z2W is not connected to the lab network. Check the ethernet cable and make sure that everything is plugged in correctly then try again. 
+    then the Pi Z2W is not connected to the lab network. Check the ethernet cable and make sure that everything is plugged in correctly then try again. Sometimes it can take awhile for the Pi Z2W to connect to the network. Wait 5 minutes and try again before asking for help.
 
     If you receive messages like:
 
@@ -106,7 +85,7 @@ Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the 
 1. Login to the Pi Z2W via `ssh` by typing in:
 
     ```bash
-    ssh <your_username>@doorbell-<your_netid>.local
+    ssh <your_netid>@doorbell-<your_netid>.local
     ```
 
     You will be asked to enter the password you chose earlier.  When you type your password in Linux you won't see anything show up in the Terminal window, but it is still being entered.  Just type your password and press `Enter` when you are done.
@@ -119,7 +98,7 @@ Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the 
       <img src="{% link assets/getting-started/ssh.png %}" alt="ssh">
     </figure>
 
-    You can tell you are inside the Pi Z2W by looking at the string before the cursor. It should be `username@computer_name` or specifically `<your_username>@doorbell-<your_netid>` on the Pi Z2W.
+    You can tell you are inside the Pi Z2W by looking at the string before the cursor. It should be `username@computer_name` or specifically `<your_netid>@doorbell-<your_netid>` on the Pi Z2W.
     
 4. Now that you are logged into your Pi Z2W, we will download a script that will install all the dependencies we will need for future labs.
 
@@ -164,7 +143,7 @@ Next, we will connect to your Pi Z2W using VSCode using the **Remote - SSH** ext
 
 3. Type in `Remote - SSH` into the search bar and click the **Install** button on the entry that says **Microsoft**  underneath. 
 
-4. Once the extension has successfully installed, you can now click on the green icon in the bottom left corner as seen in the figure above.
+4. Once the extension has successfully installed, you can now click on the icon in the bottom left corner as seen in the figure above.
 
 5. Click on this icon then select **Connect to Host > Add New SSH Host**. In this input box we will put the `ssh` command we used before to connect to the Pi Z2W through the terminal: `ssh <your_username>@doorbell-<your_netid>.local`. 
 
@@ -261,10 +240,10 @@ In future labs, any starter code or special resources for completing that lab wi
 Now it is time to start assembling the other parts of the kit. Shut down your Raspberry Pi with this command:
 
 ```
-sudo shutdown -h now
+sudo shutdown now
 ```
 
-The command `sudo` indicates to your Raspberry Pi that you want to perform the following command with admin-level priveleges. In this case, we are running the `shutdown` command, directing it to enter the `-h` halt state, and to do so immediately (`now`). You will need to provide your password when prompted. Be aware that unlike traditional password prompts, this one won't show any characters as you type your password. After running this command, wait for the lights to stop blinking on your Pi before unplugging the PoE adapter.
+The command `sudo` indicates to your Raspberry Pi that you want to perform the following command with admin-level priveleges. In this case, we are running the `shutdown` command, directing it shutdown immediately (`now`). You might need to provide your password when prompted. Be aware that unlike traditional password prompts, this one won't show any characters as you type your password. After running this command, wait for the lights to stop blinking on your Pi before unplugging the Pi.
 
 <!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
 ### Assemble the remaining kit
@@ -342,7 +321,12 @@ Your kit should look something like this:
       <img src="{% link assets/getting-started/assembly/step_9_ribbon %}" alt="Step 9 - ribbon cable inserted but not locked">
     </figure>
 
-12. In this lab, you were also given a 3D printed enclosure for your Pi Z2W kit.
+12. There is a small adhesive strip on the back of the camera. Remove the protective layer and stick it to the camera's PCB. This will ensure the camera stays in place.
+    <figure class="image mx-auto" style="max-width: 750px">
+      <img src="{% link assets/getting-started/assembly/camera_sticker.jpeg %}" alt="Attach camera to PCB board.">
+    </figure>
+
+13. In this lab, you were also given a 3D printed enclosure for your Pi Z2W kit.
     <!-- Import maps polyfill -->
     <!-- Remove this when import maps will be widely supported -->
     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>

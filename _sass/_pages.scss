@@ -87,7 +87,7 @@ h4 {
         font-weight: bold;
         line-height: 20px;
         color: #999999;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        // text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
         text-transform: uppercase;
         padding-top: 15px;
         margin-bottom: 0px;
@@ -127,6 +127,7 @@ h4 {
 
 .card-text {
     font-weight: 500;
+    font-family: $header-font-family;
 }
 
 .firstcharacter {
