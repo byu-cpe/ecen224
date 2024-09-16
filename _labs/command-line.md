@@ -111,7 +111,7 @@ In order to complete this lab, you will need to use Google. If you don’t know 
 
 - Answer the questions in the `README.md`. (This is one OUTSIDE of the challenge folder)
 
-- Pass off to a TA by showing the correct output of your `tree` command.
+- Pass off to a TA by showing the correct output of your `tree` command. Make sure to show hidden folders and files.
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
