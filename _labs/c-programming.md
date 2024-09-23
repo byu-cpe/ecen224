@@ -15,7 +15,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 ## Overview
 
-For the rest of the labs this semester, we will be focusing on building a strong foundation of programming using the C programming language. C is a old, yet very important language that is still actively used in development today. The creators of C, [Dennis Ritchie](https://computerhistory.org/profile/dennis-ritchie/) and [Ken Thompson](https://computerhistory.org/profile/ken-thompson/) are also the creators of the Unix operating system, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide good insight into how most computers work in general.
+For the rest of the labs this semester, we will be focusing on building a strong foundation of programming using the C programming language. C is an old, yet very important language that is still actively used in development today. The creators of C, [Dennis Ritchie](https://computerhistory.org/profile/dennis-ritchie/) and [Ken Thompson](https://computerhistory.org/profile/ken-thompson/) are also the creators of the Unix operating system, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide good insight into how most computers work in general.
 
 The philosophy of this lab is that the best way to learn something is to jump in and do it. Most of this page will be reference for all the problems and programming challenges in the lab README.md.
 
