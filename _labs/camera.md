@@ -80,7 +80,7 @@ libcamera-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bm
 
 - Copy your `remove_color_channel` and `or_filter` functions into `image.c` from your Image Lab code. You will be using this code later on.
 
-- We have change the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't fix it.
+- We have changed the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't fix it.
 
 - Assign the right button to do what the center button did in the previous lab. When you push the d-pad to the right position, the file that is selected should be displayed.
 
