@@ -137,7 +137,7 @@ uint8_t next_blue = pxl_data[(x + 1) * 3]; // Get the blue color for the next pi
 ## Requirements
 In the code provided in this lab, you will be expected to edit the original image listed at the top of this page to provide some fun visual effects!
 
-Much of the code has been given for you, but you are expected to follow the comments in the files and fill in logic for the following four functions:
+Much of the code has been given for you, but you are expected to follow the comments in the files and fill in logic for the following three functions:
   - `remove_color_channel()`
   - `grayscale()`
   - `or_filter()`
