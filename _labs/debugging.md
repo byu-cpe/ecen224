@@ -112,7 +112,11 @@ More modern tools like VSCode have built-in extensions to interface with GDB and
 
 3. Click the Install button to install the C/C++ extension. If you see a Disable button, that means you have already installed the extension.
 
-Once you have ensured the extension is installed, open the `main.c` file (if it is not open already). Next, click on the play button with bug in the upper right corner. If your debugger was configured properly, you should not see any errors and a new debugger view should show. You should see a menu pop up in the middle top of your screen. These are the controls that will help you run through your program.
+Once you have ensured the extension is installed, open the `main.c` file (if it is not open already). Next, click on the play button with bug in the upper right corner. If your debugger was configured properly, you should not see any errors and a new debugger view should show. It takes longer than you might expect on the Raspberry Pi. Once it is down loading, you should see a menu pop up in the middle top of your screen. These are the controls that will help you run through your program.
+
+<figure class="image mx-auto" style="max-width: 1000px">
+    <img src="{% link assets/debugging/controls.png %}" alt="VSCode debugging icons">
+</figure>
 
 **Follow the corresponding questions on the README.md for this lab as you learn the following techniques of graphical debugging.**
 
