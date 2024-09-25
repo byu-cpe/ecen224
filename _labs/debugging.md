@@ -76,14 +76,14 @@ It will output something like this:
 11:56:31 INFO  main.c:9: This is an informational message
 ```
 
-You can also use the `log_debug`, `log_warn`, and `log_error` functions to log debug, warning, and error messages, respectively. `log_*` takes the same arguments as printf (except it adds a newline for you!), so you can use format specifiers to include variables in the log message:
+You can also use the `log_debug`, `log_warn`, and `log_error` functions to log debug, warning, and error messages, respectively. `log_*` takes the same arguments as `printf` (except it adds a newline for you!), so you can use format specifiers to include variables in the log message:
 
 ```c
 int value = 42;
 log_info("The value is %d", value);
 ```
 
-**In the lab files for this repository, there are three files of interest: `main.c`, `math.c`, and `math.h`. Buggy functions have been included in the `math.c` file. Your job is to debug them using the trace debugging method and ensure that all of them work properly. To compile the program, you can pass both C files to gcc:**
+**In the lab files for this repository, there are three files of interest: `main.c`, `math.c`, and `math.h`. Buggy functions have been included in the `math.c` file. Your job is to debug them using the trace debugging method and ensure that all of them work properly. To compile the program, you must pass all the C files to gcc:**
 
 ```
 gcc main.c math.c log.c
