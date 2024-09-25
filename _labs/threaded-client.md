@@ -224,3 +224,4 @@ Here is a demo showing the different features of the lab:
 - [`pthread_create()` man page](https://man7.org/linux/man-pages/man3/pthread_create.3.html)
 - [`pthread_join()` man page](https://man7.org/linux/man-pages/man3/pthread_join.3.html)
 - [pthreads in C](https://www.geeksforgeeks.org/multithreading-in-c/#)
+- [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server)

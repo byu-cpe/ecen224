@@ -122,3 +122,4 @@ sudo systemctl disable my-service.service    # Disables the my-service service
 - [What is systemd?](https://en.wikipedia.org/wiki/Systemd)
 - [systemd's website](https://systemd.io/)
 - [Creating a systemd Service](https://medium.com/@benmorel/creating-a-linux-service-with-systemd-611b5c8b91d6)
+- [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server)

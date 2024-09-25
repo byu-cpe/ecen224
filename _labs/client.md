@@ -160,3 +160,5 @@ cp -r ~/camera/lib ~/client    # Copy lib folder
 - [`send()` in C](https://man7.org/linux/man-pages/man2/send.2.html)
 
 - [Ultimate Guide to Network Programming in C](https://beej.us/guide/bgnet/html/)
+
+- [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server)
