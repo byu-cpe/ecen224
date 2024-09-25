@@ -48,10 +48,45 @@ printf("Modified Str:\t%s\n", original_str);    // <--- Trace debug print statem
 
 And that's really all there is to this method! You'll be surprised to see how effectively simply logging/printing variable values as you go can ensure a smoother development experience. By using trace debugging, you can quickly identify and fix bugs, improve the performance of your program, and improve the overall reliability of your software.
 
+### Using a Logging Library
+
+However, using just regular `printf` statements has some problems. For example, if you have a lot of print statements in your code, it can be difficult to keep track of them all. And when you are done debugging, you have to go back and remove all the print statements you added.
+
+Rather than putting print statements everywhere, you can use a logging library to help you debug your code. Using a logging library can make it easier to log messages to the console and can provide additional features such as logging levels, timestamps, and the file location/line number where the log message occurred. Logging libraries also give you control over when the log messages are written to the console, allowing you to filter out messages based on their severity or other criteria. One such library is [log.c](https://github.com/rxi/log.c). This library provides a simple logging interface that you can use to log messages to the console. We have provided the `log.c` and `log.h` files in the lab repository. To use this library, you will need to include the `log.h` header file to the top of your code:
+
+```c
+#include "log.h"
+```
+
+ and link the `log.c` file when you compile your program:
+ 
+ ```bash
+ gcc main.c log.c
+ ```
+
+To use the logging library, you can call the `log_*` functions to log messages to the console. For example, you can use the `log_info` function to log an informational message:
+
+```c
+log_info("This is an informational message");
+```
+
+It will output something like this:
+
+```
+11:56:31 INFO  main.c:9: This is an informational message
+```
+
+You can also use the `log_debug`, `log_warn`, and `log_error` functions to log debug, warning, and error messages, respectively. `log_*` takes the same arguments as printf (except it adds a newline for you!), so you can use format specifiers to include variables in the log message:
+
+```c
+int value = 42;
+log_info("The value is %d", value);
+```
+
 **In the lab files for this repository, there are three files of interest: `main.c`, `math.c`, and `math.h`. Buggy functions have been included in the `math.c` file. Your job is to debug them using the trace debugging method and ensure that all of them work properly. To compile the program, you can pass both C files to gcc:**
 
 ```
-gcc main.c math.c
+gcc main.c math.c log.c
 ```
 
 **Answer the questions in the README.md file as you debug `math.c`.**
