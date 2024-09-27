@@ -10,7 +10,7 @@ sudo apt install -y git zsh gdb libcamera-dev libjpeg-dev libtiff5-dev cmake lib
 
 echo "------------------- Setting up Swapfile -------------------"
 sudo dphys-swapfile swapoff
-sudo sed -i 's/CONF_SWAPSIZE=100/CONF_SWAPSIZE=1024/g' /etc/dphys-swapfile
+sudo sed -i 's/CONF_SWAPSIZE=.*/CONF_SWAPSIZE=1024/g' /etc/dphys-swapfile
 sudo dphys-swapfile setup
 sudo dphys-swapfile swapon
 
