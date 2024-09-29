@@ -184,7 +184,7 @@ This sets up your GDB session and puts a breakpoint at the beginning of main. It
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
-- To pass off to a TA, show your README.md on GitHub.
+- To pass off to a TA, show the output of your debugged program using the logging library.
 
 
 ## Explore More!
