@@ -8,10 +8,22 @@ icon: fa-duotone fa-podium
 Recitations are on Fridays 2:00 PM in the Digital Lab, EB 423 (where the labs are held). There will also be a second time, which is currently Friday at 4:00 PM, but that will be changing soon.Both sessions last 50 minutes and have the same content, so there is no need to attend both. Slide decks and helps made for the recitations will be posted on this page.
 
 ### Current Semester's Recitation Materials
+* R00 (--) - Syllabus Review (if you ever forget)
+  * 🖼️[Slides](/ecen224/recitation/slides_f24/intro_syllabus_help.pdf)
+
 * R01 (09/16/24) - Information Representation
   * 🖼️[Slides](/ecen224/recitation/slides_f24/information_representation.pdf)
 * R02 (09/20/24) - Git and Github
   * 🖼️[Slides](/ecen224/recitation/slides_f24/git_github.pdf)
+* R03 (09/27/24) VSCode
+  * 📟[Visual Studio Code Installer](https://code.visualstudio.com/Download)
+  * 🚶‍♀️[VS Code Walkthrough](/ecen224/recitation/vscode-walkthrough)
+* R04 (10/04/24) Midterm 1 Review
+  * See Also: _LearningSuite >> EC EN 224 >> Content >> Review Materials >> Game 1 Review_
+  * 🖼️[Arrays in C](/ecen224/recitation/slides_f24/arrays_in_C.pdf)
+    * presentation on how arrays work both visually, and in computer memory.
+  * 🖼️[Pointers in C](/ecen224/recitation/slides_f24/pointers_in_C.pdf)
+    * These slides are not entirely complete, but should get you started.
 
 <br><br><br><br>
 
