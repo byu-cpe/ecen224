@@ -5,9 +5,10 @@ title: Recitations
 icon: fa-duotone fa-podium
 ---
 
-Recitations are on Fridays 2:00 PM in the Digital Lab, EB 423 (where the labs are held). There will also be a second time, which is currently Friday at 4:00 PM, but that will be changing soon.Both sessions last 50 minutes and have the same content, so there is no need to attend both. Slide decks and helps made for the recitations will be posted on this page.
+Recitations are on Fridays 2:00 PM and 4:00 PM in the Digital Lab, EB 423 (where the labs are held). Both sessions last 50 minutes and have the same content, so there is no need to attend both. Slide decks and helps made for the recitations will be posted on this page.
 
 ### Current Semester's Recitation Materials
+
 * R00 (--) - Syllabus Review (if you ever forget)
   * 🖼️[Slides](/ecen224/recitation/slides_f24/intro_syllabus_help.pdf)
 * R01 (09/16/24) - Information Representation
@@ -25,13 +26,17 @@ Recitations are on Fridays 2:00 PM in the Digital Lab, EB 423 (where the labs ar
     * These slides are not entirely complete, but should get you started.
 * R05 (10/11/24) Make and Makefile
   * See the [Make Walkthrough](/ecen224/recitation/make-walkthrough) created by Dr. Redd from last semester.
+* R06 (10/18/24) Intro to Assembly
+  * Reviewing the slides that Dr. Lee had already posted, so we don't overwhelm you with slides. See the slides 'Assembly Introduction' and 'Assembly Mov and Address'
 
-<br><br><br><br>
+<br><br>
 
 ## Recitation Archive
+
 These are all the recitations from previous semesters.
 
 ### Winter 2024
+
 * Command-line Interface and Data Representation
   * 🖼️[Slides](https://1drv.ms/p/s!AsDairlA1Y6-lt0QdhN48LSE4xtirQ?e=lx7Mf9)
 * Git (Part 1)
