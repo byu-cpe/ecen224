@@ -27,7 +27,9 @@ Recitations are on Fridays 2:00 PM and 4:00 PM in the Digital Lab, EB 423 (where
 * R05 (10/11/24) Make and Makefile
   * See the [Make Walkthrough](/ecen224/recitation/make-walkthrough) created by Dr. Redd from last semester.
 * R06 (10/18/24) Intro to Assembly
-  * Reviewing the slides that Dr. Lee had already posted, so we don't overwhelm you with slides. See the slides 'Assembly Introduction' and 'Assembly Mov and Address'
+  * Reviewing the slides that Dr. Lee had already posted, so we don't overwhelm you with slides. See the slide decks '17-Assembly Introduction' and '18-Assembly Mov and Address'
+* R07 (10/18/24) Some Even More Lots of Assembly
+  * Still reviewing Dr. Lee's slides. Today we looked at slide decks 19, 20, and 21.
 
 <br><br>
 
