@@ -252,7 +252,10 @@ The syntax for adding a breakpoint is very simple: `break <expression>` or `b <e
 
 *Ignore the expression used in this example. We will cover expressions later.*
 
-You can also add a breakpoint at your current location by typing `b` or `break` with no argument given.
+The two most important places you can add a breakpoint are:
+
+- At the beginning of a function, which you do by typing `b function_name`
+- At your current location by typing `b` or `break` with no argument given.
 
 Once you have placed a breakpoint, you can enable it: `enable <num>` and disabled it: `disable <num>`, which essentially turns it on and off. Breakpoints are always enabled when first created.
 
