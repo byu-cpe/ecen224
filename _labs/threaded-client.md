@@ -197,6 +197,8 @@ You may have noticed at this point that threading is very function heavy. This m
     
     - The status bar should should stay green with the sent message for 2 seconds. After the 2 seconds hide the status bar. *How do you know when it has been 2 seconds? Consider editing your `send_image`.*
 
+- Ensure that your menu is still responsive while the image is being sent. You should be able to navigate the menu while the image is being sent.
+
 Here is a demo showing the different features of the lab:
 
 <div class="row">
