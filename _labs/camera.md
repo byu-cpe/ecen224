@@ -80,11 +80,9 @@ libcamera-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bm
 
 - Copy your `remove_color_channel` and `or_filter` functions into `image.c` from your Image Lab code. You will be using this code later on.
 
-- We have changed the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't fix it.
+- We have changed the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't fix it. You should be able to scroll through the list and display the contents of a file by pressing the right button.
 
-- Assign the right button to do what the center button did in the previous lab. When you push the d-pad to the right position, the file that is selected should be displayed.
-
-- Reassign the center button to do the following:
+- Assign the center button to do the following:
     - Clear the screen and write a message telling the person you are taking a picture. You can write what ever you want (e.g., "Say Cheese!").
   
     - Take a picture with the Pi Z2W's camera using the `camera_capture_data` function found in `camera.c`.

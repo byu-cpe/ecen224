@@ -128,7 +128,7 @@ In this lab you should accomplish the following:
     
     - A selection bar should highlight which file you are about to open. When the up and down buttons are pressed, the selection bar should move up and down to the next or previous entry. The selection bar should scroll around from the top to the bottom and the bottom to the top. This means if your selection bar is at the top of the list and you press up, it should move to the bottom of the list. The same thing should be true for the bottom of the list and pressing down.
   
-- When the center button is pressed do the following:
+- When the right button is pressed do the following:
     - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
 
     - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
