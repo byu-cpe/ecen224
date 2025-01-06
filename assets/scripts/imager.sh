@@ -111,7 +111,7 @@ xz -d "$IMG_FILE_XZ"
 
 # Write the image to the selected drive (this may also take a few minutes)
 echo ""
-echo_green "Writing the image to /dev/$drive... This may take a few minutes and may freeze for a second - just wait until you are asked to mount the drive."
+echo_green "Writing the image to /dev/$drive... This may take a few minutes."
 dd if="$IMG_FILE" of=/dev/$drive bs=4M status=progress conv=fsync
 
 # Check if the boot partition is mounted by verifying if cmdline.txt exists
@@ -142,7 +142,7 @@ done
 # Download some extra stuff
 wget "https://raw.githubusercontent.com/Chaser2143/ecen224/fall_2023/assets/scripts/ip_addr.bin"
 chmod +x ip_addr.bin
-mv ip_addr.bin $ROOT_PARTITION/opt/
+cp ip_addr.bin $BOOT_PARTITION/ip_addr.bin
 
 cat <<EOF >ip_addr.service
 [Unit]
@@ -154,7 +154,10 @@ ExecStart=/opt/ip_addr.bin
 [Install]
 WantedBy=multi-user.target
 EOF
-mv ip_addr.service $ROOT_PARTITION/etc/systemd/system/
+cp ip_addr.service $BOOT_PARTITION/ip_addr.service
+
+# In FirstRun mov /boot/firmware/ip_addr.service to /etc/systemd/system/ip_addr.service
+# In FirstRun mov /boot/firmware/ip_addr.bin to /opt/ip_addr.bin
 
 # Write the firstrun.sh file dynamically with the user's username and hashed password
 echo ""
@@ -164,6 +167,9 @@ cat <<EOF | tee $BOOT_PARTITION/firstrun.sh >/dev/null
 #!/bin/bash
 
 set +e
+
+cp /boot/firmware/ip_addr.bin /opt/ip_addr.bin
+cp /boot/firmware/ip_addr.service /etc/systemd/system/ip_addr.service
 
 CURRENT_HOSTNAME=\$(cat /etc/hostname | tr -d " \t\n\r")
 if [ -f /usr/lib/raspberrypi-sys-mods/imager_custom ]; then
