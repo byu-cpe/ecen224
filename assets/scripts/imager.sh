@@ -111,7 +111,7 @@ xz -d "$IMG_FILE_XZ"
 
 # Write the image to the selected drive (this may also take a few minutes)
 echo ""
-echo_green "Writing the image to /dev/$drive... This may take a few minutes."
+echo_green "Writing the image to /dev/$drive... This may take a few minutes and may freeze for a second - just wait until you are asked to mount the drive."
 dd if="$IMG_FILE" of=/dev/$drive bs=4M status=progress conv=fsync
 
 # Check if the boot partition is mounted by verifying if cmdline.txt exists
