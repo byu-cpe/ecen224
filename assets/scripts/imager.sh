@@ -8,8 +8,9 @@ RPI_OS_URL="https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_
 IMG_FILE="raspios_lite_arm64_latest.img"
 IMG_FILE_XZ="$IMG_FILE.xz"
 BOOT_PARTITION="/media/$(whoami)/bootfs"
+ROOT_PARTITION="/media/$(whoami)/rootfs"
 
-# Function to print in in color
+# Function to print in color
 function echo_red {
     echo -e "\033[31m$1\033[0m"
 }
@@ -37,6 +38,12 @@ echo_green "We will now set up the credentials for the new account we will creat
 echo ""
 read -p "Enter NetID: " username
 
+# Validate username for special characters
+if [[ "$username" =~ [^a-zA-Z0-9] ]]; then
+    echo_red "Error: Username contains special characters. Please use only letters and numbers."
+    exit 1
+fi
+
 # Prompt for password and confirm it
 while true; do
     read -sp "Enter password: " password
@@ -53,6 +60,12 @@ done
 
 # Hash the password using openssl (sha-256)
 hashed_password=$(echo "$password" | openssl passwd -5 -stdin)
+
+# Check and clean up leftover files from a previous run
+if [ -f "$IMG_FILE" ] || [ -f "$IMG_FILE_XZ" ]; then
+    echo_green "Cleaning up leftover files from a previous run..."
+    rm -f "$IMG_FILE" "$IMG_FILE_XZ"
+fi
 
 # List available drives using lsblk, filtering for sdX drives only
 echo ""
@@ -101,10 +114,50 @@ echo ""
 echo_green "Writing the image to /dev/$drive... This may take a few minutes."
 dd if="$IMG_FILE" of=/dev/$drive bs=4M status=progress conv=fsync
 
-echo ""
-echo_green "Next, we need to mount the drive. First, unplug your USB drive and plug it back in. After plugging it in, there should be two USB drive icons in the toolbar on the left. You can tell them apart by hovering your mouse over them. Click on the \"bootfs\" icon. This will mount the drive."
+# Check if the boot partition is mounted by verifying if cmdline.txt exists
+while true; do
+    echo ""
+    echo_green "Next, we need to mount the drive. First, unplug your USB drive and plug it back in. After plugging it in, there should be two USB drive icons in the toolbar on the left. Click on both of them to mount both drives."
 
-read -p "Press enter once you have mounted the drive..." proceed
+    read -p "Press enter once you have mounted both drives..." proceed
+
+    if [ -f "$BOOT_PARTITION/cmdline.txt" ]; then
+        echo_green "Boot partition is mounted correctly. Proceeding..."
+        break
+    else
+        echo_red "Error: Boot partition is not mounted."
+        echo_red "Please make sure you have plugged in the device and mounted the boot partition correctly."
+    fi
+
+    if [ -f "$ROOT_PARTITION/etc/systemd/system/" ]; then
+        echo_green "Root partition is mounted correctly. Proceeding..."
+        break
+    else
+        echo_red "Error: Root partition is not mounted."
+        echo_red "Please make sure you have plugged in the device and mounted the root partition correctly."
+    fi
+
+done
+
+# Download some extra stuff
+wget "https://raw.githubusercontent.com/Chaser2143/ecen224/fall_2023/assets/scripts/ip_addr.bin"
+chmod +x ip_addr.bin
+cp ip_addr.bin $BOOT_PARTITION/ip_addr.bin
+
+cat <<EOF >ip_addr.service
+[Unit]
+Description=IP Address Display
+
+[Service]
+ExecStart=/opt/ip_addr.bin
+
+[Install]
+WantedBy=multi-user.target
+EOF
+cp ip_addr.service $BOOT_PARTITION/ip_addr.service
+
+# In FirstRun mov /boot/firmware/ip_addr.service to /etc/systemd/system/ip_addr.service
+# In FirstRun mov /boot/firmware/ip_addr.bin to /opt/ip_addr.bin
 
 # Write the firstrun.sh file dynamically with the user's username and hashed password
 echo ""
@@ -114,6 +167,9 @@ cat <<EOF | tee $BOOT_PARTITION/firstrun.sh >/dev/null
 #!/bin/bash
 
 set +e
+
+cp /boot/firmware/ip_addr.bin /opt/ip_addr.bin
+cp /boot/firmware/ip_addr.service /etc/systemd/system/ip_addr.service
 
 CURRENT_HOSTNAME=\$(cat /etc/hostname | tr -d " \t\n\r")
 if [ -f /usr/lib/raspberrypi-sys-mods/imager_custom ]; then
@@ -167,6 +223,8 @@ XKBOPTIONS=""
 KBEOF
     dpkg-reconfigure -f noninteractive keyboard-configuration
 fi
+
+sudo systemctl enable ip_addr.service
 
 rm -f /boot/firstrun.sh
 sed -i 's| systemd.run.*||g' /boot/cmdline.txt
