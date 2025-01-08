@@ -595,8 +595,12 @@ Your kit should look something like this:
 
 Details about the display and camera hardware will be presented in future labs.
 
-Turn your Pi Z2W on by plugging in your PoE adapter and re-connect to the Pi over SSH like we did earlier. 
+Turn your Pi Z2W on by plugging in your PoE adapter and re-connect to the Pi over SSH in VS Code like we did earlier. 
 
+### Readme files
+Once you reconnect to your PI, check out the README.md file in the getting started repository that you just downloaded.  READMEs are [markdown](https://www.markdownguide.org/getting-started/) files that explain what a folder or repository contains.  They often include instructions on how to download, use, and modify the contents.
+
+Before turning in each lab, you will be expected to create your own READMEs for your repositories.  This first one will be pretty simple - take a look at the initial one we gave you and modify it as described!
 
 ## Lab Submission
 - Complete the learning suite Pass off quiz. 
