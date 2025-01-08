@@ -77,6 +77,8 @@ collections:
       - ta_hours.md
       - help_queue.md
       - schedule.md
+      - schedule225.md
+      - recitations.md
 
 defaults:
   - scope:
