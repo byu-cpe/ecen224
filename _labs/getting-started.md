@@ -599,7 +599,7 @@ Turn your Pi Z2W on by plugging in your PoE adapter and re-connect to the Pi ove
 
 
 ## Lab Submission
-- Answer the questions in the `README.md`. 
+- Complete the learning suite Pass off quiz. 
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
