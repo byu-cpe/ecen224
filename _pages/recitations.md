@@ -5,9 +5,19 @@ title: Recitations
 icon: fa-duotone fa-podium
 ---
 
-Recitations are on Fridays 2:00 PM and 4:00 PM in the Digital Lab, EB 423 (where the labs are held). Both sessions last 50 minutes and have the same content, so there is no need to attend both. Slide decks and helps made for the recitations will be posted on this page.
+Recitations are on Thursdays at 11:00 AM and 3:00 PM as well as Fridays at 10:00 AM in the Digital Lab, EB 423 (where the labs are held). All three sessions last 50 minutes and have the same content, so feel free to attend whichever works foryour schedule. Slide decks and helps made for the recitations will be posted on this page.
 
 ### Current Semester's Recitation Materials
+
+Will be added soon.
+
+<br><br>
+
+## Recitation Archive
+
+These are all the recitations from previous semesters.
+
+### Fall 2024
 
 * R00 (--) - Syllabus Review (if you ever forget)
   * 🖼️[Slides](/ecen224/recitation/slides_f24/intro_syllabus_help.pdf)
@@ -30,12 +40,6 @@ Recitations are on Fridays 2:00 PM and 4:00 PM in the Digital Lab, EB 423 (where
   * Reviewing the slides that Dr. Lee had already posted, so we don't overwhelm you with slides. See the slide decks '17-Assembly Introduction' and '18-Assembly Mov and Address'
 * R07 (10/18/24) Some Even More Lots of Assembly
   * Still reviewing Dr. Lee's slides. Today we looked at slide decks 19, 20, and 21.
-
-<br><br>
-
-## Recitation Archive
-
-These are all the recitations from previous semesters.
 
 ### Winter 2024
 
