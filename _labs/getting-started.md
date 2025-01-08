@@ -600,7 +600,7 @@ Turn your Pi Z2W on by plugging in your PoE adapter and re-connect to the Pi ove
 ### Readme files
 Once you reconnect to your PI, check out the README.md file in the getting started repository that you just downloaded.  READMEs are [markdown](https://www.markdownguide.org/getting-started/) files that explain what a folder or repository contains.  They often include instructions on how to download, use, and modify the contents.
 
-In future labs, you will be expected to create your own READMEs for your repositories.  We provided one for you in this lab; check it out!
+Before turning in each lab, you will be expected to create your own READMEs for your repositories.  This first one will be pretty simple - take a look at the initial one we gave you and modify it as described!
 
 ## Lab Submission
 - Complete the learning suite Pass off quiz. 
