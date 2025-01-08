@@ -17,7 +17,7 @@ Your email address should be the same one you used to sign up for GitHub.
 
 ### GitHub Class Assignments
 
-Every lab will have a corresponding GitHub **repository**, or code base. This will normally be a collection of files that you will need to complete the lab, including the `README.md` where you will answer lab questions. To access the GitHub Classroom link for a lab click on the corresponding lab assignment on Learning Suite.
+Every lab will have a corresponding GitHub **repository**, or code base. This will normally be a collection of files that you will need to complete the lab, including a `README.md` outline or prompt that you will need to fill in. To access the GitHub Classroom link for a lab click on the corresponding lab assignment on Learning Suite.
 
 Once you have accepted the assignment, a copy of the lab repository will be added to the GitHub user account you are using for this class. To **clone** these files, or download them to your computer (or for this lab, to the Pi Z2W), you will need to need the repository link. **This is different than the URL of your repository.** 
 
