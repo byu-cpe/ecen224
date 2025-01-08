@@ -7,7 +7,7 @@ icon: fa-duotone fa-chalkboard-teacher
 
 ## Course Content
 
-Welcome to ECEn 224! We are excited to teach you all about computer systems. This class will provide you with the fundamental knowledge of how a computer works and will be your anchor for all future computing classes. This class is a sampling class. We will cover many different topics, but we will not dive too deep into any particular subject. The course will give you a taste of what each follow-on computing class offers. After taking this class, you will be familiar with the vocabulary, challenges, and exciting aspects of computer systems. You will be ready to take high-level computing classes.
+Welcome to ECEn 224 and ECEn 225! We are excited to teach you all about computer systems. This class will provide you with the fundamental knowledge of how a computer works and will be your anchor for all future computing classes. This class is a sampling class. We will cover many different topics, but we will not dive too deep into any particular subject. The course will give you a taste of what each follow-on computing class offers. After taking this class, you will be familiar with the vocabulary, challenges, and exciting aspects of computer systems. You will be ready to take high-level computing classes.
 
 In terms of preparation for the class, we only assume that you have had one semester of programming (CS 111). If you know nothing else about computers, that is great! That's why you are here—to learn more about computers! The class will follow a bottom-up approach. We will start with one of the fundamental building blocks of computers: data. From data, we will learn how to manipulate and control data through programming by learning the C programming language. We will then learn how a computer takes a C program and translates it into something it can understand and executes that program. Finally, we will learn how computers get and output data to different systems.
 
@@ -23,33 +23,36 @@ We have designed the lectures and labs to be engaging, practical, and (hopefully
 
 ## Course Makeup
 
-This course is made up of six major components that all work together to help make you an expert in computer systems.
+This course is split into two: ECEn 224 forms the lecture/exam/programming-assignment part of the course and ECEn 225 forms the lab portion of the course. 
+
+Overall the two courses are made up of six major components that all work together to help make you an expert in computer systems.
 
 - **Lectures**. Lectures are one of the most important ways to learn the material. Please come to lecture. Reading the book, though it is important, is not a substitute. While in lecture, take notes. It will help you stay engaged in the lecture, help you remember the content better, and you have a great study resource for the tests.
 
-- **Homework**. Homeworks are due one week after the unit's material is covered. They will cover information from the lecture and book. The homework will help apply the ideas you have learned from lecture and book and prepare yourself for the exams.
+- **Homework**. Homeworks are due one week after the unit's material is covered. They will cover information from the lecture and book. The homework will help apply the ideas you have learned from lecture and book and prepare yourself for the exams. 
 
 - **Programming Assignments**. Some of the topics we learn about in this class require extra practice to truly become a master. This mastery will be accomplished through programming assignments. You will have two programming assignments where you will do a deep dive on one or two of the concepts you learned in class.
 
 - **Exams**. There are two midterms and a comprehensive final. No one likes exams, but they are essential to gauge how well you have mastered the content and prove to yourself that you are an expert at computer systems.
 
-- **Labs**. Labs are due every week (with a few exceptions). Labs are passed off with a TA and turned in through Github. For every lab, there is also a feedback component. This feedback gives you a chance to tell me what you liked and did not like about the lab so that I can improve the labs for future years. The purpose of the labs is to learn how to build something complex and apply what you have learned in lecture. Throughout the semester you will be building a smart doorbell system. This project will give you the confidence you need to build interesting projects in the future.
+- **Labs**. Labs are due every week (with a few exceptions). Labs are passed off with a TA and turned in through Github and via a Learning Suite quiz. For every lab, there is also a feedback component. This feedback gives you a chance to tell me what you liked and did not like about the lab so that I can improve the labs for future years. The purpose of the labs is to learn how to build something complex and apply what you have learned in lecture. Throughout the semester you will be building a smart doorbell system. This project will give you the confidence you need to build interesting projects in the future.
 
 - **Recitations**. Recitations are a chance for you to meet together as students with a TA and go over the content from the class. Initially, recitation will be focused on skills you will need to be a successful electrical and computer engineer, such as command line tools and debugging code. As the semester progresses, the recitations will shift to focus more on course content and help with labs and programming assignments. While recitations are optional, we highly recommend it.
 
 
 ## Grade Breakdown
 
-| Component               | % of Grade |
-| ----------------------- | ---------- |
-| Labs                    | 40         |
-| Programming Assignments | 15         |
-| Homeworks               | 10         |
-| Exams                   | 35         |
+Details of the Grade Breakdown for ECEn 224 can be found on the learning suite site for ECEn 224.
+
+The grade breakdown for ECEn 225 is listed below:
+
+| Component                  | % of Grade |
+| -------------------------- | ---------- |
+| Lab TA Passoff             | 70         |
+| Lab Passoff Quizzes        | 25         |
+| Github Submissions/README  | 5          |
 
 
-## Communication
-All communication will be done over Slack. Slack is intended to be used for announcements, questions, and facilitate student communication. If you have a question, ask it on Slack so that everyone can benefit from seeing the question and answer. 
 
 ## Attendance and Participation
 This is a sophomore-level class, so I expect participation. I expect all students to attend every lecture and be engaged in the lecture. Asking and answering questions in class is essential. When you are in a lecture, I expect your attention, so students should not be on their phones or doing non-class related things on laptops.
@@ -64,6 +67,20 @@ No source code should be shared between students. Students can work on assignmen
 
 ### Honor Code
 In keeping with the principles of the BYU Honor Code, students are expected to be honest in all of their academic work. Academic honesty means, most fundamentally, that any work you present as your own must in fact be your own work and not that of another. Violations of this principle may result in a failing grade in the course and additional disciplinary action by the university. Students are also expected to adhere to the Dress and Grooming Standards. Adherence demonstrates respect for yourself and others and ensures an effective learning and working environment. It is the university's expectation, and every instructor's expectation in class, that each student will abide by all Honor Code standards. Please call the Honor Code Office at 422-2847 if you have questions about those standards.
+
+### AI Policy for Labs and Programming Assignments
+Similar to how you have to learn to do multiplication before using a calculator, it is essential that you learn the fundamentals or you will not be successful as an engineer or cyber-security expert. 
+
+This class teaches the fundamentals of computer systems. If you use AI in this course and do not learn to handle the fundamentals on your own you will severely limit your capabilities and the success of your college degree and future career.
+
+As such, we severely discourage you from using AI in this course. 
+
+We will hold to the official department policy on AI ([linked here](https://ece.byu.edu/ai-policy)), with the addition that you are NOT allowed to:
+- Pass the lab prompts or provided lab code into an AI system
+- Use AI to generate code or lab assignment submissions (even using co-pilot within VS-Code)
+- Use AI to generate answers to quizzes, exams, or homeworks
+
+Violating this policy is considered cheating and is likely to result in a report to the Honor Code Office and/or a zero on your lab assignment and/or a zero in the course.
 
 ### Preventing & Responding to Sexual Misconduct
 In accordance with Title IX of the Education Amendments of 1972, Brigham Young University prohibits unlawful sex discrimination against any participant in its education programs or activities. The university also prohibits sexual harassment-including sexual violence-committed by or against students, university employees, and visitors to campus. As outlined in university policy, sexual harassment, dating violence, domestic violence, sexual assault, and stalking are considered forms of "Sexual Misconduct" prohibited by the university.
