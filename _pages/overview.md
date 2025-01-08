@@ -68,7 +68,7 @@ No source code should be shared between students. Students can work on assignmen
 ### Honor Code
 In keeping with the principles of the BYU Honor Code, students are expected to be honest in all of their academic work. Academic honesty means, most fundamentally, that any work you present as your own must in fact be your own work and not that of another. Violations of this principle may result in a failing grade in the course and additional disciplinary action by the university. Students are also expected to adhere to the Dress and Grooming Standards. Adherence demonstrates respect for yourself and others and ensures an effective learning and working environment. It is the university's expectation, and every instructor's expectation in class, that each student will abide by all Honor Code standards. Please call the Honor Code Office at 422-2847 if you have questions about those standards.
 
-### AI Policy for Labs and Programming Assignments
+### AI Policy 
 Similar to how you have to learn to do multiplication before using a calculator, it is essential that you learn the fundamentals or you will not be successful as an engineer or cyber-security expert. 
 
 This class teaches the fundamentals of computer systems. If you use AI in this course and do not learn to handle the fundamentals on your own you will severely limit your capabilities and the success of your college degree and future career.
