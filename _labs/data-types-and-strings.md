@@ -111,7 +111,7 @@ The `string.h` library includes various string manipulation functions.  One of t
 
 ### Using Functions with Arrays and Strings
 
-When they are declared, arrays are stored in its local function's memory.  When that function ends, the data with the array is will be cleared from memory.  For this reason, functions that manipulate or generate an array usually don't return the array itself.  Instead, these functions require the user to pass in the array as a parameter.  Since arrays are pointers under the hood, changes made in the function will persist once the function is done. 
+When they are declared, arrays are stored in its local function's memory.  When that function ends, the data with the array will be cleared from memory.  For this reason, functions that manipulate or generate an array usually don't return the array itself.  Instead, these functions require the user to pass in the array as a parameter.  Since arrays are pointers under the hood, changes made in the function will persist once the function is done.
 ```C
 // Bad function; the array data will be lost once the function returns
 char* makeAString_bad() {
