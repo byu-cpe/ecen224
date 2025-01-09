@@ -34,11 +34,13 @@ Arrays are C's method of keeping a list of some sort of data type. Nearly every 
 
 Example is an example of how to declare an array.
 ```c
-int myArray1[] = {0, 1, 2, 3, 4}; // This fills the content of the array with the values you provide.  The array will only be as large as the number of elements you include.
+int myArray1[] = {0, 1, 2, 3, 4}; // This fills the content of the array with the values you provide.  
+                                  // The array will only be as large as the number of elements you include.
 
-int myArray2[5] = {0, 1}; // This fills indexes 0 and 1 with 0 and 1.  Since the size was explicited declared, indexes 2-4 will be initalized to 0
+int myArray2[5] = {0, 1}; // This fills indexes 0 and 1 with 0 and 1.  Since the size was explicited declared, 
+                          // indexes 2-4 will be initalized to 0.
 
-int myArray3[5] = {}; // This array will be fully initialized to 0
+int myArray3[5] = {}; // This array will be fully initialized to 0.
 
 int myArray4[5]; // This is a valid array, but the values are not initialized.
 ```
@@ -116,7 +118,8 @@ char* makeAString_bad() {
     return "I made a string!";
 }
 
-// Good function; the caller will declare an empty array and the function will populate it.  Note though that the stringToFill will have to be large enough to fit the string or weird things will happen.
+// Good function; the caller will declare an empty array and the function will populate it.  
+// Note though that the stringToFill will have to be large enough to fit the string or weird things will happen.
 void makeAString_good(char* stringToFill) {
     stringToFill = "I made a string!";
 }
