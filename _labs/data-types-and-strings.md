@@ -82,7 +82,7 @@ char myString1[] = {'H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'};
 char myString2[] = "Hello world"; 
 ```
 
-All strings in C end with a null terminator, which has the interger value 0. When C library functions examine or maniuplate a string, it will stop reading when it hits a 0.  When you initalize a string with double quotes, C will automatically add the null terminator on the end (assuming there is enough memory allocated)
+All strings in C end with a null terminator, which has the interger value 0. When C library functions examine or maniuplate a string, it will stop reading when it hits a 0.  When you initalize a string with double quotes, C will automatically add the null terminator on the end (assuming there is enough memory allocated).
 
 ```C
 // The printf statement below will only print "Hello"
