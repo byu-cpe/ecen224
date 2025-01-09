@@ -52,9 +52,9 @@ Iterating over an array is a common practice in C; you will find yourself doing 
 
 ... 
 
-int myArray[arrayLen] = {0, 1, 2, 3, 4};
+int myArray[ARRAY_LEN] = {0, 1, 2, 3, 4};
 
-for (int i = 0; i < arrayLen; i++) {
+for (int i = 0; i < ARRAY_LEN; i++) {
     printf("%d\n", array[i]);
 }
 
