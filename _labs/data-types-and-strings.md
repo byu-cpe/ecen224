@@ -107,7 +107,7 @@ for (int i = 0; i < STRING_LENGTH; i++) {
 
 The `string.h` library includes various string manipulation functions.  One of these is `strlen()`, which returns the length of a string up until its null terminator.  You can also combine strings using the `sprintf()` function. `sprintf()` works with the same formatting specifiers as `printf()`, but instead of printing to the terminal, it creates a string.
 
-### Using functions with Arrays and Strings
+### Using Functions with Arrays and Strings
 
 When they are declared, arrays are stored in its local function's memory.  When that function ends, the data with the array is will be cleared from memory.  For this reason, functions that manipulate or generate an array usually don't return the array itself.  Instead, these functions require the user to pass in the array as a parameter.  Since arrays are pointers under the hood, changes made in the function will persist once the function is done. 
 ```C
