@@ -19,7 +19,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 In the past labs, much time has been spent making sure the files of the camera are easily accessible and represented on the LCD screen of your Pi Z2W kits. In this lab you will be expected to integrate a camera module to your design and take pictures. 
 
-In the [Getting Started Lab]({% link _labs/getting-started.md %}), you should have already physically installed your camera, using the **longer** of the two ribbon cables in the correct orientation.
+In the [Getting Started Lab]({% link _labs/01_getting-started.md %}), you should have already physically installed your camera, using the **longer** of the two ribbon cables in the correct orientation.
 
 ### Creating Large Buffers
 The skills that you need to complete this lab are very closely related to the skills you needed for the last lab. You are expected to capture a very large buffer of information that comes from a camera and store it in a buffer (`uint8_t *`) in C. 
