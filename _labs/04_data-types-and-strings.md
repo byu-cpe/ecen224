@@ -1,5 +1,5 @@
 ---
-title: data-types-and-strings
+title: Data Types & Strings
 number: 4
 layout: lab
 ---
@@ -7,8 +7,8 @@ layout: lab
 ## Objectives
 
 - Become familiar with the data types included in `stdint.h`
-- Become familiar with c-style strings
-- Gain some practice with debugging
+- Become familiar with the C implementation of strings
+- Gain some practice with basic debugging techniques.
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 ## Overview
 
-C is a strongly typed language, which means that the type of all variables, functions, and parameters need to be explicitly stated in code.  In the C Programming lab, you worked with a few of these data types.  In this lab, you will be fixing bugs relating to misuing different data types.  Additionally, you will learn about how strings are implemented in c, and how you can manipulate these strings
+C is a "strongly typed" language, meaning that the _type_ of all variables, functions, and parameters need to be explicitly stated in code.  In the C Programming lab, you worked with a few of these data types.  In this lab, you will be fixing bugs relating to misuing different data types.  Additionally, you will learn about how strings are implemented in c, and how you can manipulate these strings
 
 ### Data Types
 
