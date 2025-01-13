@@ -148,7 +148,7 @@ To help you with these manipulations, the `string.h` library includes various st
 
 ### Using Functions with Arrays and Strings
 
-When they are declared, arrays are stored in its local function's memory.  When that function ends, the data with the array will be cleared from memory.  For this reason, functions that manipulate or generate an array usually don't return the array itself.  Instead, these functions require the user to pass in the array as a parameter.  Since arrays are pointers under the hood, changes made in the function will persist once the function is done.
+When arrays are first declared, they are stored in memory owned by the function that created the array (e.g. `main`. You will learn more about this later in the class). When that function ends, the array will be cleared from memory. Becuase the lifespan of an array is often very short, functions that manipulate or generate arrays usually don't return the array itself. Instead, these functions require the user to pass around pointers to the array as a parameter. Since an array's base is basically a pointer under the hood, passing arrays around like this means changes made to the array by a function will persist, even after the function is done.
 
 ```c
 // Bad function; the array data will be lost once the function returns
