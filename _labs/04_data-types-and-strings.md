@@ -48,7 +48,7 @@ int myArray3[ARRAY_LEN] = {};       // This array will be fully initialized to 0
 
 int myArray4[ARRAY_LEN];            // This is a valid array, but the values are not initialized.
 ```
-Note that once an array is declared, its size is unchangable. Be careful when using unbounded (no size given) or uninitialized (no values given) arrays. Both can cuase serious errors if; used incorrectly!
+Note that once an array is declared, its size is unchangable. Be careful when using unbounded (no size given) or uninitialized (no values given) arrays. Both can cause serious errors if used incorrectly!
 
 Once you have an array, you can access it with the bracket operator:
 
