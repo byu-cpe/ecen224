@@ -624,8 +624,7 @@ Once you reconnect to your PI, check out the README.md file in the getting start
 Before turning in each lab, you will be expected to create your own READMEs for your repositories.  This first one will be pretty simple - take a look at the initial one we gave you and modify it as described!
 
 ## Lab Submission
-- Complete the Learning suite Pass off quiz. 
-
+- Complete the Learning Suite Pass-off quiz. 
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
