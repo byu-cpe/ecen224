@@ -16,7 +16,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 ## Overview
 
 <figure class="image mx-auto" style="max-width: 750px">
-  <img src="{% link assets/getting-started/pi-z2w.png %}" alt="Units of the course.">
+  <img src="{% link assets/getting-started/pi-z2w-annotated.png %}" alt="Pi Z2W with boxes.">
   <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the SD card port outlined in magenta, the mini HDMI port outlined in light blue, the micro USB port for PoE outlined in red, and the micro USB port for power outlined in yellow.</figcaption>
 </figure>
 
