@@ -17,7 +17,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 <figure class="image mx-auto" style="max-width: 750px">
   <img src="{% link assets/getting-started/pi-z2w.png %}" alt="Units of the course.">
-  <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the SD card port outlined in magenta, the mini HDMI port outlined in light blue, and the power micro USB port outlined in yellow.</figcaption>
+  <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the SD card port outlined in magenta, the mini HDMI port outlined in light blue, the micro USB port for PoE outlined in red, and the micro USB port for power outlined in yellow.</figcaption>
 </figure>
 
 In this class we will be using the [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/) (or Pi Z2W for short) as the platform to explore the fundamentals of computing taught throughout the semester. The Pi Z2W is included in your lab kit that you should have already bought from the Experiential Learning Center (also known as The Shop) in CB 416. In this lab you will be setting up the [single board computer](https://en.wikipedia.org/wiki/Single-board_computer) so that it is capable of handling all the labs in this course. There are 3 parts to this lab:
@@ -46,13 +46,67 @@ Normally, we would encourage you to use the [Raspberry Pi Imager](https://www.ra
 
 2. This script will take a long time to run and will ask you some questions along the way.
 
-3. Once the writing process finishes, remove the SD card from your laptop and insert it into the SD card slot of the Pi Z2W. 
+3. Once the writing process finishes, remove the SD card from your laptop and insert it into the SD card slot of the Pi Z2W.
 
-4. Plug in the Power over Ethernet (PoE) adapter (the white brick) into the **first** micro USB port (the only one *not* circled in the figure at the beginning of this lab) to power up and supply internet to Pi Z2W. Power over Ethernet is a technology that provides both Internet and power at the same time. Only some Ethernet ports have it, but all of the ports in the Digital Lab do. It is not necessary to have power and the PoE adapter plugged in at the same time. 
+### Assemble the Display
 
-The boot process will take a while, so wait at least **three minutes** (or until the green light starts flashing) to move to the next section.
+Before we proceed, we need to assemble the display portion of your doorbell kit. Your kit should look something like this:
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <figure class="image mx-auto" style="max-width: 750px">
+                <img src="{% link assets/getting-started/assembly/kit_packed.jpeg %}" alt="Parts of kit packed">
+                <p>All parts still in packages</p>
+            </figure>
+        </div>
+        <div class="col">
+            <figure class="image mx-auto" style="max-width: 750px">
+                <img src="{% link assets/getting-started/assembly/kit_unpacked.jpeg %}" alt="Parts of kit unpacked">
+                <p>All parts unpacked</p>
+            </figure>
+        </div>
+    </div>
+</div>
+
+1. Unpackage and prepare your display, standoffs, screws, nuts, and washers for assembly.
+
+    <figure class="image mx-auto" style="max-width: 750px">
+      <img src="{% link assets/getting-started/assembly/step_1.jpeg %}" alt="Step 1 parts">
+    </figure>
+
+2. Put the screws through the holes of the Raspberry Pi Zero, on the side with the USB ports, so that the threads of the screw are on the same side of the PCB as the USBs.
+
+3. Put the plastic washers on the screws, one washer per screw.
+
+4. Thread the brass standoffs onto the screws.
+
+    <figure class="image mx-auto" style="max-width: 750px">
+      <img src="{% link assets/getting-started/assembly/step_4_assembly.jpeg %}" alt="Step 4 assembly state">
+    </figure>
+
+5. Take the display PCB and line up the black plastic socket (on the back side of the PCB) with the metal pins sticking out of the Raspberry Pi. Gently press the display into the socket, making sure all pins seated into their corresponding holes without getting bent. Two of the holes on the display should have slid over the brass standoffs installed earlier.
+
+    <figure class="image mx-auto" style="max-width: 750px">
+      <img src="{% link assets/getting-started/assembly/step_6_1.jpeg %}" alt="Step 6 assembly state">
+    </figure>
+
+6. Screw the nuts onto the standoffs to secure the display to the Raspberry Pi. Peel off the packaging protecting the surface of the display.
+
+    <figure class="image mx-auto" style="max-width: 750px">
+      <img src="{% link assets/getting-started/assembly/step_6_2.jpeg %}" alt="Step 6 assembly state">
+    </figure>
+
+7. Set aside the remaining parts of the kit for now. 
 
 ### Connect to Pi Z2W
+
+To power on your Pi Z2W, you will use the Power over Ethernet (PoE) adapters (the white bricks) at each lab computer. Power over Ethernet is a technology that provides both Internet and power at the same time. Only some Ethernet ports have it, but all of the ports in the Digital Lab do. It is not necessary to have power and the PoE adapter plugged in at the same time. 
+
+To power the Pi Z2W, first unplug the ethernet cable from the PoE adapter, then plug the PoE adapter into the **first** micro USB port (marked with text that says "USB", the left USB port in the figure at the beginning of this lab). Lastly, plug the ethernet cable back into the PoE adapter to power up and supply internet to Pi Z2W. This process is necesarity for the network to properly assign an IP address to the Pi through the ethernet cable. 
+
+The boot process will take a while, up to three minutes. When it is complete, the display will show a blue screen with an IP address and the green light on the body of the Pi will be flashing uniformly. 
+
 Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the lab network, we are able to connect to the it remotely using `ssh`. A remote connection means that you are able to log into a computer (like the Pi Z2W) _from_ a different computer (like the lab machines). 
 
 1. Make sure you are able to find your Pi Z2W by opening up the **terminal** on your lab machine. This can be done either through finding it in the **Activities** menu or simply pressing `Ctrl+Alt+T`. Once the terminal has opened, search for it by entering the command:
@@ -67,7 +121,7 @@ Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the 
     ping: doorbell-kitras.local: Name or service not known
     ```
 
-    then the Pi Z2W is not connected to the lab network. Check the ethernet cable and make sure that everything is plugged in correctly then try again. Sometimes it can take awhile for the Pi Z2W to connect to the network. Wait 5 minutes and try again before asking for help.
+    then the Pi Z2W is not connected to the lab network. Check the ethernet cable and make sure that everything is plugged in correctly (correct port, correct order) then try again. Sometimes it can take awhile for the Pi Z2W to connect to the network. Wait a couple minutes minutes and try again before asking for help.
 
     If you receive messages like:
 
@@ -243,56 +297,14 @@ Now it is time to start assembling the other parts of the kit. Shut down your Ra
 sudo shutdown now
 ```
 
-The command `sudo` indicates to your Raspberry Pi that you want to perform the following command with admin-level priveleges. In this case, we are running the `shutdown` command, directing it shutdown immediately (`now`). You might need to provide your password when prompted. Be aware that unlike traditional password prompts, this one won't show any characters as you type your password. After running this command, wait for the lights to stop blinking on your Pi before unplugging the Pi.
+The command `sudo` indicates to your Raspberry Pi that you want to perform the following command with admin-level priveleges. In this case, we are running the `shutdown` command, directing it shutdown immediately (`now`). You might need to provide your password when prompted. Be aware that unlike traditional password prompts, this one won't show any characters as you type your password. After running this command, wait for the lights to stop blinking on your Pi before unplugging the pi. 
 
 <!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
 ### Assemble the remaining kit
-We will proceed to assemble the remaining components of your doorbell.
+Next we will proceed to assemble the remaining components of your doorbell kit.
 
-Your kit should look something like this:
+1. Unpackage and prepare your camera kit and the case lid for assembly. Your kit came with two ribbon cables of different lengths. **WE WILL BE USING THE BROWN RIBBON CABLE, NOT THE WHITE CABLE**. Be aware that these ribbon cables are fragile.
 
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
-            <figure class="image mx-auto" style="max-width: 750px">
-                <img src="{% link assets/getting-started/assembly/kit_packed.jpeg %}" alt="Parts of kit packed">
-                <p>All parts still in packages</p>
-            </figure>
-        </div>
-        <div class="col">
-            <figure class="image mx-auto" style="max-width: 750px">
-                <img src="{% link assets/getting-started/assembly/kit_unpacked.jpeg %}" alt="Parts of kit unpacked">
-                <p>All parts unpacked</p>
-            </figure>
-        </div>
-    </div>
-</div>
-
-1. Unpackage and prepare your display, standoffs, screws, nuts, and washers for assembly.
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/assembly/step_1.jpeg %}" alt="Step 1 parts">
-    </figure>
-
-2. Put the screws through the holes of the Raspberry Pi Zero, on the side with the USB ports, so that the threads of the screw are on the same side of the PCB as the USBs.
-
-3. Put the plastic washers on the screws, one washer per screw.
-
-4. Thread the brass standoffs onto the screws
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/assembly/step_4_assembly.jpeg %}" alt="Step 4 assembly state">
-    </figure>
-
-5. Take the display PCB and line up the black plastic socket (on the back side of the PCB) with the metal pins sticking out of the Raspberry Pi. Gently press the display into the socket, making sure all pins seated into their corresponding holes without getting bent. Two of the holes on the display should have slid over the brass standoffs installed earlier.
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/assembly/step_6_1.jpeg %}" alt="Step 6 assembly state">
-    </figure>
-
-6. Screw the nuts onto the standoffs to secure the display to the Raspberry Pi. Peel off the packaging protecting the surface of the display.
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/assembly/step_6_2.jpeg %}" alt="Step 6 assembly state">
-    </figure>
-
-7. Unpackage and prepare your camera kit and the case lid for assembly. Your kit came with two ribbon cables of different lengths. **WE WILL BE USING THE BROWN RIBBON CABLE, NOT THE WHITE CABLE**. Be aware that these ribbon cables are fragile.
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_7_parts.jpeg %}" alt="Step 7 parts">
     </figure>
@@ -301,32 +313,37 @@ Your kit should look something like this:
       <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the camera unit and connection cable. In this lab we will be using the larger cable and wrap it around the back of the Pi Z2W.</figcaption>
     </figure>
 
-8. Familiarize yourself with the connector on your camera PCB. Note the orientation of the metal pins inside the connector and the plastic shroud along the edges. This shroud "locks" the connector, preventing the cable from being removed. Unlock it by gently pulling on the edges of the shroud until it slides out
+2. Familiarize yourself with the connector on your camera PCB. Note the orientation of the metal pins inside the connector and the plastic shroud along the edges. This shroud "locks" the connector, preventing the cable from being removed. Unlock it by *gently* pulling on the edges of the shroud until it slides out. Be careful here - the shroud is fragile, and can easily break or come off!
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_8_camera_closeup %}" alt="Camera connector closeup">
     </figure>
 
-9. Insert the narrow end of the cable on the Raspberry Pi, making sure the copper contacts on the ribbon are oriented correctly. *Note - in this image, the connector is in the "locked" state*
+3. Insert the narrow end of the cable on the Raspberry Pi, making sure the copper contacts on the ribbon are oriented correctly. *Note - in this image, the connector is in the "locked" state*
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_10_ribbon %}" alt="Step 10 - ribbon cable inserted, locked.">
     </figure>
 
-10. Gently wrap the ribbon cable between the Raspberry Pi and the display HAT. Be careful not to bend the metal part of the ribbon cable that is coming out of the Raspberry Pi.
+4. Gently wrap the ribbon cable between the Raspberry Pi and the display HAT. Be careful not to bend the metal part of the ribbon cable that is coming out of the Raspberry Pi.
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_11_bent.jpeg %}" alt="Bent ribbon cable">
     </figure>
 
-11. Insert the wider end of the cable into the camera module, making sure the copper contacts on the ribbon are oriented correctly. *Note - in this image, the connector is in the "unlocked" state. Make sure to lock the connector once you have installed the ribbon.*
+5. Insert the wider end of the cable into the camera module, making sure the copper contacts on the ribbon are oriented correctly. *Note - in this image, the connector is in the "unlocked" state. Make sure to lock the connector once you have installed the ribbon.*
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_9_ribbon %}" alt="Step 9 - ribbon cable inserted but not locked">
     </figure>
 
-12. There is a small adhesive strip on the back of the camera. Remove the protective layer and stick it to the camera's PCB. This will ensure the camera stays in place.
+6. There is a small adhesive strip on the back of the camera. Remove the protective layer and stick it to the camera's PCB. This will ensure the camera stays in place.
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/camera_sticker.jpeg %}" alt="Attach camera to PCB board.">
     </figure>
 
-13. In this lab, you were also given a 3D printed enclosure for your Pi Z2W kit.
+7. In this lab, you were also given a 3D printed enclosure for your Pi Z2W kit.
     <!-- Import maps polyfill -->
     <!-- Remove this when import maps will be widely supported -->
     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
@@ -571,39 +588,43 @@ Your kit should look something like this:
     </figure>
     As visible in the 3D model above, there are several components that comprise this enclosure. The top of the case is the long, rectangular part with holes for the camera, LCD screen, and button respectively. 
     
-13. You'll notice that around the camera holes are four standoffs. These standoffs correspond to the holes in the camera module mentioned in the section before. Remove the packaging film covering the lense of your camera, then mount the camera board to the lid of the case using the 4 screws. It is easiest to do this with the Raspberry Pi face down.
+9. You'll notice that around the camera holes are four standoffs. These standoffs correspond to the holes in the camera module mentioned in the section before. Remove the packaging film covering the lense of your camera, then mount the camera board to the lid of the case using the 4 screws. It is easiest to do this with the Raspberry Pi face down.
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_13_mounted_camera.jpeg %}" alt="Mounted camera and ribbon cable routing">
     </figure>
     
-14. Insert the Raspberry Pi into the case. Make sure the remaining 2 empty holes on the Raspberry Pi line up with the pegs in the case.
+10. Insert the Raspberry Pi into the case. Make sure the remaining 2 empty holes on the Raspberry Pi line up with the pegs in the case.
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_14_case_positioning.jpeg %}" alt="Positioning of components in the case">
     </figure>
 
-15. Tuck the extra slack of the ribbon cable under the camera. Be careful not to pinch the ribbon cable.
+11. Tuck the extra slack of the ribbon cable under the camera. Be careful not to pinch the ribbon cable.
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_15_case.jpeg %}" alt="Positioning of components in the case">
     </figure>
 
-16. Snap the lid onto the bottom of the case.
+12. Snap the lid onto the bottom of the case.
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_16_completed.jpeg %}" alt="Completed assembly">
     </figure>
 
-17. Slide the 3D button on the square peg of the display HAT.
+13. Slide the 3D button on the square peg of the display HAT.
 
 Details about the display and camera hardware will be presented in future labs.
 
-Turn your Pi Z2W on by plugging in your PoE adapter and re-connect to the Pi over SSH in VS Code like we did earlier. 
+Turn your Pi Z2W back on by unplugging the ethernet from the PoE adapter, plugging your PoE adapter into the Pi, and reconnecting the ethernet. Re-connect to the Pi over SSH in VS Code like we did earlier. 
 
-### Readme files
+### README files
 Once you reconnect to your PI, check out the README.md file in the getting started repository that you just downloaded.  READMEs are [markdown](https://www.markdownguide.org/getting-started/) files that explain what a folder or repository contains.  They often include instructions on how to download, use, and modify the contents.
 
 Before turning in each lab, you will be expected to create your own READMEs for your repositories.  This first one will be pretty simple - take a look at the initial one we gave you and modify it as described!
 
 ## Lab Submission
-- Complete the learning suite Pass off quiz. 
+- Complete the LearningSuite Pass-Off quiz. 
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
