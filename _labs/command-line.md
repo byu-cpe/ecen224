@@ -109,9 +109,12 @@ In order to complete this lab, you will need to use Google. If you don’t know 
 
 ## Lab Submission
 
-- Answer the questions in the `README.md`. (This is one OUTSIDE of the challenge folder)
-
 - Pass off to a TA by showing the correct output of your `tree` command. Make sure to show hidden folders and files.
+
+- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
+  - What is the purpose of this project and its code/files?
+  - What is the structure/organization of the project files?
+  - How do you build and run the code in this project?
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
