@@ -40,6 +40,71 @@ int main()
 
 ```
 
+Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in it interfaces with the computer. We'll break down this code line by line, but first we need to understand how a c program is born.
+
+## The Compilation Process
+
+C is a [compiled language](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/). This means that the entirety of the code you write in C must go through a special process of being converted into a [binary executable](https://en.wikipedia.org/wiki/Executable) before it can be read and executed by the processor of your computer.
+
+The process of taking all the code you have written in C and translating it into binary is called **compilation**. This process is performed by a program called a **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection). 
+
+Although it may seem compilers only perform the simple task of converting a higher level language to machine language, the truth is that they are much more robust and advanced than that. Many compilers analyze the code being passed in and optimize it so that it can be executed in the fewest amount of instructions possible.
+
+The compliation process has four major steps, which we will break down below.
+
+### Step 1: Pre-processing
+
+Also called pre-compliation, this step invovles taking special statements in your code
+
+Before compiling your code, a pre-compiler is run which handles special statements called **directives**. Directives aid in deciding which parts of a written program in C are included during the compilation process. You can normally spot these because they start with a `#` sign.
+
+The `#include` directive looks at a file that exists in the operating system and includes it (essentially copying and pasting it) into your code. For example, `stdio.h` is a file that contains code that deals with the **st**andar**d** **i**nput and **o**utput that can be used in your program (i.e. reading from your keyboard and writing to a terminal). This is where the definition of the `printf()` function resides. Without including `stdio.h`, the "hello world" code would not know what the `printf()` function was or where it was defined and thus would not be able to execute correctly.
+
+Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You will need to look these up and know what they mean for the lab questions.
+
+To see the precompiled version of your C code, you can run the following terminal command:
+```bash
+gcc -S program.c > processed_program.txt
+```
+
+### Step 2: Compiling
+
+Confusing as it may be, the second stage of the compilation process is also called compiling. In this step, the compiler takes your code and converts it into [https://en.wikipedia.org/wiki/Assembly_language](assembly), a set of instructions easily read by your computer's hardware.  As you will see later in the class, every assembly command can be directly mapped to binary, making it very easy for a computer to understand.
+
+Many modern compilers will also adjust your code to optimize it.  For example, if your code includes a command to multiply an interger by a multiple of 2 (ex: `newInt = 3 * 4`), your compiler may instead use a binary shift operation (`newInt = 3 << 2`  in C or `shr %rdx, 2` in assembly).
+
+Because each computer model uses different hardware, there will be slight differences in how a computer compiles a code on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your lap computer.
+
+To see the compiled version of your C code, you can run the following terminal command:
+```bash
+gcc -S program.c
+```
+
+### Step 3: Assembling
+
+In this next stage of the compiliation process, the assembly code generated in the last step will be transformed into binary, the pure language of 
+
+### A simple C Program
+
+```c
+// This is a single line comment.
+
+/* 
+This is a multi-line comment.
+Any text that is between the slash-star and
+the star-slash will be ignored.
+*/
+
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello, World!\n");
+    return 0;
+}
+
+```
+
 Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in it interfaces with the computer. Let's take a look at it line by line and break down some essential components.
 
 #### Comments
