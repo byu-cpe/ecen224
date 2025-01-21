@@ -277,6 +277,8 @@ In order to successfully create a meaningful program in any language, you need t
 | `float`  | One way to store a real number with a floating decimal point (i.e. you can put it anywhere in the number) |
 | `double` | Larger version of a float                                                                                 |
 
+You can combine the interger data types with the keyword `unsigned` to make them unable to hold negative numbers.  For example: `unsigned int myInt`.
+
 It would be impractical to go over every data type that exists in C and explain its function in a lab setting. It will be your responsibility to understand what these data types mean and how they can be used as they come up. Google is your friend.
 
 #### Casting
