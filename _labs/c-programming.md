@@ -82,9 +82,27 @@ gcc -S program.c
 
 ### Step 3: Assembling
 
-In this next stage of the compiliation process, the assembly code generated in the last step will be transformed into binary, the pure language of 
+In this next stage of the compiliation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  As mentioned before, each assembly command is directly mapped to binary, but the exact mapping may depend on your hardware.
 
-### A simple C Program
+To see the assembled version of your c code, you can run the following terminal command:
+```bash
+gcc -c program.c
+```
+
+To actually read this code, you'll need to run the following:
+```bash
+hexdump program.o > assembled_program.txt
+```
+
+### Step 4: Linking
+
+In the final stage of the compilation process, a program called the linker will find all the external references in your assembled code and combine any related .o files together.  For example, our hello world code from earlier includes `stdio.h`.  That file has already been compiled and assembled, so the linker will just take that code and combine it with the code you wrote.
+
+The linked code is the final product, so running `gcc` with no arguments will run through this stage by default.  However, if you still wanted to see the binary of the final, linked product, you can run `hexdump` on your executable binary.
+
+## Breaking down the C code
+
+Now that we understand the compilation process, let's talk about what part of the hello world code is doing.  It's included below again for convenience.
 
 ```c
 // This is a single line comment.
@@ -105,7 +123,6 @@ int main()
 
 ```
 
-Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in it interfaces with the computer. Let's take a look at it line by line and break down some essential components.
 
 #### Comments
 When writing a program, especially more complex ones, leaving comments in the code is essential to increase its readability. There are two types of comments: the single and multi-line comments.
@@ -128,19 +145,6 @@ the star-slash will be ignored.
 Anything between the `/*` and `*/` will also be ignored during the compilation process of the program. One example for good use of multi-line comments is explaining the purpose of a function and it parameters right before its declaration.
 
 Although the *where* and *how* you use comments in your code are of little importance to the execution the program, they are imperative in making your code easier to understand and be reused by yourself and different people in the future.
-
-#### Compiler Directives
-C is a [compiled language](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/). This means that the entirety of the code you write in C must go through a special process of being converted into a [binary executable](https://en.wikipedia.org/wiki/Executable) before it can be read and executed by the processor of your computer.
-
-The process of taking all the code you have written in C and translating it into binary is called **compilation**. This process is performed by a program called a **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection). 
-
-Although it may seem compilers only perform the simple task of converting a higher level language to machine language, the truth is that they are much more robust and advanced than that. Many compilers analyze the code being passed in and optimize it so that it can be executed in the fewest amount of instructions possible.
-
-Before compiling your code, a pre-compiler is run which handles special statements called **directives**. Directives aid in deciding which parts of a written program in C are included during the compilation process. You can normally spot these because they start with a `#` sign.
-
-The `#include` directive looks at a file that exists in the operating system and includes it (essentially copying and pasting it) into your code. For example, `stdio.h` is a file that contains code that deals with the **st**andar**d** **i**nput and **o**utput that can be used in your program (i.e. reading from your keyboard and writing to a terminal). This is where the definition of the `printf()` function resides. Without including `stdio.h`, the "hello world" code would not know what the `printf()` function was or where it was defined and thus would not be able to execute correctly.
-
-Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You will need to look these up and know what they mean for the lab questions.
 
 #### main() Function
 Every program written in C must have a `main()` function. This is the function that will be run upon executing the program. All other functions that might need to be read in the execution of the program must be called in one form or another from the `main()` function.
@@ -192,6 +196,15 @@ If I wanted to have my value return the value as a `float`, I would rewrite the 
 float sum(float a, float b)
 {
     return a + b;
+}
+```
+
+A function doesn't need a return value can be assigned the type `void`:
+
+```c
+void printHelloWorld() 
+{
+    printf("Hello World!");
 }
 ```
 
