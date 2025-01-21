@@ -5,19 +5,19 @@ layout: lab
 ---
 
 ## Objectives
+- Compile a C program using `gcc`
 - Understand basic C syntax
 - Know the difference between the standard data types
-- Experiment with `printf` a bit and different data types
-- Compilation of a program by using `gcc`
+- Experiment with `printf` and data types
 
 ## Getting Started
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode.**
+Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. SSH into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode.**
 
 ## Overview
 
-For the rest of the labs this semester, we will be focusing on building a strong foundation of programming using the C programming language. C is an old, yet very important language that is still actively used in development today. The creators of C, [Dennis Ritchie](https://computerhistory.org/profile/dennis-ritchie/) and [Ken Thompson](https://computerhistory.org/profile/ken-thompson/) are also the creators of the Unix operating system, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide good insight into how most computers work in general.
+For the rest of the labs this semester, we will be focusing on building a strong foundation of programming using the C programming language. C is an old, yet very important language that is still actively used in development today. The creators of C, [Dennis Ritchie](https://computerhistory.org/profile/dennis-ritchie/) and [Ken Thompson](https://computerhistory.org/profile/ken-thompson/), are also the creators of the Unix operating system, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide good insight into how computers work in general.
 
-The philosophy of this lab is that the best way to learn something is to jump in and do it. Most of this page will be reference for all the problems and programming challenges in the lab README.md.
+The philosophy of this lab is that the best way to learn something is to jump in and do it. The following sections will guide you through creating, compiling, and running a C program and teach you basic C syntax and tools. Read each section carefully and make sure to complete each step. 
 
 ### A simple C Program
 
@@ -40,9 +40,11 @@ int main()
 
 ```
 
-Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in it interfaces with the computer. We'll break down this code line by line, but first we need to understand how a c program is born.
+Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in C interfaces with the computer. 
 
-// TODO: Tell them to create simple.c, copy in code.  Then tell to 
+In your lab repository, create a new file called `simple.c`. This can be done using the File Explorer tab in VS Code, or from the terminal using the `nano` command (or a text editor of your choice. You can also create the file without a text editor using `touch` - google it for details). Inside the `simple.c` file, copy and paste the code above, then save and close the file.
+
+We'll break down this code line by line, but first we need to understand how a C program is born.
 
 ## The Compilation Process
 
@@ -50,63 +52,91 @@ C is a [compiled language](https://www.geeksforgeeks.org/difference-between-comp
 
 The process of taking all the code you have written in C and translating it into binary is called **compilation**. This process is performed by a program called a **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection). 
 
-Although it may seem compilers only perform the simple task of converting a higher level language to machine language, the truth is that they are much more robust and advanced than that. Many compilers analyze the code being passed in and optimize it so that it can be executed in the fewest amount of instructions possible.
+Compilers do more than simply convert a higher level language to machine language. Many compilers analyze the code being passed in and optimize it so that it can be executed in the fewest amount of instructions possible.
 
-The compliation process has four major steps, which we will break down below.
+The compilation process has four major steps, which we will break down and execute on `simple.c` below.
 
 ### Step 1: Pre-processing
 
-Also called pre-compliation, this step invovles taking special statements in your code
+Also called pre-compilation, this step runs a pre-compiler which handles special statements in your code called **directives**. Directives aid in deciding which parts of a written program in C are included during the compilation process. You can normally spot these because they start with a `#` sign.
 
-Before compiling your code, a pre-compiler is run which handles special statements called **directives**. Directives aid in deciding which parts of a written program in C are included during the compilation process. You can normally spot these because they start with a `#` sign.
+The `#include` directive looks at a file that exists in the operating system and includes it (essentially copying and pasting it) into your code. For example, `stdio.h` is a file that contains code that deals with the **st**andar**d** **i**nput and **o**utput that can be used in your program (i.e. reading from your keyboard and writing to a terminal). This is where the definition of the `printf()` function resides. Without including `stdio.h`, the "Hello World" code would not know what the `printf()` function was or where it was defined and thus would not be able to execute correctly.
 
-The `#include` directive looks at a file that exists in the operating system and includes it (essentially copying and pasting it) into your code. For example, `stdio.h` is a file that contains code that deals with the **st**andar**d** **i**nput and **o**utput that can be used in your program (i.e. reading from your keyboard and writing to a terminal). This is where the definition of the `printf()` function resides. Without including `stdio.h`, the "hello world" code would not know what the `printf()` function was or where it was defined and thus would not be able to execute correctly.
+Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You will need to look these up and know what they mean for the lab quiz.
 
-Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You will need to look these up and know what they mean for the lab questions.
-
-To see the precompiled version of your C code, you can run the following terminal command: // TODO: Modify to tell them to do it, Question on quiz about it
+Generate a precompiled version of your `simple.c` code by running the following terminal command:
 ```bash
-gcc -S program.c > processed_program.txt
+gcc -S simple.c > simple_preprocessed.txt
 ```
+Look through the generated text file. Notice that a lot of extra text has been added, but at the last few lines of the text file you will find your original code. 
 
 ### Step 2: Compiling
 
-Confusing as it may be, the second stage of the compilation process is also called compiling. In this step, the compiler takes your code and converts it into [https://en.wikipedia.org/wiki/Assembly_language](assembly), a set of instructions easily read by your computer's hardware.  As you will see later in the class, every assembly command can be directly mapped to binary, making it very easy for a computer to understand.
+The second stage of the compilation process is called compiling. In this step, the compiler takes your code and converts it into [assembly](https://en.wikipedia.org/wiki/Assembly_language), a set of instructions easily read by your computer's hardware. As you will see later in the class, every assembly command can be directly mapped to binary, making it very easy for a computer to understand.
 
-Many modern compilers will also adjust your code to optimize it.  For example, if your code includes a command to multiply an interger by a multiple of 2 (ex: `newInt = 3 * 4`), your compiler may instead use a binary shift operation (`newInt = 3 << 2`  in C or `shr %rdx, 2` in assembly).
+Many modern compilers will also adjust your code to optimize it.  For example, if your code includes a command to multiply an integer by a multiple of 2 (ex: `newInt = 3 * 4`), your compiler may instead use a binary shift operation (`newInt = 3 << 2`  in C or `shr %rdx, 2` in assembly).
 
-Because each computer model uses different hardware, there will be slight differences in how a computer compiles a code on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your lap computer.
+Because each computer model uses different hardware, there will be slight differences in how a computer compiles code on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your laptop.
 
-To see the compiled version of your C code, you can run the following terminal command: // TODO: Modify to tell them to do it
+Compile your C code into assembly by running the following terminal command: 
 ```bash
-gcc -S program.c
+gcc -S simple.c
 ```
+This will generate an assembly file called `simple.s`. Open this file and look around. Google one of the commands that you see to try and figure out what it means. 
 
 ### Step 3: Assembling
 
-In this next stage of the compiliation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  As mentioned before, each assembly command is directly mapped to binary, but the exact mapping may depend on your hardware.
+In this next stage of the compilation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  As mentioned before, each assembly command is directly mapped to binary, but the exact mapping may depend on your hardware.
 
-To see the assembled version of your c code, you can run the following terminal command: // TODO: Modify to tell them to do it
+Run the following terminal command to generate the binary version of your code: 
 ```bash
-gcc -c program.c
+gcc -c simple.c
 ```
 
-To actually read this code, you'll need to run the following:
+Next, to actually read this code, run the following:
 ```bash
-hexdump program.o > assembled_program.txt
+hexdump simple.o > simple_assembled.txt
 ```
+Look through the text file you just generated. Note that it's not just 0's and 1's - what is it instead? You should see two main sections. What do you think these mean? 
 
 ### Step 4: Linking
 
-In the final stage of the compilation process, a program called the linker will find all the external references in your assembled code and combine any related .o files together.  For example, our hello world code from earlier includes `stdio.h`.  That file has already been compiled and assembled, so the linker will just take that code and combine it with the code you wrote.
+In the final stage of the compilation process, a program called the linker will find all the external references in your assembled code and combine any related .o files together.  For example, our "Hello World" code from earlier includes `stdio.h`.  That file has already been compiled and assembled, so the linker will just take that code and combine it with the code you wrote.
 
 The linked code is the final product, so running `gcc` with no arguments will run through this stage by default.  However, if you still wanted to see the binary of the final, linked product, you can run `hexdump` on your executable binary.
 
-// TODO: Move the output flag and running here.  Build with GCC section moves up here.
+Compile your code into a binary executable program by running the following command:
+
+```bash
+gcc simple.c
+```
+
+This will create a new file in our directory called `a.out` which we can run by:
+
+```bash
+./a.out
+```
+
+If you followed these steps correctly, your code should output the following to the terminal:
+
+```
+Hello, World!
+
+```
+
+If you are not content with all of your binary executables being named `a.out` every time you compile your C project, you can use the `-o` flag on the `gcc` program to name the output file:
+
+```bash
+gcc simple.c -o simple
+```
+
+This with create a new executable file named `simple` instead of `a.out`, which you can run by typing `./simple`. 
+
+
 
 ## Breaking down the C code
 
-Now that we understand the compilation process, let's talk about what part of the hello world code is doing.  It's included below again for convenience.
+Now that we understand the compilation process, let's talk about what each part of `simple.c` is doing.  It's included below again for convenience.
 
 ```c
 // This is a single line comment.
@@ -129,7 +159,7 @@ int main()
 
 
 #### Comments
-When writing a program, especially more complex ones, leaving comments in the code is essential to increase its readability. There are two types of comments: the single and multi-line comments.
+When writing a program, especially more complex ones, leaving comments in the code is essential to increase its readability. There are two types of comments: single and multi-line.
 
 ```c
 // This is a single line comment.
@@ -148,7 +178,7 @@ the star-slash will be ignored.
 ```
 Anything between the `/*` and `*/` will also be ignored during the compilation process of the program. One example for good use of multi-line comments is explaining the purpose of a function and it parameters right before its declaration.
 
-Although the *where* and *how* you use comments in your code are of little importance to the execution the program, they are imperative in making your code easier to understand and be reused by yourself and different people in the future.
+Although the *where* and *how* you use comments in your code are of little importance to the execution the program, they are imperative in making your code easier to understand and be reused by yourself and others in the future.
 
 #### main() Function
 Every program written in C must have a `main()` function. This is the function that will be run upon executing the program. All other functions that might need to be read in the execution of the program must be called in one form or another from the `main()` function.
@@ -237,35 +267,6 @@ int main()
 
 If the program runs into specific errors, it will return different values to the outermost function. But since the `main()` function is the outermost function, it is the shell that receives the error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
 
-#### Compiling with GCC // TODO: Move up
-Now that we understand what each line of our simple C program does, it is time to run it. In your lab repository, create a new file called `simple.c` in your lab directory. Inside that file, copy and paste the code at the top of the **A Simple C Program** section and save and close the file.
-
-To compile this code, we will use `gcc` to turn it into a binary executable program:
-
-```bash
-gcc simple.c
-```
-
-This will create a new file in our directory called `a.out` which we can run by:
-
-```bash
-./a.out
-```
-
-If you followed these steps correctly, your code should output the following to the terminal:
-
-```
-Hello, World!
-
-```
-
-If you are not content with all of your binary executables being named `a.out` every time you compile your C project, you can use the `-o` flag on the `gcc` program to name the output file:
-
-```bash
-gcc simple.c -o myprogram
-```
-
-This with create a new file named `myprogram` instead of `a.out`.
 
 ### Data Types
 Now that we have dissected our first C program, it is time to dive a little deeper into some details of the details. 
@@ -354,19 +355,26 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 | `%%`   | print a percent sign               |
 | `\%`   | print a percent sign               |
 
-// TODO: Add instructions about Data.c
+
+## Lab Challenge
+To finish this lab, create a new file called data.c. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
+1. Print out the hex equivalent of the unsigned int: 3735928559
+2. Create a function that takes in a uint8_t as a parameter and prints char equivalent. Use it at least 3 times in your main().
+3. Use the printf() function at least once that has multiple formatting specifiers/placeholders.
+4. Use at least 5 different format specifier types in 5 different printf() statements.
+5. Use some format specifiers/placeholders in printf() in unexpected ways (i.e. pass in a char and format it with %d, or something similar). Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.
+
+Complile your code into an executable called `data`. 
 
 
 ## Lab Submission
-
-- Answer the questions and complete the challenges found in the `README.md`.
-
-- The `README.md` walks you through creating a new file called `data.c` with some requirements. Show the source code and program execution of `data.c` to the TA. // TODO: Update this
-    - Create Simple.c
-    - Create Data.c
-    - When your data.c is completed, run `gcc` so that you can see each step of the compilation process
-
-- To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
+- Pass off with a TA by showing them the source code and program execution of `data.c`.
+- Take the Pass-Off Quiz on Learning Suite.
+- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
+  - What is the purpose of this project and its code/files?
+  - What is the structure/organization of the project files?
+  - How do you build and run the code in this project?
+- Add, commit, and push all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab. 
 
 ## Explore More!
 
