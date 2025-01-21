@@ -42,6 +42,8 @@ int main()
 
 Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in it interfaces with the computer. We'll break down this code line by line, but first we need to understand how a c program is born.
 
+// TODO: Tell them to create simple.c, copy in code.  Then tell to 
+
 ## The Compilation Process
 
 C is a [compiled language](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/). This means that the entirety of the code you write in C must go through a special process of being converted into a [binary executable](https://en.wikipedia.org/wiki/Executable) before it can be read and executed by the processor of your computer.
@@ -62,7 +64,7 @@ The `#include` directive looks at a file that exists in the operating system and
 
 Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You will need to look these up and know what they mean for the lab questions.
 
-To see the precompiled version of your C code, you can run the following terminal command:
+To see the precompiled version of your C code, you can run the following terminal command: // TODO: Modify to tell them to do it, Question on quiz about it
 ```bash
 gcc -S program.c > processed_program.txt
 ```
@@ -75,7 +77,7 @@ Many modern compilers will also adjust your code to optimize it.  For example, i
 
 Because each computer model uses different hardware, there will be slight differences in how a computer compiles a code on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your lap computer.
 
-To see the compiled version of your C code, you can run the following terminal command:
+To see the compiled version of your C code, you can run the following terminal command: // TODO: Modify to tell them to do it
 ```bash
 gcc -S program.c
 ```
@@ -84,7 +86,7 @@ gcc -S program.c
 
 In this next stage of the compiliation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  As mentioned before, each assembly command is directly mapped to binary, but the exact mapping may depend on your hardware.
 
-To see the assembled version of your c code, you can run the following terminal command:
+To see the assembled version of your c code, you can run the following terminal command: // TODO: Modify to tell them to do it
 ```bash
 gcc -c program.c
 ```
@@ -99,6 +101,8 @@ hexdump program.o > assembled_program.txt
 In the final stage of the compilation process, a program called the linker will find all the external references in your assembled code and combine any related .o files together.  For example, our hello world code from earlier includes `stdio.h`.  That file has already been compiled and assembled, so the linker will just take that code and combine it with the code you wrote.
 
 The linked code is the final product, so running `gcc` with no arguments will run through this stage by default.  However, if you still wanted to see the binary of the final, linked product, you can run `hexdump` on your executable binary.
+
+// TODO: Move the output flag and running here.  Build with GCC section moves up here.
 
 ## Breaking down the C code
 
@@ -233,7 +237,7 @@ int main()
 
 If the program runs into specific errors, it will return different values to the outermost function. But since the `main()` function is the outermost function, it is the shell that receives the error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
 
-#### Compiling with GCC
+#### Compiling with GCC // TODO: Move up
 Now that we understand what each line of our simple C program does, it is time to run it. In your lab repository, create a new file called `simple.c` in your lab directory. Inside that file, copy and paste the code at the top of the **A Simple C Program** section and save and close the file.
 
 To compile this code, we will use `gcc` to turn it into a binary executable program:
@@ -349,6 +353,9 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 | `%x`   | number in hexadecimal (base 16)    |
 | `%%`   | print a percent sign               |
 | `\%`   | print a percent sign               |
+
+// TODO: Add instructions about Data.c
+
 
 ## Lab Submission
 
