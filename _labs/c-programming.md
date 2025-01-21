@@ -352,7 +352,10 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 
 - Answer the questions and complete the challenges found in the `README.md`.
 
-- The `README.md` walks you through creating a new file called `data.c` with some requirements. Show the source code and program execution of `data.c` to the TA.
+- The `README.md` walks you through creating a new file called `data.c` with some requirements. Show the source code and program execution of `data.c` to the TA. // TODO: Update this
+    - Create Simple.c
+    - Create Data.c
+    - When your data.c is completed, run `gcc` so that you can see each step of the compilation process
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
