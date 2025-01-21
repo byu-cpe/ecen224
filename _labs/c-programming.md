@@ -272,11 +272,16 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 
 ## Lab Submission
 
-- Answer the questions and complete the challenges found in the `README.md`.
+- Follow the instructions outlined above to create a new file called `data.c` with some requirements. Show the source code and program execution of `data.c` to the TA.
 
-- The `README.md` walks you through creating a new file called `data.c` with some requirements. Show the source code and program execution of `data.c` to the TA.
+- Take the Pass off Quiz on Learning Suite.
 
-- To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
+- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
+  - What is the purpose of this project and its code/files?
+  - What is the structure/organization of the project files?
+  - How do you build and run the code in this project?
+
+- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab. 
 
 ## Explore More!
 
