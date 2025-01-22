@@ -287,7 +287,7 @@ When the datatypes `char`, `short`, `int`, and `long` are used the processor wil
 
 It is also important to note that the size of each of the above types is dependent on the processor on which you will be running the code. For example an `int` on a 16 bit processor will be 16 bits, while on a 32 bit processor an `int` is likely 32 bits, and on a 64-bit processor an `int` is also typically also 32 bits. This affects the range of possible values that can be stored. Understanding these details is important, ignoring them has led to catastrophies in the past ([including rockets that explode shortly after launch](https://en.wikipedia.org/wiki/Ariane_flight_V88)).
 
-It would be impractical to go over every data type that exists in C and explain its function in a lab setting. It will be your responsibility to understand what these data types mean and how they can be used as they come up. Google is your friend.
+Every processor is different, so it is important to pay attention to these details. It is the programmers responsability to understand what these data types mean and how they work on your system.
 
 #### Casting
 Sometimes it will be necessary to take the result of one number and represent it in a different type of variable. The process of the translating from one data type to another is known as **casting** and will be a very useful tool in this and other labs.
@@ -305,10 +305,12 @@ If I want to create a new variable where the `7` in `num` is treated as a floati
 num_f = (float) num;
 ```
 
-#### stdint.h
-Another treasure trove of information on data types exists in the `stdint.h` library. This contains specialized data types such as `uint8_t` and others that have specialized characteristics for specific needs.
+This is an example of an explicit cast. Implicit casting can also occur, for example when you compare an int and an unsigned using `>`. These are other important details to pay attention to.
 
-For example, if you need to use a data **t**ype that stores an **int**eger that is **u**nsigned (can never be negative) and has  **8** bit length, you would `#include <stdint.h>` and use the `uint8_t` type. This can be useful because the all of the bit patterns possibly contained in the 8 bit value are used to represent numbers above 0 (ex. 0-255). In a normal int, **about but not quite** half of those bit paterns map to negative numbers (thus decreasing the maximum number that can be represented). You should be learning more about this in the lecture portion of class!
+#### stdint.h
+Standardized data types that explicitly define a specific number of bits (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t` and others that have specialized characteristics for specific needs.
+
+For example, if you need to use a data **t**ype that stores an **int**eger that is **u**nsigned (can never be negative) and has  **8** bit length, you would `#include <stdint.h>` and use the `uint8_t` type. This can be useful because the all of the bit patterns possibly contained in the 8 bit value are used to represent numbers above 0 (ex. 0-255). In a normal int, **about but not quite** half of those bit paterns map to negative numbers (thus decreasing the maximum number that can be represented). You should be learning more about this in the lecture portion of class! Additionally, using these types explicitly defines the number of bits as opposed to relying on the compiler and processor specifics of your system.
 
 To understand more about the types of data types that exist in `stdint.h`, you can check out the [documentation for this file](https://man7.org/linux/man-pages/man0/stdint.h.0p.html).
 
@@ -319,7 +321,7 @@ As you have seen in our simple C program, we can use the `printf()` function to 
 printf("Hello, World!\n");
 ```
 
-However, you may have noticed in other examples the use of strange characters such as `%d` or `%s` that pop in the strings that we are trying to print:
+However, you may have noticed in other examples the use of strange characters such as `%d` or `%s` that show up in the strings that we are trying to print:
 
 ```c
 int grade = 87;
@@ -362,7 +364,7 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 ## Lab Challenge
 To finish this lab, create a new file called data.c. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
 1. Print out the hex equivalent of the unsigned int: 3735928559
-2. Create a function that takes in a uint8_t as a parameter and prints char equivalent. Use it at least 3 times in your main().
+2. Create a function that takes in a uint8_t as a parameter and prints the char equivalent. Use it at least 3 times in your main().
 3. Use the printf() function at least once that has multiple formatting specifiers/placeholders.
 4. Use at least 5 different format specifier types in 5 different printf() statements.
 5. Use some format specifiers/placeholders in printf() in unexpected ways (i.e. pass in a char and format it with %d, or something similar). Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.
@@ -372,6 +374,7 @@ Complile your code into an executable called `data`.
 
 ## Lab Submission
 - Pass off with a TA by showing them the source code and program execution of `data.c`.
+  
 - Take the Pass-Off Quiz on Learning Suite.
 
 - Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
