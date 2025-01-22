@@ -72,11 +72,11 @@ Look through the generated text file. Notice that a lot of extra text has been a
 
 ### Step 2: Compiling
 
-The second stage of the compilation process is called compiling. In this step, the compiler takes your code and converts it into [assembly](https://en.wikipedia.org/wiki/Assembly_language), a set of instructions easily read by your computer's hardware. As you will see later in the class, every assembly command can be directly mapped to binary, making it very easy for a computer to understand.
+The second stage of the compilation process is called compiling. In this step, the compiler takes your code and converts it into [assembly](https://en.wikipedia.org/wiki/Assembly_language), the specific types of instructions that your specific computer processor knows how to execute. As you will see later in the class, every assembly command can be directly mapped to binary which is then read directly by the computer hardware in your processor.
 
 Many modern compilers will also adjust your code to optimize it.  For example, if your code includes a command to multiply an integer by a multiple of 2 (ex: `newInt = 3 * 4`), your compiler may instead use a binary shift operation (`newInt = 3 << 2`  in C or `shr %rdx, 2` in assembly).
 
-Because each computer model uses different hardware, there will be slight differences in how a computer compiles code on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your laptop.
+Because each computer model uses different hardware, there will be differences in the assembly generated to be run on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your laptop.
 
 Compile your C code into assembly by running the following terminal command: 
 ```bash
@@ -86,7 +86,7 @@ This will generate an assembly file called `simple.s`. Open this file and look a
 
 ### Step 3: Assembling
 
-In this next stage of the compilation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  As mentioned before, each assembly command is directly mapped to binary, but the exact mapping may depend on your hardware.
+In this next stage of the compilation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  There is typically a one-to-one direct mapping from assembly to binary.
 
 Run the following terminal command to generate the binary version of your code: 
 ```bash
@@ -97,13 +97,13 @@ Next, to actually read this code, run the following:
 ```bash
 hexdump simple.o > simple_assembled.txt
 ```
-Look through the text file you just generated. Note that it's not just 0's and 1's - what is it instead? You should see two main sections. What do you think these mean? 
+Look through the text file you just generated. Note that it's not just 0s and 1s. The actual file is 0s and 1s, but we are reading it as hex so that its a little bit more interpretable. You should see two main sections. What do you think these mean? 
 
 ### Step 4: Linking
 
-In the final stage of the compilation process, a program called the linker will find all the external references in your assembled code and combine any related .o files together.  For example, our "Hello World" code from earlier includes `stdio.h`.  That file has already been compiled and assembled, so the linker will just take that code and combine it with the code you wrote.
+In the final stage of the compilation process, a program called the linker will find all the external references in your assembled code and combine any related .o files together.  For example, our "Hello World" code from earlier includes `stdio.h`.  While the "h-file" (which includes a description of printf, but not its implementation) has been directly included in the pre-processing step, the actual implementation of printf been compiled and assembled elsewhere. The linker will combine your code with the stdio code into a final executable that can be run.j
 
-The linked code is the final product, so running `gcc` with no arguments will run through this stage by default.  However, if you still wanted to see the binary of the final, linked product, you can run `hexdump` on your executable binary.
+The linked code is the final product that can be run. The default behavior of running `gcc` with no arguments will run through all of the above steps one after the other.  However, if you still want to see the binary of the final linked product, you can run `hexdump` on your executable binary.
 
 Compile your code into a binary executable program by running the following command:
 
