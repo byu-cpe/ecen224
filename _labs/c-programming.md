@@ -370,11 +370,14 @@ Complile your code into an executable called `data`.
 ## Lab Submission
 - Pass off with a TA by showing them the source code and program execution of `data.c`.
 - Take the Pass-Off Quiz on Learning Suite.
+
 - Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
   - What is the purpose of this project and its code/files?
   - What is the structure/organization of the project files?
   - How do you build and run the code in this project?
+
 - Add, commit, and push all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab. 
+
 
 ## Explore More!
 

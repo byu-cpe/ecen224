@@ -141,11 +141,16 @@ cp -r ~/camera/lib ~/client    # Copy lib folder
 
 ## Submission
 
-- Answer the questions in the `README.md`.
-
 - To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above. You must also show the TAs your implementation of the `client_send_image` function and where you close the socket.
 
-- To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
+- Take the Pass off Quiz on Learning Suite.
+
+- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
+  - What is the purpose of this project and its code/files?
+  - What is the structure/organization of the project files?
+  - How do you build and run the code in this project?
+
+- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab. 
 
 
 ## Explore More!
