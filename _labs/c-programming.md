@@ -362,12 +362,12 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 
 
 ## Lab Challenge
-To finish this lab, create a new file called data.c. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
-1. Print out the hex equivalent of the unsigned int: 3735928559
-2. Create a function that takes in a uint8_t as a parameter and prints the char equivalent. Use it at least 3 times in your main().
-3. Use the printf() function at least once that has multiple formatting specifiers/placeholders.
-4. Use at least 5 different format specifier types in 5 different printf() statements.
-5. Use some format specifiers/placeholders in printf() in unexpected ways (i.e. pass in a char and format it with %d, or something similar). Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.
+To finish this lab, create a new file called `data.c`. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
+1. Print out the hex equivalent of the `unsigned int`: 3735928559
+2. Create a function that takes in a `uint8_t` as a parameter and prints the `char` equivalent. Use it at least 3 times in your `main()`.
+3. Use the `printf()` function at least once that has multiple formatting specifiers/placeholders.
+4. Use at least 5 different format specifier types in 5 different `printf()` statements.
+5. Use some format specifiers/placeholders in `printf()` in unexpected ways (i.e. pass in a `char` and format it with %d, or something similar). Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.
 
 Complile your code into an executable called `data`. 
 
