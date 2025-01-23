@@ -158,7 +158,7 @@ int main()
 ```
 
 
-#### Comments
+### Comments
 When writing a program, especially more complex ones, leaving comments in the code is essential to increase its readability. There are two types of comments: single and multi-line.
 
 ```c
@@ -180,7 +180,7 @@ Anything between the `/*` and `*/` will also be ignored during the compilation p
 
 Although the *where* and *how* you use comments in your code are of little importance to the execution the program, they are imperative in making your code easier to understand and be reused by yourself and others in the future.
 
-#### main() Function
+### main() Function
 Every program written in C must have a `main()` function. This is the function that will be run upon executing the program. All other functions that might need to be read in the execution of the program must be called in one form or another from the `main()` function.
 
 To declare a function in C, you must write its **return type** (more on that below), its name, and then any parameters it accepts in parentheses:
@@ -193,7 +193,7 @@ In the declaration above, we assert that the return type for the `main()` functi
 
 To maintain the scope of a function, everything written between curly braces `{}` is considered to be a part of the function declaration that came before it.
 
-#### printf()
+### printf()
 This function, which comes from `stdio.h` as we learned earlier, allows us to write values to the terminal screen from our program. In this example
 
 ```c
@@ -202,7 +202,7 @@ printf("Hello, World!\n");
 
 prints out `Hello, World!` and then moves the cursor to the next line.
 
-#### Return Values
+### Return Values
 Functions that completes execution in a C program have a single (optional) return value that is passed up to the function that calls it. For example if I wanted to write a quick function that took the sum of two numbers, I could write it like so:
 
 ```c
@@ -268,7 +268,7 @@ int main()
 If the program runs into specific errors, it will return different values to the outermost function. But since the `main()` function is the outermost function, it is the shell that receives the error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
 
 
-### Data Types
+## Data Types
 Now that we have dissected our first C program, it is time to dive a little deeper into some details of the details. 
 
 In order to successfully create a meaningful program in any language, you need to know how to correctly store and portray information. Unlike some modern languages, C is a **strongly-typed** language. This means that every time we declare a new variable, we need to specify what **type** it is. The native data types (i.e. no `#include`ing libraries are necessary) in C are the following:
@@ -289,7 +289,7 @@ It is also important to note that the size of each of the above types is depende
 
 Every processor is different, so it is important to pay attention to these details. It is the programmers responsability to understand what these data types mean and how they work on your system.
 
-#### Casting
+### Casting
 Sometimes it will be necessary to take the result of one number and represent it in a different type of variable. The process of the translating from one data type to another is known as **casting** and will be a very useful tool in this and other labs.
 
 For example, let's say I have a variable that was stored as an `int` and another variable that is a `float`. :
@@ -307,14 +307,14 @@ num_f = (float) num;
 
 This is an example of an explicit cast. Implicit casting can also occur, for example when you compare an int and an unsigned using `>`. These are other important details to pay attention to.
 
-#### stdint.h
+### stdint.h
 Standardized data types that explicitly define a specific number of bits (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t` and others that have specialized characteristics for specific needs.
 
 For example, if you need to use a data **t**ype that stores an **int**eger that is **u**nsigned (can never be negative) and has  **8** bit length, you would `#include <stdint.h>` and use the `uint8_t` type. This can be useful because the all of the bit patterns possibly contained in the 8 bit value are used to represent numbers above 0 (ex. 0-255). In a normal int, **about but not quite** half of those bit paterns map to negative numbers (thus decreasing the maximum number that can be represented). You should be learning more about this in the lecture portion of class! Additionally, using these types explicitly defines the number of bits as opposed to relying on the compiler and processor specifics of your system.
 
 To understand more about the types of data types that exist in `stdint.h`, you can check out the [documentation for this file](https://man7.org/linux/man-pages/man0/stdint.h.0p.html).
 
-### printf
+### printf() arguments
 As you have seen in our simple C program, we can use the `printf()` function to send text out to the terminal from our program.
 
 ```c
