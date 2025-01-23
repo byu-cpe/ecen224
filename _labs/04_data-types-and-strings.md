@@ -271,7 +271,7 @@ To help you with these manipulations, the `string.h` library includes various st
 
 - `strlen()`, which returns the length of a string (not including the null terminator)
 - `sprintf()`, which works with the same formatting specifiers as `printf()`, but instead of printing to the terminal, it "prints" to an array or memory location.
-- `memcpy()`, which allows you to copy bytes from location A to location B.
+- `strcpy()`, which allows you to copy characters from one string into another.
 - `strncat()`, which allows you to concatenate the first `n` bytes of string A to the end of string B.
 - `strncmp()`, which allows you to compare `n` bytes of string A and B.
 
