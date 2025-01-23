@@ -110,6 +110,21 @@ uint32_t largeNumber = 300;
 uint8_t  smallNumber = (uint8_t) largeNumber; // Small number will overflow since 300 is beyond a uint8_t's range
 ```
 
+Interger casting under the hood is fairly simple.  When going between an unsigned in and a signed int of the same size, no bits chamge.  The binary is simply interpreted differently.  When casting a small signed interger to a higher size, the most significant bit (MSB) is copied into the new bytes.  Unsigned ints will simply get zeros in the new bytes.  When casting from a large int to a small int, the value will be truncated (that's what causes the overflow).
+
+```C
+// Casting a small signed to a larger signed
+int8_t smallSigned = 0x80; // 1000 0000 = -128
+int16_t largerSigned = (int16_t) smallSigned; // The sign extended, 0xFF80 = 1111 1111 1000 0000 = -128
+
+// Casting a signed to an unsigned
+uint8_t smallUnsigned = (uint8_t) smallSigned; // 1000 0000 = 128.  smallUnsigned and smallSigned have the same binary value, they are just interpreted differently
+
+// Casting from a large signed to a small signed
+largeSigned = 0x0180; // 0000 0001 1000 0000 = 384
+smallSigned = (int8_t) largeSigned; // The binary is truncated from 0x0180 -> 0x80.  smallSigned now equals -128.
+```
+
 Casting also happens *implicitly*, meaning that your code can take liberties to cast a variable automatically.  This actually happens a lot between different interger types.  For example, the `%d` format specifier for `printf()` actually looks for a 32-bit interger.  If you pass an 8 or 16 bit interger in, your code will bump up the size automatically.
 
 Implicit casting can be more problematic when you are using intergers and floats, or unsigned and signed intergers.  In these scenarios:
