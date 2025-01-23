@@ -16,11 +16,34 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 ## Overview
 
-C is a "strongly typed" language, meaning that the _type_ of all variables, functions, and parameters need to be explicitly stated in code.  In the C Programming lab, you worked with a few of these data types. In this lab, you will focus on two tasks: fixing bugs in example code caused by misuing these data types, and learning about C's implementation of strings, and how you can manipulate these strings to your advantage.
+C is a [strongly typed language](https://en.wikipedia.org/wiki/Strong_and_weak_typing), meaning that the _type_ of all variables, functions, and parameters need to be explicitly stated in code. On one hand, this means that your code will be more verbose.  On the other hand, this give you great control over your variables' sizes and inputs.
+
+In the C Programming lab, you worked with a few of C's native data types, meaning the data types that are in C without `#include`-ing any other libraries.  However, as you have also learned, these data types also have some nuances you need to consider when programing.
+
+In this lab, you will gain more exposure to the nuances of the data types native to C and included in the `stdint.h` library.  Additionally, you will practice manipulating strings.  By the end of this lab, you will have written and/or debugged several functions relating to C's data types and strings.
 
 ### Data Types
 
-We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including `int` and `float`.  Some libraries like `stdint.h` give you access to additional data types, like `uint32_t` or `bool` (yes, bool is not actually a primative data type, meaning it's not built into C by default!).  You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
+We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including `int` and `float`.  It is important to note that the native intergers in C (namely `short`, `int`, and `long`) do not have a defined length; C allows each computer manfacturer to decide how many bits an `int` will take in memory.
+
+This peculariarity has had disasterous consequences. Say for example, you expect that your `int` will have values ranging from zero to two-million.  On a 64-bit computer (like most modern computers), using an `int` will be just fine.  However, on a 32-bit or 16-bit computer, you will likely find that your variable is cut off around 32,000.  At that point, your variable will **overflow**.
+
+**Overflow** is when you increment (or decrement) a variable beyond its maximum (or minimum) limit.  This can cause some pernitious bugs.  Consider the examples below:
+
+```C
+// Because an unsigned char has a maximum value of 255, i will always be less than 500.  This for loop will never end.
+for (unsigned char i = 0; i < 500; i++) {
+    ...
+}
+```
+```C
+// Underflow example; trying to subtract 1 from an unsigned int = 0 will not go to -1
+
+```
+
+// TODO: Casting (I and E) and examples
+
+Some libraries like `stdint.h` give you access to additional data types, like `uint32_t` or `bool` (yes, bool is not actually a primative data type, meaning it's not built into C by default!).  You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
 
 As you learned last week as you read the documentation for `stdint.h`, there are advantages to using different data types. For example, if you were making a program that included a variable `num_students`, you probably would never need that variable to be negative. So, by using a `uint8_t` instead of a `char`, you get an extra bit to use (the sign bit), which doubles the maximum useful number you can hold. Some things to consider when deciding that type an interger variable include:
 
