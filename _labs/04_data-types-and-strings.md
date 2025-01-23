@@ -18,38 +18,127 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 C is a [strongly typed language](https://en.wikipedia.org/wiki/Strong_and_weak_typing), meaning that the _type_ of all variables, functions, and parameters need to be explicitly stated in code. On one hand, this means that your code will be more verbose.  On the other hand, this give you great control over your variables' sizes and inputs.
 
-In the C Programming lab, you worked with a few of C's native data types, meaning the data types that are in C without `#include`-ing any other libraries.  However, as you have also learned, these data types also have some nuances you need to consider when programing.
+Since C is strongly typed, it is essential that you understand why different data types are used.  In C, it is easy to pick types that are inconsistant accross different computers, types that are too small, or types that don't reflect your purpose. As a C programmer, you must weigh these factors and more.
 
 In this lab, you will gain more exposure to the nuances of the data types native to C and included in the `stdint.h` library.  Additionally, you will practice manipulating strings.  By the end of this lab, you will have written and/or debugged several functions relating to C's data types and strings.
 
-### Data Types
+## Data Types
+
+In the C Programming lab, you worked with a few of C's native data types, meaning the data types that are in C without `#include`-ing any other libraries.  However, as you have also learned, these data types also have some nuances you need to consider when programing. Below are some of the considerations and operations you need to know.
+
+### Inconsistant sizes
 
 We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including `int` and `float`.  It is important to note that the native intergers in C (namely `short`, `int`, and `long`) do not have a defined length; C allows each computer manfacturer to decide how many bits an `int` will take in memory.
 
-This peculariarity has had disasterous consequences. Say for example, you expect that your `int` will have values ranging from zero to two-million.  On a 64-bit computer (like most modern computers), using an `int` will be just fine.  However, on a 32-bit or 16-bit computer, you will likely find that your variable is cut off around 32,000.  At that point, your variable will **overflow**.
+This peculariarity has had disasterous consequences. Say for example, you expect that your `int` will have values ranging from zero to two-million.  On a 64-bit computer (like most modern computers), using an `int` will be just fine.  However, on a 32-bit or 16-bit computer, you will likely find that your variable is cut off around 32,000. 
 
-**Overflow** is when you increment (or decrement) a variable beyond its maximum (or minimum) limit.  This can cause some pernitious bugs.  Consider the examples below:
+To be sure that you know what size your variables will take up, you can use another library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned interger allowed on your system, or `stdbool.h`, which adds `bool.h` (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
+
+One of the most common libraries you'll see is `stdint.h`, which as you learned last week, includes defintions for several intergers.  Because the sizes and signedness of the those intergers are defined and constant, it is **good practice** to use the interger values in `stdint.h` instead of the native C intergers.  
 
 ```C
-// Because an unsigned char has a maximum value of 255, i will always be less than 500.  This for loop will never end.
-for (unsigned char i = 0; i < 500; i++) {
+unsigned int x = 40; // Acceptable, but unreliable
+uint32_t y = 40; // You know that y will always have 32 bytes.
+```
+
+### Overflow and Underflow
+
+We've established by this point that different types have a maximum and minimum value.  What happens when we try to set a variable beyond these maximum or minimums?
+
+The answer is called **Overflow** and **Underflow** for exceeding the maximum and minimum respectively.  The examples below cover overflow, but underflow works exactly the same (in the opposite direction).
+
+See, when you're doing math conventionally, if you run out of digits, you would simply add another digit. However, computers have limited bits for representing numbers.  If it is at the maximum value, adding one will simply cause the carried over number to be truncated.
+```C
+// Conventional Math
+9999 + 1 = 10000 
+// 9999 has 4 digits and contains the maximum value for a 4 digit number.  When we add 1, we need to add a 5th digit, 1
+
+// Limited digit math
+0b11111111 + 1 = 0 
+// 0b11111111 = 255 is the maximum value for a uint8_t. Adding 1 will cause overflow, and the expression evaluates to 0.
+```
+
+Overflow and underflow have very real impacts on code written in C:
+
+```C
+// Because an unsigned char has a maximum value of 255, x will always be less than 500.  This for loop will never end.
+// In this scenario, it would be better to use a larger data type.
+for (unint8_t x = 0; x < 500; x++) {
     ...
 }
 ```
 ```C
-// Underflow example; trying to subtract 1 from an unsigned int = 0 will not go to -1
-
+// Imagine a sensor that detects the number of frogs entering and leaving a small pond.
+uint32_t numFrogsInPond = 0;
+// A frog jumps in the pond, so we go up by one.
+numFrogsInPond++; // numFrogsInPond = 1
+// The sensor sees the frog leave, but it glitched and double counted the frog leaving.
+numfrogsInPond -= 2 // numFrogsInPond = 1-2 = 4,294,967,295
+// 4.29 billion frogs is simply too many frogs in a small pond.  Your frog pond management system breaks and everyone is sad.
 ```
 
-// TODO: Casting (I and E) and examples
+Seeing these errors with overflow and underflow, you may be inclined to simply use the largest data type whenever possible.  However, you should realize that if you use large data types when you don't need to, you will likely run out of memory.
 
-Some libraries like `stdint.h` give you access to additional data types, like `uint32_t` or `bool` (yes, bool is not actually a primative data type, meaning it's not built into C by default!).  You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
+For example, there are currently 124 students in ECEN 225 this semester.  If we were to write a program that counts the number of students in the class, a uint8_t would suffice just fine.  You just need to think about what the possible ranges of your variable will be.
 
-As you learned last week as you read the documentation for `stdint.h`, there are advantages to using different data types. For example, if you were making a program that included a variable `num_students`, you probably would never need that variable to be negative. So, by using a `uint8_t` instead of a `char`, you get an extra bit to use (the sign bit), which doubles the maximum useful number you can hold. Some things to consider when deciding that type an interger variable include:
+### Casting
+
+Sometimes, you will have a variable that is the incorrect type for the operation you want to accomplish.  In this case, we can *cast* your variable, or temporarily change its datatype.
+
+For example, lets say you wanted to divide two intergers to get a decimal.  In C, dividing an interger by an interger will result in an interger.  However, if you explictly say you want a float, you'll get a float.
+
+To explicitly cast a variable, use the notation `([desired type])` in front of your variable
+```C
+5 / 2; // This will evaluate to 2
+(float) 5 / 2; // This will evaluate to 2.5
+```
+Casting can also go in reverse:
+```C
+// Imagine you have a program where you want to print out a message for each dollar in your bank account
+// For loops conventionally only work with ints, so you can cast your balance to an int
+
+double balanceInTheBank = 2.53;
+int32_t balanceAsInt = (int32_t) balanceInTheBank;
+for (int32_t i = 0; i < balanceAsInt; i++) {
+    printf("Another dollar!\n");
+}
+```
+
+Casting also works between different interger types.  It is fairly common to cast small intergers up to larger intergets, unsigned to signed, etc.  Be warned, however, that the ranging still applies.  If you try to cast a large interger down to a smaller size, you can overflow.
+```C
+uint32_t largeNumber = 300;
+uint8_t  smallNumber = (uint8_t) largeNumber; // Small number will overflow since 300 is beyond a uint8_t's range
+```
+
+Casting also happens *implicitly*, meaning that your code can take liberties to cast a variable automatically.  This actually happens a lot between different interger types.  For example, the `%d` format specifier for `printf()` actually looks for a 32-bit interger.  If you pass an 8 or 16 bit interger in, your code will bump up the size automatically.
+
+Implicit casting can be more problematic when you are using intergers and floats, or unsigned and signed intergers.  In these scenarios:
+1. Intergers in an expression with a `double` or a `float` will be cast to `double` or `float`.
+2. Signed intergers in an expression with unsigned intergers will be cast to unsigned
+```C
+uint8_t myUnsignedInt = 10;
+int8_t  mySignedInt   = -5;
+double   myDouble      = 2.5;
+
+// This is 10 / 2.5.  The 10 will be implicity cast to 10.0, so this expression evaluates to 4.
+myUnsignedInt / myDouble; 
+
+// This is -5 - 10.  Intuitivly, we would say this is equal to -15.  However, the signed int is cast instead. 
+// This actually evaluates to 250 - 10 = 240.
+mySignedInt - myUnsignedInt; 
+```
+
+To fix implicit casting, you can explicitly cast the expression to your desired type.  However, if you ever find yourself with an issue with implicit casting, it may be worth asking yourself if you are actually using the correct data type.
+
+### Summary
+When declaring a variable, remember to consider what its purpose will be.  Ask yourself:
 
 - Does the variable ever need to be negative?
 - How much memory should the variable take up?
 - What are the upper and lower limits of values of the variable?
+- Do I need a decimal number, or will an interger suffice?
+
+The above is not an exhuastive list, but if you can answer those questions, you will likely land on a good data type to use.
 
 ### Arrays
 
@@ -109,11 +198,13 @@ uint8_t video_pixels[30*60][1280][720][3]; // an array representing 30 seconds o
                                            // with each pixel getting 3 values for red, green, and blue.
 ```
 
-While higher dimensional arrays are rare and harder to understand intuitively, they are useful becuase arrays are always stored in **contiguous** memory, meaning that the elements must go in order without any gaps or spacing in between. This grouping allows maximum packing efficiency when storing huge quantities of data.
+While higher dimensional arrays are rare and harder to understand intuitively, they are useful becuase arrays are always stored in **contiguous** memory, meaning that the elements must go in order. To us, a 2D is represented as a table of values.  To a computer, the array is just one long list.  This grouping allows maximum packing efficiency when storing huge quantities of data.  You'll get more experience with large arrays in the next lab.
 
 ### Characters and Strings
 
 You have probably noticed by now that C does not include a string data type.  Instead, individual letters are represented with the `char` data type. Each decimal value from  0 to 127 is mapped to a specific character per the ASCII (American Standard Code for Information Interchange) standard.  For example, the character `A` is represented by the decimal value 65. This is different from the character `a`, which is represented by the decimal value 97. You can find this standard by simply googling "ASCII Table" or by using a website like [ascii-code.com](https://www.ascii-code.com/). 
+
+> Note that some systems also have mappings for interger values 128-255.  However, C doesn't actually specify if a `char` is equivalent to a `uint8_t` or a `int8_t`. Each computer will vary whether a char has range -128 to 127 or 0 to 255.  If you aren't using `char`s for being characters, you're better off using one of the `stdint.h` values.
 
 Charaters in C can be initalized with single quotes or with their numeric equivalent:
 
@@ -255,13 +346,81 @@ log_info("The value is %d", value);
 
 ## Requirements
 
-In your repository, you will find files called `data.c` and `custom_strings.c`, along with their equivalent `.h` files.  These files include buggy code that you need to fix.
+In your repository, you will find files called `data.c` and `custom_strings.c`, along with their equivalent `.h` files.  These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
 
-Additionally, you will write the following string manipulation functions:
-1. `getFileExtension`: a function that takes the name of a file and returns its extension.  For example, passing in `rickroll.gif` would return `gif`.
-2. `combinePath`: a function that takes a folder name and a file name and combines them together.  For example, passing in the folder `foo` and the file `bar.txt` would return `foo/bar.txt`.
+Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
 
-Write these functions well; you will copy them into future labs.
+To run the pass off script, you can run:
+```bash
+gcc lab4_passoff.o data.c custom_strings.c -o passoff
+./passoff
+``` 
+
+### Tests
+Your code will be tested with the following inputs:
+
+#### Calculate Circumfrence
+1. Radius: 1,  Output: 6.28
+2. Radius: 3.14, Output: 19.729
+3. Radius: 0, Output: 0.0
+4. Radius: -10, Output: -1.0
+
+#### Calculate Average
+1. Array: {255, 255, 255, 255, 255}, Output: 255.0
+2. Array: {10, 11, 13, 15, 2}, Output: 10.2
+3. Array: {100, 91, 127, 23, 8}, Output: 69.8
+
+#### Any Bit Is One
+1. Input: 0x00000000, Output: 0 (false)
+2. Input: 0xDEADBEEF, Output: 1 (true)
+3. Input: 0xFFFFFFFF, Output: 1 (true)
+
+#### Any Bit is Zero
+1. Input: 0x00000000, Output: 1 (true)
+2. Input: 0xDEADBEEF, Output: 1 (true)
+3. Input: 0xFFFFFFFF, Output: 0 (true)
+
+#### Extract From Word
+Each of the following words will be tested for each position (0-3):
+1. 0xDEADBEEF
+2. 0x01234567
+3. 0X00FEED08
+
+#### Multiply By Base 2
+1. Input: 1 (num) and 0 (power), Output: 1
+2. Input: 8 and 3, Output: 64
+3. Input: 25 and 2, Output: 100
+
+#### Check if Space
+1. Input: 3 (val) and 4 (maxBytes), Output: 1
+2. Input: -5 and 2, Output: 0
+3. Input: 10 and 64, Output: 1
+
+#### Get String Length
+1. Input: "ECEN 225 is a really great class!", Output: 33
+2. Input: "Hello World!", Output: 12
+3. Input: "Escape Characters: \0\n\t\f", Output: 19
+
+#### To Upper
+1. Input: "computer", Output: "COMPUTER"
+2. Input: "ecen225", Output: "ECEN225"
+3. Input: "Aren't frogs amazing?", Output: "AREN'T FROGS AMAZING?"
+
+#### Find Last Char
+1. Input: 'd', "Hello World", Output: 10
+2. Input: '2', "ECEN 224", Output: 6
+3. Input: '.', "data.h", Output: 4
+4. Input: '?', "I have no questions", Output: -1
+
+#### Get File Extension
+1. Input: "data.c", Output: "c"
+2. Input: "tux.bmp", Output: "bmp"
+3. Input: "assemblyFile.asm", Output: "asm"
+
+#### Combine Path
+1. Inputs: "documents" and "resume.pdf", Output: "documents/resume.pdf"
+2. Inputs: "viewer" and "tux.bmp", Output: "viewer/tux.bmp"
+3. Inputs: "ecen224" and "README.md", Output: "ecen224/README.md"
 
 ## Submission
 
@@ -269,10 +428,9 @@ Write these functions well; you will copy them into future labs.
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
-- To pass off to a TA:
-    - Show the output of the functions you fixed using the test cases in main.c.
-    - Show the output of the `getFileExtension` function using three different example file names.
-    - Show the output of the `combinePath` function using three different folder and file names.
+- To pass off to a TA
+    - Show the output of the passoff executable
+    - Show how you implemented your functions in `data.c` and `custom_strings.c`
 
 
 ## Explore More!
