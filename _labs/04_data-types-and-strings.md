@@ -87,7 +87,7 @@ Sometimes, you will have a variable that is the incorrect type for the operation
 
 For example, lets say you wanted to divide two intergers to get a decimal.  In C, dividing an interger by an interger will result in an interger.  However, if you explictly say you want a float, you'll get a float.
 
-To explicitly cast a variable, use the notation `([desired type])` in front of your variable
+To explicitly cast a variable, use the notation `([desired type])` in front of your variable:
 ```C
 5 / 2; // This will evaluate to 2
 (float) 5 / 2; // This will evaluate to 2.5
