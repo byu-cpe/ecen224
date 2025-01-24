@@ -48,6 +48,7 @@ We've established by this point that different types have a maximum and minimum 
 The answer is called **Overflow** and **Underflow** for exceeding the maximum and minimum respectively.  The examples below cover overflow, but underflow works exactly the same (in the opposite direction).
 
 When doing math on paper, if you run out of digits, you would simply add another digit. However, computers have limited bits for representing numbers.  If a variable is at the maximum value, adding one will simply cause the carried over number to be truncated.
+
 ```C
 // Conventional Math
 9999 + 1 = 10000 
@@ -163,11 +164,17 @@ if ( check_small_enough(a) == true )
     printf("Yipee!\n");
 ```
 
-Integer literals can be specified in a variety of different ways including in decimal, binary, and hexidecimal. To specify a literal in binary it should be prefixed with `0b` and to specify a literal in hexadecimal it should be prefixed with `0x`. As shown below:
-``C
+By default, whole number literals are treated as having type ``int``. Numerical literals with a decimal point are treated as having type ``double``. If you want to specify a different type for a literal, you can sometimes do this by adding a suffix. 
+For example, ``125`` by default will be treated as an ``int``, but if ``125U`` will be treated as an unsigned. Similarly, ``3.14`` will be treated as a ``double`` by default, but ``3.14f`` will be treated as having type ``float``.  
+
+
+Integer literals can be specified in a variety of different ways including in decimal, binary, and hexidecimal. To specify a literal in binary it should be prefixed with `0b` and to specify a literal in hexadecimal it should be prefixed with `0x`. 
+The interpretation of the value, however is dependent on the type. As shown below:
+```C
 uint8_t a = 0b0101; // In this case a will have value 5 and will be stored as 0000 0101
-uint8_t b = 0xa5; // In this case b will be stored as 1010 0101
-``
+uint8_t b = 0xa5; // In this case b will be a single byte that contains 1010 0101
+int8_t c = 0xa5; // In this case b will be a single byte that contains 1010 0101
+```
 
 Decimal (or floating point) literals can be specified 
 
