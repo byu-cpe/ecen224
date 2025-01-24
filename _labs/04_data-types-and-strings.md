@@ -18,7 +18,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 C is a [strongly typed language](https://en.wikipedia.org/wiki/Strong_and_weak_typing), meaning that the _type_ of all variables, functions, and parameters need to be explicitly stated in code. On one hand, this means that your code will be more verbose.  On the other hand, this give you great control over your variables' sizes and inputs.
 
-Since C is strongly typed, it is essential that you understand why different data types are used.  In C, it is easy to pick types that are inconsistant accross different computers, types that are too small, or types that don't reflect your purpose. As a C programmer, you must weigh these factors and more.
+Since C is strongly typed, it is essential that you understand why different data types are used.  In C, it is easy to pick types that are inconsistant across different computers, types that are too small, or types that don't reflect your purpose. As a C programmer, you must weigh these factors and more.
 
 In this lab, you will gain more exposure to the nuances of the data types native to C and included in the `stdint.h` library.  Additionally, you will practice manipulating strings.  By the end of this lab, you will have written and/or debugged several functions relating to C's data types and strings.
 
@@ -28,13 +28,13 @@ In the C Programming lab, you worked with a few of C's native data types, meanin
 
 ### Inconsistant sizes
 
-We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including `int` and `float`.  It is important to note that the native intergers in C (namely `short`, `int`, and `long`) do not have a defined length; C allows each computer manfacturer to decide how many bits an `int` will take in memory.
+We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including `int` and `float`.  It is important to note that the native integers in C (namely `short`, `int`, and `long`) do not have a defined length; C leaves it up to the computer manfacturer (and/or the writers of the compiler for that processor) to decide how many bits an `int` will take in memory.
 
 This peculariarity has had disasterous consequences. Say for example, you expect that your `int` will have values ranging from zero to two-million.  On a 64-bit computer (like most modern computers), using an `int` will be just fine.  However, on a 32-bit or 16-bit computer, you will likely find that your variable is cut off around 32,000. 
 
-To be sure that you know what size your variables will take up, you can use another library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned interger allowed on your system, or `stdbool.h`, which adds `bool`s (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
+To be sure that you know what size your variables will take up, you can use another library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned integer allowed on your system, or `stdbool.h`, which adds `bool`s (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
 
-One of the most common libraries you'll see is `stdint.h`, which as you learned last week, includes defintions for several intergers.  Because the sizes and signedness of the those intergers are defined and constant, it is **good practice** to use the interger values in `stdint.h` instead of the native C intergers.  
+One of the most common libraries you'll see is `stdint.h`, which as you learned last week, includes definitions for several integers (both signed and unsigned) with an explicit number of bits.  Because the sizes and signedness of the those integers are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.  
 
 ```C
 unsigned int x = 40; // Acceptable, but unreliable
@@ -47,7 +47,7 @@ We've established by this point that different types have a maximum and minimum 
 
 The answer is called **Overflow** and **Underflow** for exceeding the maximum and minimum respectively.  The examples below cover overflow, but underflow works exactly the same (in the opposite direction).
 
-See, when you're doing math conventionally, if you run out of digits, you would simply add another digit. However, computers have limited bits for representing numbers.  If it is at the maximum value, adding one will simply cause the carried over number to be truncated.
+When doing math on paper, if you run out of digits, you would simply add another digit. However, computers have limited bits for representing numbers.  If a variable is at the maximum value, adding one will simply cause the carried over number to be truncated.
 ```C
 // Conventional Math
 9999 + 1 = 10000 
@@ -61,9 +61,9 @@ See, when you're doing math conventionally, if you run out of digits, you would 
 Overflow and underflow have very real impacts on code written in C:
 
 ```C
-// Because an unsigned char has a maximum value of 255, x will always be less than 500.  This for loop will never end.
+// Because an unsigned char has a maximum value of 255 (and adding 1 will overflow back to 0), x will always be less than 500.  Thus, this for-loop will never end.
 // In this scenario, it would be better to use a larger data type.
-for (unint8_t x = 0; x < 500; x++) {
+for (uint8_t x = 0; x < 500; x++) {
     ...
 }
 ```
@@ -77,21 +77,111 @@ numfrogsInPond -= 2 // numFrogsInPond = 1-2 = 4,294,967,295
 // 4.29 billion frogs is simply too many frogs in a small pond.  Your frog pond management system breaks and everyone is sad.
 ```
 
-Seeing these errors with overflow and underflow, you may be inclined to simply use the largest data type whenever possible.  However, you should realize that if you use large data types when you don't need to, you will likely run out of memory.
+Seeing these errors with overflow and underflow, you may be inclined to simply use the largest data type whenever possible.  However, in some cases memory space is severely limited or can negativelly impact the performance of your program.
+For example, each color value of an 8-bit color image exactly fits within a uint8_t  (or one byte). With a resolution of 3840 x 2160 and 3 color values per pixel, the approximate (uncompressed) size of a 4K image is about 24.8 MB. 
+If you were to instead store each color value within a ``uint64_t``, the exact same image would take up 199 MB - thats almost a GB for every five images! All that extra space is just storing zeros with no useful information.
 
-For example, there are currently 124 students in ECEN 225 this semester.  If we were to write a program that counts the number of students in the class, a uint8_t would suffice just fine.  You just need to think about what the possible ranges of your variable will be.
+Similar concepts are important when sending data between two computers or any two systems. For underwater communication (say between two underwater robots), we have to use sound to communicate and the amount of data we can send is very limited (like 32 bytes per second). 
+In this case, only four ``double`` sized variables could be sent per packet, but 32 ``uint8_t`` variables could be sent. 
 
-### Casting
+In many contexts, you can determine a limit on the range of values that are possible and select a datatype based upon this. For example, on a typical semester we often have somewhere around 100 students in ECEN 225.  If we were to write a program that counts the number of students in the class, a ``uint8_t`` would suffice just fine.  However, if in a future year 256 students were to register, than we would have problems. Similarly, if we needed to use that variable to calculate how many more students got an A than those that got a B - and thus need to do subtraction between multiple variables, we might again have problems.
+It is important to think about these details when determining the datatype for any variable you select when programing in C. 
 
-Sometimes, you will have a variable that is the incorrect type for the operation you want to accomplish.  In this case, we can *cast* your variable, or temporarily change its datatype.
+### Casting, Order of Operations, and Constants
 
-For example, lets say you wanted to divide two intergers to get a decimal.  In C, dividing an interger by an interger will result in an interger.  However, if you explictly say you want a float, you'll get a float.
+Sometimes, you will have a variable that is the incorrect type for the operation you want to accomplish.  In this case, we can *cast* your variable, or convert it to another datatype. However, understanding the details of how this casting occurs is essential - as its not always intuitive.
 
-To explicitly cast a variable, use the notation `([desired type])` in front of your variable:
+#### Explicit vs Implicit Casting 
+Casting can be done *explicitly* - meaning when you, the programmer, write code saying you want a cast to occur. An example of casting an integer to a float is shown below:
+
 ```C
-5 / 2; // This will evaluate to 2
-(float) 5 / 2; // This will evaluate to 2.5
+float a;
+uint8_t b = 10;
+a = (float) b;
 ```
+
+Casting also happens *implicitly*, meaning that the compiler will take the liberty of converting your variables for you if you combine multiple types in an expression. If you assign one variable to that of another type, this happens automatically. So for 3xample we don't actually need the ``(float)`` in the above example, because the compiler knows that you are assigning a ``uint8_t`` to a ``float``. So the code below is equivalent to the code shown above and a cast to ``float`` is inserted by the compiler when ``b`` is assigned to ``a``:
+
+```C
+float a;
+uint8_t b = 10;
+a = b;
+```
+
+Implicit casts also happen when expressions mix variables of different types. This happens because the processor hardware circuit, the part of the computer that actually carries out the computations, requires everything to be the same type before it can complete the calculation. Thus, before dividing or comparing two numbers (for example), they are converted to the same type before the calculation is carried out. Understanding the details of how this happens is pretty important.
+
+For example, lets say you wanted to divide two integers to get a decimal.  In C, floating point division is different from integer division (and they can't be mixed). Integer division will take two integers, divide them, and then truncate (or drop) any decimal portion in the result. This makes sense because integer data types can't represent decimal information anyway. Floating point division takes two floating point numbers and results in another floating point number - all of which are represented using either a ``float`` or a ``double`` (depending on the datatypes of the variables) and thus decimal portions are maintained. 
+
+If you want the decimal part of the result to be maintained, we need to ensure we are using floating point division. To do this you can explictly cast one of the ints to a ``float`` (or a ``double``) before the calculation happens, then the other ``int`` will be implicitly cast before the division occurs and the result will also be a floating point number.
+
+The example below demonstrates how this works:
+```C
+int32_t a = 5;
+int32_t b = 2;
+float c, d;
+c = a / b; // This will evaluate to 2.0.
+d = (float) a / b; // This will evaluate to 2.5.
+```
+
+In the example above _c_ evaluates to 2.0 because both _a_ (value 5) and _b_ (value 2) are integers and thus integer division is the operation that is carried out. Integer division happens before the assignment (and results in 2) which is then cast to a float before being assigned to _c_.
+
+Alternativelly, _d_ evaluates to 2.5 because you, the programmer, explicitly cast _a_ to be of type ``float`` and thus the compiler will explicitly cast _b_ to be of type ``float`` so that floating point division can take place. In this case casting is not needed in the assignment (because the result is already a float).
+
+
+#### Order of Operations in C
+Notice that in the example above (where _c_ became 2.0), that the result was cast to a floating point even though the decimal points were truncated. This happens because of the order of operations. 
+
+The order of operations in C are shown in the following [table](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm) (highest/first priority at the top, lowest/last priority at the bottom):
+| Category | Operator | Associativity |
+| -------- | -------- | ------------- |
+| Postfix (function calls, array/pointer/struct access, and postfix inc/dec) | () [] -> . ++ -- | Left-to-right |
+| Unary (logical/binary not, prefix inc/dec, casting, address reference, sizeof) | ! ~ ++ -- (type)* & sizeof	| Right-to-left |
+| Multiplicative	| * / %	| Left-to-right |
+| Additive	| + -	| Left-to-right |
+| Shift	| << >>	| Left-to-right |
+| Relational	| < <= > >=	| Left-to-right |
+| Equality	| == !=	| Left-to-right |
+| Bitwise AND	| &	| Left-to-right |
+| Bitwise XOR	| ^	| Left-to-right |
+| Bitwise OR	| \|	| Left-to-right |
+| Logical AND	| &&	| Left-to-right |
+| Logical OR	| \|\|	| Left-to-right |
+| Conditional	| ?:	| Right-to-left |
+| Assignment	| = += -= *= /= %=>>= <<= &= ^= \|=	| Right-to-left | 
+| Comma	| ,	| Left-to-right | 
+
+Notice that explicit casting happens before division, which happens before assignment (and thus implicit casting in the example above). 
+
+#### Literals in C
+Briefly, we also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
+
+To demonstrate what we mean, ``125``, ``3.14``, ``0x1234``, ``"Yipee!\n"`` and ``true`` are each examples of literals in the code below.
+```C
+double a = 125 / 3.14;
+uint16_t b = 0x1234;
+if ( check_small_enough(a) == true )
+    printf("Yipee!\n");
+```
+
+Integer literals can be specified in a variety of different ways including in decimal, binary, and hexidecimal. To specify a literal in binary it should be prefixed with `0b` and to specify a literal in hexadecimal it should be prefixed with `0x`. As shown below:
+``C
+uint8_t a = 0b0101; // In this case a will have value 5 and will be stored as 0000 0101
+uint8_t b = 0xa5; // In this case b will be stored as 1010 0101
+``
+
+Decimal (or floating point) literals can be specified 
+
+TODO: finish starting from here
+
+ome in various types including decimal, hex, floating point, integers, strings, characters, and booleans. 
+
+Many of these are self explanatory, for example 125 
+
+In some cases, the gcc compiler allows you to specify the type of a literal with a suffix if desired. For example, a 
+
+You can specify the type by adding a 
+
+
 Casting can also go in reverse:
 ```C
 // Imagine you have a program where you want to print out a message for each dollar in your bank account
@@ -104,13 +194,13 @@ for (int32_t i = 0; i < balanceAsInt; i++) {
 }
 ```
 
-Casting also works between different interger types.  It is fairly common to cast small intergers up to larger intergets, unsigned to signed, etc.  Be warned, however, that the ranging still applies.  If you try to cast a large interger down to a smaller size, you can overflow.
+Casting also works between different integer types.  It is fairly common to cast small integers up to larger integers, unsigned to signed, etc.  Be warned, however, that the ranging still applies.  If you try to cast a large integer down to a smaller size, you can overflow.
 ```C
 uint32_t largeNumber = 300;
 uint8_t  smallNumber = (uint8_t) largeNumber; // Small number will overflow since 300 is beyond a uint8_t's range
 ```
 
-Interger casting under the hood is fairly simple.  When going between an unsigned in and a signed int of the same size, no bits chamge.  The binary is simply interpreted differently.  When casting a small signed interger to a higher size, the most significant bit (MSB) is copied into the new bytes.  Unsigned ints will simply get zeros in the new bytes.  When casting from a large int to a small int, the value will be truncated (that's what causes the overflow).
+integer casting under the hood is fairly simple.  When going between an unsigned in and a signed int of the same size, no bits change.  The binary is simply interpreted differently.  When casting a small signed integer to a higher size, the most significant bit (MSB) is copied into the new bytes.  Unsigned ints will simply get zeros in the new bytes.  When casting from a large int to a small int, the value will be truncated (that's what causes the overflow).
 
 ```C
 // Casting a small signed to a larger signed
@@ -125,11 +215,13 @@ largeSigned = 0x0180; // 0000 0001 1000 0000 = 384
 smallSigned = (int8_t) largeSigned; // The binary is truncated from 0x0180 -> 0x80.  smallSigned now equals -128.
 ```
 
-Casting also happens *implicitly*, meaning that your code can take liberties to cast a variable automatically.  This actually happens a lot between different interger types.  For example, the `%d` format specifier for `printf()` actually looks for a 32-bit interger.  If you pass an 8 or 16 bit interger in, your code will bump up the size automatically.
 
-Implicit casting can be more problematic when you are using intergers and floats, or unsigned and signed intergers.  In these scenarios:
-1. Intergers in an expression with a `double` or a `float` will be cast to `double` or `float`.
-2. Signed intergers in an expression with unsigned intergers will be cast to unsigned
+
+This actually happens a lot between different integer types.  For example, the `%d` format specifier for `printf()` actually looks for a 32-bit integer.  If you pass an 8 or 16 bit integer in, your code will bump up the size automatically.
+
+Implicit casting can be more problematic when you are using integers and floats, or unsigned and signed integers.  In these scenarios:
+1. integers in an expression with a `double` or a `float` will be cast to `double` or `float`.
+2. Signed integers in an expression with unsigned integers will be cast to unsigned
 ```C
 uint8_t myUnsignedInt = 10;
 int8_t  mySignedInt   = -5;
@@ -151,7 +243,7 @@ When declaring a variable, remember to consider what its purpose will be.  Ask y
 - Does the variable ever need to be negative?
 - How much memory should the variable take up?
 - What are the upper and lower limits of values of the variable?
-- Do I need a decimal number, or will an interger suffice?
+- Do I need a decimal number, or will an integer suffice?
 
 The above is not an exhuastive list, but if you can answer those questions, you will likely land on a good data type to use.
 
@@ -219,7 +311,7 @@ While higher dimensional arrays are rare and harder to understand intuitively, t
 
 You have probably noticed by now that C does not include a string data type.  Instead, individual letters are represented with the `char` data type. Each decimal value from  0 to 127 is mapped to a specific character per the ASCII (American Standard Code for Information Interchange) standard.  For example, the character `A` is represented by the decimal value 65. This is different from the character `a`, which is represented by the decimal value 97. You can find this standard by simply googling "ASCII Table" or by using a website like [ascii-code.com](https://www.ascii-code.com/). 
 
-> Note that some systems also have mappings for interger values 128-255.  However, C doesn't actually specify if a `char` is equivalent to a `uint8_t` or a `int8_t`. Each computer will vary whether a char has range -128 to 127 or 0 to 255.  If you aren't using `char`s for being characters, you're better off using one of the `stdint.h` values.
+> Note that some systems also have mappings for integer values 128-255.  However, C doesn't actually specify if a `char` is equivalent to a `uint8_t` or a `int8_t`. Each computer will vary whether a char has range -128 to 127 or 0 to 255.  If you aren't using `char`s for being characters, you're better off using one of the `stdint.h` values.
 
 Charaters in C can be initalized with single quotes or with their numeric equivalent:
 
