@@ -108,7 +108,7 @@ uint8_t b = 10;
 a = (float) b;
 ```
 
-Casting also happens *implicitly*, meaning that the compiler will take the liberty of converting your variables for you if you combine multiple types in an expression. If you assign one variable to that of another type, this happens automatically. So for 3xample we don't actually need the ``(float)`` in the above example, because the compiler knows that you are assigning a ``uint8_t`` to a ``float``. So the code below is equivalent to the code shown above and a cast to ``float`` is inserted by the compiler when ``b`` is assigned to ``a``:
+Casting also happens *implicitly*, meaning that the compiler will take the liberty of converting your variables for you if you combine multiple types in an expression. If you assign one variable to that of another type, for example, the compiler will cast for you. So we actually don't need the ``(float)`` in the above example, because the compiler knows that you are assigning a ``uint8_t`` to a ``float``. So the code below is equivalent to the code shown above and a cast to ``float`` is inserted by the compiler when ``b`` is assigned to ``a``:
 
 ```C
 float a;
@@ -118,9 +118,9 @@ a = b;
 
 Implicit casts also happen when expressions mix variables of different types. This happens because the processor hardware circuit, the part of the computer that actually carries out the computations, requires everything to be the same type before it can complete the calculation. Thus, before dividing or comparing two numbers (for example), they are converted to the same type before the calculation is carried out. Understanding the details of how this happens is pretty important.
 
-For example, lets say you wanted to divide two integers to get a decimal.  In C, floating point division is different from integer division (and they can't be mixed). Integer division will take two integers, divide them, and then truncate (or drop) any decimal portion in the result. This makes sense because integer data types can't represent decimal information anyway. Floating point division takes two floating point numbers and results in another floating point number - all of which are represented using either a ``float`` or a ``double`` (depending on the datatypes of the variables) and thus decimal portions are maintained. 
+For example, lets say you wanted to divide two integers to get a decimal.  In the hardware that implements the division, floating point division is different from integer division (and they can't be mixed). Integer division will take two integers, divide them, and then truncate (or drop) any decimal portion in the result. This makes sense because integer data types can't represent decimal information anyway. Floating point division takes two floating point numbers and results in another floating point number - all of which are represented using either a ``float`` or a ``double`` (depending on the datatypes of the variables) and thus decimal portions are maintained. 
 
-If you want the decimal part of the result to be maintained, we need to ensure we are using floating point division. To do this you can explictly cast one of the ints to a ``float`` (or a ``double``) before the calculation happens, then the other ``int`` will be implicitly cast before the division occurs and the result will also be a floating point number.
+If you want the decimal part of the result to be maintained, we need to ensure we are using floating point division. To do this you can explictly cast one of the ints to a ``float`` (or a ``double``) before the calculation happens, then the other ``int`` will be implicitly cast by the compiler before the division occurs and the result will also be a floating point number.
 
 The example below demonstrates how this works:
 ```C
@@ -143,7 +143,7 @@ The order of operations in C are shown in the following [table](https://www.tuto
 | Category | Operator | Associativity |
 | -------- | -------- | ------------- |
 | Postfix (function calls, array/pointer/struct access, and postfix inc/dec) | () [] -> . ++ -- | Left-to-right |
-| Unary (logical/binary not, prefix inc/dec, casting, address reference, sizeof) | ! ~ ++ -- (type)* & sizeof	| Right-to-left |
+| Unary (negative, logical/binary not, prefix inc/dec, casting, address reference, sizeof) | - ! ~ ++ -- (type)* & sizeof	| Right-to-left |
 | Multiplicative	| * / %	| Left-to-right |
 | Additive	| + -	| Left-to-right |
 | Shift	| << >>	| Left-to-right |
@@ -158,7 +158,7 @@ The order of operations in C are shown in the following [table](https://www.tuto
 | Assignment	| = += -= *= /= %=>>= <<= &= ^= \|=	| Right-to-left | 
 | Comma	| ,	| Left-to-right | 
 
-Notice that explicit casting happens before division, which happens before assignment (and thus implicit casting in the example above). 
+Notice that explicit casting happens before division, which happens before assignment. In the example with _c_ above, there is no explicit cast, so integer division is the highest priority. Then the result of the integer division is cast to a float when the assingnment happens.
 
 #### Literals in C
 Briefly, we also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
@@ -172,16 +172,43 @@ if ( check_small_enough(a) == true )
 ```
 
 By default, whole number literals are treated as having type ``int``. Numerical literals with a decimal point are treated as having type ``double``. If you want to specify a different type for a literal, you can sometimes do this by adding a suffix. 
-For example, ``125`` by default will be treated as an ``int``, but if ``125U`` will be treated as an unsigned. Similarly, ``3.14`` will be treated as a ``double`` by default, but ``3.14f`` will be treated as having type ``float``.  
+For example, ``125`` by default will be treated as an ``int``, but ``125U`` will be treated as an unsigned. Similarly, ``3.14`` will be treated as a ``double`` by default, but ``3.14f`` will be treated as having type ``float``.  
 
+Integer literals can be specified in either decimal or hexadecimal (using the prefix ``0x``). The GCC compiler also allows binary literals via the prefix ``0b``. As with integer literals, by default (and as long as the value fits) the compiler will treat the literal as having type ``int``. Adding a suffix of ``u`` or ``U`` will specify that it should be treated as unsigned. 
 
-Integer literals can be specified in a variety of different ways including in decimal, binary, and hexidecimal. To specify a literal in binary it should be prefixed with `0b` and to specify a literal in hexadecimal it should be prefixed with `0x`. 
-The interpretation of the value, however is dependent on the type. As shown below:
+While all of the following have a value of 5, the type varies depending on the suffix:
 ```C
-uint8_t a = 0b0101; // In this case a will have value 5 and will be stored as 0000 0101
-uint8_t b = 0xa5; // In this case b will be a single byte that contains 1010 0101
-int8_t c = 0xa5; // In this case b will be a single byte that contains 1010 0101
+5; // This will be treated as a (signed) int
+5U; // This will be treated as an unsigned int 
+0x5; // This will be treated as a (signed) int
+0x5U; // This will be treated as an unsigned int
+0b101; // This will be treated as a (signed) int
+0b101U; // This will be treated as an unsigned int
 ```
+
+#### Casting Between Sizes of the Same Type
+
+It is fairly common to need to cast between datatypes that are of the same type other than the fact that they have different sizes. 
+
+When casting from a smaller signed integer type to a larger signed integer type, the data bits are **sign** **extended**. Similarly, when casting from a smaller unsigned integer type to a larger unsigned integer type, the data bits are **zero extended**. This difference is so that, in both cases, the value represented will remain the same. 
+Making a variable larger only increases the range of possible values that can be stored and thus _casting up_ in size while keeping all other considerations the same should 
+always result in the same value be represented.
+
+When casting from a larger integer type to a smaller integer of the same type (either signed or unsigned), there is a good chance that the smaller type will not be able to hold the original value. When we cast this way the higher order bits of the value are _truncated_. This means all of the higher order bits are thrown away and the new smaller result simply stores the least significant bits corresponding to the new size. 
+
+
+
+
+#### Casting Between Types
+
+What actually happens when you cast between types depends on the two types.
+
+When casting between asigned and unsigned integer types, the cast 
+
+
+
+
+
 
 Decimal (or floating point) literals can be specified 
 
