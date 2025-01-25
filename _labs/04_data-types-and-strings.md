@@ -174,7 +174,7 @@ if ( check_small_enough(a) == true )
 By default, whole number literals are treated as having type ``int``. Numerical literals with a decimal point are treated as having type ``double``. If you want to specify a different type for a literal, you can sometimes do this by adding a suffix. 
 For example, ``125`` by default will be treated as an ``int``, but ``125U`` will be treated as an unsigned. Similarly, ``3.14`` will be treated as a ``double`` by default, but ``3.14f`` will be treated as having type ``float``.  
 
-Integer literals can be specified in either decimal or hexadecimal (using the prefix ``0x``). The GCC compiler also allows binary literals via the prefix ``0b``. As with integer literals, by default (and as long as the value fits) the compiler will treat the literal as having type ``int``. Adding a suffix of ``u`` or ``U`` will specify that it should be treated as unsigned. 
+Integer literals can be specified in either decimal or hexadecimal (using the prefix ``0x``). While not natively in C, the GCC compiler also allows binary literals via the prefix ``0b``. As with integer literals, by default (and as long as the value fits) the compiler will treat the literal as having type ``int``. Adding a suffix of ``u`` or ``U`` will specify that it should be treated as unsigned. 
 
 While all of the following have a value of 5, the type varies depending on the suffix:
 ```C
@@ -194,12 +194,30 @@ When casting from a smaller signed integer type to a larger signed integer type,
 Making a variable larger only increases the range of possible values that can be stored and thus _casting up_ in size while keeping all other considerations the same should 
 always result in the same value be represented.
 
-When casting from a larger integer type to a smaller integer of the same type (either signed or unsigned), there is a good chance that the smaller type will not be able to hold the original value. When we cast this way the higher order bits of the value are _truncated_. This means all of the higher order bits are thrown away and the new smaller result simply stores the least significant bits corresponding to the new size. 
+```C
+uint16_t a = 0xF123U; // Decimal value of 61731
+uint32_t b = a; // An implicit cast zero extends a to 0x0000F123 (still 61731)
+int16_t c = 0xF123; // Decimal value of -3805
+int32_t d = c; // An implicit cast sign extends c to 0xFFFFF123 (still -3805)
+```
 
+When casting from a larger integer type to a smaller integer of the same type (either signed or unsigned), there is a good chance that the smaller type will not be able to hold the original value. When we cast this way the higher order bits of the value are _truncated_. This means all of the higher order bits are thrown away and the new smaller result simply stores the least significant bits corresponding to the new size. This is similar to "underflow" in the sense that the value may change drastically if the original value is too high.
+
+```C
+uint16_t a = 0xF123U; // Decimal value of 61731
+uint8_t b = a; // An implicit cast truncates a to 0x23 (35)
+int16_t c = 0xF1F3; // Decimal value of -3597
+int32_t d = c; // An implicit cast truncates c to 0xF3 (-13)
+```
+
+It is also possible to cast between the floating point types ``double`` and ``float``. When this happens, the number of bits devoted to the exponent and mantissa fields changes. When converting from ``float`` to ``double``, the number of possible values that can be represented increases - meaning that precision is increased. When going the other way though, precision is lost meaning some of the resolution of the number may be lost. When this happens, the value of the ``double`` is converted to the closest possible number that can be represented by a ``float``. 
 
 
 
 #### Casting Between Types
+
+TODO: finish starting from here
+
 
 What actually happens when you cast between types depends on the two types.
 
@@ -212,7 +230,7 @@ When casting between asigned and unsigned integer types, the cast
 
 Decimal (or floating point) literals can be specified 
 
-TODO: finish starting from here
+
 
 ome in various types including decimal, hex, floating point, integers, strings, characters, and booleans. 
 
