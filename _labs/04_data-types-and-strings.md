@@ -359,7 +359,7 @@ uint8_t video_pixels[30*60][1280][720][3]; // an array representing 30 seconds o
                                            // with each pixel getting 3 values for red, green, and blue.
 ```
 
-While higher dimensional arrays are rare and harder to understand intuitively, they are useful because arrays are always stored in **contiguous** memory, meaning that the elements must go in order. To us, a 2D is represented as a table of values.  To a computer, the array is just one long list.  This grouping allows maximum packing efficiency when storing huge quantities of data. You'll get more experience with large arrays in the next lab.
+While higher dimensional arrays are a bit harder to understand intuitively, they are useful because arrays are always stored in **contiguous** memory, meaning that the elements are stored one after the other in a long line in the memory of your computer. To us, a 2D array is represented as a table of values.  To a computer, the array is just one long list.  This grouping allows maximum packing efficiency when storing huge quantities of data. You'll get more experience with large arrays in the next lab.
 
 ### Characters and Strings
 
@@ -367,7 +367,7 @@ You have probably noticed by now that C does not include a string data type. Ins
 
 _Note: Some systems also have mappings for integer values 128-255 (called the UNICODE standard).  However, C doesn't actually specify if a `char` is equivalent to a `uint8_t` or a `int8_t`. Each computer will vary whether a char has range -128 to 127 or 0 to 255.  If you aren't using `char`s for being characters, you're better off using one of the `stdint.h` values._
 
-Charaters in C can be initalized with single quotes or with their numeric equivalent:
+Characters in C can be initalized with single quotes or with their numeric equivalent:
 
 ```c
 // All of the chars will hold the same value.
@@ -414,7 +414,7 @@ for (int i = 0; i < MAX_STR_LEN; i++) {
 printf("%s\n", hello); // prints "HeLLo worLd!"
 ```
 
-To help you with these manipulations, the `string.h` library includes various string manipulation functions.  some of these include:
+To help you with these manipulations, the `string.h` library includes various string manipulation functions.  Some of these include:
 
 - `strlen()`, which returns the length of a string (not including the null terminator)
 - `sprintf()`, which works with the same formatting specifiers as `printf()`, but instead of printing to the terminal, it "prints" to an array or memory location.
@@ -424,7 +424,9 @@ To help you with these manipulations, the `string.h` library includes various st
 
 ### Using Functions with Arrays and Strings
 
-When arrays are first declared, they are stored in memory owned by the function that created the array (e.g. `main`. You will learn more about this later in the class). When that function ends, the array will be cleared from memory. Becuase the lifespan of an array is often very short, functions that manipulate or generate arrays usually don't return the array itself. Instead, these functions require the user to pass around pointers to the array as a parameter. Since an array's base is basically a pointer under the hood, passing arrays around like this means changes made to the array by a function will persist, even after the function is done.
+As with all variables, arrays are stored in memory. If a variable (or an array) is declared and created within a function it is stored in the memory belonging to that function. When a function returns, the memory associated with it is released and can be used for other things. This causes big problems if somewhere else in the code is still trying to access that memory. To account for this problem, arrays (and strings) that are needed after a function returns should not be declared or defined within that function. 
+
+Instead, these functions require the user to pass around pointers to the array as a parameter. Since an array's base is basically a pointer under the hood, passing arrays around like this means changes made to the array by a function will persist, even after the function is done.
 
 ```c
 // Bad function; the array data will be lost once the function returns
@@ -432,8 +434,9 @@ char* makeAString_bad() {
     return "I made a string!";
 }
 
-// Good function; the caller will declare an empty array and the function will populate it.  
-// Note though that the stringToFill will have to be large enough to fit the string or weird things will happen.
+// Good function; the caller will declare an empty array and then pass a pointer to it.
+// The function below will then populate or modify the string as needed.  
+// Note though that the stringToFill will have to be large enough to fit the string or weird and bad things will happen.
 void makeAString_good(char* stringToFill) {
     stringToFill = "I made a string!";
 }
@@ -445,7 +448,7 @@ As a programmer at any level, you will need to identify problems in your code an
 
 #### Intentional and Incremental Programming
 
-Intentional and incremental programming are two important mindsets to have while diving into software development. Intentional programming is a mindset that prioritizes writing code that is **clear, concise, and easy to understand**. In other words, the emphasis is on writing code that accurately reflects the your intentions rather than trying whatever and seeing if it sticks. Approaching a solution in code intentionally will inevitably be a lot more productive and easier to maintain and extend in the future.
+Intentional and incremental programming are two important mindsets to have while diving into software development. Intentional programming is a mindset that prioritizes writing code that is **clear, concise, and easy to understand**. In other words, the emphasis is on writing code that accurately reflects your intentions rather than trying whatever and seeing if it sticks. Approaching a solution in code intentionally will inevitably be a lot more productive and easier to maintain and extend in the future.
 
 Incremental programming, on the other hand, involves **dividing the solution you are trying to create into small, manageable chunks** that can be developed and tested individually. This allows for a more flexible, iterative approach to software development. This means that changes can be made easily and quickly, without having to completely overhaul the entire solution when something crashes or changes.
 
@@ -477,9 +480,9 @@ You'll be surprised to see how effective logging or printing variable values can
 
 #### Using a Logging Library
 
-Using regular `printf` statements to trace debug has some problems. If you have a lot of print statements in your code, it can be difficult to keep track of them all, and when you are done debugging, you have to go back and remove ecah one.
+Using regular `printf` statements to trace debug has some problems. If you have a lot of print statements in your code, it can be difficult to keep track of them all, and when you are done debugging, you have to go back and remove each one.
 
-To make this easier, you can use a logging library to help you debug your code. Logging libraries give you control over when the log messages are written to the console, allowing you to filter out messages based on their severity or other criteria. They also contain many helpful features for tracing messages back to the code. One such library is [log.c](https://github.com/rxi/log.c). This library provides a simple logging interface that you can use to log messages to the console. We have provided the `log.c` and `log.h` files in the lab repository. To use this library, you will need to include the `log.h` header file to the top of your code:
+To make this easier, you can use a logging library to help you debug your code. Logging libraries give you control over when the log messages are written to the console, allowing you to filter out messages based on their severity or other criteria. They also contain many helpful features for tracing messages back to the code. One such library is [log.c](https://github.com/rxi/log.c). This library provides a simple logging interface that you can use to log messages to the console. We have provided the `log.c` and `log.h` files in the lab repository. To use this library, you will need to include the `log.h` header file at the top of your code:
 
 ```c
 #include "log.h"
@@ -510,18 +513,28 @@ int value = 42;
 log_info("The value is %d", value);
 ```
 
-## Requirements
+## Requirements and Instructions
 
 In your repository, you will find files called `data.c` and `custom_strings.c`, along with their equivalent `.h` files.  These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
 
 Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
 
-To run the pass off script, you can run:
+To compile and run your program (as defined in "main.c") you can run the following commands:
+
+```bash
+gcc main.c data.c custom_strings.c -o lab4_main
+./lab4_main
+```
+
+To compile and run the pass off script, you can run:
 
 ```bash
 gcc lab4_passoff.o data.c custom_strings.c -o passoff
 ./passoff
 ```
+The gcc command above will compile your ".c" files and then link them together with the "lab4_passoff.o" file that contains our test code. 
+
+Note: You will need to also add log.c to the above commands if you choose to use it in your process.
 
 ### Tests
 
@@ -615,4 +628,7 @@ Each of the following words will be tested for each position (0-3):
 
 ## Explore More
 
+- [Data Types in C](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
+- [Automatic Conversions in C] (https://en.cppreference.com/w/c/language/conversion)
+- [C Arrays and Their Storage in Memory](https://www.geeksforgeeks.org/c-arrays/?ref=shm)
 - [Functions in String.h](https://cplusplus.com/reference/cstring/) (note that this library is technically for C++, but the C library is included in that language)
