@@ -158,7 +158,7 @@ The order of operations in C are shown in the following [table](https://www.tuto
 | Assignment	| = += -= *= /= %=>>= <<= &= ^= \|=	| Right-to-left | 
 | Comma	| ,	| Left-to-right | 
 
-Notice that explicit casting happens before division, which happens before assignment. In the example with _c_ above, there is no explicit cast, so integer division is the highest priority. Then the result of the integer division is cast to a float when the assingnment happens.
+Notice that explicit casting happens before division, which happens before assignment. In the example with ``c`` above, there is no explicit cast, so integer division is the highest priority. Then the result of the integer division is cast to a float when the assingnment happens.
 
 #### Literals in C
 Briefly, we also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
