@@ -20,7 +20,6 @@ C is a [strongly typed language](https://en.wikipedia.org/wiki/Strong_and_weak_t
 
 Since C is strongly typed, it is essential that you understand the use cases for each type. A common mistake C programmers make is picking types that are either:
 
-
 - inconsistant across different architechtures and compilers,
 - too small or cannot hold the correct values,
 - or types that don't reflect your purpose.
@@ -31,13 +30,21 @@ As a C programmer, you must weigh all these factors and more. This lab will expo
 
 In the C Programming lab, you worked with a few of C's _native_ data types, those that are implicitly defined in C without `#include`-ing any other libraries. Some things you need to consider and operations you should know are listed below.
 
-### Inconsistant sizes
+### Inconsistant Sizes
 
 We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including integers and floating point numbers.  It is important to note that the native integers in C (namely `short`, `int`, and `long`) do not have a defined length; C leaves it up to the computer manfacturer (and/or the writers of the compiler for that processor) to decide how many bits an `int` will take in memory.
 
-This peculariarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, On a 64-bit computer (like most modern computers), an `int` will be just fine. However, the same (working) program compiled on a 32-bit computer will have `int` variables with a maximum only around 32,000, causing overflow errors and nearly untraceable bugs.
+This peculariarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` will be just fine on a 64-bit computer (like most modern computers). However, the same (working) program compiled on a 32-bit computer will have `int` variables with a maximum of only around 32,000, causing overflow errors and nearly untraceable bugs.
 
-To be sure that you know what size your variables will take up, you can use another library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned integer allowed on your system, or `stdbool.h`, which adds `bool`s (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
+There are several methods to check the size of data that your variables will take up. First, we can use the built-in C function `sizeof()`. This will tell you the number of **bytes** that a data type holds (to get the total bits, multiply the returned nuber of bytes by 8). We can either pass `sizeof` a variable, or we can pass it the name of a data type directly:
+
+```c
+int n = 2283;
+printf("%d\n", sizeof(n))    // Prints the size of n in bytes
+printf("%d\n", sizeof(char)) // Prints the number of bytes used by a char
+```
+
+Another way to be sure that you know what size your variables will take up is to use another library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned integer allowed on your system, or `stdbool.h`, which adds `bool`s (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
 
 One of the most common libraries you'll see is `stdint.h`, which as you learned last week, includes definitions for several integers (both signed and unsigned) with an explicit number of bits.  Because the sizes and signedness of the those integers are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.  
 
@@ -253,13 +260,13 @@ The following rules are used to describe how this casting will occur (in order o
     - If both operands are either signed or unsigned, then the smaller type is converted to the larger one.
     - If the unsigned operand is larger (or if both are the same size), then the signed operand is converted to the unsigned type.
     - If the unsigned operand is smaller and the signed type can represent all possible values of the unsigned type, then the unsigned operand is converted to the signed type.
-    - Both operands are converted to an unsigned of the same length as the signed operand. 
+    - If the unsigned operand is smaller and the signed type can't represent all possible values of the unsigned, then both operands are converted to an unsigned of the same length as the signed operand. 
 
 More details on this process are available [here](https://en.cppreference.com/w/c/language/conversion).
 
 In all of these cases, after the operation is performed, if the result of the calculation is assigned to a variable of another type, then an additional cast is carried out before storing the result.
 
-Lets just go through a few more examples to demonstrate how this works.
+Lets go through a few more examples to demonstrate how this works.
 
 ```C
 uint8_t a = 10;
@@ -346,7 +353,7 @@ for (int i = 0; i < ARRAY_LEN; i++) {
 
 ```
 
-You'll also see arrays with multiple dimensions.  You can think of these arrays tables or a grids. They can have many axes.
+You'll also see arrays with multiple dimensions.  You can think of these arrays as tables or grids. They can have many axes.
 
 ```c
 char sentences[10][50]; // an array of 10 arrays of 50 chars; in other words,
@@ -422,9 +429,9 @@ To help you with these manipulations, the `string.h` library includes various st
 - `strncat()`, which allows you to concatenate the first `n` bytes of string A to the end of string B.
 - `strncmp()`, which allows you to compare `n` bytes of string A and B.
 
-### Using Functions with Arrays and Strings
+#### Using Functions with Arrays and Strings
 
-As with all variables, arrays are stored in memory. If a variable (or an array) is declared and created within a function it is stored in the memory belonging to that function. When a function returns, the memory associated with it is released and can be used for other things. This causes big problems if somewhere else in the code is still trying to access that memory. To account for this problem, arrays (and strings) that are needed after a function returns should not be declared or defined within that function. 
+As with all variables, arrays are stored in memory. If a variable (or an array) is declared and created within a function, it is stored in the memory belonging to that function. When a function returns, the memory associated with it is released and can be used for other things. This causes big problems if somewhere else in the code is still trying to access that memory. To account for this problem, arrays (and strings) that are needed after a function returns should not be declared or defined within that function. 
 
 Instead, these functions require the user to pass around pointers to the array as a parameter. Since an array's base is basically a pointer under the hood, passing arrays around like this means changes made to the array by a function will persist, even after the function is done.
 
@@ -442,11 +449,11 @@ void makeAString_good(char* stringToFill) {
 }
 ```
 
-### Debugging Help
+## Debugging
 
 As a programmer at any level, you will need to identify problems in your code and fix them. Below is some advice on different programming and debugging methods.
 
-#### Intentional and Incremental Programming
+### Intentional and Incremental Programming
 
 Intentional and incremental programming are two important mindsets to have while diving into software development. Intentional programming is a mindset that prioritizes writing code that is **clear, concise, and easy to understand**. In other words, the emphasis is on writing code that accurately reflects your intentions rather than trying whatever and seeing if it sticks. Approaching a solution in code intentionally will inevitably be a lot more productive and easier to maintain and extend in the future.
 
@@ -454,7 +461,7 @@ Incremental programming, on the other hand, involves **dividing the solution you
 
 Handling large amounts of data in C is no small task (as you will see in the next lab). It requires attention to detail and a good understanding of the code you are writing and what it does. As the projects you do become more complex and involved, it is important to remember that **the best line of defense against buggy code is a good offense: intentional and incremental programming.**
 
-#### Trace debugging
+### Trace debugging
 
 Trace debugging is a technique used to identify the root cause of a problem in a program by logging the values of variables and other information at specific points in time. This trace data can provide insight into how your program is actually behaving.
 
@@ -478,7 +485,7 @@ printf("Modified Str:\t%s\n", original_str);    // <--- Trace debug print statem
 
 You'll be surprised to see how effective logging or printing variable values can go to ensure a smooth development experience. Trace debugging helps identify and fix bugs, improve the performance of your program, and improve the overall reliability of your software.
 
-#### Using a Logging Library
+### Using a Logging Library
 
 Using regular `printf` statements to trace debug has some problems. If you have a lot of print statements in your code, it can be difficult to keep track of them all, and when you are done debugging, you have to go back and remove each one.
 
@@ -513,13 +520,13 @@ int value = 42;
 log_info("The value is %d", value);
 ```
 
-## Requirements and Instructions
+## Lab Requirements and Instructions
 
 In your repository, you will find files called `data.c` and `custom_strings.c`, along with their equivalent `.h` files.  These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
 
 Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
 
-To compile and run your program (as defined in "main.c") you can run the following commands:
+To compile and run your program (as defined in `main.c`) you can run the following commands:
 
 ```bash
 gcc main.c data.c custom_strings.c -o lab4_main
@@ -618,13 +625,15 @@ Each of the following words will be tested for each position (0-3):
 
 ## Submission
 
+- Pass off to a TA:
+  - Show the output of the passoff executable
+  - Show how you implemented your functions in `data.c` and `custom_strings.c`
+
 - Complete the Learning Suite pass off quiz.
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
 
-- To pass off to a TA
-  - Show the output of the passoff executable
-  - Show how you implemented your functions in `data.c` and `custom_strings.c`
+
 
 ## Explore More
 
