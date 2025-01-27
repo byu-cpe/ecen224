@@ -36,15 +36,15 @@ We already discussed some of C's data types in the last lab.  Recall that there 
 
 This peculariarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` will be just fine on a 64-bit computer (like most modern computers). However, the same (working) program compiled on a 32-bit computer will have `int` variables with a maximum of only around 32,000, causing overflow errors and nearly untraceable bugs.
 
-There are several methods to check the size of data that your variables will take up. First, we can use the built-in C function `sizeof()`. This will tell you the number of **bytes** that a data type holds (to get the total bits, multiply the returned nuber of bytes by 8). We can either pass `sizeof` a variable, or we can pass it the name of a data type directly:
+There are several methods to check the size of data that your variables will take up. First, we can use the built-in C function `sizeof()`. This will tell you the number of **bytes** that a data type holds (to get the total bits, multiply the returned integer of bytes by 8). We can either pass `sizeof` a variable, or we can pass it the name of a data type directly:
 
 ```c
 int n = 2283;
-printf("%d\n", sizeof(n))    // Prints the size of n in bytes
-printf("%d\n", sizeof(char)) // Prints the number of bytes used by a char
+printf("%d\n", sizeof(n));      // Prints the size of n in bytes
+printf("%d\n", sizeof(char)*8); // Prints the number of bits in a char
 ```
 
-Another way to be sure that you know what size your variables will take up is to use another library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned integer allowed on your system, or `stdbool.h`, which adds `bool`s (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
+Another way to be sure that you know what size your variables will take up is to use a library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned integer allowed on your system, or `stdbool.h`, which adds `bool`s (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
 
 One of the most common libraries you'll see is `stdint.h`, which as you learned last week, includes definitions for several integers (both signed and unsigned) with an explicit number of bits.  Because the sizes and signedness of the those integers are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.  
 
@@ -168,7 +168,7 @@ The order of operations in C are shown in the following [table](https://www.tuto
 Notice that explicit casting happens before division, which happens before assignment. In the example with ``c`` above, there is no explicit cast, so integer division is the highest priority. Then the result of the integer division is cast to a float when the assignment happens.
 
 #### Literals in C
-Briefly, we also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
+We also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
 
 To demonstrate what we mean, ``125``, ``3.14``, ``0x1234``, ``"Yipee!\n"`` and ``true`` are each examples of literals in the code below.
 ```C
@@ -185,17 +185,17 @@ Integer literals can be specified in either decimal or hexadecimal (using the pr
 
 While all of the following have a value of 5, the type varies depending on the suffix:
 ```C
-5; // This will be treated as a (signed) int
-5U; // This will be treated as an unsigned int 
-0x5; // This will be treated as a (signed) int
-0x5U; // This will be treated as an unsigned int
-0b101; // This will be treated as a (signed) int
+5;      // This will be treated as a (signed) int
+5U;     // This will be treated as an unsigned int 
+0x5;    // This will be treated as a (signed) int
+0x5U;   // This will be treated as an unsigned int
+0b101;  // This will be treated as a (signed) int
 0b101U; // This will be treated as an unsigned int
 ```
 
 #### Casting Between Sizes of the Same Type
 
-It is fairly common to need to cast between datatypes that are of the same type other than the fact that they have different sizes. 
+It is fairly common to need to cast between datatypes that are of the same type but different sizes. 
 
 When casting from a smaller signed integer type to a larger signed integer type, the data bits are **sign** **extended**. Similarly, when casting from a smaller unsigned integer type to a larger unsigned integer type, the data bits are **zero extended**. This difference is so that, in both cases, the value represented will remain the same. 
 Making a variable larger only increases the range of possible values that can be stored and thus _casting up_ in size  should always result in the same value being represented.
