@@ -34,7 +34,7 @@ In the C Programming lab, you worked with a few of C's _native_ data types, thos
 
 We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including integers and floating point numbers.  It is important to note that the native integers in C (namely `short`, `int`, and `long`) do not have a defined length; C leaves it up to the computer manfacturer (and/or the writers of the compiler for that processor) to decide how many bits an `int` will take in memory.
 
-This peculariarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` will be just fine on a 64-bit computer (like most modern computers). However, the same (working) program compiled on a 32-bit computer will have `int` variables with a maximum of only around 32,000, causing overflow errors and nearly untraceable bugs.
+This peculiarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` will be just fine on a 64-bit computer (like most modern computers). However, the same (working) program compiled on a 32-bit computer will have `int` variables with a maximum of only around 32,000, causing overflow errors and nearly untraceable bugs.
 
 There are several methods to check the size of data that your variables will take up. First, we can use the built-in C function `sizeof()`. This will tell you the number of **bytes** that a data type holds (to get the total bits, multiply the returned integer of bytes by 8). We can either pass `sizeof` a variable, or we can pass it the name of a data type directly:
 
@@ -75,7 +75,8 @@ When doing math on paper, if you run out of digits, you would simply add another
 Overflow and underflow have very real impacts on code written in C:
 
 ```C
-// Because an unsigned char has a maximum value of 255 (and adding 1 will overflow back to 0), x will always be less than 500.  Thus, this for-loop will never end.
+// Because an unsigned char has a maximum value of 255 (and adding 1 will overflow back to 0), 
+// x will always be less than 500.  Thus, this for-loop will never end.
 // In this scenario, it would be better to use a larger data type.
 for (uint8_t x = 0; x < 500; x++) {
     ...
@@ -89,7 +90,8 @@ uint32_t numFrogsInPond = 0;
 numFrogsInPond++; // numFrogsInPond = 1
 // Next, the sensor sees the frog leave. There is a glitch, the frog is counted as leaving twice.
 numfrogsInPond -= 2 // numFrogsInPond = 1-2 = 4,294,967,295
-// 4.29 billion frogs is simply too many frogs in a small pond. Your frog pond management system has broken. Everyone is sad.
+// 4.29 billion frogs is simply too many frogs in a small pond. 
+// Your frog pond management system has broken. Everyone is sad.
 ```
 
 Seeing these errors with overflow and underflow, you may be inclined to simply use the largest data type whenever possible.  However, in some cases memory space is severely limited or can negativelly impact the performance of your program.
@@ -290,7 +292,7 @@ This is surprising, because we would expect calculations to arrive at the same r
 
 Lets step through this. ``b`` is of type ``uint32_t`` and ``c`` is of type ``int32_t``. The parenthesis around ``b-c`` give it first priority according the order of operations defined above. Both operands are the size as an ``int``, so integer promotion is not needed. However, ``b`` and ``c`` _are_ of different types. Since both variables are of the same size, ``c`` is cast to match the type of ``b`` or ``unint32_t`` and then we can carry out the subtraction. We then evaluate ``0 - 1`` which overflows up the maximum value for a ``uint32_t`` and the result is also of type ``uint32_t``. When we go to carry out division with ``a_int``, we now need to cast ``a_int`` to a ``uint32_t`` for the same reasons as we casted when doing subtraction. This also wraps to the maximum value for a ``uint32_t``, so the division results in a value of 1. 
 
-On the other hand, when we go to carry out division with ``a_float``, we now have an operand of type ``float` in the expression. As such, the compiler will implicitly cast our subtraction result (the maximum value for a ``uint32_t``) to a ``float`` before doing division. However because ``a_float`` was defined as a ``float`` and does not need to be cast, we end up dividing -1 by a very large number resulting in a negative number very close to zero. 
+On the other hand, when we go to carry out division with ``a_float``, we now have an operand of type ``float`` in the expression. As such, the compiler will implicitly cast our subtraction result (the maximum value for a ``uint32_t``) to a ``float`` before doing division. However because ``a_float`` was defined as a ``float`` and does not need to be cast, we end up dividing -1 by a very large number resulting in a negative number very close to zero. 
 
 #### Summary
 
@@ -539,7 +541,7 @@ To compile and run the pass off script, you can run:
 gcc lab4_passoff.o data.c custom_strings.c -o passoff
 ./passoff
 ```
-The gcc command above will compile your ".c" files and then link them together with the "lab4_passoff.o" file that contains our test code. 
+The gcc command above will compile your `.c` files and then link them together with the `lab4_passoff.o` file that contains our test code. 
 
 Note: You will need to also add log.c to the above commands if you choose to use it in your process.
 
