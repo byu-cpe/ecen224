@@ -66,7 +66,7 @@ Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You
 
 Generate a precompiled version of your `simple.c` code by running the following terminal command:
 ```bash
-gcc -S simple.c > simple_preprocessed.txt
+gcc -E simple.c > simple_preprocessed.txt
 ```
 Look through the generated text file. Notice that a lot of extra text has been added, but at the last few lines of the text file you will find your original code. 
 
