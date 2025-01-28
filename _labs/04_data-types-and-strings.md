@@ -62,11 +62,10 @@ All data types, native or not, have a maximum and minimum value. What happens wh
 
 When doing math on paper, if you run out of digits, you would simply add another digit. However, computers have limited bits for representing numbers.  If a variable is at the maximum value, adding one will simply cause the carried over number to be truncated.
 
-```C
+```c
 // Conventional Math
 9999 + 0001 = 10000 
 // 9999 has 4 digits and contains the maximum value for a 4 digit number.  When we add 1, we need to add a 5th digit, 1
-
 // Limited digit math
 0b11111111 + 0b00000001 = 0b00000000 
 // 0b11111111 = 255 is the maximum value for a uint8_t. Adding 1 will cause overflow, and the expression evaluates to 0.
@@ -74,7 +73,8 @@ When doing math on paper, if you run out of digits, you would simply add another
 
 Overflow and underflow have very real impacts on code written in C:
 
-```C
+Overflow Example:
+```c
 // Because an unsigned char has a maximum value of 255 (and adding 1 will overflow back to 0), 
 // x will always be less than 500.  Thus, this for-loop will never end.
 // In this scenario, it would be better to use a larger data type.
@@ -82,7 +82,7 @@ for (uint8_t x = 0; x < 500; x++) {
     ...
 }
 ```
-
+Underflow Example:
 ```c
 // Imagine a sensor that detects the number of frogs entering and leaving a small pond.
 uint32_t numFrogsInPond = 0;
@@ -111,7 +111,7 @@ Sometimes, you will have a variable that is the incorrect type for the operation
 #### Explicit vs Implicit Casting 
 Casting can be done *explicitly* - meaning when you, the programmer, write code saying you want a cast to occur. An example of casting an integer to a float is shown below:
 
-```C
+```c
 float a;
 uint8_t b = 10;
 a = (float) b;
@@ -119,7 +119,7 @@ a = (float) b;
 
 Casting also happens *implicitly*, meaning that the compiler will take the liberty of converting your variables for you if you combine multiple types in an expression. If you assign one variable to that of another type, for example, the compiler will cast for you. So we actually don't need the ``(float)`` in the above example, because the compiler knows that you are assigning a ``uint8_t`` to a ``float``. So the code below is equivalent to the code shown above and a cast to ``float`` is inserted by the compiler when ``b`` is assigned to ``a``:
 
-```C
+```c
 float a;
 uint8_t b = 10;
 a = b;
@@ -132,7 +132,7 @@ For example, lets say you wanted to divide two integers to get a decimal.  In th
 If you want the decimal part of the result to be maintained, we need to ensure we are using floating point division. To do this you can explictly cast one of the ints to a ``float`` (or a ``double``) before the calculation happens, then the other ``int`` will be implicitly cast by the compiler before the division occurs and the result will also be a floating point number.
 
 The example below demonstrates how this works:
-```C
+```c
 int32_t a = 5;
 int32_t b = 2;
 float c, d;
@@ -173,7 +173,7 @@ Notice that explicit casting happens before division, which happens before assig
 We also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
 
 To demonstrate what we mean, ``125``, ``3.14``, ``0x1234``, ``"Yipee!\n"`` and ``true`` are each examples of literals in the code below.
-```C
+```c
 double a = 125 / 3.14;
 uint16_t b = 0x1234;
 if ( check_small_enough(a) == true )
@@ -186,7 +186,7 @@ For example, ``125`` by default will be treated as an ``int``, but ``125U`` will
 Integer literals can be specified in either decimal or hexadecimal (using the prefix ``0x``). While not natively in C, the GCC compiler also allows binary literals via the prefix ``0b``. As with integer literals, by default (and as long as the value fits) the compiler will treat the literal as having type ``int``. Adding a suffix of ``u`` or ``U`` will specify that it should be treated as unsigned. 
 
 While all of the following have a value of 5, the type varies depending on the suffix:
-```C
+```c
 5;      // This will be treated as a (signed) int
 5U;     // This will be treated as an unsigned int 
 0x5;    // This will be treated as a (signed) int
@@ -202,7 +202,7 @@ It is fairly common to need to cast between datatypes that are of the same type 
 When casting from a smaller signed integer type to a larger signed integer type, the data bits are **sign** **extended**. Similarly, when casting from a smaller unsigned integer type to a larger unsigned integer type, the data bits are **zero extended**. This difference is so that, in both cases, the value represented will remain the same. 
 Making a variable larger only increases the range of possible values that can be stored and thus _casting up_ in size  should always result in the same value being represented.
 
-```C
+```c
 uint16_t a = 0xF123U; // Decimal value of 61731
 uint32_t b = a; // An implicit cast zero extends a to 0x0000F123 (still 61731)
 int16_t c = 0xF123; // Decimal value of -3805
@@ -211,7 +211,7 @@ int32_t d = c; // An implicit cast sign extends c to 0xFFFFF123 (still -3805)
 
 When casting from a larger integer type to a smaller integer of the same type (either signed or unsigned), there is a good chance that the smaller type will not be able to hold the original value. When we cast this way the higher order bits of the value are _truncated_. This means all of the higher order bits are thrown away and the new smaller result simply stores the least significant bits corresponding to the new size. When this happens the value may change drastically if the original value is too high to be represented in the new type.
 
-```C
+```c
 uint16_t a = 0xF123U; // Decimal value of 61731
 uint8_t b = a; // An implicit cast truncates a to 0x23 (35)
 int16_t c = 0xF1F3; // Decimal value of -3597
@@ -231,13 +231,13 @@ In short, if the original value lies between zero and the maximum positive value
 However, if the original value of the variable does not fall within the valid range of the new type, the value will change. 
 
 For example, when casting from a signed int to an unsigned int if the number is negative (and thus has a 1 in the sign bit position), the new value will be a very large positive number. 
-```C
+```c
 int8_t a = 0xF3; // Value is -13
 uint8_t b = a; // Bits are the same (1111 0011), but new value is 243
 ```
 
 Similarly, when casting from an unsigned to a signed int, large values will become negative numbers. 
-```C
+```c
 uint8_t a = 0xFFu; // Value is 255
 int8_t b = a; // Bits are the same (1111 1111), but new value is -1
 ```
@@ -270,7 +270,7 @@ In all of these cases, after the operation is performed, if the result of the ca
 
 Lets go through a few more examples to demonstrate how this works.
 
-```C
+```c
 uint8_t a = 10;
 uint8_t b = 255;
 uint32_t c = a + b; // Both values are promoted to ints and the result evaluates to 265
@@ -280,7 +280,7 @@ uint8_t d = a + b; // This will evaluate to 265, then be cast to a uint8_t w/ va
 In the above example, ``a`` and ``b`` are promoted to type ``int`` before the calculation happens via integer promotion. This promotion allows them to avoid overflow when adding 10 to 255. They are then cast back to either 32 or 8 bits depending on the type of the variable they are being assigned to. When casting to ``uint8_t`` truncation occurs and we recieve a final value of 9.
 
 Now take a look at a more complicated example. 
-```C
+```c
     int32_t a_int = -1;
     float a_float = -1;
     uint32_t b = 0;
