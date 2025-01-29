@@ -149,6 +149,8 @@ Alternativelly, ``d`` evaluates to 2.5 because you, the programmer, explicitly c
 Notice that in the example above (where ``c`` became 2.0), that the result was cast to a floating point even though the decimal points were truncated. This happens because of the order of operations. 
 
 The order of operations in C are shown in the following [table](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm) (highest/first priority at the top, lowest/last priority at the bottom):
+
+
 | Category | Operator | Associativity |
 | -------- | -------- | ------------- |
 | Postfix (function calls, array/pointer/struct access, and postfix inc/dec) | () [] -> . ++ -- | Left-to-right |
