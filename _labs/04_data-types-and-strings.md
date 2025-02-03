@@ -101,7 +101,7 @@ If you were to instead store each color value within a ``uint64_t``, the exact s
 Similar concepts are important when sending data between two computers or any two systems. For underwater communication (say between two underwater robots), we have to use sound to communicate and the amount of data we can send is very limited (like 32 bytes per second). 
 In this case, only four ``double`` sized variables could be sent per packet, but 32 ``uint8_t`` variables could be sent. 
 
-In many contexts, you can determine a limit on the range of values that are possible and select a datatype based upon this. For example, on a typical semester we often have somewhere around 100 students in ECEN 225.  If we were to write a program that counts the number of students in the class, a ``uint8_t`` would suffice just fine.  However, if in a future year 256 students were to register, than we would have problems. Similarly, if we needed to use that variable to calculate how many more students got an A than those that got a B - and thus need to do subtraction between multiple variables, we might again have problems.
+In many contexts, you can determine a limit on the range of values that are possible and select a datatype based upon this. For example, on a typical semester we often have somewhere around 100 students in ECEN 225.  If we were to write a program that counts the number of students in the class, a ``uint8_t`` would suffice just fine.  However, if in a future year 256 students were to register, than we would have problems. 
 It is important to think about these details when determining the datatype for any variable you select when programing in C. 
 
 ### Casting, Order of Operations, and Constants
