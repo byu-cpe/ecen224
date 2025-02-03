@@ -46,7 +46,7 @@ printf("%d\n", sizeof(char)*8); // Prints the number of bits in a char
 
 Another way to be sure that you know what size your variables will take up is to use a library that defines additional datatypes.  For example, the `stdlib.h` library adds `size_t`, which represents the maximum unsigned integer allowed on your system, or `stdbool.h`, which adds `bool`s (bool is not actually a primative data type, meaning it's not built into C by default!). You can even create your own data types with [typedef](https://en.wikipedia.org/wiki/Typedef), though we won't cover that extensively in this class. By convention, data types that are not native to C are suffixed with `_t` to show they are a type.
 
-One of the most common libraries you'll see is `stdint.h`, which as you learned last week, includes definitions for several integers (both signed and unsigned) with an explicit number of bits.  Because the sizes and signedness of the those integers are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.  
+One of the most common libraries you'll see is `stdint.h` which, as you learned last week, includes definitions for several integers (both signed and unsigned) with an explicit number of bits.  Because the sizes and signedness of the those integers are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.  
 
 
 ```c
