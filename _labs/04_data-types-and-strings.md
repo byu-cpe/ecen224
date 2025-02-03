@@ -642,6 +642,6 @@ Each of the following words will be tested for each position (0-3):
 ## Explore More
 
 - [Data Types in C](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
-- [Automatic Conversions in C] (https://en.cppreference.com/w/c/language/conversion)
+- [Automatic Conversions in C](https://en.cppreference.com/w/c/language/conversion)
 - [C Arrays and Their Storage in Memory](https://www.geeksforgeeks.org/c-arrays/?ref=shm)
 - [Functions in String.h](https://cplusplus.com/reference/cstring/) (note that this library is technically for C++, but the C library is included in that language)
