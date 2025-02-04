@@ -545,8 +545,6 @@ gcc lab4_passoff.o data.c custom_strings.c -o passoff
 ```
 The gcc command above will compile your `.c` files and then link them together with the `lab4_passoff.o` file that contains our test code. 
 
-Note: You will need to also add log.c to the above commands if you choose to use it in your process.
-
 ### Tests
 
 Your code will be tested with the following inputs:
