@@ -153,31 +153,38 @@ We also give you `log.h` and `log.c` files that you can find under the `/lib` fo
 
 You must demonstrate your understanding of the `display` and `buttons` libraries and how to use them by accomplishing the following:
 
-1. If no button is pressed nothing should change on your display.
+1. Implement each of the following functions:
 
-2. When the up button is pressed: 
-    - Clear the screen to white.
-    - Draw filled in green rectangle that covers the first 20 rows of pixels at the top of the screen.
-    - Draw filled in red rectangle that covers the last 20 rows of pixels at the bottom of the screen.
-    - In the center of the screen, draw a pound-sign (bang/hash/etc.) that is exactly centered using a black color and a 3 px line weight. Its dimensions should 50x50px.
-    - The previous hash should be inside and centered in a yellow circle with a 3 px line width and a 30 px radius.
-    - The rest of the screen should be white. 
-  
-3. When the down button is pressed: 
-    - Clear the screen to white.
-  
-4. When the right button is pressed: 
-    - Clear the screen to white.
-    - Draw "Hello world!" centered vertically and horizontally repeating 5 times in Font8 in different colors.
-  
-5. When the left button is pressed: 
-    - Clear the screen to white.
-    - Experiment with drawing different numbers and characters of different sizes and colors.
-    - The screen should have at least 10 digits and 10 characters.
-  
-6. When the center button is pressed: 
-    - Clear the screen to white
-    - Display the `byu_og.bmp` image from the `pic` directory.
+    a. **clearScreen**: Clears the screen to white
+
+    b. **drawHelloWorld**: Draws hello world on the screen 10 times in different colors
+
+    c. **drawChars**: Draw 10 chars of various values, sizes, colors, and locations onto the screen
+
+    d. **drawStars**: Draws multiple starts onto the screen
+
+    e. **drawFlag**: Uses at least 5 functions from `display.h` to draw any flag you wish.  3 of the `display_draw_###` functions must be unique.
+
+    Make and test each of these functions *before* you create the menu
+
+2. Implement a menu functionality using `drawMenu` and `main`.  Your menu should have the following functionality:
+
+    a. The menu draws the strings contained in the "entries" array. Use an 8 point font.
+    
+    b. When no button is pressed, nothing happens.
+
+    c. One entry is selected at a time, which is represented by being highlighted in a different color.
+
+    d. Pressing the up or down button will change the selected entry.
+
+    e. Pressing the right button on the selected entry will run the function with the associated name.  For example, the pressed the right button when the entry "Flag" is selected will cause the `drawFlag` to run.
+
+    f. After a right button press, the code should wait 2 seconds, then redraw the menu.
+
+    g. The selection should "wrap" from top to bottom.  In other words, if you press the down button while you have the bottom entry selected, the selection will move to the top entry, and if you press the top entry when the bottom
+
+
+// TODO: Add an example video of this code working
 
 ## Submission
 
