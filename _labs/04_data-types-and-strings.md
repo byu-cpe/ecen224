@@ -48,7 +48,6 @@ Another way to be sure that you know what size your variables will take up is to
 
 One of the most common libraries you'll see is `stdint.h` which, as you learned last week, includes definitions for several integers (both signed and unsigned) with an explicit number of bits.  Because the sizes and signedness of the those integers are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.  
 
-
 ```c
 unsigned int x = 40; // Acceptable, but unreliable. How big is this?
 uint32_t y = 40;     // You know that y will always have 32 bits.
@@ -74,6 +73,7 @@ When doing math on paper, if you run out of digits, you would simply add another
 Overflow and underflow have very real impacts on code written in C:
 
 Overflow Example:
+
 ```c
 // Because an unsigned char has a maximum value of 255 (and adding 1 will overflow back to 0), 
 // x will always be less than 500.  Thus, this for-loop will never end.
@@ -82,7 +82,9 @@ for (uint8_t x = 0; x < 500; x++) {
     ...
 }
 ```
+
 Underflow Example:
+
 ```c
 // Imagine a sensor that detects the number of frogs entering and leaving a small pond.
 uint32_t numFrogsInPond = 0;
@@ -95,20 +97,21 @@ numfrogsInPond -= 2 // numFrogsInPond = 1-2 = 4,294,967,295
 ```
 
 Seeing these errors with overflow and underflow, you may be inclined to simply use the largest data type whenever possible.  However, in some cases memory space is severely limited or can negativelly impact the performance of your program.
-For example, each color value of an 8-bit color image exactly fits within a uint8_t  (or one byte). With a resolution of 3840 x 2160 and 3 color values per pixel, the approximate (uncompressed) size of a 4K image is about 24.8 MB. 
+For example, each color value of an 8-bit color image exactly fits within a uint8_t  (or one byte). With a resolution of 3840 x 2160 and 3 color values per pixel, the approximate (uncompressed) size of a 4K image is about 24.8 MB.
 If you were to instead store each color value within a ``uint64_t``, the exact same image would take up 199 MB - thats almost a GB for every five images! All that extra space is just storing zeros with no useful information.
 
-Similar concepts are important when sending data between two computers or any two systems. For underwater communication (say between two underwater robots), we have to use sound to communicate and the amount of data we can send is very limited (like 32 bytes per second). 
-In this case, only four ``double`` sized variables could be sent per packet, but 32 ``uint8_t`` variables could be sent. 
+Similar concepts are important when sending data between two computers or any two systems. For underwater communication (say between two underwater robots), we have to use sound to communicate and the amount of data we can send is very limited (like 32 bytes per second).
+In this case, only four ``double`` sized variables could be sent per packet, but 32 ``uint8_t`` variables could be sent.
 
-In many contexts, you can determine a limit on the range of values that are possible and select a datatype based upon this. For example, on a typical semester we often have somewhere around 100 students in ECEN 225.  If we were to write a program that counts the number of students in the class, a ``uint8_t`` would suffice just fine.  However, if in a future year 256 students were to register, than we would have problems. 
-It is important to think about these details when determining the datatype for any variable you select when programing in C. 
+In many contexts, you can determine a limit on the range of values that are possible and select a datatype based upon this. For example, on a typical semester we often have somewhere around 100 students in ECEN 225.  If we were to write a program that counts the number of students in the class, a ``uint8_t`` would suffice just fine.  However, if in a future year 256 students were to register, than we would have problems.
+It is important to think about these details when determining the datatype for any variable you select when programing in C.
 
 ### Casting, Order of Operations, and Constants
 
-Sometimes, you will have a variable that is the incorrect type for the operation you want to accomplish.  In this case, we can *cast* your variable, or convert it to another datatype. However, understanding the details of how this casting occurs is essential - as its not always intuitive.
+Sometimes, you will have a variable that is the incorrect type for the operation you want to accomplish.  In this case, we can _cast_ your variable, or convert it to another datatype. However, understanding the details of how this casting occurs is essential - as its not always intuitive.
 
-#### Explicit vs Implicit Casting 
+#### Explicit vs Implicit Casting
+
 Casting can be done *explicitly* - meaning when you, the programmer, write code saying you want a cast to occur. An example of casting an integer to a float is shown below:
 
 ```c
@@ -117,7 +120,7 @@ uint8_t b = 10;
 a = (float) b;
 ```
 
-Casting also happens *implicitly*, meaning that the compiler will take the liberty of converting your variables for you if you combine multiple types in an expression. If you assign one variable to that of another type, for example, the compiler will cast for you. So we actually don't need the ``(float)`` in the above example, because the compiler knows that you are assigning a ``uint8_t`` to a ``float``. So the code below is equivalent to the code shown above and a cast to ``float`` is inserted by the compiler when ``b`` is assigned to ``a``:
+Casting also happens _implicitly_, meaning that the compiler will take the liberty of converting your variables for you if you combine multiple types in an expression. If you assign one variable to that of another type, for example, the compiler will cast for you. So we actually don't need the ``(float)`` in the above example, because the compiler knows that you are assigning a ``uint8_t`` to a ``float``. So the code below is equivalent to the code shown above and a cast to ``float`` is inserted by the compiler when ``b`` is assigned to ``a``:
 
 ```c
 float a;
@@ -127,11 +130,12 @@ a = b;
 
 Implicit casts also happen when expressions mix variables of different types. This happens because the processor hardware circuit, the part of the computer that actually carries out the computations, requires everything to be the same type before it can complete the calculation. Thus, before dividing or comparing two numbers (for example), they are converted to the same type before the calculation is carried out. Understanding the details of how this happens is pretty important.
 
-For example, lets say you wanted to divide two integers to get a decimal.  In the hardware that implements the division, floating point division is different from integer division (and they can't be mixed). Integer division will take two integers, divide them, and then truncate (or drop) any decimal portion in the result. This makes sense because integer data types can't represent decimal information anyway. Floating point division takes two floating point numbers and results in another floating point number - all of which are represented using either a ``float`` or a ``double`` (depending on the datatypes of the variables) and thus decimal portions are maintained. 
+For example, lets say you wanted to divide two integers to get a decimal.  In the hardware that implements the division, floating point division is different from integer division (and they can't be mixed). Integer division will take two integers, divide them, and then truncate (or drop) any decimal portion in the result. This makes sense because integer data types can't represent decimal information anyway. Floating point division takes two floating point numbers and results in another floating point number - all of which are represented using either a ``float`` or a ``double`` (depending on the datatypes of the variables) and thus decimal portions are maintained.
 
 If you want the decimal part of the result to be maintained, we need to ensure we are using floating point division. To do this you can explictly cast one of the ints to a ``float`` (or a ``double``) before the calculation happens, then the other ``int`` will be implicitly cast by the compiler before the division occurs and the result will also be a floating point number.
 
 The example below demonstrates how this works:
+
 ```c
 int32_t a = 5;
 int32_t b = 2;
@@ -144,37 +148,38 @@ In the example above ``c`` evaluates to 2.0 because both ``a`` (value 5) and ``b
 
 Alternativelly, ``d`` evaluates to 2.5 because you, the programmer, explicitly cast ``a`` to be of type ``float`` and thus the compiler will implicitly cast ``b`` to be of type ``float`` so that floating point division can take place. In this case casting is not needed in the assignment (because the result is already a float).
 
-
 #### Order of Operations in C
-Notice that in the example above (where ``c`` became 2.0), that the result was cast to a floating point even though the decimal points were truncated. This happens because of the order of operations. 
+
+Notice that in the example above (where ``c`` became 2.0), that the result was cast to a floating point even though the decimal points were truncated. This happens because of the order of operations.
 
 The order of operations in C are shown in the following [table](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm) (highest/first priority at the top, lowest/last priority at the bottom):
-
 
 | Category | Operator | Associativity |
 | -------- | -------- | ------------- |
 | Postfix (function calls, array/pointer/struct access, and postfix inc/dec) | () [] -> . ++ -- | Left-to-right |
-| Unary (negative, logical/binary not, prefix inc/dec, casting, address reference, sizeof) | - ! ~ ++ -- (type)* & sizeof	| Right-to-left |
-| Multiplicative	| * / %	| Left-to-right |
-| Additive	| + -	| Left-to-right |
-| Shift	| << >>	| Left-to-right |
-| Relational	| < <= > >=	| Left-to-right |
-| Equality	| == !=	| Left-to-right |
-| Bitwise AND	| &	| Left-to-right |
-| Bitwise XOR	| ^	| Left-to-right |
-| Bitwise OR	| \|	| Left-to-right |
-| Logical AND	| &&	| Left-to-right |
-| Logical OR	| \|\|	| Left-to-right |
-| Conditional	| ?:	| Right-to-left |
-| Assignment	| = += -= *= /= %=>>= <<= &= ^= \|=	| Right-to-left | 
-| Comma	| ,	| Left-to-right | 
+| Unary (negative, logical/binary not, prefix inc/dec, casting, address reference, sizeof) | - ! ~ ++ -- (type)* & sizeof   | Right-to-left |
+| Multiplicative | * / %    | Left-to-right |
+| Additive  | + -   | Left-to-right |
+| Shift | << >> | Left-to-right |
+| Relational    | < <= > >= | Left-to-right |
+| Equality  | == != | Left-to-right |
+| Bitwise AND   | & | Left-to-right |
+| Bitwise XOR   | ^ | Left-to-right |
+| Bitwise OR    | \|    | Left-to-right |
+| Logical AND   | &&    | Left-to-right |
+| Logical OR    | \|\|  | Left-to-right |
+| Conditional   | ?:    | Right-to-left |
+| Assignment    | = += -= *= /= %=>>= <<= &= ^= \|= | Right-to-left |
+| Comma | , | Left-to-right |
 
 Notice that explicit casting happens before division, which happens before assignment. In the example with ``c`` above, there is no explicit cast, so integer division is the highest priority. Then the result of the integer division is cast to a float when the assignment happens.
 
 #### Literals in C
+
 We also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
 
 To demonstrate what we mean, ``125``, ``3.14``, ``0x1234``, ``"Yipee!\n"`` and ``true`` are each examples of literals in the code below.
+
 ```c
 double a = 125 / 3.14;
 uint16_t b = 0x1234;
@@ -182,12 +187,13 @@ if ( check_small_enough(a) == true )
     printf("Yipee!\n");
 ```
 
-By default, whole number literals are treated as having type ``int``. Numerical literals with a decimal point are treated as having type ``double``. If you want to specify a different type for a literal, you can sometimes do this by adding a suffix. 
+By default, whole number literals are treated as having type ``int``. Numerical literals with a decimal point are treated as having type ``double``. If you want to specify a different type for a literal, you can sometimes do this by adding a suffix.
 For example, ``125`` by default will be treated as an ``int``, but ``125U`` will be treated as an unsigned. Similarly, ``3.14`` will be treated as a ``double`` by default, but ``3.14f`` will be treated as having type ``float``.  
 
-Integer literals can be specified in either decimal or hexadecimal (using the prefix ``0x``). While not natively in C, the GCC compiler also allows binary literals via the prefix ``0b``. As with integer literals, by default (and as long as the value fits) the compiler will treat the literal as having type ``int``. Adding a suffix of ``u`` or ``U`` will specify that it should be treated as unsigned. 
+Integer literals can be specified in either decimal or hexadecimal (using the prefix ``0x``). While not natively in C, the GCC compiler also allows binary literals via the prefix ``0b``. As with integer literals, by default (and as long as the value fits) the compiler will treat the literal as having type ``int``. Adding a suffix of ``u`` or ``U`` will specify that it should be treated as unsigned.
 
 While all of the following have a value of 5, the type varies depending on the suffix:
+
 ```c
 5;      // This will be treated as a (signed) int
 5U;     // This will be treated as an unsigned int 
@@ -199,9 +205,9 @@ While all of the following have a value of 5, the type varies depending on the s
 
 #### Casting Between Sizes of the Same Type
 
-It is fairly common to need to cast between datatypes that are of the same type but different sizes. 
+It is fairly common to need to cast between datatypes that are of the same type but different sizes.
 
-When casting from a smaller signed integer type to a larger signed integer type, the data bits are **sign** **extended**. Similarly, when casting from a smaller unsigned integer type to a larger unsigned integer type, the data bits are **zero extended**. This difference is so that, in both cases, the value represented will remain the same. 
+When casting from a smaller signed integer type to a larger signed integer type, the data bits are **sign** **extended**. Similarly, when casting from a smaller unsigned integer type to a larger unsigned integer type, the data bits are **zero extended**. This difference is so that, in both cases, the value represented will remain the same.
 Making a variable larger only increases the range of possible values that can be stored and thus _casting up_ in size  should always result in the same value being represented.
 
 ```c
@@ -220,25 +226,27 @@ int16_t c = 0xF1F3; // Decimal value of -3597
 int8_t d = c; // An implicit cast truncates c to 0xF3 (-13)
 ```
 
-It is also possible to cast between the floating point types ``double`` and ``float``. When this happens, the number of bits devoted to the exponent and mantissa fields changes. When converting from ``float`` to ``double``, the number of possible values that can be represented increases - meaning that precision is increased. When going the other way though, precision is lost - meaning we may have to round the value due to the fact that the new type can't represent all of the same values. When this happens, the value of the ``double`` is converted to the closest possible number that can be represented by a ``float``. 
+It is also possible to cast between the floating point types ``double`` and ``float``. When this happens, the number of bits devoted to the exponent and mantissa fields changes. When converting from ``float`` to ``double``, the number of possible values that can be represented increases - meaning that precision is increased. When going the other way though, precision is lost - meaning we may have to round the value due to the fact that the new type can't represent all of the same values. When this happens, the value of the ``double`` is converted to the closest possible number that can be represented by a ``float``.
 
 #### Casting Between Types
 
-What actually happens when you cast between types depends on the two types. 
+What actually happens when you cast between types depends on the two types.
 
-When casting between signed and unsigned integer types (of the same size), the cast doesn't change the bits stored in memory at all - the compiler just reinterprets them as coming from the new type. 
-This is done because the overlapping range of values that can be represented by both signed (two's compliment) ints and unsigned ints are represented by the same bit patterns in both representations. 
-In short, if the original value lies between zero and the maximum positive value representable with a signed int - then no conversion is needed. 
+When casting between signed and unsigned integer types (of the same size), the cast doesn't change the bits stored in memory at all - the compiler just reinterprets them as coming from the new type.
+This is done because the overlapping range of values that can be represented by both signed (two's compliment) ints and unsigned ints are represented by the same bit patterns in both representations.
+In short, if the original value lies between zero and the maximum positive value representable with a signed int - then no conversion is needed.
 
-However, if the original value of the variable does not fall within the valid range of the new type, the value will change. 
+However, if the original value of the variable does not fall within the valid range of the new type, the value will change.
 
-For example, when casting from a signed int to an unsigned int if the number is negative (and thus has a 1 in the sign bit position), the new value will be a very large positive number. 
+For example, when casting from a signed int to an unsigned int if the number is negative (and thus has a 1 in the sign bit position), the new value will be a very large positive number.
+
 ```c
 int8_t a = 0xF3; // Value is -13
 uint8_t b = a; // Bits are the same (1111 0011), but new value is 243
 ```
 
-Similarly, when casting from an unsigned to a signed int, large values will become negative numbers. 
+Similarly, when casting from an unsigned to a signed int, large values will become negative numbers.
+
 ```c
 uint8_t a = 0xFFu; // Value is 255
 int8_t b = a; // Bits are the same (1111 1111), but new value is -1
@@ -248,23 +256,24 @@ When casting from an integer to a floating point type (or vice-versa), however, 
 
 When casting from an integer to floating point, the result will be the closest representable value possible for the new type. Additionally, when going from a floating point number to an integer, the decimal portion is dropped and only the whole number portion is maintained.  
 
-#### Implicit Casting (and Integer Promotion) in Expressions 
+#### Implicit Casting (and Integer Promotion) in Expressions
 
-Most of the examples above are implicit casts that occur because we are assigning one type to a new variable of a different type. This is very common occurance when working with multiple types. **However, it is important to remember that implicit casting also occurs in expressions and operations**. 
+Most of the examples above are implicit casts that occur because we are assigning one type to a new variable of a different type. This is very common occurance when working with multiple types. **However, it is important to remember that implicit casting also occurs in expressions and operations**.
 This includes calculations (such as involving ``+``, ``-``, ``/``, ``*``, ``%``, ``&``, ``^``, ``|``, ``~``, ``>>``, ``<<``) as well as in comparisons (such as involving ``<``, ``>``, ``>=``, ``<=``, ``==``, ``!=``, ``?:``).
 
-When any of the above operations are carried out on integer types that are smaller than an ``int`` (including ``char``, ``short``, ``int8_t``, ``uint8_t``, ``int16_t``, and ``uint16_t``), these types are "upgraded" to an ``int`` if an ``int`` can store the full range of original values, otherwise they are "upgraded" to an ``unsigned int`` before the calculation is carried out. This is called **integer promotion** and designed to help avoid overflow/underflow and preserve the sign/value of the result. 
+When any of the above operations are carried out on integer types that are smaller than an ``int`` (including ``char``, ``short``, ``int8_t``, ``uint8_t``, ``int16_t``, and ``uint16_t``), these types are "upgraded" to an ``int`` if an ``int`` can store the full range of original values, otherwise they are "upgraded" to an ``unsigned int`` before the calculation is carried out. This is called **integer promotion** and designed to help avoid overflow/underflow and preserve the sign/value of the result.
 
-Additionally, when **types are mixed in an operation**, the type of individual values are often cast to the larger (or more expressive) type _before the operation is performed_.  As explained above, this is primarily due to the fact that the hardware calculation must deal with data of the same type. 
+Additionally, when **types are mixed in an operation**, the type of individual values are often cast to the larger (or more expressive) type _before the operation is performed_.  As explained above, this is primarily due to the fact that the hardware calculation must deal with data of the same type.
 
 The following rules are used to describe how this casting will occur (in order of priority):
+
 - If one operand is a ``double``, then the other operand (integer or floating point) will be cast to ``double``.
 - If one operand is a ``float`` and the other operand is an integer, then the integer will be cast to ``float``.
 - If both operands are integers, then both undergo _integer promotion_ as described above, then:
-    - If both operands are either signed or unsigned, then the smaller type is converted to the larger one.
-    - If the unsigned operand is larger (or if both are the same size), then the signed operand is converted to the unsigned type.
-    - If the unsigned operand is smaller and the signed type can represent all possible values of the unsigned type, then the unsigned operand is converted to the signed type.
-    - If the unsigned operand is smaller and the signed type can't represent all possible values of the unsigned, then both operands are converted to an unsigned of the same length as the signed operand. 
+  - If both operands are either signed or unsigned, then the smaller type is converted to the larger one.
+  - If the unsigned operand is larger (or if both are the same size), then the signed operand is converted to the unsigned type.
+  - If the unsigned operand is smaller and the signed type can represent all possible values of the unsigned type, then the unsigned operand is converted to the signed type.
+  - If the unsigned operand is smaller and the signed type can't represent all possible values of the unsigned, then both operands are converted to an unsigned of the same length as the signed operand.
 
 More details on this process are available [here](https://en.cppreference.com/w/c/language/conversion).
 
@@ -281,7 +290,8 @@ uint8_t d = a + b; // This will evaluate to 265, then be cast to a uint8_t w/ va
 
 In the above example, ``a`` and ``b`` are promoted to type ``int`` before the calculation happens via integer promotion. This promotion allows them to avoid overflow when adding 10 to 255. They are then cast back to either 32 or 8 bits depending on the type of the variable they are being assigned to. When casting to ``uint8_t`` truncation occurs and we recieve a final value of 9.
 
-Now take a look at a more complicated example. 
+Now take a look at a more complicated example.
+
 ```c
     int32_t a_int = -1;
     float a_float = -1;
@@ -290,11 +300,12 @@ Now take a look at a more complicated example.
     int32_t z_int = a_int / (b - c); // Evaluates to 1
     float z_float = a_float / (b - c); // Evaluates to -0.00000...
 ```
+
 This is surprising, because we would expect calculations to arrive at the same result!
 
-Lets step through this. ``b`` is of type ``uint32_t`` and ``c`` is of type ``int32_t``. The parenthesis around ``b-c`` give it first priority according the order of operations defined above. Both operands are the size as an ``int``, so integer promotion is not needed. However, ``b`` and ``c`` _are_ of different types. Since both variables are of the same size, ``c`` is cast to match the type of ``b`` or ``unint32_t`` and then we can carry out the subtraction. We then evaluate ``0 - 1`` which overflows up the maximum value for a ``uint32_t`` and the result is also of type ``uint32_t``. When we go to carry out division with ``a_int``, we now need to cast ``a_int`` to a ``uint32_t`` for the same reasons as we casted when doing subtraction. This also wraps to the maximum value for a ``uint32_t``, so the division results in a value of 1. 
+Lets step through this. ``b`` is of type ``uint32_t`` and ``c`` is of type ``int32_t``. The parenthesis around ``b-c`` give it first priority according the order of operations defined above. Both operands are the size as an ``int``, so integer promotion is not needed. However, ``b`` and ``c`` _are_ of different types. Since both variables are of the same size, ``c`` is cast to match the type of ``b`` or ``unint32_t`` and then we can carry out the subtraction. We then evaluate ``0 - 1`` which overflows up the maximum value for a ``uint32_t`` and the result is also of type ``uint32_t``. When we go to carry out division with ``a_int``, we now need to cast ``a_int`` to a ``uint32_t`` for the same reasons as we casted when doing subtraction. This also wraps to the maximum value for a ``uint32_t``, so the division results in a value of 1.
 
-On the other hand, when we go to carry out division with ``a_float``, we now have an operand of type ``float`` in the expression. As such, the compiler will implicitly cast our subtraction result (the maximum value for a ``uint32_t``) to a ``float`` before doing division. However because ``a_float`` was defined as a ``float`` and does not need to be cast, we end up dividing -1 by a very large number resulting in a negative number very close to zero. 
+On the other hand, when we go to carry out division with ``a_float``, we now have an operand of type ``float`` in the expression. As such, the compiler will implicitly cast our subtraction result (the maximum value for a ``uint32_t``) to a ``float`` before doing division. However because ``a_float`` was defined as a ``float`` and does not need to be cast, we end up dividing -1 by a very large number resulting in a negative number very close to zero.
 
 #### Summary
 
@@ -435,7 +446,7 @@ To help you with these manipulations, the `string.h` library includes various st
 
 #### Using Functions with Arrays and Strings
 
-As with all variables, arrays are stored in memory. If a variable (or an array) is declared and created within a function, it is stored in the memory belonging to that function. When a function returns, the memory associated with it is released and can be used for other things. This causes big problems if somewhere else in the code is still trying to access that memory. To account for this problem, arrays (and strings) that are needed after a function returns should not be declared or defined within that function. 
+As with all variables, arrays are stored in memory. If a variable (or an array) is declared and created within a function, it is stored in the memory belonging to that function. When a function returns, the memory associated with it is released and can be used for other things. This causes big problems if somewhere else in the code is still trying to access that memory. To account for this problem, arrays (and strings) that are needed after a function returns should not be declared or defined within that function.
 
 Instead, these functions require the user to pass around pointers to the array as a parameter. Since an array's base is basically a pointer under the hood, passing arrays around like this means changes made to the array by a function will persist, even after the function is done.
 
@@ -530,16 +541,15 @@ In your repository, you will find files called `data.c` and `custom_strings.c`, 
 
 As you are working on these functions, please respect the following restrictions:
 
-1.  Do not change data types of parameters or return values
+1.Do not change data types of parameters or return values
     unless otherwise stated.
-2.  If you need to change a data type to a floating-point
+2.If you need to change a data type to a floating-point
     number, then use `double`, not `float`.  The autograder
     uses `doubles`, not `floats`.
-3.  You can use `printf()` statments for debugging `data.c` and
-    `custom_strings.c`, but comment them out or remove them 
+3.You can use `printf()` statments for debugging `data.c` and
+    `custom_strings.c`, but comment them out or remove them
     before you pass off with a TA.
-4.  Follow the specific rules in the function descriptions.
-
+4.Follow the specific rules in the function descriptions.
 
 Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
 
@@ -547,6 +557,11 @@ To compile and run your program (as defined in `main.c`) you can run the followi
 
 ```bash
 gcc main.c data.c custom_strings.c -o lab4_main
+```
+
+After compiling the program, **check that your program has no warnings or errors**, then run:
+
+```bash
 ./lab4_main
 ```
 
@@ -554,9 +569,15 @@ To compile and run the pass off script, you can run:
 
 ```bash
 gcc lab4_passoff.o data.c custom_strings.c -o passoff
+```
+
+After compiling the program, **check that your program has no warnings or errors**, then run:
+
+```bash
 ./passoff
 ```
-The gcc command above will compile your `.c` files and then link them together with the `lab4_passoff.o` file that contains our test code. 
+
+The gcc command above will compile your `.c` files and then link them together with the `lab4_passoff.o` file that contains our test code.
 
 Note that if you want to include a logging library, you will have to include that in the `gcc` command as well.
 
@@ -643,14 +664,13 @@ Each of the following words will be tested for each position (0-3):
 ## Submission
 
 - Pass off to a TA:
+  - Your program must compile without warnings or errors
   - Show the output of the passoff executable
   - Show how you implemented your functions in `data.c` and `custom_strings.c`
 
 - Complete the Learning Suite pass off quiz.
 
 - To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
-
-
 
 ## Explore More
 
