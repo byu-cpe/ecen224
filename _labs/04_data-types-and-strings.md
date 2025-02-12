@@ -528,6 +528,19 @@ log_info("The value is %d", value);
 
 In your repository, you will find files called `data.c` and `custom_strings.c`, along with their equivalent `.h` files.  These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
 
+As you are working on these functions, please respect the following restrictions:
+
+1.  Do not change data types of parameters or return values
+    unless otherwise stated.
+2.  If you need to change a data type to a floating-point
+    number, then use `double`, not `float`.  The autograder
+    uses `doubles`, not `floats`.
+3.  You can use `printf()` statments for debugging `data.c` and
+    `custom_strings.c`, but comment them out or remove them 
+    before you pass off with a TA.
+4.  Follow the specific rules in the function descriptions.
+
+
 Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
 
 To compile and run your program (as defined in `main.c`) you can run the following commands:
@@ -545,7 +558,7 @@ gcc lab4_passoff.o data.c custom_strings.c -o passoff
 ```
 The gcc command above will compile your `.c` files and then link them together with the `lab4_passoff.o` file that contains our test code. 
 
-Note: You will need to also add log.c to the above commands if you choose to use it in your process.
+Note that if you want to include a logging library, you will have to include that in the `gcc` command as well.
 
 ### Tests
 
