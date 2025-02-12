@@ -24,7 +24,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 One of the remarkable features of single board computers like the Pi Z2W is its extensibility through hardware add-ons in the form of HATs (short for Hardware Attached on Top) or "shields" (a term that describes the same idea in the [Arduino](https://www.arduino.cc/) community). These useful extensions take advantage of the most attractive feature of most single board computers: the GPIO pins.
 
-GPIO (General Purpose Input/Output) pins are the main mode to connect novel hardware peripherals to a single board computer. A peripheral is a device that is connected to a computer to enhance its functionality (i.e a mouse, keyboard, monitor, printer, etc). The Pi Z2W GPIO pins allows for potentially many peripherals such as sensors, motors, etc. to be connected all at once. This makes it a very approachable computer to use in custom systems that interface with specialty hardware.
+GPIO (General Purpose Input/Output) pins are the main mode to connect novel hardware peripherals to a single board computer. A peripheral is a device that is connected to a computer to enhance its functionality (i.e a mouse, keyboard, monitor, printer, etc). The Pi Z2W GPIO pins allow for potentially many peripherals such as sensors, motors, etc. to be connected all at once. This makes it a very approachable computer to use in custom systems that interface with specialty hardware.
 
 In this lab we will use the Waveshare 1.44" HAT which connects to all of the GPIO pins on the Pi Z2W. In return, the HAT provides a small Liquid Crystal Display (LCD) screen, a directional button pad (d-pad), and a set of action keys. 
 
@@ -77,7 +77,7 @@ In order to interface with the GPIO of the Pi Z2W, we need to install a library.
 
 #### Compiling into a Project
 
-Now that the `bcm2835` library is installed, we can use it in any C program that we like! This comes especially in handy for our new LCD and button HAT. However, since this is an installed library and not a default one, we have to let `gcc` know that we are trying to include it in the compilation process. This is done by adding the `-lbcm2835` flag to our normal `gcc` compilation command. The `-l` lets `gcc` know we are including a custom system library, while the `bcm2835` part is just the name of the library itself.
+Now that the `bcm2835` library is installed, we can use it in any C program that we like! This comes especially in handy for our new LCD and button HAT. However, since this is an installed library and not a default one, we have to let `gcc` know that we are trying to include it in the compilation process. This is done by adding the `-l bcm2835` flag to our normal `gcc` compilation command. The `-l` lets `gcc` know we are including a custom system library, while the `bcm2835` part is just the name of the library itself.
 
 #### Executing
 
@@ -85,7 +85,7 @@ Accessing the HAT hardware requires special permissions.  After compiling your p
 
 ### Drawing to the Screen
 
-In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read their corresponding comments.
+In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
 
 #### Orientation and Dimensions
 When drawing on the screen, it is important to have a good mental model of what the coordinate system of the screen is like. For this particular LCD module, we have set up the axes like so:
@@ -157,7 +157,7 @@ You must demonstrate your understanding of the `display` and `buttons` libraries
 
     a. **clearScreen**: Clears the screen to white
 
-    b. **drawHelloWorld**: Draws hello world on the screen 10 times in different colors
+    b. **drawHelloWorld**: Draws "hello world" on the screen 10 times in different colors
 
     c. **drawChars**: Draw 10 chars of various values, sizes, colors, and locations onto the screen
 
