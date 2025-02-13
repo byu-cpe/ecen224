@@ -161,7 +161,7 @@ You must demonstrate your understanding of the `display` and `buttons` libraries
 
     c. **drawChars**: Draw 10 chars of various values, sizes, colors, and locations onto the screen
 
-    d. **drawStars**: Draws multiple starts onto the screen
+    d. **drawStars**: Draws multiple stars onto the screen
 
     e. **drawFlag**: Uses at least 5 functions from `display.h` to draw any flag you wish.  3 of the `display_draw_###` functions must be unique.
 
