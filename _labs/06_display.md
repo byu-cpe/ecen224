@@ -7,7 +7,7 @@ layout: lab
 ## Objectives
 
 - Become familiar with the LCD and button shield for the Pi Z2W.
-- Learn to use a "vendor" library to control different hardware accessories. 
+- Learn to use a "vendor" library to control different hardware accessories.
 - Associate graphical events with specific inputs.
 - Get experience using a Makefile
 
@@ -22,11 +22,11 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
   <figcaption style="text-align: center;">The Waveshare 1.44" LCD and button module. This is known as a Hardware Attached on Top module, or a HAT for short.</figcaption>
 </figure>
 
-One of the remarkable features of single board computers like the Pi Z2W is its extensibility through hardware add-ons in the form of HATs (short for Hardware Attached on Top) or "shields" (a term that describes the same idea in the [Arduino](https://www.arduino.cc/) community). These useful extensions take advantage of the most attractive feature of most single board computers: the GPIO pins.
+Single board computers (SBCs) like the Pi Z2W are remarkable partly for their ability to add on hardware in the form of HATs (Hardware Attached on Top; sometimes called "shields" in the [Arduino](https://www.arduino.cc/) community). These useful devices use the **GPIO pins**, one of the most attractive features of an SBC, to extend the feature set dramatically.
 
-GPIO (General Purpose Input/Output) pins are the main mode to connect novel hardware peripherals to a single board computer. A peripheral is a device that is connected to a computer to enhance its functionality (i.e a mouse, keyboard, monitor, printer, etc). The Pi Z2W GPIO pins allow for potentially many peripherals such as sensors, motors, etc. to be connected all at once. This makes it a very approachable computer to use in custom systems that interface with specialty hardware.
+GPIO (General Purpose Input/Output) pins are the main method of connecting new peripherals to an SBC. A **peripheral** is any device that is connected to a computer to enhance its functionality (i.e a mouse, keyboard, monitor, printer, etc). The Pi Z2W GPIO pins allow for many peripherals, such as sensors, motors, etc., to be connected all at once. This makes it a great choice in custom systems that interface with specialized hardware.
 
-In this lab we will use the Waveshare 1.44" HAT which connects to all of the GPIO pins on the Pi Z2W. In return, the HAT provides a small Liquid Crystal Display (LCD) screen, a directional button pad (d-pad), and a set of action keys. 
+In this lab we will use the Waveshare 1.44" HAT, which uses all 40 of the GPIO pins on the Pi Z2W. In return, the HAT provides a small Liquid Crystal Display (LCD) screen, a directional button pad (d-pad), and a set of action keys.
 
 ### BCM2835 Library
 
