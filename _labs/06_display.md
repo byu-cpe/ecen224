@@ -161,7 +161,7 @@ We also give you `log.h` and `log.c` files that you can find under the `/lib` fo
 
 ## Requirements
 
-You must demonstrate your understanding of the `display` and `buttons` libraries and how to use them by accomplishing the following:
+You will demonstrate your understanding of the `display` and `buttons` libraries and how to use them by accomplishing the tasks listed below:
 
 1. Implement each of the following functions:
 
@@ -197,7 +197,7 @@ You must demonstrate your understanding of the `display` and `buttons` libraries
 
 ## Submission
 
-- Pass off with a TA, by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
+- Pass off with a TA, by demonstrating your doorbell running your program that fulfills all of the requirements outlined above. Your code should compile without warnings or errors.
 
 - Take the Pass off Quiz on Learning Suite.
 
@@ -208,7 +208,7 @@ You must demonstrate your understanding of the `display` and `buttons` libraries
 
 - Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
 
-## Explore More!
+## Explore More
 
 - [Waveshare 1.44" LCD HAT](https://www.waveshare.com/1.44inch-lcd-hat.htm)
 - [Raspberry Pi GPIO Breakdown](https://pinout.xyz)
