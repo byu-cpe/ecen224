@@ -31,11 +31,12 @@ In this lab we will use the Waveshare 1.44" HAT which connects to all of the GPI
 ### BCM2835 Library
 
 #### Installation
+
 In order to interface with the GPIO of the Pi Z2W, we need to install a library.
 
 1. First make sure that you are in your home directory on the Pi Z2W:
- 
-    ```bash 
+
+    ```bash
     cd ~
     ```
 
@@ -59,13 +60,13 @@ In order to interface with the GPIO of the Pi Z2W, we need to install a library.
 
 5. Run the `configure` script. This will provide operating system information to the library so it knows how to configure itself to work specifically on the Pi Z2W architecture:
 
-    ```bash 
+    ```bash
     ./configure
     ```
 
 6. Once the `configure` script has prepared the necessary modifications, run the `make` command to compile library's source files (i.e all its `.c` files)
 
-    ```bash    
+    ```bash
     make
     ```
 
@@ -88,6 +89,7 @@ Accessing the HAT hardware requires special permissions.  After compiling your p
 In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
 
 #### Orientation and Dimensions
+
 When drawing on the screen, it is important to have a good mental model of what the coordinate system of the screen is like. For this particular LCD module, we have set up the axes like so:
 
 <figure class="image mx-auto" style="max-width: 750px">
@@ -97,15 +99,19 @@ When drawing on the screen, it is important to have a good mental model of what 
 The height and width of the screen are `#define`d in the `display.h` file as `DISPLAY_WIDTH` and `DISPLAY_HEIGHT`. These values can be useful if you are trying to define coordinates for shapes relative to those points.
 
 #### Colors
+
 Most of the `display` functions take in a color parameter to give color to the shapes you are drawing or the text that you are writing. These colors are `#define`d in the `lib/colors.h` file.
 
 Example:
+
 ```c
 display_draw_rectangle(0, 5, 128, 15, BYU_ORANGE, true, 1);
 ```
+
 where `BYU_ORANGE` is `#define`d in `colors.h`.
 
 #### Fonts
+
 Part of the `display` library allows you to draw strings on the screen. One of the parameters for drawing the string to the screen is selecting a font. These fonts are all located in the `fonts` folder and are accessible through the `fonts.h` library. Each font represents different font sizes. To use the fonts in the `display_draw_string()` function, you will need to pass the address of the font you desire:
 
 ```c
@@ -113,6 +119,7 @@ display_draw_string(10, 10, "Hello, World!", &Font8, WHITE, BLACK);
 ```
 
 The following fonts are available:
+
 - Font8
 - Font12
 - Font16
@@ -126,6 +133,7 @@ Before the LCD can be used, you will need to call the `display_init()` function 
 To read the state of the d-pad you will be using the functions found defined in the `buttons.h` library interface. When a button is actively being pressed, the function to read it will return a `0`, else if it unpressed, it will return a `1`.
 
 Example:
+
 ```c
 if (button_up() == 0) {
     // Do something upon detecting button press
@@ -141,12 +149,14 @@ else {
 ```
 
 Before the buttons can be used, you will need to call the `buttons_init()` function once in your code at the beginning. *If you don't call `buttons_init()` before you start using the buttons, weird things can happen!* You're code might work, but then when you reboot or rerun your code, it might not!
-Note that you must call `display_init()` before you call `buttons_init()` or you will get a segmentation fault. 
+Note that you must call `display_init()` before you call `buttons_init()` or you will get a segmentation fault.
 
 ### Device delay
+
 You will see in your `main.c` function that your code will loop infinitely. This means that anything inside the `while(true)` loop will repeat over and over until the program is terminated by the user through the shell. Running a `while(true)` loop without any sort of control can cause system resources to be eaten up and cause your program to be run inefficiently. For this, we have provided the `delay_ms()` inside the `device.h` library. This will allow you to essentially create a wait time in the execution of your loop. This is handy if you want to draw something to the screen and have it only appear for a certain amount of time before the logic in your program goes on.
 
 ### Logging
+
 We also give you `log.h` and `log.c` files that you can find under the `/lib` folder. The functions in these files (`log_info()` or `log_debug()` for example) can be used like printfs to output data to the terminal (or optionally a log file). However, these only print to the terminal if the current **log level** is equal to or lower than the log command.  For example, if the log level is set to `LOG_INFO`, then `log_debug()` messages won't show, but `log_info()` through `log_fatal()` messages will.  You can change the current log level with the `log_set_level()` function. These tools can be used to have printfs that you don't need to remove, but that can be turned on/off when you are debugging.
 
 ## Requirements
@@ -170,7 +180,7 @@ You must demonstrate your understanding of the `display` and `buttons` libraries
 2. Implement a menu functionality using `drawMenu` and `main`.  Your menu should have the following functionality:
 
     a. The menu draws the strings contained in the "entries" array. Use an 8 point font.
-    
+
     b. When no button is pressed, nothing happens.
 
     c. One entry is selected at a time, which is represented by being highlighted in a different color.
@@ -182,7 +192,6 @@ You must demonstrate your understanding of the `display` and `buttons` libraries
     f. After a right button press, the code should wait 2 seconds, then redraw the menu.
 
     g. The selection should "wrap" from top to bottom.  In other words, if you press the down button while you have the bottom entry selected, the selection will move to the top entry, and if you press the top entry when the bottom
-
 
 // TODO: Add an example video of this code working
 
@@ -197,13 +206,12 @@ You must demonstrate your understanding of the `display` and `buttons` libraries
   - What is the structure/organization of the project files?
   - How do you build and run the code in this project?
 
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab. 
+- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
 
 ## Explore More!
+
 - [Waveshare 1.44" LCD HAT](https://www.waveshare.com/1.44inch-lcd-hat.htm)
 - [Raspberry Pi GPIO Breakdown](https://pinout.xyz)
 - [Different types of Pi HATs](https://www.pishop.us/product-category/raspberry-pi/raspberry-pi-hats/)
 - [Retro Handheld Console with LCD HAT](https://pihw.wordpress.com/guides/mini-retro-pi-setup/)
 - [Crazy Pi GPIO Usage](https://sss.readthedocs.io/en/latest/Hardware/Final%20product/)
-
-
