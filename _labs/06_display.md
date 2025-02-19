@@ -159,6 +159,30 @@ You will see in your `main.c` function that your code will loop infinitely. This
 
 We also give you `log.h` and `log.c` files that you can find under the `/lib` folder. The functions in these files (`log_info()` or `log_debug()` for example) can be used like printfs to output data to the terminal (or optionally a log file). However, these only print to the terminal if the current **log level** is equal to or lower than the log command.  For example, if the log level is set to `LOG_INFO`, then `log_debug()` messages won't show, but `log_info()` through `log_fatal()` messages will.  You can change the current log level with the `log_set_level()` function. These tools can be used to have printfs that you don't need to remove, but that can be turned on/off when you are debugging.
 
+### Makefiles
+
+By this point, you also may be realizing that large projects can become unweildy in compiling.  This lab, for example, contains eleven `.c` files.  To compile it yourself, you would have to enumerate each of them in the command line:
+
+```bash
+gcc -o main main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c font16.c font20.c font24.c
+```
+
+Compiling like this will work, but has a couple problems:
+1. You are recompiling each file each time.  If you make a single change to your `main.c` file, each other file would also be recompiled.  For large projects, this can take a lot of time.
+2. Any typo in your command would halt the compilation.  Repeatedly typing in this command (or even copy/pasting it) could propogate errors and waste a lot of time.
+
+Early C programmers recognized these issues too.  So, just four years after C was released, the Make software was created.  Make revolves around a single file called the `Makefile`. The inside of a `Makefile` looks a lot like bash scripts (like the one you made in Lab 2); you can create "rules" that perform a set of command line operations and generate files for you. So, instead of the long `gcc` command that you used up above, you can run one simple command:
+
+```bash
+make
+```
+
+And everything will be done for you.
+
+You can use `Make` to easily speed up the compiling process too by performing intermediate steps in the compilation process.  Consider the example from above where you only updated `main.c`; instead of recompiling every single `.c` file, you can create a `.o` file for each source file.  Recall that `.o` files are compiled and assembled, but not yet linked together. Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated, so only files that need to be compiled actually are compiled.
+
+**In this lab going forward, to compile your code, you should use `make` instead of `gcc`.**  The Makefiles will be provided for this class, so you don't need to entirely understand how they work right now.  However, you will see them in future classes, so it may be worth taking a look at them.
+
 ## Requirements
 
 You will demonstrate your understanding of the `display` and `buttons` libraries and how to use them by accomplishing the tasks listed below:
@@ -224,3 +248,4 @@ Here is a demo of the completed lab:
 - [Different types of Pi HATs](https://www.pishop.us/product-category/raspberry-pi/raspberry-pi-hats/)
 - [Retro Handheld Console with LCD HAT](https://pihw.wordpress.com/guides/mini-retro-pi-setup/)
 - [Crazy Pi GPIO Usage](https://sss.readthedocs.io/en/latest/Hardware/Final%20product/)
+- [Makefile Tutorials](https://makefiletutorial.com/)
