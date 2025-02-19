@@ -193,7 +193,16 @@ You will demonstrate your understanding of the `display` and `buttons` libraries
 
     g. The selection should "wrap" from top to bottom.  In other words, if you press the down button while you have the bottom entry selected, the selection will move to the top entry, and if you press the top entry when the bottom
 
-// TODO: Add an example video of this code working
+Here is a demo of the completed lab:
+
+<div class="row">
+    <div class="mx-auto">
+        <video height=500 controls>
+            <source src="{% link assets/display/lab6demo.mp4 %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
 
 ## Submission
 
