@@ -1,5 +1,5 @@
 ---
-title: I/O
+title: File
 number: 7
 layout: lab
 ---
@@ -121,21 +121,29 @@ There are a few essential file operations that exist in the `stdio.h` library. T
 
 In this lab you should accomplish the following:
 
-- Create a simple menu that lists all of the files in the `viewer` folder:
+- Use your menu to list all of the files in the `viewer` folder:
     - Filter out any file that does not end in `.bmp` or `.log`.
     
     - File names should be drawn in 8pt font.
-    
-    - A selection bar should highlight which file you are about to open. When the up and down buttons are pressed, the selection bar should move up and down to the next or previous entry. The selection bar should scroll around from the top to the bottom and the bottom to the top. This means if your selection bar is at the top of the list and you press up, it should move to the bottom of the list. The same thing should be true for the bottom of the list and pressing down.
-  
-- When the right button is pressed do the following:
-    - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
 
-    - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
+- When the right button is pressed, the selected file should be drawn to the screen for two seconds.  The menu should then be redrawn.
 
 - You only need to show up to 8 items on the display. You can ignore the rest of the items if there are more than 8.
 
-- To perform these tasks, we have given you three functions that you must implement and use in your main function: `get_entries`, `draw_menu`, and `draw_file`. Also, use the `#define`d variables at the top of the file to help implement these functions.
+To accomplish these tasks, you will need to:
+
+- Copy over the `draw_menu` function from the previous lab
+
+- Implement the `get_entries` function:
+    - Filter out any file that does not end in `.bmp` or `.log`. (Hint: Sounds like you need to **get** the **file extension**).
+    - Populate the `entries` array with the the `.bmp` and `.log` files.
+    - Return the number of files read in.
+    - If you find 8 files, you need only ready in the first 8.
+  
+- Implement the `draw_file` function
+    - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
+
+    - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.  You should only show the first 100 characters of the file.
 
 
 Here is a demo showing the different features of the lab:
@@ -143,7 +151,7 @@ Here is a demo showing the different features of the lab:
 <div class="row">
     <div class="mx-auto">
         <video height=500 controls>
-            <source src="{% link assets/io/demo.mp4 %}" type="video/mp4">
+            <source src="{% link assets/file/demo.mp4 %}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
