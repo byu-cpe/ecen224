@@ -138,7 +138,7 @@ To accomplish these tasks, you will need to:
     - Filter out any file that does not end in `.bmp` or `.log`. (Hint: Sounds like you need to **get** the **file extension**).
     - Populate the `entries` array with the the `.bmp` and `.log` files.
     - Return the number of files read in.
-    - If you find 8 files, you need only ready in the first 8.
+    - If you find 8 files, you need only read in the first 8.
   
 - Implement the `draw_file` function
     - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
