@@ -248,4 +248,4 @@ Here is a demo of the completed lab:
 - [Different types of Pi HATs](https://www.pishop.us/product-category/raspberry-pi/raspberry-pi-hats/)
 - [Retro Handheld Console with LCD HAT](https://pihw.wordpress.com/guides/mini-retro-pi-setup/)
 - [Crazy Pi GPIO Usage](https://sss.readthedocs.io/en/latest/Hardware/Final%20product/)
-- [Makefile Tutorials](https://makefiletutorial.com/)
+- Makefile Tutorials: [here]({{ site.baseurl }}/recitation/make-walkthrough) and [here](https://makefiletutorial.com/)
