@@ -287,7 +287,7 @@ When the datatypes `char`, `short`, `int`, and `long` are used the processor wil
 
 It is also important to note that the size of each of the above types is dependent on the processor on which you will be running the code. For example an `int` on a 16 bit processor will be 16 bits, while on a 32 bit processor an `int` is likely 32 bits, and on a 64-bit processor an `int` is also typically also 32 bits. This affects the range of possible values that can be stored. Understanding these details is important, ignoring them has led to catastrophies in the past ([including rockets that explode shortly after launch](https://en.wikipedia.org/wiki/Ariane_flight_V88)).
 
-Every processor is different, so it is important to pay attention to these details. It is the programmers responsability to understand what these data types mean and how they work on your system.
+Every processor is different, so it is important to pay attention to these details. It is the programmer's responsibility to understand what these data types mean and how they work on your system.
 
 ### Casting
 Sometimes it will be necessary to take the result of one number and represent it in a different type of variable. The process of the translating from one data type to another is known as **casting** and will be a very useful tool in this and other labs.
