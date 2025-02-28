@@ -103,14 +103,14 @@ Images are made out of many different colored points, called pixels, all put tog
 A computer doesn't necessarily store the image data in a two dimensional grid. It often stores it as a long list (called an array), where each row is concatenated with the previous row.
 
 <figure class="image mx-auto" style="max-width: 800px">
-  <img src="{% link assets/image/image_1d.png %}" alt="a single row of an image as an array">
+  <img src="{% link assets/image/image_1d.png %}" alt="A single row of an image as an array">
   <figcaption style="text-align: center;">Images are stored as a one dimensional list.</figcaption>
 </figure>
 
 Within each pixel, the computer actually stores **three values for each pixel**: a red color, a blue color, and a green color. Different values of each color channels will provide different hues and shades of a pixel. If that isn't making too much sense, there is a wonderful visualization of how different color channels create different pixel colors [here](https://www.w3schools.com/colors/colors_picker.asp). In our example, each color for each pixel is represented by a binary number that is exactly 8 bits long (or one byte). In BMP files, the pixels are typically stored bottom-up, starting in the bottom left corner, moving left to right. This is helpful to know when you debug your program.
 
 <figure class="image mx-auto" style="max-width: 600px">
-  <img src="{% link assets/image/pixels.png %}" alt="Representation of pixel values made up of blue, green, and red components">
+  <img src="{% link assets/image/pixels.png %}" alt="Representation of pixel values made up of blue, green, and red channels">
   <figcaption style="text-align: center;">Each pixel value is actually made up of 3 `uint8_t` values, representing blue, green, and red.</figcaption>
 </figure>
 
@@ -194,7 +194,7 @@ After applying the grayscale to the image, it should look like this:
 This function will be the culmination of your data manipulation knowledge that you have learned up until now. In this function you will take each color value of a pixel and bitwise OR it with the pixel color value directly above and below it. For example, if you are working on pixel x, you would OR the blue color with the blue color of the pixel above (top) and the pixel below (bottom). You would repeat this for the green and red colors. You would then move to the next pixel in your image.
 
 <figure class="image mx-auto" style="max-width: 700px">
-  <img src="{% link assets/image/or_filter.png %}" alt="image of how the OR function works">
+  <img src="{% link assets/image/or_filter.png %}" alt="Visual description of the OR filter">
   <figcaption style="text-align: center;">OR filter or's the color channels of the pixel above and below a specific pixel.</figcaption>
 </figure>
 
