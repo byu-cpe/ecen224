@@ -374,7 +374,7 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 | `%%`   | print a percent sign               |
 | `\%`   | print a percent sign               |
 
-In addition to the format specifiers listed above, there are several **escape charcaters** which tell printf() to do things you can't normally type. Here are a few of them that you might want to know.
+In addition to the format specifiers listed above, there are several **escape characters** which tell printf() to do things you can't normally type. Here are a few of them that you might want to know.
 
 | Symbol | Description                                                                |
 | ------ | -------------------------------------------------------------------------- |
