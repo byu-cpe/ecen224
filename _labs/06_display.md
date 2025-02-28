@@ -84,10 +84,6 @@ Now that the `bcm2835` library is installed, we can use it in any C program that
 
 In this lab you won't actually run `gcc` yourself, so you don't need to worry about including this flag. We will compile our project using Make, which will handle the `gcc` calls for us, including adding the `-l bcm2835` flag. We'll talk more about Make later.
 
-#### Executing
-
-Accessing the HAT hardware requires special permissions. After compiling your project, you will need to run it with `sudo` (e.g., `sudo ./main`) otherwise you will likely see a `segmentation fault`.
-
 ### Drawing to the Screen
 
 In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. This is a wrapper file that interacts with the `bcm2835` library we installed. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
@@ -187,6 +183,10 @@ And everything will be done for you.
 Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `main.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. IT then links the new `.o` to all the old, unchanged ones to generate the executable.
 
 **In this lab going forward, to compile your code, you should use `make` instead of `gcc`.**  The Makefiles will be provided for this class, so you don't need to entirely understand how they work right now. However, you will see them in future classes, so it may be worth taking a look at them.
+
+### Executing
+
+Compiling with the provided Makefile generates an executable called `main`. You run this executable the same way you run any other, using `./main`, with one exception. Accessing the HAT hardware requires special permissions, so you will need to run the exeutable with `sudo` (e.g., `sudo ./main`), otherwise you will likely see a `segmentation fault`.
 
 ## Requirements
 
