@@ -5,19 +5,21 @@ layout: lab
 ---
 
 ## Objectives
+
 - Compile a C program using `gcc`
 - Understand basic C syntax
 - Know the difference between the standard data types
 - Experiment with `printf` and data types
 
 ## Getting Started
+
 Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. SSH into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode.**
 
 ## Overview
 
 For the rest of the labs this semester, we will be focusing on building a strong foundation of programming using the C programming language. C is an old, yet very important language that is still actively used in development today. The creators of C, [Dennis Ritchie](https://computerhistory.org/profile/dennis-ritchie/) and [Ken Thompson](https://computerhistory.org/profile/ken-thompson/), are also the creators of the Unix operating system, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide good insight into how computers work in general.
 
-The philosophy of this lab is that the best way to learn something is to jump in and do it. The following sections will guide you through creating, compiling, and running a C program and teach you basic C syntax and tools. Read each section carefully and make sure to complete each step. 
+The philosophy of this lab is that the best way to learn something is to jump in and do it. The following sections will guide you through creating, compiling, and running a C program and teach you basic C syntax and tools. Read each section carefully and make sure to complete each step.
 
 ### A simple C Program
 
@@ -40,7 +42,7 @@ int main()
 
 ```
 
-Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in C interfaces with the computer. 
+Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in C interfaces with the computer.
 
 In your lab repository, create a new file called `simple.c`. This can be done using the File Explorer tab in VS Code, or from the terminal using the `nano` command (or a text editor of your choice. You can also create the file without a text editor using `touch` - google it for details). Inside the `simple.c` file, copy and paste the code above, then save and close the file.
 
@@ -50,7 +52,7 @@ We'll break down this code line by line, but first we need to understand how a C
 
 C is a [compiled language](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/). This means that the entirety of the code you write in C must go through a special process of being converted into a [binary executable](https://en.wikipedia.org/wiki/Executable) before it can be read and executed by the processor of your computer.
 
-The process of taking all the code you have written in C and translating it into binary is called **compilation**. This process is performed by a program called a **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection). 
+The process of taking all the code you have written in C and translating it into binary is called **compilation**. This process is performed by a program called a **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection).
 
 Compilers do more than simply convert a higher level language to machine language. Many compilers analyze the code being passed in and optimize it so that it can be executed in the fewest amount of instructions possible.
 
@@ -65,10 +67,12 @@ The `#include` directive looks at a file that exists in the operating system and
 Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You will need to look these up and know what they mean for the lab quiz.
 
 Generate a precompiled version of your `simple.c` code by running the following terminal command:
+
 ```bash
 gcc -E simple.c > simple_preprocessed.txt
 ```
-Look through the generated text file. Notice that a lot of extra text has been added, but at the last few lines of the text file you will find your original code. 
+
+Look through the generated text file. Notice that a lot of extra text has been added, but at the last few lines of the text file you will find your original code.
 
 ### Step 2: Compiling
 
@@ -78,26 +82,31 @@ Many modern compilers will also adjust your code to optimize it.  For example, i
 
 Because each computer model uses different hardware, there will be differences in the assembly generated to be run on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your laptop.
 
-Compile your C code into assembly by running the following terminal command: 
+Compile your C code into assembly by running the following terminal command:
+
 ```bash
 gcc -S simple.c
 ```
-This will generate an assembly file called `simple.s`. Open this file and look around. Google one of the commands that you see to try and figure out what it means. 
+
+This will generate an assembly file called `simple.s`. Open this file and look around. Google one of the commands that you see to try and figure out what it means.
 
 ### Step 3: Assembling
 
 In this next stage of the compilation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  There is typically a one-to-one direct mapping from assembly to binary.
 
-Run the following terminal command to generate the binary version of your code: 
+Run the following terminal command to generate the binary version of your code:
+
 ```bash
 gcc -c simple.c
 ```
 
 Next, to actually read this code, run the following:
+
 ```bash
 hexdump simple.o > simple_assembled.txt
 ```
-Look through the text file you just generated. Note that it's not just 0s and 1s. The actual file is 0s and 1s, but we are reading it as hex so that its a little bit more interpretable. You should see two main sections. What do you think these mean? 
+
+Look through the text file you just generated. Note that it's not just 0s and 1s. The actual file is 0s and 1s, but we are reading it as hex so that its a little bit more interpretable. You should see two main sections. What do you think these mean?
 
 ### Step 4: Linking
 
@@ -119,7 +128,7 @@ This will create a new file in our directory called `a.out` which we can run by:
 
 If you followed these steps correctly, your code should output the following to the terminal:
 
-```
+```bash
 Hello, World!
 
 ```
@@ -130,9 +139,7 @@ If you are not content with all of your binary executables being named `a.out` e
 gcc simple.c -o simple
 ```
 
-This with create a new executable file named `simple` instead of `a.out`, which you can run by typing `./simple`. 
-
-
+This with create a new executable file named `simple` instead of `a.out`, which you can run by typing `./simple`.
 
 ## Breaking down the C code
 
@@ -157,8 +164,8 @@ int main()
 
 ```
 
-
 ### Comments
+
 When writing a program, especially more complex ones, leaving comments in the code is essential to increase its readability. There are two types of comments: single and multi-line.
 
 ```c
@@ -176,11 +183,13 @@ Any text that is between the slash-star and
 the star-slash will be ignored.
 */
 ```
+
 Anything between the `/*` and `*/` will also be ignored during the compilation process of the program. One example for good use of multi-line comments is explaining the purpose of a function and it parameters right before its declaration.
 
 Although the *where* and *how* you use comments in your code are of little importance to the execution the program, they are imperative in making your code easier to understand and be reused by yourself and others in the future.
 
 ### main() Function
+
 Every program written in C must have a `main()` function. This is the function that will be run upon executing the program. All other functions that might need to be read in the execution of the program must be called in one form or another from the `main()` function.
 
 To declare a function in C, you must write its **return type** (more on that below), its name, and then any parameters it accepts in parentheses:
@@ -194,6 +203,7 @@ In the declaration above, we assert that the return type for the `main()` functi
 To maintain the scope of a function, everything written between curly braces `{}` is considered to be a part of the function declaration that came before it.
 
 ### printf()
+
 This function, which comes from `stdio.h` as we learned earlier, allows us to write values to the terminal screen from our program. In this example
 
 ```c
@@ -203,6 +213,7 @@ printf("Hello, World!\n");
 prints out `Hello, World!` and then moves the cursor to the next line.
 
 ### Return Values
+
 Functions that completes execution in a C program have a single (optional) return value that is passed up to the function that calls it. For example if I wanted to write a quick function that took the sum of two numbers, I could write it like so:
 
 ```c
@@ -267,9 +278,9 @@ int main()
 
 If the program runs into specific errors, it will return different values to the outermost function. But since the `main()` function is the outermost function, it is the shell that receives the error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
 
-
 ## Data Types
-Now that we have dissected our first C program, it is time to dive a little deeper into some details of the details. 
+
+Now that we have dissected our first C program, it is time to dive a little deeper into some details of the details.
 
 In order to successfully create a meaningful program in any language, you need to know how to correctly store and portray information. Unlike some modern languages, C is a **strongly-typed** language. This means that every time we declare a new variable, we need to specify what **type** it is. The native data types (i.e. no `#include`ing libraries are necessary) in C are the following:
 
@@ -290,6 +301,7 @@ It is also important to note that the size of each of the above types is depende
 Every processor is different, so it is important to pay attention to these details. It is the programmer's responsibility to understand what these data types mean and how they work on your system.
 
 ### Casting
+
 Sometimes it will be necessary to take the result of one number and represent it in a different type of variable. The process of the translating from one data type to another is known as **casting** and will be a very useful tool in this and other labs.
 
 For example, let's say I have a variable that was stored as an `int` and another variable that is a `float`. :
@@ -308,6 +320,7 @@ num_f = (float) num;
 This is an example of an explicit cast. Implicit casting can also occur, for example when you compare an int and an unsigned using `>`. These are other important details to pay attention to.
 
 ### stdint.h
+
 Standardized data types that explicitly define a specific number of bits (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t` and others that have specialized characteristics for specific needs.
 
 For example, if you need to use a data **t**ype that stores an **int**eger that is **u**nsigned (can never be negative) and has  **8** bit length, you would `#include <stdint.h>` and use the `uint8_t` type. This can be useful because the all of the bit patterns possibly contained in the 8 bit value are used to represent numbers above 0 (ex. 0-255). In a normal int, **about but not quite** half of those bit paterns map to negative numbers (thus decreasing the maximum number that can be represented). You should be learning more about this in the lecture portion of class! Additionally, using these types explicitly defines the number of bits as opposed to relying on the compiler and processor specifics of your system.
@@ -315,6 +328,7 @@ For example, if you need to use a data **t**ype that stores an **int**eger that 
 To understand more about the types of data types that exist in `stdint.h`, you can check out the [documentation for this file](https://man7.org/linux/man-pages/man0/stdint.h.0p.html).
 
 ### printf() arguments
+
 As you have seen in our simple C program, we can use the `printf()` function to send text out to the terminal from our program.
 
 ```c
@@ -360,19 +374,34 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 | `%%`   | print a percent sign               |
 | `\%`   | print a percent sign               |
 
+In addition to the format specifiers listed above, there are several **escape charcaters** which tell printf() to do things you can't normally type. Here are a few of them that you might want to know.
+
+| Symbol | Description                                                                |
+| ------ | -------------------------------------------------------------------------- |
+| `\n`   | Newline (moves to the next line)                                           |
+| `\r`   | Carriage Return (moves cursor to the beginning of the same line)           |
+| `\t`   | Tab (adds a horizontal tab space)                                          |
+| `\b`   | Backspace (removes the previous character)                                 |
+| `\\`   | Backslash (\) literal                                                      |
+| `\'`   | Single quote (') literal; avoids confusing the compiler                    |
+| `\"`   | Double quote (") literal; avoids confusing the compiler                    |
+| `\?`   | Question mark (?), helps avoid [trigraph](https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C) issues. (You can just use `?` too) |
+| `\0`   | Null character, used to terminate strings                                  |
 
 ## Lab Challenge
+
 To finish this lab, create a new file called `data.c`. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
+
 1. Print out the hex equivalent of the `unsigned int`: 3735928559
 2. Create a function that takes in a `uint8_t` as a parameter and prints the `char` equivalent. Use it at least 3 times in your `main()`.
 3. Use the `printf()` function at least once that has multiple formatting specifiers/placeholders.
 4. Use at least 5 different format specifier types in 5 different `printf()` statements.
 5. Use some format specifiers/placeholders in `printf()` in unexpected ways (i.e. pass in a `char` and format it with %d, or something similar). Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.
 
-Complile your code into an executable called `data`. 
-
+Complile your code into an executable called `data`.
 
 ## Lab Submission
+
 - Pass off with a TA by showing them the source code and program execution of `data.c`.
   
 - Take the Pass-Off Quiz on Learning Suite.
@@ -382,10 +411,9 @@ Complile your code into an executable called `data`.
   - What is the structure/organization of the project files?
   - How do you build and run the code in this project?
 
-- Add, commit, and push all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab. 
+- Add, commit, and push all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
 
-
-## Explore More!
+## Explore More
 
 - [Understanding `man` pages](https://kitras.io/linux/man-pages/)
 - [`printf()` Cheatsheet](https://alvinalexander.com/programming/printf-format-cheat-sheet/)
