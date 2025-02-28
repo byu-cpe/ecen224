@@ -76,17 +76,19 @@ In order to interface with the GPIO of the Pi Z2W, we need to install a library.
     sudo make install
     ```
 
+The library is now installed and accessible to the operating system! Your terminal is still in the library directory, so be sure to navigate back to your Lab 6 project directory before continuing. 
+
 #### Compiling into a Project
 
 Now that the `bcm2835` library is installed, we can use it in any C program that we like! This comes especially in handy for our new LCD and button HAT. However, since this is an installed library and not a default one, we have to let `gcc` know that we are trying to include it in the compilation process. This is done by adding the `-l bcm2835` flag to our normal `gcc` compilation command. The `-l` lets `gcc` know we are including a custom system library, while the `bcm2835` part is just the name of the library itself.
 
-#### Executing
-
-Accessing the HAT hardware requires special permissions.  After compiling your project, you will need to run it with `sudo` (e.g., `sudo ./main`) otherwise you will likely see a `segmentation fault`.
+In this lab you won't actually run `gcc` yourself, so you don't need to worry about including this flag. We will compile our project using Make, which will handle the `gcc` calls for us, including adding the `-l bcm2835` flag. We'll talk more about Make later.
 
 ### Drawing to the Screen
 
-In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
+In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. This is a wrapper file that interacts with the `bcm2835` library we installed. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
+
+Before the LCD can be used, you will need to call the `display_init()` function once in your code at the beginning of `main`.
 
 #### Orientation and Dimensions
 
@@ -126,8 +128,6 @@ The following fonts are available:
 - Font20
 - Font24
 
-Before the LCD can be used, you will need to call the `display_init()` function once in your code at the beginning.
-
 ### Interacting with Buttons
 
 To read the state of the d-pad you will be using the functions found defined in the `buttons.h` library interface. When a button is actively being pressed, the function to read it will return a `0`, else if it unpressed, it will return a `1`.
@@ -159,20 +159,20 @@ You will see in your `main.c` function that your code will loop infinitely. This
 
 We also give you `log.h` and `log.c` files that you can find under the `/lib` folder. The functions in these files (`log_info()` or `log_debug()` for example) can be used like printfs to output data to the terminal (or optionally a log file). However, these only print to the terminal if the current **log level** is equal to or lower than the log command.  For example, if the log level is set to `LOG_INFO`, then `log_debug()` messages won't show, but `log_info()` through `log_fatal()` messages will.  You can change the current log level with the `log_set_level()` function. These tools can be used to have printfs that you don't need to remove, but that can be turned on/off when you are debugging.
 
-### Makefiles
+### Compiling with Make
 
 By this point, you also may be realizing that large projects can become unweildy in compiling.  This lab, for example, contains eleven `.c` files.  To compile it yourself, you would have to enumerate each of them in the command line:
 
 ```bash
-gcc -o main main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c font16.c font20.c font24.c
+gcc -o main -l bcm2835 main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c font16.c font20.c font24.c
 ```
 
 Compiling like this will work, but has a couple problems:
 
-1. You are recompiling each file each time.  If you make a single change to your `main.c` file, each other file would also be recompiled.  For large projects, this can take a lot of time.
-2. Any typo in your command would halt the compilation.  Repeatedly typing in this command (or even copy/pasting it) could propogate errors and waste a lot of time.
+1. You are recompiling each file each time. If you make a single change to your `main.c` file, each other file would also be recompiled. For large projects, this can take a lot of time.
+2. Any typo in your command would halt the compilation. Repeatedly typing in this command (or even copy/pasting it) could propogate errors and waste a lot of time.
 
-Early C programmers recognized these issues too.  So, just four years after C was released, the Make software was created.  Make revolves around a single file called the `Makefile`. The inside of a `Makefile` looks a lot like bash scripts (like the one you made in Lab 2); you can create "rules" that perform a set of command line operations and generate files for you. So, instead of the long `gcc` command that you used up above, you can run one simple command:
+Early C programmers recognized these issues too. So, just four years after C was released, the Make software was created. Make revolves around a single file called the `Makefile`. The inside of a `Makefile` looks a lot like bash scripts (like the one you made in Lab 2); you can create "rules" that perform a set of command line operations and generate files for you. So, instead of the long `gcc` command that you used up above, you can run one simple command:
 
 ```bash
 make
@@ -180,9 +180,13 @@ make
 
 And everything will be done for you.
 
-You can use `Make` to easily speed up the compiling process too by performing intermediate steps in the compilation process.  Consider the example from above where you only updated `main.c`; instead of recompiling every single `.c` file, you can create a `.o` file for each source file.  Recall that `.o` files are compiled and assembled, but not yet linked together. Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated, so only files that need to be compiled actually are compiled.
+Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `main.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. IT then links the new `.o` to all the old, unchanged ones to generate the executable.
 
-**In this lab going forward, to compile your code, you should use `make` instead of `gcc`.**  The Makefiles will be provided for this class, so you don't need to entirely understand how they work right now.  However, you will see them in future classes, so it may be worth taking a look at them.
+**In this lab going forward, to compile your code, you should use `make` instead of `gcc`.**  The Makefiles will be provided for this class, so you don't need to entirely understand how they work right now. However, you will see them in future classes, so it may be worth taking a look at them.
+
+### Executing
+
+Compiling with the provided Makefile generates an executable called `main`. You run this executable the same way you run any other, using `./main`, with one exception. Accessing the HAT hardware requires special permissions, so you will need to run the exeutable with `sudo` (e.g., `sudo ./main`), otherwise you will likely see a `segmentation fault`.
 
 ## Requirements
 
@@ -200,11 +204,11 @@ You will demonstrate your understanding of the `display` and `buttons` libraries
 
     e. **drawFlag**: Uses at least 5 functions from `display.h` to draw any flag you wish.  3 of the `display_draw_###` functions must be unique.
 
-    Make and test each of these functions *before* you create the menu
+    Make and test each of these functions *before* you create the menu. You can test functions by calling them in your while(true) loop in main(). 
 
 2. Implement a menu functionality using `drawMenu` and `main`.  Your menu should have the following functionality:
 
-    a. The menu draws the strings contained in the "entries" array. Use an 8 point font.
+    a. The menu draws the strings contained in the "entries" array. Use an 8 or 12 point font.
 
     b. When no button is pressed, nothing happens.
 
@@ -216,7 +220,7 @@ You will demonstrate your understanding of the `display` and `buttons` libraries
 
     f. After a right button press, the code should wait 2 seconds, then redraw the menu.
 
-    g. The selection should "wrap" from top to bottom.  In other words, if you press the down button while you have the bottom entry selected, the selection will move to the top entry, and if you press the top entry when the bottom
+    g. The selection should "wrap" from top to bottom. In other words, if you press the down button while you have the bottom entry selected, the selection will move to the top entry, and if you press the top entry when the bottom
 
 Here is a demo of the completed lab:
 
