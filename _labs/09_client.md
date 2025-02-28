@@ -38,7 +38,7 @@ PING byu.edu (128.187.16.184) 56(84) bytes of data.
 
 Note that `128.187.16.184` is the IP address of the server that responded to our `ping`.
 
-Now that we know the address of the computer that we want to talk to, we need to know what **port** is being used by the program we want to communicate with. 
+Now that we know the address of the computer that we want to talk to, we need to know what **port** is being used by the program we want to communicate with.
 A port is a special window that a program uses to communicate with other programs.
 For example, a web server that is hosting a website normally does this under port `80` or `443` (if you are using HTTPS instead of HTTP). Every time you use `ssh` on your computer, you are talking to the remote computer over port `22` by default.
 
@@ -79,7 +79,7 @@ When we want to write to a file in C, we need to use the `fopen()` function to o
 
 ### Sending Data
 
-While in previous labs you used `write()` to write to a file, for network programming, we use `send()` to write to a socket (see the link in **Explore More** for more details about this function). 
+While in previous labs you used `write()` to write to a file, for network programming, we use `send()` to write to a socket (see the link in **Explore More** for more details about this function).
 Look at the tutorial below to see how the function behaves and you will notice it is very close to writing to a file. However, be careful. Since this is network programming, there is no guarantee that when you call `send()` that it will send all the data in the buffer you tried to send. You will be responsible for writing the logic to ensure that **all** of the data is sent correctly by implementing a function called `client_send_image` in `client.c`.
 
 The standard `send` function will return how much of the data actually got sent. If the amount of data you were expecting to send is not the same as what `send` returned, that means not all of the data got sent. For example, if I am sending data that is 100 bytes long and I call `send` and it only returns 50, that means only the first 50 bytes got sent. I need to call `send` again, passing the rest of the data. You will need to keep calling send until the total bytes sent is equal to the total bytes you were expecting to send. Here is some pseudo-code showing this concept:
