@@ -121,28 +121,25 @@ There are a few essential file operations that exist in the `stdio.h` library. T
 
 In this lab you should accomplish the following:
 
-- Use your menu to list all of the files in the `viewer` folder:
-    - Filter out any file that does not end in `.bmp` or `.log`.
-    
-    - File names should be drawn in 8pt font.
+- Use the menu functionality you developed in the last lab to list all of the files in the `viewer` folder.
 
-- When the right button is pressed, the selected file should be drawn to the screen for two seconds.  The menu should then be redrawn.
+- When the right button is pressed, the selected file should be drawn to the screen for two seconds. The menu should then be redrawn.
 
 - You only need to show up to 8 items on the display. You can ignore the rest of the items if there are more than 8.
 
 To accomplish these tasks, you will need to:
 
 - Copy over the `draw_menu` function from the previous lab
+    - File names should be drawn in either 8pt or 12pt font. 
 
 - Implement the `get_entries` function:
     - Filter out any file that does not end in `.bmp` or `.log`. (Hint: Sounds like you need to **get** the **file extension**).
     - Populate the `entries` array with the the `.bmp` and `.log` files.
     - Return the number of files read in.
-    - If you find 8 files, you need only read in the first 8.
+    - If you find more than 8 files, you need only read in the first 8.
   
 - Implement the `draw_file` function
     - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
-
     - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.  You should only show the first 100 characters of the file.
 
 
