@@ -168,6 +168,7 @@ gcc -o main main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c fon
 ```
 
 Compiling like this will work, but has a couple problems:
+
 1. You are recompiling each file each time.  If you make a single change to your `main.c` file, each other file would also be recompiled.  For large projects, this can take a lot of time.
 2. Any typo in your command would halt the compilation.  Repeatedly typing in this command (or even copy/pasting it) could propogate errors and waste a lot of time.
 

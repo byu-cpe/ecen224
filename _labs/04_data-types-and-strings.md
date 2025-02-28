@@ -112,7 +112,7 @@ Sometimes, you will have a variable that is the incorrect type for the operation
 
 #### Explicit vs Implicit Casting
 
-Casting can be done *explicitly* - meaning when you, the programmer, write code saying you want a cast to occur. An example of casting an integer to a float is shown below:
+Casting can be done _explicitly_ - meaning when you, the programmer, write code saying you want a cast to occur. An example of casting an integer to a float is shown below:
 
 ```c
 float a;
