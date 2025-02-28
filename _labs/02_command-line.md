@@ -60,7 +60,7 @@ Command names can also be tab completed. In a terminal window, type the followin
 mkd
 ```
 
-Pressing the tab key should complete the command to mkdir. Press `Enter` to start the web browser. If you press `Tab` and you don’t get a response, you have mistyped the leading characters or there are other options that are ambiguous. Typing `Tab` again a second time will list the remaining options that begin with the characters you have typed. For example, when you type:
+Pressing the tab key should complete the command to mkdir. Press `Enter` to start the web browser. If you press `Tab` and you don’t get a response, you have mistyped the leading characters or there are other options that are ambiguous. Typing `Tab` again a second time will list the remaining options that begin with the characters you have typed. For example, try typing:
 
 ```bash
 mk
