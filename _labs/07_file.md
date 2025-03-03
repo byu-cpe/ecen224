@@ -18,7 +18,7 @@ Use the GitHub Classroom link posted in the Learning Suite for the lab to accept
 
 Learning to interact with the peripherals of the Pi Z2W is what allows us to take a simple single-board computer and turn it into a system with a more directed purpose. You may have noticed by looking at the future lab names of this class that the culmination of this project is to make a smart doorbell system. To that end, a HAT with an LCD screen and some buttons has been provided. Its purpose is to provide a way for a user of your smart doorbell to directly interact with the computer that is powering it.
 
-In the last lab you were able to draw practically anything to the LCD screen by utilizing the provided vendor libraries. You were also able to correlate these drawing events with button presses. In this lab we will take this practice and put it towards a more practical use: creating a photo and log viewer for your doorbell.
+In the last lab you were able to draw practically anything to the LCD screen by utilizing the provided vendor libraries. You were also able to correlate these drawing events with button presses. In this lab you will take this practice and put it towards a more practical use: creating a photo and log viewer for your doorbell.
 
 The photo and log viewer of this lab consists of several components: scanning the folder where the intended files live, filtering out any files that the photo and log viewer doesn't care about, and displaying the intended content of each file.
 
@@ -28,7 +28,9 @@ In this lab you are expected to scan through a current folder and make a list of
 
 #### DIR Pointer
 
-Before we can read in the contents of a directory in C, we will need a variable that holds some information about the directory that we are reading. For this, we use a `DIR` pointer. This object will allow us to look at the location of where our directory lives and then use this a pointer to iterate through files in a directory and (for our purposes) retrieve those file names. To make this pointer:
+Before you can read in the contents of a directory in C, you will need a variable that holds some information about the directory that you are reading. For this, you can use a `DIR` pointer. The `DIR` pointer represents a _directory stream_, or an ordered list of all the entries in a directory.
+
+This object will allow us to look at the location of where our directory lives and then use this a pointer to iterate through files in a directory and (for our purposes) retrieve those file names. To make this pointer:
 
 ```c
 DIR *dp;    // Creates a directory pointer dp
@@ -36,7 +38,7 @@ DIR *dp;    // Creates a directory pointer dp
 
 #### Folder operations
 
-With our newly allocated `DIR` pointer, we can use the following functions that will help us interface with the directory in our code.
+With your newly allocated `DIR` pointer, you can use the following functions that will help us interface with the directory in our code.
 
 - `opendir()` and `closedir()`
 
@@ -53,7 +55,7 @@ With our newly allocated `DIR` pointer, we can use the following functions that 
     // Use dp to read the contents of the folder
     ```
 
-    This opens the `my-folder` directory into code and puts the `dp` pointer at the top of this directory. When we are done iterating through the directory, you will need to close it by using the following call to `closedir()`:
+    This opens the `my-folder` directory into code and puts the `dp` pointer at the top of this directory. When you are done iterating through the directory, you will need to close it by using the following call to `closedir()`:
 
     ```c
     closedir(dp);
@@ -61,7 +63,7 @@ With our newly allocated `DIR` pointer, we can use the following functions that 
 
 #### Parsing through the Folder
 
-While iterating through a directory, you will need to have an object that corresponds to the files that are inside the directory. This object is known as the `struct dirent` pointer and is the return value of `readdir()`. In other words, when we call `readdir()` on a `DIR` pointer, it will iterate through a linked-list that returns the files in the form of a `dirent` struct pointer. Once we have finished iterating through all of the files in a `DIR` pointer, `readdir()` will return `NULL`:
+`DIR` points to the location of a file in a directory, but does not give any information about what is at that location. To access some basic information about the file such as its name and size, you need an object that corresponds to the file data. This object is known as the `struct dirent` pointer and is the return value of `readdir()`. When you call `readdir()` on a `DIR` pointer, it will return a struct that contains the information for the file at that location in the form of a `dirent` struct pointer, and then moves the `DIR` pointer to the next entry in the directory stream. You can use this built-in iteration functionality to iterate through the files in a directory. Once you have finished iterating through all of the files in a `DIR` pointer, `readdir()` will return `NULL`:
 
 - `readdir()` example:
 
@@ -74,7 +76,7 @@ While iterating through a directory, you will need to have an object that corres
     ```
 
 - `d_name`
-    The `d_name` value inside of the `dirent` struct holds the file name of the file we are looking at. To see what the name of the current file is from a `readdir()` operation, do the following:
+    The `d_name` value inside of the `dirent` struct holds the file name of the file you are looking at. To see what the name of the current file is from a `readdir()` operation, do the following:
 
     ```c
     entry = readdir(dp);                      // Get the current file object
@@ -83,7 +85,7 @@ While iterating through a directory, you will need to have an object that corres
 
 #### Filtering Files
 
-While reading in your files using the folder operations, you may want to filter out some folders or files that are not of interest to you such as the `.` and `..` files that exist in every directory. To do this, you can check the name of the filename with the `strncmp()`. If the files match a certain value (i.e. the last 3 characters of the name are `bmp` or `log`), you can add them to a list, else you can ignore it. More reading on how to use `strncmp()` is found in the **Explore More!** section below.
+While reading in your files using the folder operations, you may want to filter out some folders or files that are not of interest to you such as the `.` and `..` files that exist in every directory. To do this, you can check the name of the filename with the `strncmp()`. If the files match a certain value (i.e. the last 3 characters of the name are `bmp` or `log`), you can add them to a list, else you can ignore it. More reading on how to use `strncmp()` is found in the **Explore More** section below.
 
 ### Reading Files
 
@@ -91,7 +93,7 @@ In this lab, you will be expected to read both `.bmp` and `.log` files from the 
 
 #### FILE Pointers
 
-Interacting with a file will require you to make a `FILE` stream pointer. This pointer represents the current position of where a read or a write action is inside of a file. For example, if you open a file to read for the first time, the pointer will be at the beginning of the document. As you read words by advancing the pointer position with functions such as `fscanf()` or `fread()`, the pointer value will increment. For this lab, we will use `FILE` pointers only in the context of the functions needed for the file operations described below. To declare a FILE pointer:
+Interacting with a file will require you to make a `FILE` stream pointer. This pointer represents the current position of where a read or a write action is inside of a file. For example, if you open a file to read for the first time, the pointer will be at the beginning of the document. As you read words by advancing the pointer position with functions such as `fscanf()` or `fread()`, the pointer value will increment. For this lab, you will use `FILE` pointers only in the context of the functions needed for the file operations described below. To declare a FILE pointer:
 
 ```c
 FILE *fp;    // This declares a file pointer that is read to be used in file operations
@@ -103,16 +105,16 @@ There are a few essential file operations that exist in the `stdio.h` library. T
 
 - `fopen()` and `fclose()`
 
-    This function takes in a `FILE` stream pointer, a file path, and some special strings to indicate the mode as arguments for opening a file. For example:
+    `fopen()` takes in a `FILE` stream pointer, a file path, and some special strings to indicate the mode as arguments for opening a file. For example:
 
     ```c
     FILE *fp;    // File pointer for interacting with file.
     fp = fopen("fancy_output.log", "r");
     ```
 
-    This code will create a `FILE` stream pointer called `fp`. We then use `fopen` to set the location of `fp` to the beginning of the `fancy_output.log` file in the current directory with the `r`ead mode (look at the **Explore More!** section for different file modes).
+    This code will create a `FILE` stream pointer called `fp`. You then use `fopen` to set the location of `fp` to the beginning of the `fancy_output.log` file in the current directory with the `r`ead mode (look at the **Explore More!** section for different file modes).
 
-    Once we have done everything that we want to with the file, we must be responsible and release the pointer back to the system. This is done by closing the file using `fclose()`. To do this, simply do the following:
+    Once you have done everything that you want to with the file, you must be responsible and release the pointer back to the system. This is done by closing the file using `fclose()`. To do this, simply do the following:
 
     ```c
     fclose(fp);    // Closes the file that was attached to the fp pointer
@@ -120,7 +122,7 @@ There are a few essential file operations that exist in the `stdio.h` library. T
 
 - `fread()`
 
-    Once we have a file open, how do we use the `FILE` stream pointer to get data? This is where functions like `fread` come into play. This function reads data from a file pointer. Specifically, it takes a buffer to read data into, the size of the data, the length of the data, and the file pointer.
+    Once you have a file open, how do you use the `FILE` stream pointer to get data? This is where functions like `fread` come into play. This function reads data from a file pointer. Specifically, it takes a buffer to read data into, the size of the data, the length of the data, and the file pointer.
 
     ```c
     char data[256];            // Creates a string that can hold up to 256 characters 
