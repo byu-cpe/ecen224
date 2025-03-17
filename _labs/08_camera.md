@@ -48,14 +48,14 @@ You'll notice in your lab files for this lab, you are provided with a `camera.h`
 
 In this lab you will be expected to capture image data from a camera, save it to a file, and then show it on the screen of your new smart doorbell. In order to write information to files in C, you will be expected to know one more function than you already do: `fwrite()`.
 
-Much like reading a files as you did in the last lab, to write, you will need to open a file using `fopen()`. You may be thinking, how can I open a file when it doesn't exist yet? With `fopen()` you can name the file you want to create and what kind of mode you want to create it in by using `fopen()`. For example, to create a new file named "banana.txt", I would do the following:
+Much like reading a file as you did in the last lab, to write, you will need to open a file using `fopen()`. You may be thinking, how can I open a file when it doesn't exist yet? With `fopen()` you can name the file you want to create and what kind of mode you want to create it in. For example, to create a new file named "banana.txt", I would do the following:
 
 ```c
 FILE *fp;
 fp = fopen("banana.txt", "w");
 ```
 
-The second argument in `fopen()` is mode we want to open the file in. This allows the operating system to know what type of content will be written to the file. In our example above, we want to write ASCII text to the file (as implied with the `.txt` extension), so we use the `w` mode. Other special modes for `fopen()` can be seen in the following table below.
+The second argument in `fopen()` is the mode we want to open the file in. This allows the operating system to know what type of content will be written to the file. In our example above, we want to write ASCII text to the file (as implied with the `.txt` extension), so we use the `w` mode. Other special modes for `fopen()` can be seen in the following table below.
 
 | Mode | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -68,7 +68,7 @@ The second argument in `fopen()` is mode we want to open the file in. This allow
 
 It is considered good practice to add a `b` at the end of the letter if you intend to write to a file in a binary format (i.e. `.bmp` files) to indicate your intent, however this extra `b` is not enforced on many modern systems like Linux.
 
-After the file is opened, you can then use the `fwrite()` command to write to this opened file. Instructions on how to use `fwrite()` can be found in the corresponding link in the **Explore More!** section at the bottom of the page. Don't forget to use `fclose()` on the file pointer when you are done writing the file!
+After the file is opened, you can then use the `fwrite()` command to write to this opened file. Instructions on how to use `fwrite()` can be found in the corresponding link in the **Explore More** section at the bottom of the page. Don't forget to use `fclose()` on the file pointer when you are done writing the file!
 
 ## Requirements
 
@@ -82,7 +82,7 @@ libcamera-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bm
 
 - Copy your `remove_color_channel` and `or_filter` functions into `image.c` from your Image Lab code. You will be using this code later on.
 
-- We have changed the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't fix it. You should be able to scroll through the list and display the contents of a file by pressing the right button.
+- We have changed the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't, fix it before moving on. You should be able to scroll through the list and display the contents of a file by pressing the right button.
 
 - Assign the center button to do the following:
   - Clear the screen and write a message telling the person you are taking a picture. You can write what ever you want (e.g., "Say Cheese!").
