@@ -68,7 +68,7 @@ The second argument in `fopen()` is mode we want to open the file in. This allow
 
 It is considered good practice to add a `b` at the end of the letter if you intend to write to a file in a binary format (i.e. `.bmp` files) to indicate your intent, however this extra `b` is not enforced on many modern systems like Linux.
 
-After the file is opened, you can then use the `fwrite()` command to write to this opened file. Instructions on how to use `fwrite()` can be found in the corresponding link in the **Explore More!** section at the bottom of the page. Don't forget to use `fclose()` on the file pointer when you are done writing the file!
+After the file is opened, you can then use the `fwrite()` command to write to this opened file. Instructions on how to use `fwrite()` can be found in the corresponding link in the **Explore More!** section at the bottom of the page. Don't forget to use `fclose()` on the file pointer when you are done writing the file! Forgetting fclose() can leave the file in an unstable state, and can cause errors like memory leaks, incorrect file locks, data loss, or even program crashes in some cases.
 
 ## Requirements
 
