@@ -40,7 +40,7 @@ uint8_t *my_new_buf = malloc(sizeof(uint8_t) * SIZEOFYOURBUFFER);
 free(my_new_buf);
 ```
 
-Malloc takes one argument, the number of bytes to allocate for the buffer. It is common to provide the size of the data type the buffer will be (in this case, `uint8_t` so `sizeof(uint8_t)`) and the number of elements you want. This creates your buffer in the *heap* where there is much more space for larger variables like this. However, whenever we declare something in C and manage its memory, we must remember to call `free()` on the object once we are done. If this is not done, then there will be memory leaks inside of your program which could potentially grind your system to a halt.
+Malloc takes one argument, the number of bytes to allocate for the buffer. It is common to provide the size of the data type the buffer will be (in this case, `uint8_t` so `sizeof(uint8_t)`) and the number of elements you want. This creates your buffer in the *heap* where there is much more space for larger variables like this. However, whenever we use `malloc()` to request memory in C, we must remember to call `free()` on the object once we are done. If this is not done, then there will be memory leaks inside of your program which could potentially grind your system to a halt.
 
 ### Writing to a File
 
@@ -68,7 +68,7 @@ The second argument in `fopen()` is the mode we want to open the file in. This a
 
 It is considered good practice to add a `b` at the end of the letter if you intend to write to a file in a binary format (i.e. `.bmp` files) to indicate your intent, however this extra `b` is not enforced on many modern systems like Linux.
 
-After the file is opened, you can then use the `fwrite()` command to write to this opened file. Instructions on how to use `fwrite()` can be found in the corresponding link in the **Explore More** section at the bottom of the page. Don't forget to use `fclose()` on the file pointer when you are done writing the file! Forgetting fclose() can leave the file in an unstable state, and can cause errors like memory leaks, incorrect file locks, data loss, or even program crashes in some cases.
+After the file is opened, you can then use the `fwrite()` command to write to this opened file. Instructions on how to use `fwrite()` can be found in the corresponding link in the **Explore More** section at the bottom of the page. Don't forget to use `fclose()` on the file pointer when you are done writing the file! Forgetting `fclose()` can leave the file in an unstable state, and can cause errors like memory leaks, incorrect file locks, data loss, or even program crashes in some cases.
 
 ## Requirements
 
