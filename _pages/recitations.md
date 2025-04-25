@@ -5,13 +5,10 @@ title: Recitations
 icon: fa-duotone fa-podium
 ---
 
-Recitations are on Thursdays at 11:00 AM and 3:00 PM as well as Fridays at 10:00 AM in the Digital Lab, EB 423 (where the labs are held). All three sessions last 50 minutes and have the same content, so feel free to attend whichever works foryour schedule. Slide decks and helps made for the recitations will be posted on this page.
+Because we are in Spring term and you already have 224 or 225 every day, we will not be holding recitations. Material from past semesters can be found here below.
 
-### Current Semester's Recitation Materials
 
-Will be added soon.
-
-<br><br>
+<br>
 
 ## Recitation Archive
 
