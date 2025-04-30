@@ -718,6 +718,7 @@ If you generate a hex-formatted exploit string in the file `exploit.txt`, you ca
 
 ## Appendix B: Generating Byte Codes
 Using `GCC` as an assembler and `OBJDUMP` as a disassembler makes it convenient to generate the byte codes for instruction sequences. For example, suppose you write a file `example.s` containing the following assembly code:
+
 ```asm
 # Example of hand-generated assembly code
     pushq $0xabcdef     # Push value onto stack
@@ -726,6 +727,7 @@ Using `GCC` as an assembler and `OBJDUMP` as a disassembler makes it convenient 
 ```
 
 The code can contain a mixture of instructions and data. Anything to the right of a ‘#’ character is a comment.
+**Remember that when you are writing assembly code, you need to add prefixes to let the compiler know what type of values you are talking about. All literal values should be preceded with a `$` (ex: `pushq $0xabcdef`), and all registers should start with `%` (ex: `pop %rax`).**
 
 You can now assemble and disassemble this file:
 ```

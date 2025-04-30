@@ -6,11 +6,20 @@ number: 1
 layout: lab
 ---
 
-## Section 1: Getting Started
+## Quick References
 
-**<span style="color: red;">Warning: Please don't download a bomb before the start date listed on the LearningSuite schedule. If you do, your bomb may be accidentally deleted by the server when the start date passes. If you are trying to work ahead, talk to one of the TAs first!</span>**
+These links are also provided throughout the lab report when needed.
 
-**<span style="color: red;">Additionally - this Lab can be very difficult if you don't understand what's going on. Make sure you read all the documentation here before trying to do the lab!</span>**
+- [Bomb Lab Download](http://ecen224.byu.edu:5100/)
+- [Bomb Lab Scoreboard](http://ecen224.byu.edu:5100/scoreboard)
+- [GDB Quick Reference]({% link assets/GDB_quick_ref_v2.pdf %}) 
+- [x86-64 Reference Sheet](https://web.stanford.edu/class/cs107/resources/x86-64-reference.pdf)
+
+## Part 1: Getting Started
+
+**<span style="color: red;">Warning: Please don't download a bomb before the start date listed on the LearningSuite schedule. If you do, your bomb may be accidentally deleted by the server when the start date passes.</span>**
+
+**<span style="color: red;">Additionally - this Lab can be very difficult if you don't understand what's going on. Make sure you read all the documentation before trying to do the lab!</span>**
 
 ### Storyline Introduction
 
@@ -39,22 +48,22 @@ There are too many bombs for us to deal with, so we are giving each student a bo
 
     Be careful! Each time that the bomb explodes, you will lose 1/2 a point (up to a max of 20 points). If you have exploded your bomb several times, you can download another bomb and try again. Your highest scoring bomb will be selected as your grade. Keep in mind that the phases of the bombs are randomly generated, meaning downloading a new bomb requires starting over from phase 1 again. Its better to not let it blow up in the first place!
 
-    Before the due date passes, you can see your current score by looking at the [Bomb Lab Scoreboard](http://ecen224.byu.edu:15213/scoreboard) which can also found on **Learning Suite**.
+    You can see your current score by looking at the [Bomb Lab Scoreboard](http://ecen224.byu.edu:5100/scoreboard) which can also found on **Learning Suite**.
 
 ### Important Resources to have
 
 These two are absolutely must-haves when it comes to GDB and understanding assembly. The x86 Reference Sheet is also extremely helpful if you are studying for Midterm 2!
 
-- **[GDB Quick Reference]({% link assets/GDB_quick_ref_v2.pdf %})** > A list of all the GDB commands you'll need (see also [Section 4: Using GDB](#section-4-using-gdb) as well). The most important commands are highlighted, but depending on how you go about diffusing the bomb, you may want the other ones as well.
-- **[x86-64 Reference Sheet](https://web.stanford.edu/class/cs107/resources/x86-64-reference.pdf)** > This sheet contains a very succint guide to all the basic facts of understanding x86 Assembly. Use this for understanding assembly commands, register names and jobs, and how to do math with registers.
+- **[GDB Quick Reference]({% link assets/GDB_quick_ref_v2.pdf %})** - A list of all the GDB commands you'll need (see also [Section 4: Using GDB](#section-4-using-gdb) as well). The most important commands are highlighted, but depending on how you go about diffusing the bomb, you may want the other ones as well.
+- **[x86-64 Reference Sheet](https://web.stanford.edu/class/cs107/resources/x86-64-reference.pdf)** - This sheet contains a very succint guide to all the basic facts of understanding x86 Assembly. Use this for understanding assembly commands, register names and jobs, and how to do math with registers.
 
 There are also some additional resources listed in **[Appendix B](#appendix-b-additional-resources)** that you may find helpful.
 
-## Section 2: Download and Unpack The Bomb
+## Part 2: Download and Unpack The Bomb
 
- Please make sure you are in the digital lab for this step! Even if you are going to SSH into the digital lab machines to run GDB,  **<span style="color: gold;">you have to have the bomb stored on your J-drive for a digital lab machine to run it.</span>** If you download it onto your own computer, you'll have to use the `scp` command (something we won't cover here) to copy it to your J-drive, or just download a new one on a digital lab machine.
+ **<span style="color: gold;">Please make sure you are in the digital lab for this step!</span>** To obtain your bomb, go to the [Bomb Lab Download page](http://ecen224.byu.edu:5100/) here or on **Learning Suite**. Follow the instructions on the web page (fill out a bomb request form, and the server will deliver a custom bomb to you in the form of a `tar` file named `bombK.tar`, where `K` is the unique number of your bomb.)
 
- To obtain your bomb, go to the [Bomb Lab Download page](http://ecen224.byu.edu:15213/) here or on **Learning Suite**. Follow the instructions on the web page (fill out a bomb request form, and the server will deliver a custom bomb to you in the form of a `tar` file named `bombK.tar`, where `K` is the unique number of your bomb.)
+ **<span style="color: gold;">You have to have the bomb stored on your J-drive for a digital lab machine to run it.</span>** If you downloaded it onto your own computer, you'll have to use the `scp` command (something we won't cover here) to copy it to your J-drive, or just download a new one on a digital lab machine.
 
  Save the `bombK.tar` file to a directory in your J-drive in which you plan to do your work. Then, open a terminal, navigate to the tar file, and give the command: `tar -xvf bombK.tar`. This will create a directory called `./bombK` with the following files:
 
@@ -68,7 +77,7 @@ There are also some additional resources listed in **[Appendix B](#appendix-b-ad
 
  *If the server is not working, wait 15 minutes and try again (it resets itself on a period of 15 mins). If the issue persists, contact your instructor.*
 
-## Section 3: Defuse Your Bomb
+## Part 3: Defuse Your Bomb
 
 This is the main task of the lab.
 
@@ -106,7 +115,7 @@ To avoid accidentally detonating the bomb, you will need to learn how to step th
 
 When you have completed the assignment (fully or partially) submit the answers to your bomb in the assignment on LearningSuite.
 
-## Section 4: Using GDB
+## Part 4: Using GDB
 
 GDB, or GNU Debugger, is a command-line tool available on virtually every platform, designed for debugging programs in languages like C and C++. It allows you to trace through a program line by line, examine memory and register contents, and inspect both source code and assembly code. For our purposes GDB is essential because it will allow you to reverse-engineer the binary `bomb` file without access to the original source code. By setting breakpoints, monitoring memory changes, and examining assembly instructions, you will systematically analyze the program’s behavior, identify the required inputs, and progress through each bomb "phase" safely.
 

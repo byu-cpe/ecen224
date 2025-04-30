@@ -4,39 +4,43 @@ number: 1
 layout: lab
 ---
 
-## GitHub Classroom
+## Lab Objectives
 
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment.
-
-## Objectives
-
-- Become familiar with the tools used for this lab
-- Understand how to setup a single board computer
+- Become familiar with the tools used for this class
 - Be able to gain access remotely to the Raspberry Pi Zero 2 W
+- Begin building skills needed to construct the doorbell
 
-## Overview
+## Introduction
+
+**This lab, like all others in the course, requires the ECEn 225 Lab Kit. If you do not have a kit, purchase one from the Experiential Learning Center (The Shop) in CB 416.**
 
 <figure class="image mx-auto" style="max-width: 750px">
   <img src="{% link assets/getting-started/pi-z2w-annotated.png %}" alt="Pi Z2W with boxes.">
   <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the SD card port outlined in magenta, the mini HDMI port outlined in light blue, the micro USB port for PoE outlined in red, and the micro USB port for power outlined in yellow.</figcaption>
 </figure>
 
-In this class we will be using the [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/) (or Pi Z2W for short) as the platform to explore the fundamentals of computing taught throughout the semester. The Pi Z2W is included in your lab kit that you should have already bought from the Experiential Learning Center (also known as The Shop) in CB 416. In this lab you will be setting up the [single board computer](https://en.wikipedia.org/wiki/Single-board_computer) so that it is capable of handling all the labs in this course. There are 3 parts to this lab:
+This course uses the [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/) (Pi Z2W) to teach core computing principles. In this lab, you will prepare this [single-board computer](https://en.wikipedia.org/wiki/Single-board_computer) to support all course activities.
 
-- Flash and configure the Pi Z2W
-- Gain remote access to the Pi Z2W
-- Development environment setup
-- Put all of the components together for future labs
+This lab consists of four parts:
 
-### Setting up the SD Card
+- Flash and configure the Pi Z2W with Linux  
+- Gain remote access to the Pi Z2W over SSH  
+- Set up a C development environment  
+- Assemble the hardware components into a doorbell
 
-In order to make use of the Pi Z2W, we will need to put an operating system onto its SD card. An [**operating system**](https://en.wikipedia.org/wiki/Operating_system) (OS), simply put, is a collection of programs which allows a user to interact with a device's hardware. For users of PCs, this collection of programs is called [Microsoft Windows](https://www.microsoft.com/en-us/windows?r=1), for Mac users [macOS](https://www.apple.com/za/macos/what-is/), and for Linux users there exists a wide variety of [distros](https://itsfoss.com/what-is-linux-distribution/#:~:text=Your%20distributions%20also%20takes%20the,as%20Linux%2Dbased%20operating%20systems.) to choose from.
+## Procedure
 
-In this lab we will become familiar with a distinct version of Linux called [Raspberry Pi OS](https://www.raspberrypi.com/software/) (formerly known as Raspbian) which was made specifically for devices like the Pi Z2W.
+### Part 1: Flash and Configure your PI Z2W
 
-Normally, we would encourage you to use the [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/) tool to download the image and write it to the SD card. However, due to the limitations of the lab machines, we will need to do it a different way.
+#### Setting up the SD Card
 
-1. Download the script that will walk you through the process of imaging your SD card. A script is like a recipe of commands that will run on your computer. You will download the script by opening up the **terminal** on your lab machine. This can be done either through finding it in the **Activities** menu or simply pressing `Ctrl+Alt+T`. Once you have the terminal open, copy and paste the following commands:
+To use the Pi Z2W, install an operating system on its SD card. An [**operating system**](https://en.wikipedia.org/wiki/Operating_system) (OS) is a set of programs that allows users to interact with hardware. Windows, macOS, and Linux are examples of operating systems, each tailored to different platforms. Linux offers a variety of [distributions](https://itsfoss.com/what-is-linux-distribution/#:~:text=Your%20distributions%20also%20takes%20the,as%20Linux%2Dbased%20operating%20systems.) suited for different needs.
+
+This lab uses [Raspberry Pi OS](https://www.raspberrypi.com/software/), a Linux distribution designed for Raspberry Pi devices.
+
+Normally, you would use the [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/) tool to install the OS. However, due to lab machine limitations, follow this alternative method.
+
+1. Open a terminal on your lab machine using the **Activities** menu or the shortcut `Ctrl+Alt+T`. Download and run the imaging script by entering:
 
     ```bash
     wget https://byu-cpe.github.io/ecen224/assets/scripts/imager.sh
@@ -44,15 +48,16 @@ Normally, we would encourage you to use the [Raspberry Pi Imager](https://www.ra
     ./imager.sh
     ```
 
-    *(For a long command like this, it's easiest to copy and paste it into the terminal.  Use the copy button on the top right of the command box to copy the command. Use `Ctrl+Shift+V` to paste into the terminal.)*
+    *(Use `Ctrl+Shift+V` to paste into the terminal after copying the command.)*
 
-2. This script will take a long time to run and will ask you some questions along the way.
+2. Wait for the script to complete. It may take a long time; it will prompt you for input during the process.
 
-3. Once the writing process finishes, remove the SD card from your laptop and insert it into the SD card slot of the Pi Z2W.
+3. After the script finishes, remove the SD card from the computer and insert it into the SD card slot of the Pi Z2W.
 
-### Assemble the Display
 
-Before we proceed, we need to assemble the display portion of your doorbell kit. Your kit should look something like this:
+#### Assemble the Display
+
+Your kit should look something like this:
 
 <div class="container text-center">
     <div class="row">
@@ -71,244 +76,204 @@ Before we proceed, we need to assemble the display portion of your doorbell kit.
     </div>
 </div>
 
-1. Unpackage and prepare your display, standoffs, screws, nuts, and washers for assembly.
+In order to see that your Z2W was configured correctly, we need to assemble the display. Assemble the display portion of your doorbell kit using the following steps:
+
+1. Unpackage the display, standoffs, screws, nuts, and washers.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_1.jpeg %}" alt="Step 1 parts">
     </figure>
 
-2. Put the screws through the holes of the Raspberry Pi Zero, on the side with the USB ports, so that the threads of the screw are on the same side of the PCB as the USBs.
+2. Insert the screws through the Raspberry Pi Zero from the side with the USB ports, so the threads protrude on the same side as the USB connectors.
 
-3. Put the plastic washers on the screws, one washer per screw.
+3. Place one plastic washer on each screw.
 
-4. Thread the brass standoffs onto the screws.
+4. Thread a brass standoff onto each screw.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_4_assembly.jpeg %}" alt="Step 4 assembly state">
     </figure>
 
-5. Take the display PCB and line up the black plastic socket (on the back side of the PCB) with the metal pins sticking out of the Raspberry Pi. Gently press the display into the socket, making sure all pins seated into their corresponding holes without getting bent. Two of the holes on the display should have slid over the brass standoffs installed earlier.
+5. Align the black plastic socket on the back of the display PCB with the Raspberry Pi’s GPIO pins. Press the display gently into place, ensuring all pins seat correctly. The two mounting holes on the display should align with the standoffs.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_6_1.jpeg %}" alt="Step 6 assembly state">
     </figure>
 
-6. Screw the nuts onto the standoffs to secure the display to the Raspberry Pi. Peel off the packaging protecting the surface of the display.
+6. Secure the display by screwing the nuts onto the standoffs. Remove the protective film from the display surface.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_6_2.jpeg %}" alt="Step 6 assembly state">
     </figure>
 
-7. Set aside the remaining parts of the kit for now.
+7. Set aside the remaining parts of the kit. We will come back to them in **Part 4**.
 
-### Connect to Pi Z2W
+### Part 2: Connect to Pi Z2W over SSH
 
-To power on your Pi Z2W, you will use the Power over Ethernet (PoE) adapters (the white bricks) at each lab computer. Power over Ethernet is a technology that provides both Internet and power at the same time. Only some Ethernet ports have it, but all of the ports in the Digital Lab do. It is not necessary to have power and the PoE adapter plugged in at the same time.
+Use the Power over Ethernet (PoE) adapters—the white bricks at each lab computer—to power the Pi Z2W. PoE transmits both power and internet through a single Ethernet cable, eliminating the need for separate power cables. While not all Ethernet ports support PoE, every port in the Digital Lab does.
 
-To power the Pi Z2W, first unplug the ethernet cable from the PoE adapter, then plug the PoE adapter into the **first** micro USB port (marked with text that says "USB", the left USB port in the figure at the beginning of this lab). Lastly, plug the ethernet cable back into the PoE adapter to power up and supply internet to Pi Z2W. This process is necesarity for the network to properly assign an IP address to the Pi through the ethernet cable.
+To power the Pi Z2W, unplug the Ethernet cable from the PoE adapter. Connect the adapter to the **first** micro USB port (labeled "USB" and located on the left in the figure at the beginning of this lab). Reconnect the Ethernet cable to the PoE adapter. This sequence ensures the network assigns an IP address to the Pi over the Ethernet connection.
 
-The boot process will take a while, up to three minutes. When it is complete, the display will show a blue screen with an IP address and the green light on the body of the Pi will be flashing uniformly.
+Allow up to three minutes for the Pi to boot. When the system is ready, the display will show a blue screen with two addresses: the localhost address (127.0.0.1) and an assigned IP address in the form 10.32.X.X. If the IP address does not appear, unplug the Ethernet cable from the PoE adapter and reconnect it. If the issue continues, notify a TA.
 
-Now that your Pi Z2W has Raspberry Pi OS Lite installed and is connected to the lab network, we are able to connect to the it remotely using `ssh`. A remote connection means that you are able to log into a computer (like the Pi Z2W) *from* a different computer (like the lab machines).
+With Raspberry Pi OS Lite installed and the Pi Z2W connected to the lab network, you can now access it remotely using `ssh`. This allows you to log into the Pi Z2W from another machine, such as the lab computer.
 
-1. Make sure you are able to find your Pi Z2W by opening up the **terminal** on your lab machine. This can be done either through finding it in the **Activities** menu or simply pressing `Ctrl+Alt+T`. Once the terminal has opened, search for it by entering the command:
-
-    ```bash
-    ping doorbell-<your_netid>.local
-    ```
-
-    If you receive a message like the following:
+1. Verify that your lab machine can detect the Pi Z2W. Open the **terminal** (`Ctrl+Alt+T`) and run:
 
     ```bash
-    ping: doorbell-kitras.local: Name or service not known
+    # replace NETID with your NetID
+    ping doorbell-NETID.local
     ```
 
-    then the Pi Z2W is not connected to the lab network. Check the ethernet cable and make sure that everything is plugged in correctly (correct port, correct order) then try again. Sometimes it can take awhile for the Pi Z2W to connect to the network. Wait a couple minutes minutes and try again before asking for help.
-
-    If you receive messages like:
+    If the output shows:
 
     ```bash
-    PING doorbell-kitras.local (192.168.86.48) 56(84) bytes of data.
-    64 bytes from doorbell-kitras.local (192.168.86.48): icmp_seq=1 ttl=64 time=95.7 ms
-    64 bytes from doorbell-kitras.local (192.168.86.48): icmp_seq=2 ttl=64 time=5.47 ms
-    64 bytes from doorbell-kitras.local (192.168.86.48): icmp_seq=3 ttl=64 time=25.0 ms
-    64 bytes from doorbell-kitras.local (192.168.86.48): icmp_seq=4 ttl=64 time=21.6 ms
-    64 bytes from doorbell-kitras.local (192.168.86.48): icmp_seq=5 ttl=64 time=6.53 ms
+    ping: doorbell-NETID.local: Name or service not known
     ```
 
-    Press `Ctrl+C` to stop the command. This means your lab machine can see the Pi Z2W and you are able to login with `ssh`.
+    then the Pi Z2W is not connected to the lab network. Confirm the Ethernet cable is connected properly to both the correct port on the Pi and the wall jack. Wait several minutes before retrying. If it still fails, seek assistance.
 
-1.Login to the Pi Z2W via `ssh` by typing in:
+    If the output shows:
 
-  ```bash
-  ssh <your_netid>@doorbell-<your_netid>.local
-  ```
+    ```bash
+    PING doorbell-NETID.local (192.168.86.48) 56(84) bytes of data.
+    64 bytes from doorbell-NETID.local (192.168.86.48): icmp_seq=1 ttl=64 time=95.7 ms
+    ...
+    # it will keep pinging until you stop it
+    ```
 
-  You will be asked to enter the password you chose earlier.  When you type your password in Linux you won't see anything show up in the Terminal window, but it is still being entered.  Just type your password and press `Enter` when you are done.
+    press `Ctrl+C` to stop the ping. Your machine can now communicate with the Pi Z2W.
 
-2.A prompt will appear asking if you want to add the Pi Z2W to a list of trusted remote computers. Type in `yes` to add the Pi Z2W to the trusted list.
+2. Log in via SSH:
 
-3.After entering in your login credentials, you should receive a prompt like the following to show that you are inside of the Pi Z2W:
+    ```bash
+    ssh NETID@doorbell-NETID.local
+    ```
 
-  <figure class="image mx-auto" style="max-width: 750px">
-    <img src="{% link assets/getting-started/ssh.png %}" alt="ssh">
-  </figure>
+    Enter the password set earlier. Nothing will appear as you type. Press `Enter` when finished.
 
-  You can tell you are inside the Pi Z2W by looking at the string before the cursor. It should be `username@computer_name` or specifically `<your_netid>@doorbell-<your_netid>` on the Pi Z2W.
+3. When prompted to confirm trust in the remote machine, type `yes`.
 
-4.Now that you are logged into your Pi Z2W, we will download a script that will install all the dependencies we will need for future labs.
+4. Once logged in, confirm you are in the Pi by checking the prompt:
 
-  First, run this command:
+    ```text
+    NETID@doorbell-NETID:~$
+    ```
 
-  ```bash
-  wget https://byu-cpe.github.io/ecen224/assets/scripts/install.sh
-  ```
+    <figure class="image mx-auto" style="max-width: 750px">
+      <img src="{% link assets/getting-started/ssh.png %}" alt="ssh">
+    </figure>
 
-  *(For a long command like this, it's easiest to copy and paste it into the terminal.  Use `Ctrl+Shift+V` to paste into the terminal.)*
+5. Download the setup script to install required tools:
 
-  This will download the script to your Pi.
+    ```bash
+    wget https://byu-cpe.github.io/ecen224/assets/scripts/install.sh
+    ```
 
-  Next, run:
+6. Make the script executable:
 
-  ```bash
-  chmod +x install.sh
-  ```  
+    ```bash
+    chmod +x install.sh
+    ```
 
-  This command will change permissions on the script, allowing you to execute (run) the .sh file. Lastly, run the script with:  
+7. Execute the script:
 
-  ```bash
-  ./install.sh
-  ```
+    ```bash
+    ./install.sh
+    ```
 
-  You will see print statements in the terminal logging the installation process. For the last step, it will ask for your password to apply all of the changes. This is the password you set on your Pi Z2W. Once you have entered your password and the script has finished, reboot your Pi with this command:
+    You will see various outputs in the terminal as packages install. When prompted for your password, enter the Pi Z2W password you set earlier.
 
-  ```bash
-  sudo reboot
-  ```
+8. Reboot the Pi Z2W:
+
+    ```bash
+    sudo reboot
+    ```
+
+    This will disconnect your Pi Z2W from the lab machine in the process. You will reconnect to it in the next part.
+
   
-### Connect with Visual Studio Code
+### Part 3: Set Up your Development Environment
 
-Next, we will connect to your Pi Z2W using VSCode using the **Remote - SSH** extension.
+#### Setting Up VSCode on the Z2W
 
-1. Open VSCode through the **Activities** menu on your lab machine. Look at the bottom status bar of the window. There should be an icon at the bottom left side of the screen:
+1. Launch VSCode from the **Activities** menu.
+
+2. Check the lower-left corner of the VSCode window for the green icon:
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/vscode-icon.png %}" alt="vscode-icon">
     </figure>
 
-2. If this icon is not there, that means the **Remote - SSH** extension is not installed. To install it, click on the extensions ![extensions]({% link assets/getting-started/vscode-extensions.png %}){:width="4%"} icon on the leftmost toolbar. This will open up the **Extensions Manager** where you can search for any type of tool you wish to add to your VSCode editor.
+3. If the icon is missing, install the **Remote - SSH** extension:
 
-3. Type in `Remote - SSH` into the search bar and click the **Install** button on the entry that says **Microsoft**  underneath.
+    - Click the extensions icon:
+      ![extensions]({% link assets/getting-started/vscode-extensions.png %}){:width="4%"}
+    - Search for `Remote - SSH`
+    - Click **Install** on the extension authored by **Microsoft**
 
-4. Once the extension has successfully installed, you can now click on the icon in the bottom left corner as seen in the figure above.
+4. After installation, click the green icon in the lower-left.
 
-5. Click on this icon then select **Connect to Host > Add New SSH Host**. In this input box we will put the `ssh` command we used before to connect to the Pi Z2W through the terminal: `ssh <your_username>@doorbell-<your_netid>.local`.
+5. Select **Connect to Host > Add New SSH Host**.
+
+6. Enter the full SSH command you used in **Part 2**:
+
+    ```bash
+    ssh NETID@doorbell-NETID.local
+    ```
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/vs-ssh.png %}" alt="vs-ssh">
     </figure>
 
-6. Then save this entry to your local `ssh` configuration file on our lab machine (either /home/... or /fsi/...):
+7. Save to your local SSH config (e.g., `/home/...` or `/fsi/...`):
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/ssh-conf.png %}" alt="ssh-conf">
     </figure>
 
-7. Click on the Remote SSH icon in the bottom left corner again and this time select the new `ssh` entry you just made by clicking **Connect to Host > doorbell-\<your\_netid\>.local**.
+8. Click the Remote SSH icon again, then choose `Connect to Host` and then click the `doorbell-NETID.local` entry you just set up.
 
-8. A new window will pop up and prompt you to enter in your Pi Z2W password. Enter in your password. If this is the first time you have connected to this device, it might take a few minutes to install all the necessary dependencies. After it connects, you can browse through files and code on your Pi Z2W from VSCode on your lab machine.
+9. A new window opens. Enter your Pi Z2W password. Wait for some dependencies to install if prompted.
 
-9. In the left toolbar on the window, click on files ![extensions]({% link assets/getting-started/files.png %}){:width="4%"} icon.
+10. Click the file explorer icon in the left sidebar:
+    ![extensions]({% link assets/getting-started/files.png %}){:width="4%"}
 
-10. Click on the **Open Folder** button and then click **OK** on the pop-up. This should put you into your home folder on Raspberry Pi OS.
+11. Click **Open Folder**, then **OK**. This opens the Pi Z2W home directory in VSCode.
+
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/open-folder.png %}" alt="open-folder">
     </figure>
 
-    Now you can use the left pane of VS Code to view and edit files inside the home directory on the Pi Z2W.
+    You can now access and edit files on your Pi Z2W directly through VSCode.
 
-### Create SSH key for GitHub
+#### Set Up GitHub and Clone your Starter Labs
+<!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
 
-All of the labs require you to write code and upload it to a version control service called GitHub. A GitHub account is required for this class. If you do not have an account you can create one [here](http://github.com/join) otherwise you are allowed to use your personal account for this class.
+All labs require code to be cloned from and uploaded to GitHub. Create a Github account at [github.com/join](http://github.com/join) if you don't already have one. You may use your personal account if you preferr.
 
-In order to allow our Pi Z2W to speak with GitHub, we will need to create an **SSH key** that will allow GitHub to know that the changes to the code online came from a trusted source (i.e. your Pi Z2W) and not from some impostor's device (i.e. your arch-nemesis's Pi Z2W).
+To configure GitHub on your Pi Z2W:
 
-1. To generate an SSH key, use the VSCode terminal (by clicking Terminal > New Terminal) - this creates a new instance of a terminal that is connected to your Pi Z2W. Type in the following:
+1. Navigate to the `GitHub Setup` tab.
+2. Complete all steps in the **First Time Setup** section. This includes:
+    - Setting your username and email in git
+    - Generating an SSH key
+    - Adding the SSH key to your GitHub account
+    - Verifying the SSH connection to GitHub
 
-    ```bash
-    ssh-keygen -t ed25519 -C "your_email_address"
-    ```
+3. Proceed to the **Cloning A Repository** section.
+4. Follow the instructions to clone your `Starter Labs` repository.
+    - The GitHub Classroom link is provided in Learning Suite under the schedule entry for Lab 1.
 
-    The tool will ask you several questions. For our purposes, the default values will suffice (i.e. just hit `Enter` until it finishes) unless you desire to protect your key with a password (not recommended for this class; it would require you to enter in a password any time you want to use the SSH key).
-
-2. Once this is done you can find the contents of your new SSH keys by typing in
-
-    ```bash
-    cat ~/.ssh/id_ed25519.pub
-    ```
-
-    **NOTE:** Make sure that you `cat` the values of `id_ed25519.pub` and **NOT** `id_ed25519`. The contents in the `.pub` are meant to be shared with the `pub`lic and the contents of the other file are not meant to be shared with anyone else.
-
-3. Copy the output of this file by selecting it and pressing `Ctrl-Shift-C`. Then navigate in a web browser to your GitHub [keys console](https://github.com/settings/keys) (you must be signed into GitHub for this step to work).
-
-4. At the top of the page will be a big green button that says **New SSH key**. Click on this and then you should be taken to page like the one below:
-
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/github-ssh-key.png %}" alt="github-ssh-key">
-    </figure>
-
-5. Paste the contents that we copied into the **Key** box and feel free to add whatever value you desire into the **Title**. Make sure the dropdown menu for **Key type** is set to `Authentication Key`.
-
-6. Finally, click **Add SSH key** and now your Pi Z2W should be able to talk to your GitHub account.
-
-### Setup GitHub Repository
-
-Next, we need to ensure that [`git`](https://git-scm.com/) is installed on our Pi Z2W. This will be the terminal program that we use to communicate with GitHub to version control and submit our assignments.
-
-1. If the terminal window on VSCode is not already open, press `` Ctrl+` `` and then enter in the command:
-
-    ```bash
-    sudo apt install git
-    ```
-
-    Once `git` has installed, we use this to download the first the repository (or code-base) for this lab. Since this lab requires no code to be written, the repository will be pretty uneventful. But remember these steps as future labs will use these steps to be set up.
-
-2. Click on the **GitHub Classroom Link** located on Learning Suite for the "Getting Started Lab" assignment. You will be taken to a page that asks you to accept the assignment. Accept it and then you will be transferred to a page with a link of your repository for this assignment. Click on that link and you should be brought to the default view of the repository.
-
-3. Click on the green button that says **Code**. Make sure you are on the **SSH** tab as shown below and copy the text in the box beneath.
-
-    <figure class="image mx-auto" style="max-width: 750px">
-      <img src="{% link assets/getting-started/ssh-repo.png %}" alt="ssh-repo">
-    </figure>
-
-4. Back on the Pi Z2W's terminal type in
-
-```bash
-git clone <GitHub Repo SSH URL>
-```
-
-This downloads a copy of the lab files from to your Pi Z2W. Since this lab is focused on setting up the Pi Z2W, there are no special files that you will need to interact with other than the `README.md` for your lab submission.
-
-<figure class="image mx-auto" style="max-width: 750px">
-    <img src="{% link assets/getting-started/dl-repo.png %}" alt="dl-repo">
-</figure>
-
-In future labs, any starter code or special resources for completing that lab will be included alongside that lab's `README.md`.
-
-Now it is time to start assembling the other parts of the kit. Shut down your Raspberry Pi with this command:
-
-```bash
-sudo shutdown now
-```
-
-The command `sudo` indicates to your Raspberry Pi that you want to perform the following command with admin-level priveleges. In this case, we are running the `shutdown` command, directing it shutdown immediately (`now`). You might need to provide your password when prompted. Be aware that unlike traditional password prompts, this one won't show any characters as you type your password. After running this command, wait for the lights to stop blinking on your Pi before unplugging the pi.
+After cloning, the code will be available in your Pi Z2W’s filesystem for development and submission.
 
 <!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
-### Assemble the remaining kit
+
+### Part 4: Assemble the Remaining Kit
 
 Next we will proceed to assemble the remaining components of your doorbell kit.
 
-1. Unpackage and prepare your camera kit and the case lid for assembly. Your kit came with two ribbon cables of different lengths. **WE WILL BE USING THE BROWN RIBBON CABLE, NOT THE WHITE CABLE**. Be aware that these ribbon cables are fragile.
+1. Unpack the camera kit and case lid. Use the **brown** ribbon cable (not the white one). The ribbon cables are fragile.Handle them with care, and do not crease or bend them extremely sharply.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_7_parts.jpeg %}" alt="Step 7 parts">
@@ -318,31 +283,32 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
       <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the camera unit and connection cable. In this lab we will be using the larger cable and wrap it around the back of the Pi Z2W.</figcaption>
     </figure>
 
-2. Familiarize yourself with the connector on your camera PCB. Note the orientation of the metal pins inside the connector and the plastic shroud along the edges. This shroud "locks" the connector, preventing the cable from being removed. Unlock it by *gently* pulling on the edges of the shroud until it slides out. Be careful here - the shroud is fragile, and can easily break or come off!
+2. Familiarize yourself with the connector on your camera PCB. Notice the small dark grey shroud around the white plastic of the connector. This shroud "locks" the connector, preventing the cable from being removed. Unlock it by *gently* pulling on the edges of the shroud until it slides out. Again, use caution.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_8_camera_closeup %}" alt="Camera connector closeup">
     </figure>
 
-3. Insert the narrow end of the cable on the Raspberry Pi, making sure the copper contacts on the ribbon are oriented correctly. *Note - in this image, the connector is in the "locked" state*
+3. Insert the narrow end of the brown ribbon cable into the Pi's connector. Copper contacts should face downwards toward the circuit board.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_10_ribbon %}" alt="Step 10 - ribbon cable inserted, locked.">
     </figure>
 
-4. Gently wrap the ribbon cable between the Raspberry Pi and the display HAT. Be careful not to bend the metal part of the ribbon cable that is coming out of the Raspberry Pi.
+4. Route the ribbon cable between the Pi and the display HAT. Avoid bending the metal part of the ribbon near the connector.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_11_bent.jpeg %}" alt="Bent ribbon cable">
     </figure>
 
-5. Insert the wider end of the cable into the camera module, making sure the copper contacts on the ribbon are oriented correctly. *Note - in this image, the connector is in the "unlocked" state. Make sure to lock the connector once you have installed the ribbon.*
+5. Insert the wide end of the cable into the camera module. Copper contacts should face downwards towards the circuit board. Lock the connector after insertion.
+
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_9_ribbon %}" alt="Step 9 - ribbon cable inserted but not locked">
     </figure>
 
-6. There is a small adhesive strip on the back of the camera. Remove the protective layer and stick it to the camera's PCB. This will ensure the camera stays in place.
+6. There is a small adhesive strip on the back of the camera lens. Remove the protective layer and stick it to the camera's PCB.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/camera_sticker.jpeg %}" alt="Attach camera to PCB board.">
@@ -590,21 +556,23 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
         <div id="camera-lid"></div>
       <figcaption style="text-align: center;">Doorbell case 3D printed file. You will need to attach the camera module to the standoffs on the lid. Note that the button in this file is not included in the case you will receive in this lab.</figcaption>
     </figure>
-    As visible in the 3D model above, there are several components that comprise this enclosure. The top of the case is the long, rectangular part with holes for the camera, LCD screen, and button respectively.
+    As visible in the 3D model above, there are several components that comprise this enclosure. The top of the case is the long, rectangular part with holes for the camera, LCD screen, and button respectively. 
+    
+    *Notice: Your kit does not contain a button, as the buttons in this model did not function well enough to be produced.*
 
-8. You'll notice that around the camera holes are four standoffs. These standoffs correspond to the holes in the camera module mentioned in the section before. Remove the packaging film covering the lense of your camera, then mount the camera board to the lid of the case using the 4 screws. It is easiest to do this with the Raspberry Pi face down.
+8. Remove the lens film from the camera. Mount the camera board to the lid of the case using the 4 screws provided. 
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_13_mounted_camera.jpeg %}" alt="Mounted camera and ribbon cable routing">
     </figure>
 
-9. Insert the Raspberry Pi into the case. Make sure the remaining 2 empty holes on the Raspberry Pi line up with the pegs in the case.
+9. Insert the Pi into the case by aligning the remaining two holes with the case pegs.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_14_case_positioning.jpeg %}" alt="Positioning of components in the case">
     </figure>
 
-10. Tuck the extra slack of the ribbon cable under the camera. Be careful not to pinch the ribbon cable.
+10. Tuck the slack of the ribbon cable under the camera. Be careful not to pinch or crease the ribbon cable.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_15_case.jpeg %}" alt="Positioning of components in the case">
@@ -616,23 +584,17 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
       <img src="{% link assets/getting-started/assembly/step_16_completed.jpeg %}" alt="Completed assembly">
     </figure>
 
-12. Slide the 3D button on the square peg of the display HAT.
-
 Details about the display and camera hardware will be presented in future labs.
 
 Turn your Pi Z2W back on by unplugging the ethernet from the PoE adapter, plugging your PoE adapter into the Pi, and reconnecting the ethernet. Re-connect to the Pi over SSH in VS Code like we did earlier.
 
-### README files
-
-Once you reconnect to your PI, check out the README.md file in the getting started repository that you just downloaded.  READMEs are [markdown](https://www.markdownguide.org/getting-started/) files that explain what a folder or repository contains.  They often include instructions on how to download, use, and modify the contents.
-
-Before turning in each lab, you will be expected to create your own READMEs for your repositories.  This first one will be pretty simple - take a look at the initial one we gave you and modify it as described!
-
 ## Lab Submission
 
+- Demonstrate to a TA that your Z2W is set up correctly. Show them that:
+  - you can connect to your pi over SSH on VSCode 
+  - your Z2W uses `zsh` (the shell installed with the second install script).
 - Complete the Learning Suite Pass-off quiz.
-
-- To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
+- Take a look at the `submission.md` file included in your Starter-Labs repo. You will fill this out over the next 4 labs.
 
 ## Explore More
 
