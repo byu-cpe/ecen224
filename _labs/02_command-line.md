@@ -99,8 +99,14 @@ There are some **system environment variables** that are defined for you when yo
 
 Several text editors can be installed on your system, for example, `code`, `gedit`, `nano`, `vim`, and `emacs`. Some applications can only be run from the command line, while others can be launched graphically by clicking on its icon in the application screen. Choose an editor, and use it to create a new file. **Hint: Since you are doing this lab SSHed into your Pi Z2W, `code` and `gedit` will not work because they require a GUI. `emacs` can also be terminal based (and is a great option - google the debate between `vim` and `emacs`) - but will need to be installed before you can use it. Alternatively, you can use pre-installed editors like `nano` or `vim`.**
 
-Open a new file in the cloned lab directory using `nano` and create a note to yourself. Notice the keybindings at the bottom of the terminal. Experiment with creating and deleting text, copying and pasting, and saving files. Quit out of `nano` and type `ls -l` to see details about the text file you created.
+Open a new file in the cloned lab directory using `nano` and create a note to yourself. Here are some essential `nano` keybindings to help you get started:
+- Save: `Ctrl+O`
+- Exit: `Ctrl+X`
+- Cut text: `Ctrl+K`
+- Paste text: `Ctrl+U`
+- Search: `Ctrl+W`
 
+Notice the keybindings at the bottom of the terminal as well. Experiment with creating and deleting text, copying and pasting, and saving files. Quit out of `nano` and type `ls -l` to see details about the text file you created.
 ## Part 2: Complete the Shell Challenge
 
 To round out your shell learning experience, you are **required** to complete the shell challenge. In the lab repo, uncompress the `challenge.tar.xz` package; you will want to Google on how to do this. Notice that the file has two layers - the .tar and the .xz. In order to view the contents of the folder you must remove both (this can be done in one command). Inside the resulting directory, complete the various levels of the challenge to finish the lab.
