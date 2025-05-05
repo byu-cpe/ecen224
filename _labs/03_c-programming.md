@@ -11,17 +11,9 @@ layout: lab
 - Know the difference between the standard data types
 - Experiment with `printf` and data types
 
-## Getting Started
+## Introduction
 
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. SSH into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode.**
-
-## Overview
-
-For the rest of the labs this semester, we will be focusing on building a strong foundation of programming using the C programming language. C is an old, yet very important language that is still actively used in development today. The creators of C, [Dennis Ritchie](https://computerhistory.org/profile/dennis-ritchie/) and [Ken Thompson](https://computerhistory.org/profile/ken-thompson/), are also the creators of the Unix operating system, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide good insight into how computers work in general.
-
-The philosophy of this lab is that the best way to learn something is to jump in and do it. The following sections will guide you through creating, compiling, and running a C program and teach you basic C syntax and tools. Read each section carefully and make sure to complete each step.
-
-### A simple C Program
+The goal of this semester is for you to build a strong foundation in C programming. C is a very important language that is still actively used today. The creators of C, [Dennis Ritchie](https://computerhistory.org/profile/dennis-ritchie/) and [Ken Thompson](https://computerhistory.org/profile/ken-thompson/), are also the creators of Unix, the predecessor to the Linux system we are using in this class. A good understanding of how C and Unix work will provide large insight into how computers work in general.
 
 ```c
 // This is a single line comment.
@@ -42,29 +34,27 @@ int main()
 
 ```
 
-Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. Its purpose is to provide an example of the most fundamental functions of a language and how a program written in C interfaces with the computer.
+Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. The "Hello World" program is commonly used to demonstrate the basics of a programming language.
 
 In your lab repository, create a new file called `simple.c`. This can be done using the File Explorer tab in VS Code, or from the terminal using the `nano` command (or a text editor of your choice. You can also create the file without a text editor using `touch` - google it for details). Inside the `simple.c` file, copy and paste the code above, then save and close the file.
 
-We'll break down this code line by line, but first we need to understand how a C program is born.
+We will use this program to explore the basics of creating, compiling, and running a C program. Read each section carefully and make sure to complete each step.
 
-## The Compilation Process
+## Procedure
 
-C is a [compiled language](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/). This means that the entirety of the code you write in C must go through a special process of being converted into a [binary executable](https://en.wikipedia.org/wiki/Executable) before it can be read and executed by the processor of your computer.
+### Part 1: Exploring The Compilation Process
 
-The process of taking all the code you have written in C and translating it into binary is called **compilation**. This process is performed by a program called a **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection).
+C is a [compiled language](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/), meaning  that the code you write must be **compiled** into a [binary executable](https://en.wikipedia.org/wiki/Executable) before it can be executed. This compilation process is done by a program known as the **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection).
 
-Compilers do more than simply convert a higher level language to machine language. Many compilers analyze the code being passed in and optimize it so that it can be executed in the fewest amount of instructions possible.
+Compilers do more than simply convert a higher level language to machine language. Many compilers analyze the code being passed in and optimize it to be executed in the fewest amount of instructions possible. Let's examine the steps compilers take to build an executable version of your program.
 
-The compilation process has four major steps, which we will break down and execute on `simple.c` below.
+#### Step 1: Pre-processing
 
-### Step 1: Pre-processing
+This step runs a pre-compiler program which handles special statements in your code called **directives**. Directives, which are denoted by the `#` sign, help decide which parts of a written program in C are included during the compilation process.
 
-Also called pre-compilation, this step runs a pre-compiler which handles special statements in your code called **directives**. Directives aid in deciding which parts of a written program in C are included during the compilation process. You can normally spot these because they start with a `#` sign.
+One of the most common directives is the `#include` directive, which "includes" an already existing file into your code. In our `simple.c` program, we have included the `<stdio.h>` library, which has several functions to assist with the "standard" inputs and outputs in your program (i.e. reading from your keyboard and writing to a terminal). This is also where the definition of the `printf()` function resides. Without including `stdio.h`, `simple.c` would not know what `printf()` was or where it was defined and thus would not be able to compile.
 
-The `#include` directive looks at a file that exists in the operating system and includes it (essentially copying and pasting it) into your code. For example, `stdio.h` is a file that contains code that deals with the **st**andar**d** **i**nput and **o**utput that can be used in your program (i.e. reading from your keyboard and writing to a terminal). This is where the definition of the `printf()` function resides. Without including `stdio.h`, the "Hello World" code would not know what the `printf()` function was or where it was defined and thus would not be able to execute correctly.
-
-Other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. You will need to look these up and know what they mean for the lab quiz.
+Some other interesting compiler directives are `#define`, `#if`/`#else`/`#endif`. Take a minute to look up what they mean for your lab quiz.
 
 Generate a precompiled version of your `simple.c` code by running the following terminal command:
 
@@ -72,15 +62,13 @@ Generate a precompiled version of your `simple.c` code by running the following 
 gcc -E simple.c > simple_preprocessed.txt
 ```
 
-Look through the generated text file. Notice that a lot of extra text has been added, but at the last few lines of the text file you will find your original code.
+Look through the generated text file. While a lot has been added, the last few lines of the text file are your original code.
 
-### Step 2: Compiling
+#### Step 2: Compiling
 
-The second stage of the compilation process is called compiling. In this step, the compiler takes your code and converts it into [assembly](https://en.wikipedia.org/wiki/Assembly_language), the specific types of instructions that your specific computer processor knows how to execute. As you will see later in the class, every assembly command can be directly mapped to binary which is then read directly by the computer hardware in your processor.
+In this step, the compiler translates your pre-processed code into [assembly language](https://en.wikipedia.org/wiki/Assembly_language). Assembly is made up of **instructions** that can be executed by your computer processor. For example, all the instructions you will study in ECEn 224 use the [x86 instruction set](https://en.wikipedia.org/wiki/X86_instruction_listings). All C programs can be compiled into some set of these instructions.
 
-Many modern compilers will also adjust your code to optimize it.  For example, if your code includes a command to multiply an integer by a multiple of 2 (ex: `newInt = 3 * 4`), your compiler may instead use a binary shift operation (`newInt = 3 << 2`  in C or `shr %rdx, 2` in assembly).
-
-Because each computer model uses different hardware, there will be differences in the assembly generated to be run on different machines. The binary exectuable that is compiled on your doorbell will likely work on other students' doorbells, but not on your laptop.
+Many modern compilers will also make optimizing adjustments to your code. For example, if your code includes a command to multiply an integer by four (ex: `newInt = 3 * 4;`), your compiler may instead use a binary shift operation (`newInt = 3 << 2;`  in C or `shr %rdx, 2` in assembly). These adjustments reduce the number of instructions needed, increasing the speed and efficiency of your program.
 
 Compile your C code into assembly by running the following terminal command:
 
@@ -88,11 +76,13 @@ Compile your C code into assembly by running the following terminal command:
 gcc -S simple.c
 ```
 
-This will generate an assembly file called `simple.s`. Open this file and look around. Google one of the commands that you see to try and figure out what it means.
+Because different processors and hardware have different instruction sets, compiled assembly code can usually only be run on the machine that compiled it. For example, The binary `simple.c` exectuable you just compiled on your doorbell uses the [ARM instruction set](https://en.wikipedia.org/wiki/ARM_architecture_family). The resulting executable would likely work on another student's doorbell, but it would not work on your `x86` lab machine.
 
-### Step 3: Assembling
+Open the `simple.s` file you just generated and look around. Google one of the commands that you see to try and figure out what it means.
 
-In this next stage of the compilation process, the assembly code generated in the last step will be transformed into binary, the pure language of computers.  There is typically a one-to-one direct mapping from assembly to binary.
+#### Step 3: Assembling
+
+The next step is to convert the assembly code into machine code, which consists of binary that the processor can execute. This involves translating each assembly instruction into its corresponding binary **opcode** and arguments and organizing them into larger segments such as the `code` and `data` segments. These segments can then be processed by the operating system.
 
 Run the following terminal command to generate the binary version of your code:
 
@@ -106,13 +96,13 @@ Next, to actually read this code, run the following:
 hexdump simple.o > simple_assembled.txt
 ```
 
-Look through the text file you just generated. Note that it's not just 0s and 1s. The actual file is 0s and 1s, but we are reading it as hex so that its a little bit more interpretable. You should see two main sections. What do you think these mean?
+Look through the text file you just generated. While the actual file we generated is 0s and 1s, we used the `hexdump` command to read it as hex and make it slightly more interpretable. You should see two main sections. What do you think these mean?
 
-### Step 4: Linking
+#### Step 4: Linking
 
-In the final stage of the compilation process, a program called the linker will find all the external references in your assembled code and combine any related .o files together.  For example, our "Hello World" code from earlier includes `stdio.h`.  While the "h-file" (which includes a description of printf, but not its implementation) has been directly included in the pre-processing step, the actual implementation of printf been compiled and assembled elsewhere. The linker will combine your code with the stdio code into a final executable that can be run.j
+In the final stage of the compilation process, a program called the **linker** will find all the external references in your assembled code and combine any related `.o` files together. Lets return to the example of `#include <stdio.h>` in our "Hello World" program. While we know that the `.h` file associated with `<stdio.h>` was included in our pre-processing step, the actual implementation of functions like `printf` were compiled and assembled elsewhere. The final step to using `<stdio.h>` is for the linker to combine your `simple.o` code with the `stdio.o` code located elsewhere and create an executable that has all the references it needs to be run.
 
-The linked code is the final product that can be run. The default behavior of running `gcc` with no arguments will run through all of the above steps one after the other.  However, if you still want to see the binary of the final linked product, you can run `hexdump` on your executable binary.
+The output of the linking step is the final product. If you want to see the binary of the final linked product, you can run `hexdump` on your executable binary.
 
 Compile your code into a binary executable program by running the following command:
 
@@ -120,7 +110,7 @@ Compile your code into a binary executable program by running the following comm
 gcc simple.c
 ```
 
-This will create a new file in our directory called `a.out` which we can run by:
+Whenever you run `gcc` without any arugments, it runs through all four of the steps automatically. This will create a new file in our directory called `a.out`. We can run our created program by typing:
 
 ```bash
 ./a.out
@@ -133,7 +123,7 @@ Hello, World!
 
 ```
 
-If you are not content with all of your binary executables being named `a.out` every time you compile your C project, you can use the `-o` flag on the `gcc` program to name the output file:
+The default name for all compiled programs is `a.out`. If you wish to change that, you can use the `-o` flag on the `gcc` program to name the output file:
 
 ```bash
 gcc simple.c -o simple
@@ -141,9 +131,9 @@ gcc simple.c -o simple
 
 This with create a new executable file named `simple` instead of `a.out`, which you can run by typing `./simple`.
 
-## Breaking down the C code
+### Part 2: Examining C code
 
-Now that we understand the compilation process, let's talk about what each part of `simple.c` is doing.  It's included below again for convenience.
+Now that we understand the compilation process, let's examine the syntax of `simple.c`.
 
 ```c
 // This is a single line comment.
@@ -164,9 +154,9 @@ int main()
 
 ```
 
-### Comments
+#### Comments
 
-When writing a program, especially more complex ones, leaving comments in the code is essential to increase its readability. There are two types of comments: single and multi-line.
+There are two types of comments: single and multi-line.
 
 ```c
 // This is a single line comment.
@@ -186,35 +176,31 @@ the star-slash will be ignored.
 
 Anything between the `/*` and `*/` will also be ignored during the compilation process of the program. One example for good use of multi-line comments is explaining the purpose of a function and it parameters right before its declaration.
 
-Although the *where* and *how* you use comments in your code are of little importance to the execution the program, they are imperative in making your code easier to understand and be reused by yourself and others in the future.
+*Where* and *how* you use comments determines how well your code can be understood and reused by yourself and others in the future. Good comments tell readers how functions work, what their purpose is, and how programs should be used.
 
-### main() Function
+#### The main() Function
 
-Every program written in C must have a `main()` function. This is the function that will be run upon executing the program. All other functions that might need to be read in the execution of the program must be called in one form or another from the `main()` function.
+**All C programs must have a `main()` function.** The `main()` function serves as a starting point for your program whenever it is executed. All your code and calls to other functions must be contained within the `main()` function.
 
 To declare a function in C, you must write its **return type** (more on that below), its name, and then any parameters it accepts in parentheses:
 
-```c
-int main()
-```
+In the declaration above, we declare the return type for `main()` as an `int`. We also expect no parameters to be passed into it, so the parentheses are empty `()`.
 
-In the declaration above, we assert that the return type for the `main()` function is an `int` and that we expect no parameters to be passed into it `()`.
+Everything written between the curly braces `{}` is considered to be part of the function's **scope**, meaning that all variables and instructions only exist while that function is active.
 
-To maintain the scope of a function, everything written between curly braces `{}` is considered to be a part of the function declaration that came before it.
+#### printf()
 
-### printf()
-
-This function, which comes from `stdio.h` as we learned earlier, allows us to write values to the terminal screen from our program. In this example
+This function, which comes from `stdio.h` as we learned earlier, is **called by** `main()` and allows us to write values to the terminal screen from our program. In this example
 
 ```c
 printf("Hello, World!\n");
 ```
 
-prints out `Hello, World!` and then moves the cursor to the next line.
+prints out `Hello, World!`; the `\n` is an **escape character** which moves the cursor to the next line.
 
-### Return Values
+#### Return Values
 
-Functions that completes execution in a C program have a single (optional) return value that is passed up to the function that calls it. For example if I wanted to write a quick function that took the sum of two numbers, I could write it like so:
+Whenever a function finishes executing, it has the option to return a single value back to the function that called it. The type of value it returns is given by the return type. If a function should not return a value, its return type is `void`. For example, a function adds two numbers might look like this:
 
 ```c
 int sum(int a, int b)
@@ -223,7 +209,7 @@ int sum(int a, int b)
 }
 ```
 
-If I call this function in my main function:
+To use `sum()`, I call this function in my main function:
 
 ```c
 int main()
@@ -233,36 +219,20 @@ int main()
 }
 ```
 
-I can expect that the program will print out `5` because the **return value** that the `sum()` provided was an `int` which was the sum  of `a + b`.
+I can expect that this program will print out `5` because the **return value** of `sum()` was an `int` whose value is the sum of my two parameters, `a` (2) and `b` (3).
 
-If I wanted to have my value return the value as a `float`, I would rewrite the signature of my function as:
-
-```c
-float sum(float a, float b)
-{
-    return a + b;
-}
-```
-
-A function doesn't need a return value can be assigned the type `void`:
-
-```c
-void printHelloWorld() 
-{
-    printf("Hello World!");
-}
-```
-
-If the `main()` function is the outermost function that we can have in a C program, why does it have a return value? Well, this return value is often used to indicate if the program finished correctly or crashed in a specific way. Take the following example:
+If `main()` is the the starting point of a program, why does it have a return value? This return value is often used to indicate if the program finished correctly or crashed in a specific way. Take the following example:
 
 ```c
 // This is example code, it will not run because some of these values have not been defined.
 
 int main()
 {
+    ... // Code that tries to do something
+
     if(err_type == "Crash")
     {
-        return -1;
+        return -1; // You can make a program return any value you like.
     }
     else if(err_type == "Insufficient data")
     {
@@ -270,28 +240,25 @@ int main()
     }
     else
     {
-        // This assumes no errors
-        return 0;
+        return 0; // A 0 generally denotes no errors.
     }
 }
 ```
 
-If the program runs into specific errors, it will return different values to the outermost function. But since the `main()` function is the outermost function, it is the shell that receives the error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
+The shell that executed the program receives this error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
 
-## Data Types
+### Data Types
 
-Now that we have dissected our first C program, it is time to dive a little deeper into some details of the details.
+In order to successfully create a meaningful program in any language, you need to know how to correctly store information. C is a **strongly-typed** language, meaning that we must specify the **type** of every new variable we create is. C has the following **native** (built-in) data types:
 
-In order to successfully create a meaningful program in any language, you need to know how to correctly store and portray information. Unlike some modern languages, C is a **strongly-typed** language. This means that every time we declare a new variable, we need to specify what **type** it is. The native data types (i.e. no `#include`ing libraries are necessary) in C are the following:
-
-| type     | Description                                                                                               |
-| -------- | --------------------------------------------------------------------------------------------------------- |
-| `char`   | Stores an integer (or a letter, which are the same thing)                                                 |
-| `short`  | Stores an integer                                                                                         |
-| `int`    | Stores an integer                                                                                         |
-| `long`   | Stores an integer                                                                                         |
-| `float`  | One way to store a real number with a floating decimal point (i.e. you can put it anywhere in the number) |
-| `double` | Larger version of a float                                                                                 |
+| type     | Description                                                 |
+| -------- | ------------------------------------------------------------|
+| `char`   | Stores an integer                                           |
+| `short`  | Stores an integer (has a greater range than `char`)         |
+| `int`    | Stores an integer (has a greater range than `short`)        |
+| `long`   | Stores an integer (has a greater range than `int`)          |
+| `float`  | Stores decimal numbers                                      |
+| `double` | Stores decimal numbers (has greater precision than `float`) |
 
 You can combine the integer data types with the keyword `unsigned` to make an unsigned datatype of the same size.  For example: `unsigned int myInt`.
 When the datatypes `char`, `short`, `int`, and `long` are used the processor will interpret the bits used to store the data as two's complement numbers - meaning they can represent both postitive and negative values with a range determined by the size of the data type. The unsigned versions of these types are interpreted as standard non-negative unsigned numbers.
@@ -300,7 +267,7 @@ It is also important to note that the size of each of the above types is depende
 
 Every processor is different, so it is important to pay attention to these details. It is the programmer's responsibility to understand what these data types mean and how they work on your system.
 
-### Casting
+#### Casting
 
 Sometimes it will be necessary to take the result of one number and represent it in a different type of variable. The process of the translating from one data type to another is known as **casting** and will be a very useful tool in this and other labs.
 
@@ -319,7 +286,7 @@ num_f = (float) num;
 
 This is an example of an explicit cast. Implicit casting can also occur, for example when you compare an int and an unsigned using `>`. These are other important details to pay attention to.
 
-### stdint.h
+#### stdint.h
 
 Standardized data types that explicitly define a specific number of bits (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t` and others that have specialized characteristics for specific needs.
 
@@ -327,7 +294,7 @@ For example, if you need to use a data **t**ype that stores an **int**eger that 
 
 To understand more about the types of data types that exist in `stdint.h`, you can check out the [documentation for this file](https://man7.org/linux/man-pages/man0/stdint.h.0p.html).
 
-### printf() arguments
+#### printf() arguments
 
 As you have seen in our simple C program, we can use the `printf()` function to send text out to the terminal from our program.
 
@@ -388,7 +355,7 @@ In addition to the format specifiers listed above, there are several **escape ch
 | `\?`   | Question mark (?), helps avoid [trigraph](https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C) issues. (You can just use `?` too) |
 | `\0`   | Null character, used to terminate strings                                  |
 
-## Lab Challenge
+### Part 2: Lab Challenge
 
 To finish this lab, create a new file called `data.c`. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
 
@@ -402,16 +369,8 @@ Complile your code into an executable called `data`.
 
 ## Lab Submission
 
-- Pass off with a TA by showing them the source code and program execution of `data.c`.
-  
+- Pass off with a TA by showing them the source code and program execution of `data.c`. Show the TA how each of the required components functions, and why the output appears the way it does (what casting occurred, etc.).
 - Take the Pass-Off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add, commit, and push all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
 
 ## Explore More
 

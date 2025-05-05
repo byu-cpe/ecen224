@@ -37,7 +37,7 @@ suggest_edits:
 
 # Set the color theme of the page
 colors:
-  text_color: "#fff"
+  text_color: "#ddd"
   frame_color: "#333"
   background_color: "#222"
   brand_color: "#60B3BE"
@@ -46,11 +46,19 @@ colors:
   sidebar_hover_color: "#7D5FA9"
 
 # Set the fonts
+
+# fonts:
+#   base: "'neue-haas-unica', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+#   header: "DepartureMono, sans-serif"
+
+# fonts:
+#   base: "'JetBrains Mono', monospace"
+#   header: "DepartureMono, sans-serif"
+
 fonts:
-  base: "'neue-haas-unica', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+  base: "'Inter', sans-serif"
   header: "DepartureMono, sans-serif"
-  # If you want a more traditional font, consider using this instead:
-  # header: "'Ubuntu', sans-serif"
+
 
 collections:
   labs:
