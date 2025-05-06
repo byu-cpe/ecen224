@@ -224,19 +224,15 @@ I can expect that this program will print out `5` because the **return value** o
 If `main()` is the the starting point of a program, why does it have a return value? This return value is often used to indicate if the program finished correctly or crashed in a specific way. Take the following example:
 
 ```c
-// This is example code, it will not run because some of these values have not been defined.
+#include <stdio.h>
 
 int main()
 {
-    ... // Code that tries to do something
+    int result = printf("Hello There!\n");
 
-    if(err_type == "Crash")
+    if(result <= 0)
     {
-        return -1; // You can make a program return any value you like.
-    }
-    else if(err_type == "Insufficient data")
-    {
-        return -2;
+        return -1; // If printf fails.
     }
     else
     {
@@ -247,18 +243,20 @@ int main()
 
 The shell that executed the program receives this error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
 
-### Data Types
+### Part 3: Data Types and Casting
 
-In order to successfully create a meaningful program in any language, you need to know how to correctly store information. C is a **strongly-typed** language, meaning that we must specify the **type** of every new variable we create is. C has the following **native** (built-in) data types:
+In order to create a meaningful program in any language, you need to know how to correctly store information. C is a **strongly-typed** language, meaning that we must specify the **type** of every new variable we create is. C has the following **native** (built-in) data types:
 
-| type     | Description                                                 |
-| -------- | ------------------------------------------------------------|
-| `char`   | Stores an integer                                           |
-| `short`  | Stores an integer (has a greater range than `char`)         |
-| `int`    | Stores an integer (has a greater range than `short`)        |
-| `long`   | Stores an integer (has a greater range than `int`)          |
-| `float`  | Stores decimal numbers                                      |
-| `double` | Stores decimal numbers (has greater precision than `float`) |
+| type     | Size (Bytes) | Description                                                 |
+| -------- | ------------ | ----------------------------------------------------------- |
+| `char`   |      1       | Stores an integer                                           |
+| `short`  |      2       | Stores an integer (has a greater range than `char`)         |
+| `int`    |      4       | Stores an integer (has a greater range than `short`)        |
+| `long`   |      8       | Stores an integer (has a greater range than `int`)          |
+| `float`  |      4       | Stores decimal numbers                                      |
+| `double` |      8       | Stores decimal numbers (has greater precision than `float`) |
+
+Each of these data types has two key components: the type of value that is stored (integer, decimal, etc.), and the **size**, which determines the range of numbers that type can store. Every data type in C has a predetermined **width**, or number of bits that it receives
 
 You can combine the integer data types with the keyword `unsigned` to make an unsigned datatype of the same size.  For example: `unsigned int myInt`.
 When the datatypes `char`, `short`, `int`, and `long` are used the processor will interpret the bits used to store the data as two's complement numbers - meaning they can represent both postitive and negative values with a range determined by the size of the data type. The unsigned versions of these types are interpreted as standard non-negative unsigned numbers.
@@ -355,7 +353,7 @@ In addition to the format specifiers listed above, there are several **escape ch
 | `\?`   | Question mark (?), helps avoid [trigraph](https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C) issues. (You can just use `?` too) |
 | `\0`   | Null character, used to terminate strings                                  |
 
-### Part 2: Lab Challenge
+### Part 4: Lab Challenge
 
 To finish this lab, create a new file called `data.c`. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
 
@@ -370,7 +368,8 @@ Complile your code into an executable called `data`.
 ## Lab Submission
 
 - Pass off with a TA by showing them the source code and program execution of `data.c`. Show the TA how each of the required components functions, and why the output appears the way it does (what casting occurred, etc.).
-- Take the Pass-Off Quiz on Learning Suite.
+- Take the Pass off Quiz on Learning Suite.
+- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
 
 ## Explore More
 
