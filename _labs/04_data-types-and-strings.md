@@ -22,7 +22,7 @@ As a C programmer, you must weigh all these factors and more. This lab will expo
 
 ## Procedure
 
-### Part 1: Data Types
+### Part 1: Important Components of C
 
 In the C Programming lab, you worked with a few of C's _native_ data types, those that are implicitly defined in C without `#include`-ing any other libraries. Some things you need to consider and operations you should know are listed below.
 
@@ -74,7 +74,7 @@ While using the maximum size (64 bit) would fix most overflow errors, in most ca
 
 Choosing your data types intentionally can be a helpful debugging tool as well. If you select data types that properly match the range of expected values, searching for overflow errors can find logical errors elsewhere in your program.
 
-##### Order of Operations in C
+#### Order of Operations in C
 
 The order of operations in C are shown in the following [table](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm) (highest/first priority at the top, lowest/last priority at the bottom):
 
@@ -96,7 +96,7 @@ The order of operations in C are shown in the following [table](https://www.tuto
 | Assignment     | = += -= *= /= %=>>= <<= &= ^= \|=    | Right-to-left |
 | Comma          | ,                                    | Left-to-right |
 
-##### Literals in C
+#### Literals in C
 
 A **literal** is any hardcoded values included in your code. These are often numbers, but can be strings, characters, or booleans as well.  
 
@@ -116,7 +116,7 @@ Integer literals can be specified in either decimal, hexadecimal (prefixed by `0
 0x32;
 0b00110010;
 ```
-
+<!-- 
 ##### Casting Between Sizes of the Same Type
 
 It is fairly common to need to cast between datatypes that are of the same type but different sizes.
@@ -219,11 +219,11 @@ This is surprising, because we would expect calculations to arrive at the same r
 
 Lets step through this. ``b`` is of type ``uint32_t`` and ``c`` is of type ``int32_t``. The parenthesis around ``b-c`` give it first priority according the order of operations defined above. Both operands are the size as an ``int``, so integer promotion is not needed. However, ``b`` and ``c`` _are_ of different types. Since both variables are of the same size, ``c`` is cast to match the type of ``b`` or ``unint32_t`` and then we can carry out the subtraction. We then evaluate ``0 - 1`` which overflows up the maximum value for a ``uint32_t`` and the result is also of type ``uint32_t``. When we go to carry out division with ``a_int``, we now need to cast ``a_int`` to a ``uint32_t`` for the same reasons as we casted when doing subtraction. This also wraps to the maximum value for a ``uint32_t``, so the division results in a value of 1.
 
-On the other hand, when we go to carry out division with ``a_float``, we now have an operand of type ``float`` in the expression. As such, the compiler will implicitly cast our subtraction result (the maximum value for a ``uint32_t``) to a ``float`` before doing division. However because ``a_float`` was defined as a ``float`` and does not need to be cast, we end up dividing -1 by a very large number resulting in a negative number very close to zero.
+On the other hand, when we go to carry out division with ``a_float``, we now have an operand of type ``float`` in the expression. As such, the compiler will implicitly cast our subtraction result (the maximum value for a ``uint32_t``) to a ``float`` before doing division. However because ``a_float`` was defined as a ``float`` and does not need to be cast, we end up dividing -1 by a very large number resulting in a negative number very close to zero. -->
 
-##### Summary
+#### Summary
 
-As you can see, there is a lot that goes into understanding how types and casting works. However, it is really important to understand these details. If you aren't careful alot of things can go wrong - things like your [rocket exploding](https://en.wikipedia.org/wiki/Ariane_flight_V88) or your self-driving car crashing.
+As you can see, there is a lot that goes into understanding types. However, it is really important to understand these details. If you aren't careful alot of things can go wrong - things like your [rocket exploding](https://en.wikipedia.org/wiki/Ariane_flight_V88).
 
 When declaring a variable, remember to consider what its purpose will be.  Ask yourself:
 
