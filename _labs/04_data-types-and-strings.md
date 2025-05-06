@@ -10,27 +10,23 @@ layout: lab
 - Become familiar with the C implementation of strings
 - Gain some practice with basic debugging techniques.
 
-## Getting Started
+## Introduction
 
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi.**
+A common mistake C programmers make is picking inccorect data types:
 
-## Overview
+- types that are inconsistant across different architechtures and compilers,
+- types that are too small or cannot hold the correct values,
+- types that don't reflect their use case or purpose.
 
-C is a [strongly typed language](https://en.wikipedia.org/wiki/Strong_and_weak_typing), meaning that the _type_ of all variables, functions, and parameters need to be explicitly stated in code. On one hand, this means that your code will be more verbose.  On the other hand, this give you great control over your variables' sizes and inputs.
+As a C programmer, you must weigh all these factors and more. This lab will expose you to some of the nuances of the native C data types and those included in the `stdint.h` library. Additionally, you will practice working with strings in C.
 
-Since C is strongly typed, it is essential that you understand the use cases for each type. A common mistake C programmers make is picking types that are either:
+## Procedure
 
-- inconsistant across different architechtures and compilers,
-- too small or cannot hold the correct values,
-- or types that don't reflect your purpose.
-
-As a C programmer, you must weigh all these factors and more. This lab will expose you to some of the nuances of the native C data types and those included in the `stdint.h` library. Additionally, you will practice manipulating strings. By the end of this lab, you will have written and/or debugged several functions relating to C's data types and strings.
-
-## Data Types
+### Part 1: Data Types
 
 In the C Programming lab, you worked with a few of C's _native_ data types, those that are implicitly defined in C without `#include`-ing any other libraries. Some things you need to consider and operations you should know are listed below.
 
-### Inconsistant Sizes
+#### Inconsistant Sizes
 
 We already discussed some of C's data types in the last lab.  Recall that there are several different data types native to C, including integers and floating point numbers.  It is important to note that the native integers in C (namely `short`, `int`, and `long`) do not have a defined length; C leaves it up to the computer manfacturer (and/or the writers of the compiler for that processor) to decide how many bits an `int` will take in memory.
 
@@ -53,7 +49,7 @@ unsigned int x = 40; // Acceptable, but unreliable. How big is this?
 uint32_t y = 40;     // You know that y will always have 32 bits.
 ```
 
-### Overflow and Underflow
+#### Overflow and Underflow
 
 All data types, native or not, have a maximum and minimum value. What happens when we try to set a variable beyond these maximum or minimums?
 
@@ -106,11 +102,11 @@ In this case, only four ``double`` sized variables could be sent per packet, but
 In many contexts, you can determine a limit on the range of values that are possible and select a datatype based upon this. For example, on a typical semester we often have somewhere around 100 students in ECEN 225.  If we were to write a program that counts the number of students in the class, a ``uint8_t`` would suffice just fine.  However, if in a future year 256 students were to register, than we would have problems.
 It is important to think about these details when determining the datatype for any variable you select when programing in C.
 
-### Casting, Order of Operations, and Constants
+#### Casting, Order of Operations, and Constants
 
 Sometimes, you will have a variable that is the incorrect type for the operation you want to accomplish.  In this case, we can _cast_ your variable, or convert it to another datatype. However, understanding the details of how this casting occurs is essential - as its not always intuitive.
 
-#### Explicit vs Implicit Casting
+##### Explicit vs Implicit Casting
 
 Casting can be done _explicitly_ - meaning when you, the programmer, write code saying you want a cast to occur. An example of casting an integer to a float is shown below:
 
@@ -148,7 +144,7 @@ In the example above ``c`` evaluates to 2.0 because both ``a`` (value 5) and ``b
 
 Alternativelly, ``d`` evaluates to 2.5 because you, the programmer, explicitly cast ``a`` to be of type ``float`` and thus the compiler will implicitly cast ``b`` to be of type ``float`` so that floating point division can take place. In this case casting is not needed in the assignment (because the result is already a float).
 
-#### Order of Operations in C
+##### Order of Operations in C
 
 Notice that in the example above (where ``c`` became 2.0), that the result was cast to a floating point even though the decimal points were truncated. This happens because of the order of operations.
 
@@ -174,7 +170,7 @@ The order of operations in C are shown in the following [table](https://www.tuto
 
 Notice that explicit casting happens before division, which happens before assignment. In the example with ``c`` above, there is no explicit cast, so integer division is the highest priority. Then the result of the integer division is cast to a float when the assignment happens.
 
-#### Literals in C
+##### Literals in C
 
 We also need to talk about literals in C. Literals are hardcoded values you include in your code. These are often numbers, but can be strings, characters, or booleans as well.  
 
@@ -203,7 +199,7 @@ While all of the following have a value of 5, the type varies depending on the s
 0b101U; // This will be treated as an unsigned int
 ```
 
-#### Casting Between Sizes of the Same Type
+##### Casting Between Sizes of the Same Type
 
 It is fairly common to need to cast between datatypes that are of the same type but different sizes.
 
@@ -228,7 +224,7 @@ int8_t d = c; // An implicit cast truncates c to 0xF3 (-13)
 
 It is also possible to cast between the floating point types ``double`` and ``float``. When this happens, the number of bits devoted to the exponent and mantissa fields changes. When converting from ``float`` to ``double``, the number of possible values that can be represented increases - meaning that precision is increased. When going the other way though, precision is lost - meaning we may have to round the value due to the fact that the new type can't represent all of the same values. When this happens, the value of the ``double`` is converted to the closest possible number that can be represented by a ``float``.
 
-#### Casting Between Types
+##### Casting Between Types
 
 What actually happens when you cast between types depends on the two types.
 
@@ -256,7 +252,7 @@ When casting from an integer to a floating point type (or vice-versa), however, 
 
 When casting from an integer to floating point, the result will be the closest representable value possible for the new type. Additionally, when going from a floating point number to an integer, the decimal portion is dropped and only the whole number portion is maintained.  
 
-#### Implicit Casting (and Integer Promotion) in Expressions
+##### Implicit Casting (and Integer Promotion) in Expressions
 
 Most of the examples above are implicit casts that occur because we are assigning one type to a new variable of a different type. This is very common occurance when working with multiple types. **However, it is important to remember that implicit casting also occurs in expressions and operations**.
 This includes calculations (such as involving ``+``, ``-``, ``/``, ``*``, ``%``, ``&``, ``^``, ``|``, ``~``, ``>>``, ``<<``) as well as in comparisons (such as involving ``<``, ``>``, ``>=``, ``<=``, ``==``, ``!=``, ``?:``).
@@ -307,7 +303,7 @@ Lets step through this. ``b`` is of type ``uint32_t`` and ``c`` is of type ``int
 
 On the other hand, when we go to carry out division with ``a_float``, we now have an operand of type ``float`` in the expression. As such, the compiler will implicitly cast our subtraction result (the maximum value for a ``uint32_t``) to a ``float`` before doing division. However because ``a_float`` was defined as a ``float`` and does not need to be cast, we end up dividing -1 by a very large number resulting in a negative number very close to zero.
 
-#### Summary
+##### Summary
 
 As you can see, there is a lot that goes into understanding how types and casting works. However, it is really important to understand these details. If you aren't careful alot of things can go wrong - things like your [rocket exploding](https://en.wikipedia.org/wiki/Ariane_flight_V88) or your self-driving car crashing.
 
@@ -322,7 +318,7 @@ When declaring a variable, remember to consider what its purpose will be.  Ask y
 
 The above is not an exhuastive list, but if you can answer those questions, you will likely land on a good data type to use.
 
-### Arrays
+#### Arrays
 
 Arrays are C's method of keeping lists. These lists can be of any data type, but any array can only be defined for a single data type. Nearly every other data structure in C derives from an array.
 
@@ -383,7 +379,7 @@ uint8_t video_pixels[30*60][1280][720][3]; // an array representing 30 seconds o
 
 While higher dimensional arrays are a bit harder to understand intuitively, they are useful because arrays are always stored in **contiguous** memory, meaning that the elements are stored one after the other in a long line in the memory of your computer. To us, a 2D array is represented as a table of values.  To a computer, the array is just one long list.  This grouping allows maximum packing efficiency when storing huge quantities of data. You'll get more experience with large arrays in the next lab.
 
-### Characters and Strings
+#### Characters and Strings
 
 You have probably noticed by now that C does not include a string data type. Instead, individual letters are represented with the `char` data type. Each decimal value from  0 to 127 is mapped to a specific character per the ASCII (American Standard Code for Information Interchange) standard. For example, the character `A` is represented by the decimal value 65. This is different from the character `a`, which is represented by the decimal value 97. You can find this standard by simply googling "ASCII Table" or by using a website like [ascii-code.com](https://www.ascii-code.com/).
 
@@ -444,7 +440,7 @@ To help you with these manipulations, the `string.h` library includes various st
 - `strncat()`, which allows you to concatenate the first `n` bytes of string A to the end of string B.
 - `strncmp()`, which allows you to compare `n` bytes of string A and B.
 
-#### Using Functions with Arrays and Strings
+##### Using Functions with Arrays and Strings
 
 As with all variables, arrays are stored in memory. If a variable (or an array) is declared and created within a function, it is stored in the memory belonging to that function. When a function returns, the memory associated with it is released and can be used for other things. This causes big problems if somewhere else in the code is still trying to access that memory. To account for this problem, arrays (and strings) that are needed after a function returns should not be declared or defined within that function.
 
@@ -464,11 +460,11 @@ void makeAString_good(char* stringToFill) {
 }
 ```
 
-## Debugging
+### Part 2: Debugging
 
 As a programmer at any level, you will need to identify problems in your code and fix them. Below is some advice on different programming and debugging methods.
 
-### Intentional and Incremental Programming
+#### Intentional and Incremental Programming
 
 Intentional and incremental programming are two important mindsets to have while diving into software development. Intentional programming is a mindset that prioritizes writing code that is **clear, concise, and easy to understand**. In other words, the emphasis is on writing code that accurately reflects your intentions rather than trying whatever and seeing if it sticks. Approaching a solution in code intentionally will inevitably be a lot more productive and easier to maintain and extend in the future.
 
@@ -476,7 +472,7 @@ Incremental programming, on the other hand, involves **dividing the solution you
 
 Handling large amounts of data in C is no small task (as you will see in the next lab). It requires attention to detail and a good understanding of the code you are writing and what it does. As the projects you do become more complex and involved, it is important to remember that **the best line of defense against buggy code is a good offense: intentional and incremental programming.**
 
-### Trace debugging
+#### Trace debugging
 
 Trace debugging is a technique used to identify the root cause of a problem in a program by logging the values of variables and other information at specific points in time. This trace data can provide insight into how your program is actually behaving.
 
@@ -500,7 +496,7 @@ printf("Modified Str:\t%s\n", original_str);    // <--- Trace debug print statem
 
 You'll be surprised to see how effective logging or printing variable values can go to ensure a smooth development experience. Trace debugging helps identify and fix bugs, improve the performance of your program, and improve the overall reliability of your software.
 
-### Using a Logging Library
+#### Using a Logging Library
 
 Using regular `printf` statements to trace debug has some problems. If you have a lot of print statements in your code, it can be difficult to keep track of them all, and when you are done debugging, you have to go back and remove each one.
 
@@ -535,7 +531,7 @@ int value = 42;
 log_info("The value is %d", value);
 ```
 
-## Lab Requirements and Instructions
+### Part 3: Lab Requirements
 
 In your repository, you will find files called `data.c` and `custom_strings.c`, along with their equivalent `.h` files.  These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
 
@@ -581,36 +577,38 @@ The gcc command above will compile your `.c` files and then link them together w
 
 Note that if you want to include a logging library, you will have to include that in the `gcc` command as well.
 
-### Tests
+#### Tests
 
 Your code will be tested with the following inputs:
 
-#### Calculate Circumfrence
+**SPRING 2025: You Do Not Have to Implement These Functions:**
+
+##### Calculate Circumfrence
 
 1. Radius: 1,  Output: 6.28
 2. Radius: 3.14, Output: 19.729
 3. Radius: 0, Output: 0.0
 4. Radius: -10, Output: -1.0
 
-#### Calculate Average
+##### Calculate Average
 
 1. Array: {255, 255, 255, 255, 255}, Output: 255.0
 2. Array: {10, 11, 13, 15, 2}, Output: 10.2
 3. Array: {100, 91, 127, 23, 8}, Output: 69.8
 
-#### Any Bit Is One
+##### Any Bit Is One
 
 1. Input: 0x00000000, Output: 0 (false)
 2. Input: 0xDEADBEEF, Output: 1 (true)
 3. Input: 0xFFFFFFFF, Output: 1 (true)
 
-#### Any Bit is Zero
+##### Any Bit is Zero
 
 1. Input: 0x00000000, Output: 1 (true)
 2. Input: 0xDEADBEEF, Output: 1 (true)
 3. Input: 0xFFFFFFFF, Output: 0 (true)
 
-#### Extract From Word
+##### Extract From Word
 
 Each of the following words will be tested for each position (0-3):
 
@@ -618,59 +616,59 @@ Each of the following words will be tested for each position (0-3):
 2. 0x01234567
 3. 0X00FEED08
 
-#### Multiply By Base 2
+**SPRING 2025: But You Do Have to Implement These Functions:**
+
+##### Multiply By Base 2
 
 1. Input: 1 (num) and 0 (power), Output: 1
 2. Input: 8 and 3, Output: 64
 3. Input: 25 and 2, Output: 100
 
-#### Check if Space
+##### Check if Space
 
 1. Input: 3 (val) and 4 (maxBytes), Output: 1
 2. Input: -5 and 2, Output: 0
 3. Input: 10 and 64, Output: 1
 
-#### Get String Length
+##### Get String Length
 
 1. Input: "ECEN 225 is a really great class!", Output: 33
 2. Input: "Hello World!", Output: 12
 3. Input: "Escape Characters: \0\n\t\f", Output: 19
 
-#### To Upper
+##### To Upper
 
 1. Input: "computer", Output: "COMPUTER"
 2. Input: "ecen225", Output: "ECEN225"
 3. Input: "Aren't frogs amazing?", Output: "AREN'T FROGS AMAZING?"
 
-#### Find Last Char
+##### Find Last Char
 
 1. Input: 'd', "Hello World", Output: 10
 2. Input: '2', "ECEN 224", Output: 6
 3. Input: '.', "data.h", Output: 4
 4. Input: '?', "I have no questions", Output: -1
 
-#### Get File Extension
+##### Get File Extension
 
 1. Input: "data.c", Output: "c"
 2. Input: "tux.bmp", Output: "bmp"
 3. Input: "assemblyFile.asm", Output: "asm"
 
-#### Combine Path
+##### Combine Path
 
 1. Inputs: "documents" and "resume.pdf", Output: "documents/resume.pdf"
 2. Inputs: "viewer" and "tux.bmp", Output: "viewer/tux.bmp"
 3. Inputs: "ecen224" and "README.md", Output: "ecen224/README.md"
 
-## Submission
+## Lab Submission
 
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
 - Pass off to a TA:
-  - Your program must compile without warnings or errors
   - Show the output of the passoff executable
   - Show how you implemented your functions in `data.c` and `custom_strings.c`
-
-- Complete the Learning Suite pass off quiz.
-
-- To successfully submit your lab, you will need to follow the instructions in the [Lab Setup]({{ site.baseurl }}/lab-setup) page, especially the **Committing and Pushing Files** section.
+- Take the Pass off Quiz on Learning Suite.
+- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
 
 ## Explore More
 

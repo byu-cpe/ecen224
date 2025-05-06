@@ -4,7 +4,7 @@ number: 1
 layout: lab
 ---
 
-## Lab Objectives
+## Objectives
 
 - Become familiar with the tools used for this class
 - Be able to gain access remotely to the Raspberry Pi Zero 2 W
@@ -53,7 +53,6 @@ Normally, you would use the [Raspberry Pi Imager](https://www.raspberrypi.com/ne
 2. Wait for the script to complete. It may take a long time; it will prompt you for input during the process.
 
 3. After the script finishes, remove the SD card from the computer and insert it into the SD card slot of the Pi Z2W.
-
 
 #### Assemble the Display
 
@@ -192,7 +191,6 @@ With Raspberry Pi OS Lite installed and the Pi Z2W connected to the lab network,
 
     This will disconnect your Pi Z2W from the lab machine in the process. You will reconnect to it in the next part.
 
-  
 ### Part 3: Set Up your Development Environment
 
 #### Setting Up VSCode on the Z2W
@@ -302,7 +300,6 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
     </figure>
 
 5. Insert the wide end of the cable into the camera module. Copper contacts should face downwards towards the circuit board. Lock the connector after insertion.
-
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_9_ribbon %}" alt="Step 9 - ribbon cable inserted but not locked">
@@ -556,11 +553,11 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
         <div id="camera-lid"></div>
       <figcaption style="text-align: center;">Doorbell case 3D printed file. You will need to attach the camera module to the standoffs on the lid. Note that the button in this file is not included in the case you will receive in this lab.</figcaption>
     </figure>
-    As visible in the 3D model above, there are several components that comprise this enclosure. The top of the case is the long, rectangular part with holes for the camera, LCD screen, and button respectively. 
-    
+    As visible in the 3D model above, there are several components that comprise this enclosure. The top of the case is the long, rectangular part with holes for the camera, LCD screen, and button respectively.
+
     *Notice: Your kit does not contain a button, as the buttons in this model did not function well enough to be produced.*
 
-8. Remove the lens film from the camera. Mount the camera board to the lid of the case using the 4 screws provided. 
+8. Remove the lens film from the camera. Mount the camera board to the lid of the case using the 4 screws provided.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_13_mounted_camera.jpeg %}" alt="Mounted camera and ribbon cable routing">
@@ -591,7 +588,7 @@ Turn your Pi Z2W back on by unplugging the ethernet from the PoE adapter, pluggi
 ## Lab Submission
 
 - Demonstrate to a TA that your Z2W is set up correctly. Show them that:
-  - you can connect to your pi over SSH on VSCode 
+  - you can connect to your pi over SSH on VSCode
   - your Z2W uses `zsh` (the shell installed with the second install script).
 - Complete the Learning Suite Pass-off quiz.
 - Take a look at the `submission.md` file included in your Starter-Labs repo. You will fill this out over the next 4 labs.

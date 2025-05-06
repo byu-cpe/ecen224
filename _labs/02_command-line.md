@@ -12,13 +12,13 @@ layout: lab
 
 ## Introduction
 
-In this lab you will learn some basic Linux features and skills that are useful throughout a technical career. The Linux environment is used commonly in the engineering, scientific, and research communities. One of the reasons for this stems from the openness of Linux and the many applications that run on it. The source code to most everything that runs on Linux, and the [kernel](http://www.kernel.org/) itself, is available on the Web. If you don’t like something or want to improve it, nothing is stopping you from getting the source code and changing it. 
+In this lab you will learn some basic Linux features and skills that are useful throughout a technical career. The Linux environment is used commonly in the engineering, scientific, and research communities. One of the reasons for this stems from the openness of Linux and the many applications that run on it. The source code to most everything that runs on Linux, and the [kernel](http://www.kernel.org/) itself, is available on the Web. If you don’t like something or want to improve it, nothing is stopping you from getting the source code and changing it.
 
 You are encouraged to learn and explore beyond what is presented here on your own. We can only touch on a few Linux features. Discovering the flexibility that is available to the creative mind is left to you.
 
 ## Procedure
 
-### Part 1: Be Familiar with Linux
+### Part 1: Becoming Familiar with Linux
 
 This first section involves some reading, and a lot of exploring Linux and its capabilities. Try to become familiar with the tools provided below, as they will help you to complete the shell challenge later in this lab.
 
@@ -100,6 +100,7 @@ There are some **system environment variables** that are defined for you when yo
 Several text editors can be installed on your system, for example, `code`, `gedit`, `nano`, `vim`, and `emacs`. Some applications can only be run from the command line, while others can be launched graphically by clicking on its icon in the application screen. Choose an editor, and use it to create a new file. **Hint: Since you are doing this lab SSHed into your Pi Z2W, `code` and `gedit` will not work because they require a GUI. `emacs` can also be terminal based (and is a great option - google the debate between `vim` and `emacs`) - but will need to be installed before you can use it. Alternatively, you can use pre-installed editors like `nano` or `vim`.**
 
 Open a new file in the cloned lab directory using `nano` and create a note to yourself. Here are some essential `nano` keybindings to help you get started:
+
 - Save: `Ctrl+O`
 - Exit: `Ctrl+X`
 - Cut text: `Ctrl+K`
@@ -107,7 +108,8 @@ Open a new file in the cloned lab directory using `nano` and create a note to yo
 - Search: `Ctrl+W`
 
 Notice the keybindings at the bottom of the terminal as well. Experiment with creating and deleting text, copying and pasting, and saving files. Quit out of `nano` and type `ls -l` to see details about the text file you created.
-## Part 2: Complete the Shell Challenge
+
+### Part 2: Complete the Shell Challenge
 
 To round out your shell learning experience, you are **required** to complete the shell challenge. In the lab repo, uncompress the `challenge.tar.xz` package; you will want to Google on how to do this. Notice that the file has two layers - the .tar and the .xz. In order to view the contents of the folder you must remove both (this can be done in one command). Inside the resulting directory, complete the various levels of the challenge to finish the lab.
 
@@ -121,7 +123,7 @@ In order to complete this lab, you will need to use Google. If you don’t know 
 
 - Pass off to a TA by showing the correct output of your `tree` command. Make sure to show hidden folders and files.
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in  this lab.
+- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
 
 ## Explore More
 
