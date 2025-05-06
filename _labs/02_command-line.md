@@ -12,6 +12,8 @@ layout: lab
 
 ## Introduction
 
+**This lab should be completed using your terminal only. Don't use VSCode, as that defeats the purpose of learning the command line.**
+
 In this lab you will learn some basic Linux features and skills that are useful throughout a technical career. The Linux environment is used commonly in the engineering, scientific, and research communities. One of the reasons for this stems from the openness of Linux and the many applications that run on it. The source code to most everything that runs on Linux, and the [kernel](http://www.kernel.org/) itself, is available on the Web. If you don’t like something or want to improve it, nothing is stopping you from getting the source code and changing it.
 
 You are encouraged to learn and explore beyond what is presented here on your own. We can only touch on a few Linux features. Discovering the flexibility that is available to the creative mind is left to you.
