@@ -369,6 +369,7 @@ Complile your code into an executable called `data`.
 
 ## Lab Submission
 
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
 - Pass off with a TA by showing them the source code and program execution of `data.c`. Show the TA how each of the required components functions, and why the output appears the way it does (what casting occurred, etc.).
 - Take the Pass off Quiz on Learning Suite.
 - Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
