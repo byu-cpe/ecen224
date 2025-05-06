@@ -243,7 +243,7 @@ int main()
 
 The shell that executed the program receives this error code. In Bash or ZSH after running a program, you can check the return value of its main function by typing in `echo $?`.
 
-### Part 3: Data Types and Casting
+#### Data Types
 
 In order to create a meaningful program in any language, you need to know how to correctly store information. C is a **strongly-typed** language, meaning that we must specify the **type** of every new variable we create is. C has the following **native** (built-in) data types:
 
@@ -256,74 +256,76 @@ In order to create a meaningful program in any language, you need to know how to
 | `float`  |      4       | Stores decimal numbers                                      |
 | `double` |      8       | Stores decimal numbers (has greater precision than `float`) |
 
-Each of these data types has two key components: the type of value that is stored (integer, decimal, etc.), and the **size**, which determines the range of numbers that type can store. Every data type in C has a predetermined **width**, or number of bits that it receives
+Each of these data types has two key components: the type of value that is stored (integer, decimal, etc.), and the **size**, which determines the range of numbers that type can store. Every data type in C has a predetermined **width**, or number of bits that it has to store information. A binary number with `N` bits can store numbers from `0` to `(2^N)-1`. Computers don't usually do operations down to a single bit, so we usually talk about the width of a data type in units of bytes instead of bits.
 
-You can combine the integer data types with the keyword `unsigned` to make an unsigned datatype of the same size.  For example: `unsigned int myInt`.
-When the datatypes `char`, `short`, `int`, and `long` are used the processor will interpret the bits used to store the data as two's complement numbers - meaning they can represent both postitive and negative values with a range determined by the size of the data type. The unsigned versions of these types are interpreted as standard non-negative unsigned numbers.
+It is also important to note that the size of each of the above types is dependent on the processor on which you will be running the code. For example an `int` on a 16 bit processor will be 16 bits, while on a 32 bit processor an `int` is usually 32 bits, and on a 64-bit processor an `int` is also typically also 32 bits. It is the programmer's responsibility to understand what these data types mean and how they work on your system. Ignoring these important details has led to catastrophies in the past ([including rockets that explode shortly after launch](https://en.wikipedia.org/wiki/Ariane_flight_V88)).
 
-It is also important to note that the size of each of the above types is dependent on the processor on which you will be running the code. For example an `int` on a 16 bit processor will be 16 bits, while on a 32 bit processor an `int` is likely 32 bits, and on a 64-bit processor an `int` is also typically also 32 bits. This affects the range of possible values that can be stored. Understanding these details is important, ignoring them has led to catastrophies in the past ([including rockets that explode shortly after launch](https://en.wikipedia.org/wiki/Ariane_flight_V88)).
+Even though variables are stored binary numbers, **we dont have to interpret the bits as regular binary**. For example, negative numbers are stored by saving the last bit to represent the sign instead of part of the value. This is called **Two's Complement**, and it changes the range of a data type to be `-2^(N-1)` to `2^(N-1)-1`. This is the default storage scheme for all data types that store integers. For decimal or **floating point** numbers, the default scheme is the **IEEE Floating Point** format.
 
-Every processor is different, so it is important to pay attention to these details. It is the programmer's responsibility to understand what these data types mean and how they work on your system.
+You can control the scheme that a data type uses to maximize its efficiency. For example, the keyword `unsigned` makes the compiler assume the bits to be regular binary instead of Two's Complement, preventing us from storing negative numbers but doubling the range of positive numbers we can store.
 
 #### Casting
 
-Sometimes it will be necessary to take the result of one number and represent it in a different type of variable. The process of the translating from one data type to another is known as **casting** and will be a very useful tool in this and other labs.
+Becuase all the data types have different widths and use different schemes, we often need to take the value of one data type and represent it as a different type. The process of the translating from one data type to another is known as **casting** and will be a very useful tool in this and other labs whenever you need to perform an operation with two variables of different types.
 
-For example, let's say I have a variable that was stored as an `int` and another variable that is a `float`. :
+For example, given an `int` and a `float`:
 
 ```c
 int num = 7;
 float num_f = 0;
 ```
 
-If I want to create a new variable where the `7` in `num` is treated as a floating point number, (i.e. `7.0`), I can cast it by doing the following.
+If I want the *float* `num_f` to have the same value (`7`) as the *int* `num`, I must first cast `num` to a float by adding `(float)` before it's name:
 
 ```c
 num_f = (float) num;
 ```
 
-This is an example of an explicit cast. Implicit casting can also occur, for example when you compare an int and an unsigned using `>`. These are other important details to pay attention to.
+This this type of casting is called an **explicit cast** because you put the desired type in parentheses. There is another kind of casting called **implicit casting** that can occur automatically when you do operations against mis-matched data types.
+
+**You must be careful** when casting that the value you are casting can be stored in both types. For example, if you have the number `400` stored in a `short` (16 bits) and you try to cast it to a `char` (8 bits), the resulting value will appear as `-112` becuase the number `400` is too large for a `char` type. This type of error is especially dangerous with implicit casts, since you may not know which type is being converted. Implicit casting can be prevented by explicitly casting variables yourself to ensure this doesn't happen.
+
+### Part 3: stdint and printf
 
 #### stdint.h
 
-Standardized data types that explicitly define a specific number of bits (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t` and others that have specialized characteristics for specific needs.
+Standardized data types that explicitly the number of bits they use (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t`, `uint16_t`, etc. whose widths are *always* indicated in their name. These data types are useful for adding clarity about what values you are storing and avoiding casting errors.
 
-For example, if you need to use a data **t**ype that stores an **int**eger that is **u**nsigned (can never be negative) and has  **8** bit length, you would `#include <stdint.h>` and use the `uint8_t` type. This can be useful because the all of the bit patterns possibly contained in the 8 bit value are used to represent numbers above 0 (ex. 0-255). In a normal int, **about but not quite** half of those bit paterns map to negative numbers (thus decreasing the maximum number that can be represented). You should be learning more about this in the lecture portion of class! Additionally, using these types explicitly defines the number of bits as opposed to relying on the compiler and processor specifics of your system.
+Example: If you needed a data type for positive integers less than 256, you could `#include <stdint.h>` and use the `uint8_t` type (`u` for unsigned, `int`, `8` for 8 bits, and `_t` for type). Because this type explicitly defines the number of bits it uses, it is very clear what values this variable expects to receive.
 
-To understand more about the types of data types that exist in `stdint.h`, you can check out the [documentation for this file](https://man7.org/linux/man-pages/man0/stdint.h.0p.html).
+To understand more about the types of data types that exist in `stdint.h`, you can check out [the documentation for stdint](https://man7.org/linux/man-pages/man0/stdint.h.0p.html).
 
 #### printf() arguments
 
-As you have seen in our simple C program, we can use the `printf()` function to send text out to the terminal from our program.
+In addition to printing text
 
 ```c
 printf("Hello, World!\n");
 ```
 
-However, you may have noticed in other examples the use of strange characters such as `%d` or `%s` that show up in the strings that we are trying to print:
+`printf` is capable of printing variables, using **print specifiers** such `%d` or `%s`:
 
 ```c
 int grade = 87;
-printf("Final grade:\t%d", grade);  // This should print out "Final grade:    87"
+printf("Final grade: %d", grade);  // This prints out "Final grade: 87"
 ```
 
-Characters with a `%` followed by a letter represent a placeholder/format specifier for certain types of data which are additionally passed into our `printf()` message as arguments. For example, `%d` means that the value of the passed in argument should be interpreted as **d**ecimal number when it is printed to the screen. In our example above, the `%d` would be replaced with the variable `grade`.
-
-Multiple values can also be passed into the `printf()` statement, as shown below:
+For each specifier you use, you must also give a value:
 
 ```c
 int num1 = 0;
 int num2 = 1;
 int num3 = 2;
 printf("First num:\t%d\nSecond num:\t%d\nThird num:\t%d\n", num1, num2, num3);
+// matching pairs:  ^1               ^2              ^3     ^1    ^2    ^3
 
-// The code above should print out:
-// First num:    0
-// Second num:   1
-// Third num:    2
+// Output:
+// First num:   0
+// Second num:  1
+// Third num:   2
 ```
 
-The following table is a useful cheat sheet and will give you an idea of the different types of formatting specifiers that can be used in the `printf()` statement:
+The following table is a useful cheat sheet for the different types of formatting specifiers that can be used:
 
 | Symbol | Description                        |
 | ------ | ---------------------------------- |
@@ -339,7 +341,7 @@ The following table is a useful cheat sheet and will give you an idea of the dif
 | `%%`   | print a percent sign               |
 | `\%`   | print a percent sign               |
 
-In addition to the format specifiers listed above, there are several **escape characters** which tell printf() to do things you can't normally type. Here are a few of them that you might want to know.
+In addition to the format specifiers listed above, there are several **escape characters** which tell `printf()` to do things you can't normally type:
 
 | Symbol | Description                                                                |
 | ------ | -------------------------------------------------------------------------- |
