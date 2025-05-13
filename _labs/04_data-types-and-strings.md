@@ -272,15 +272,15 @@ In your repository, you will find files called `data.c` and `custom_strings.c`, 
 
 As you are working on these functions, please respect the following restrictions:
 
-1.Do not change data types of parameters or return values
+1. Do not change data types of parameters or return values
     unless otherwise stated.
-2.If you need to change a data type to a floating-point
+2. If you need to change a data type to a floating-point
     number, then use `double`, not `float`.  The autograder
     uses `doubles`, not `floats`.
-3.You can use `printf()` statments for debugging `data.c` and
+3. You can use `printf()` statments for debugging `data.c` and
     `custom_strings.c`, but comment them out or remove them
     before you pass off with a TA.
-4.Follow the specific rules in the function descriptions.
+4. Follow the specific rules in the function descriptions.
 
 Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
 
