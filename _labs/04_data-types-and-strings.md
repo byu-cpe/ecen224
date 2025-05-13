@@ -49,7 +49,7 @@ uint32_t y = 40;     // Always 32 bits.
 
 All data types have a maximum and minimum value based on their width. What happens when we try to set a variable beyond these maximum or minimums?
 
-If a variable is at the maximum value, adding one will simply cause the carried over number to be **truncated**, meaning the extra bit is lost or dropped by the processor. This truncation results in **Overflow** and **Underflow** errors, which occur when you exceed the maximum or drop below the minimum.
+If a variable is at the maximum value it can store, adding one will cause the carried bit to be **truncated**, meaning it is "lost", dropped by the processor. This truncation results in **Overflow** errors. In similar manner, when you drop below the minimum value, you cause an **Underflow** error. _Note: overflow and underflow can appear slightly differently if the type is signed or unsigned._
 
 Overflow Example:
 
@@ -272,15 +272,15 @@ In your repository, you will find files called `data.c` and `custom_strings.c`, 
 
 As you are working on these functions, please respect the following restrictions:
 
-1.Do not change data types of parameters or return values
+1. Do not change data types of parameters or return values
     unless otherwise stated.
-2.If you need to change a data type to a floating-point
+2. If you need to change a data type to a floating-point
     number, then use `double`, not `float`.  The autograder
     uses `doubles`, not `floats`.
-3.You can use `printf()` statments for debugging `data.c` and
+3. You can use `printf()` statments for debugging `data.c` and
     `custom_strings.c`, but comment them out or remove them
     before you pass off with a TA.
-4.Follow the specific rules in the function descriptions.
+4. Follow the specific rules in the function descriptions.
 
 Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
 
