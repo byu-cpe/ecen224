@@ -101,7 +101,7 @@ The order of operations in C are shown in the following [table](https://www.tuto
 A **literal** is any hardcoded values included in your code. These are often numbers, but can be strings, characters, or booleans as well.  
 
 ```c
-double a = 125 / 3.14;                  // 125 & 3.14
+double a = 125 / 3.14;                  // 125 / 3.14
 uint16_t b = 0x1234;                    // 0x1234
 if ( check_small_enough(a) == true )    // true
     printf("Yipee!\n");                 // "Yipee!"
