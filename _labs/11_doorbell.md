@@ -10,11 +10,7 @@ layout: lab
 - Create a program that runs on boot
 - Deal with different modes of program operation
 
-## Getting Started
-
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi.**
-
-## Overview
+## Introduction
 
 Welcome to the end of the semester! You have come very far in your abilities to understand how computers work under the hood and how you can control them programmatically. The difference between the computer you are using now and most single-use devices that exist on the market is that your Pi Z2W in its current state still acts as any normal desktop/laptop/phone. When you turn the device on, the operating system loads and then you are expected to start any program that you wish to have running.
 
@@ -87,11 +83,13 @@ This will make it so that my-service.service will run whenever I turn on the Pi 
 sudo systemctl disable my-service.service    # Disables the my-service service
 ```
 
-## Requirements
+## Procedure
 
-- Copy all of your code, except for the README.md file from last lab into your newly cloned repository. Run your program to make sure it is still working properly.
+### Requirements
 
-- Change your program to be more doorbell-ish:
+Create your final doorbell program, which should run automatically when you start the Raspberry Pi.
+
+- Change your program to be more like a real smart doorbell:
 
   - When the program starts, it should show a welcome message on the screen.
 
@@ -111,18 +109,12 @@ sudo systemctl disable my-service.service    # Disables the my-service service
 
 - Set the program to run on boot. Test it out by rebooting your Pi Z2W and making sure your program starts up.
 
-## Submission
+### Pass Off & Submission
 
-- Pass off with a TA, by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
-
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - Take the Pass off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
+- Follow the instructions to update your `README.md` file with the new features of this lab.
 
 ## Explore More
 

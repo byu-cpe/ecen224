@@ -10,11 +10,7 @@ layout: lab
 - Create the necessary logic to handle an interface
 - Filter out files by pattern
 
-## Getting Started
-
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.**
-
-## Overview
+## Introduction
 
 Learning to interact with the peripherals of the Pi Z2W is what allows us to take a simple single-board computer and turn it into a system with a more directed purpose. You may have noticed by looking at the future lab names of this class that the culmination of this project is to make a smart doorbell system. To that end, a HAT with an LCD screen and some buttons has been provided. Its purpose is to provide a way for a user of your smart doorbell to directly interact with the computer that is powering it.
 
@@ -22,11 +18,11 @@ In the last lab you were able to draw practically anything to the LCD screen by 
 
 The photo and log viewer of this lab consists of several components: scanning the folder where the intended files live, filtering out any files that the photo and log viewer doesn't care about, and displaying the intended content of each file.
 
-### Scanning the Folder
+### Scanning the images Folder
 
 In this lab you are expected to scan through a current folder and make a list of strings that indicate the contents of that folder. While this is as trivial as a simple `ls -al` command in the shell, it becomes more challenging when trying to achieve the same objective in C. Implement the following directions from the sections below to create an array of strings that contain all of the files of interest inside the `viewer` folder. Your scanning function should filter out anything that doesn't end in `.bmp` or `.log`.
 
-#### DIR Pointer
+#### DIR Pointers
 
 Before you can read in the contents of a directory in C, you will need a variable that holds some information about the directory that you are reading. For this, you can use a `DIR` pointer. The `DIR` pointer represents a _directory stream_, or an ordered list of all the entries in a directory.
 
@@ -129,11 +125,26 @@ There are a few essential file operations that exist in the `stdio.h` library. T
     fread(data, 1, 256, fp);   // Reads up to 256 bytes (or characters) from the file
     ```
 
-## Requirements
+## Procedure
+
+### Program Development
+
+Now that you have created you `display_test.c` file, which has some basic menu features, you will begin developing your `main.c` program that actually runs your doorbell. Remember, use `make` or `make main.c` to create your `main` executable. **All the development for the rest of the semester will be on `main.c` and its helper files.**
+
+### Technical Debt
+
+Technical debt is the idea that when you code something for the first time, it is normally not the most polished code. When you need to go back and improve the functionality of your code, there will be some refactoring needed.
+
+Technical debt often happens when different features are so intertwined with each other that to change, add, or remove a feature requires much of the code to be rewritten. There are a few things you can do to help yourself stay out of technical debt over the next few weeks:
+
+- Be intentional about the choices and names you use for variables etc.
+- Make features independant of the program; in other words, each new feature should not rely on all the other features to work. That way, if something must be removed, it doesn't impact the rest of the development. One example is coding features into functions that can be added/moved, instead of writing all the code directly into `main.c`.
+
+### Requirements
 
 In this lab you should accomplish the following:
 
-- Use the menu functionality you developed in the last lab to list all of the files in the `viewer` folder.
+- Use the menu functionality you developed in the last lab to list all of the files in the `viewer` folder. You can copy as much of the code from `display_test.c` as you would like into `main.c`.
 
 - When the right button is pressed, the selected file should be drawn to the screen for two seconds. The menu should then be redrawn.
 
@@ -142,17 +153,15 @@ In this lab you should accomplish the following:
 To accomplish these tasks, you will need to:
 
 - Copy over the `draw_menu` function from the previous lab
-    - File names should be drawn in either 8pt or 12pt font. 
-
+  - File names should be drawn in either 8pt or 12pt font.
 - Implement the `get_entries` function:
-    - Filter out any file that does not end in `.bmp` or `.log`. (Hint: Sounds like you need to **get** the **file extension**).
-    - Populate the `entries` array with the the `.bmp` and `.log` files.
-    - Return the number of files read in.
-    - If you find more than 8 files, you need only read in the first 8.
-  
+  - Filter out any file that does not end in `.bmp` or `.log`. (Hint: Sounds like you need to **get** the **file extension**).
+  - Populate the `entries` array with the the `.bmp` and `.log` files.
+  - Return the number of files read in.
+  - If you find more than 8 files, you need only read in the first 8.
 - Implement the `draw_file` function
-    - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
-    - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.  You should only show the first 100 characters of the file.
+  - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
+  - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.  You should only show the first 100 characters of the file.
 
 Here is a demo showing the different features of the lab:
 
@@ -165,25 +174,16 @@ Here is a demo showing the different features of the lab:
     </div>
 </div>
 
-## Submission
+## Pass Off & Submission
 
-- Pass off with a TA, by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
-
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - Take the Pass off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
+- Follow the instructions to update your `README.md` file with the new features of this lab.
 
 ## Explore More
 
 - [List Files in Folder in C](https://stackoverflow.com/questions/4204666/how-to-list-files-in-a-directory-in-a-c-program)
-
 - [Opening and Closing a File in C Tutorial](https://www.programiz.com/c-programming/c-file-input-output#:~:text=()%20returns%20NULL.-,rb,Open%20for%20writing.)
-
 - [`fscanf()` Tutorial](https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm)
-
 - [Comparing strings in C](https://www.tutorialspoint.com/c_standard_library/c_function_strncmp.htm)

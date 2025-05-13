@@ -11,18 +11,14 @@ layout: lab
 - Learn the structure of a multi-file C program (.h and .c files)
 - Get more practice with compilation of a program by using `gcc`
 
-## Getting Started
+## Introduction
 
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi.**
-
-## Overview
+In this lab we will be exploring the utility of data manipulation in a practical application by editing an image in C. **This lab will be programming heavy** and a little more involved than previous labs. **Make sure you allow yourself enough time to complete this lab.**
 
 <figure class="image mx-auto" style="max-width: 750px">
   <img src="{% link assets/image/original.bmp %}" alt="Original bitmap image">
   <figcaption style="text-align: center;">Original bitmap image that you will be editing in the lab.</figcaption>
 </figure>
-
-In this lab we will be exploring the utility of data manipulation in a practical application by editing an image in C. **This lab will be programming heavy** and a little more involved than previous labs. **Make sure you allow yourself enough time to complete this lab.**
 
 ### Bitmap Struct
 
@@ -54,23 +50,23 @@ Much like a `class`, a `struct` is a collection of different variable values all
 - `img_height`: Number of rows of pixels in the image.
 - `pxl_data_size`: Size (in bytes) of `pxl_data`.
 
-To access members of the `struct`, you use the dot operator or the arrow operator, depending on if the `struct` is a pointer or not. For example:
+To access members of the `struct`, you use the dot (`.`) operator or the arrow (`->`) operator, depending on if the `struct` is a pointer or not. For example:
 
 ```c
 Bitmap image;
 printf("width: %u, height: %u\n", image.image_width, image.image_height);
 
-Bitmap* image;
-printf("width: %u, height: %u\n", image->image_width, image->image_height);
+Bitmap* imgptr;
+printf("width: %u, height: %u\n", imgptr->image_width, imgptr->image_height);
 ```
 
 In this example, to access the width and height of a `struct`, we used the dot symbol. However, if we have pointer to a `struct`, we must dereference the pointer first before accessing the member. This can be done using `(*image).image_width`, but this is such a common operation to do that C added special syntax for it, the arrow operator, `->`.
 
 ### Bitmasking
 
-Bitmasking is a method that allows us to manipulate certain bits of data (e.g., set a bit to 1 or 0). This is done general by making use of bitwise ORs, ANDs, and XORs.
+**Bitmasking** is a method that allows us to manipulate certain bits of data (e.g., set a bit to 1 or 0). This is done general by making use of bitwise ORs, ANDs, and XORs.
 
-For example if we wanted to select nothing but the last two bits of the byte (in binary) `11101011` we would AND that byte with a mask consisting of 0s on all the values we don't want and 1s on all the values we do want in our selection:
+For example if we wanted to select nothing but the last two bits of the byte (in binary) `11101011` we would AND that byte with a mask consisting of 0s on the values we don't want and 1s on the values we do want in our selection:
 
 ```txt
      11101011
@@ -93,21 +89,21 @@ number = number & mask; // number = 0x03
 
 ### Pixel Values in BMP file
 
-Images are made out of many different colored points, called pixels, all put together in a two dimensional grid. Pixels are just one color and typically really small. To demonstrate the idea, I have broken the picture into a grid. While they are not the actual pixels of the image (the grid cells in my image below are much bigger than the pixels really are), hopefully it gets the idea across.
+Images are made out of many different colored points, called pixels, all put together in a two dimensional grid. It is often very hard to see an individual pixel, as they are meant to appear as a single color and are typically very small. To visualize this idea, we have broken our picture into a grid. While they are not the actual pixels of the image (the grid cells in my image below are much bigger than the pixels really are), we can see the idea of breaking down an image into tiny pieces come together.
 
 <figure class="image mx-auto" style="max-width: 350px">
   <img src="{% link assets/image/image_2d.png %}" alt="Grid representation of an image">
   <figcaption style="text-align: center;">Images are visualized as a two dimensional grid of pixels.</figcaption>
 </figure>
 
-A computer doesn't necessarily store the image data in a two dimensional grid. It often stores it as a long list (called an array), where each row is concatenated with the previous row.
+A computer doesn't actually store this data in a two dimensional grid. It often stores it as a long list (an array), where each row is concatenated with the previous row.
 
 <figure class="image mx-auto" style="max-width: 800px">
   <img src="{% link assets/image/image_1d.png %}" alt="A single row of an image as an array">
   <figcaption style="text-align: center;">Images are stored as a one dimensional list.</figcaption>
 </figure>
 
-Within each pixel, the computer actually stores **three values for each pixel**: a red color, a blue color, and a green color. Different values of each color channels will provide different hues and shades of a pixel. If that isn't making too much sense, there is a wonderful visualization of how different color channels create different pixel colors [here](https://www.w3schools.com/colors/colors_picker.asp). In our example, each color for each pixel is represented by a binary number that is exactly 8 bits long (or one byte). In BMP files, the pixels are typically stored bottom-up, starting in the bottom left corner, moving left to right. This is helpful to know when you debug your program.
+Additionally, for each pixel in the image the computer actually stores **three values**: the amount of red in the color, the amount of blue, and the amount of green. Different values of each **color channel** provides different hues and shades of color. If that isn't making too much sense, there is a [wonderful visualization of how different color channels create different pixel colors](https://www.w3schools.com/colors/colors_picker.asp). In our example, each color for each pixel is represented by a binary number that is exactly 8 bits long (or one byte). In BMP files, the pixels are typically stored bottom-up, starting in the bottom left corner, moving left to right. This is helpful to know when you debug your program.
 
 <figure class="image mx-auto" style="max-width: 600px">
   <img src="{% link assets/image/pixels.png %}" alt="Representation of pixel values made up of blue, green, and red channels">
@@ -135,7 +131,7 @@ uint8_t next_blue = pxl_data[(x + 1) * 3]; // Get the blue color for the next pi
 
 **Note:** In BMPs, the width of the image must be a multiple of 4 bytes. This means if the image has a width that is not a multiple of 4, the BMP file employs padding to fulfill that requirement. We have ensured that the picture you are working with is a multiple of 4 and you do not need to worry about dealing with padding for this lab. However, if you use your lab to read in different bmp files, it might not work.
 
-## Requirements
+## Procedure
 
 In the code provided in this lab, you will be expected to edit the original image listed at the top of this page to provide some fun visual effects!
 
@@ -145,7 +141,9 @@ Much of the code has been given for you, but you are expected to follow the comm
 - `grayscale()`
 - `or_filter()`
 
-### Remove Color Channel
+You will also edit the code in `main.c` in order to save the images that you create with these functions.
+
+### Part 1: Remove Color Channel
 
 In this function, you are expected to create logic that will allow a user to specify a color channel and have that color removed completely from the image. As you can see in the figures below, each image has either the red, green, or blue values set to 0.
 
@@ -166,7 +164,7 @@ In this function, you are expected to create logic that will allow a user to spe
 
 These images are the answer to your function! If you have done it correctly, your output should look exactly like whats above.
 
-### Grayscale
+### Part 2: Grayscale
 
 In this function, you will be turning your image from full color into a grayscaled image. To make an pixel gray, the red, green, and blue values must be combined or made to all be the same. To turn the image grayscale, for each pixel use the following equation:
 
@@ -189,7 +187,7 @@ After applying the grayscale to the image, it should look like this:
   <figcaption style="text-align: center;">Original.bmp grayscaled.</figcaption>
 </figure>
 
-### OR Filter
+### Part 3: OR Filter
 
 This function will be the culmination of your data manipulation knowledge that you have learned up until now. In this function you will take each color value of a pixel and bitwise OR it with the pixel color value directly above and below it. For example, if you are working on pixel x, you would OR the blue color with the blue color of the pixel above (top) and the pixel below (bottom). You would repeat this for the green and red colors. You would then move to the next pixel in your image.
 
@@ -202,18 +200,14 @@ This function will be the culmination of your data manipulation knowledge that y
 
 Make sure to use the `pxl_data_cpy` array as your reference data for your calculations, then update `pxl_data`. If you use the `pxl_data` as your reference data, you will have compounding effects that will cause the image to be indistinguishable. This is not correct.
 
-## Submission
+## Lab Submission
 
-- Pass off with a TA, by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
-
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA:
+  - demonstrate your doorbell running your program that fulfills all of the requirements outlined above.
+  - Show them your OR filter image, and explain *why* OR-ing makes it look the way it does (not how, because we know how already).
 - Take the Pass off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
+- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
 
 ## Explore More
 

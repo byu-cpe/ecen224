@@ -11,11 +11,7 @@ layout: lab
 - Write a `.bmp` file
 - Update viewer interface
 
-## Getting Started
-
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.**
-
-## Overview
+## Introduction
 
 In the past labs, much time has been spent making sure the files of the camera are easily accessible and represented on the LCD screen of your Pi Z2W kits. In this lab you will be expected to integrate a camera module to your design and take pictures.
 
@@ -70,17 +66,38 @@ It is considered good practice to add a `b` at the end of the letter if you inte
 
 After the file is opened, you can then use the `fwrite()` command to write to this opened file. Instructions on how to use `fwrite()` can be found in the corresponding link in the **Explore More** section at the bottom of the page. Don't forget to use `fclose()` on the file pointer when you are done writing the file! Forgetting `fclose()` can leave the file in an unstable state, and can cause errors like memory leaks, incorrect file locks, data loss, or even program crashes in some cases.
 
-## Requirements
+## Procedure
 
-- First verify your camera is working. To do that, run the following command. If this command succeeds, that means you have correctly connected the camera. If the command fails, such as a camera not found error, then you need to fix the connection.
+Download the following files and add them to your `lib/` folder:
+
+- <a href="{{ '/assets/codebase/camera.c' | relative_url }}" download>camera.c</a>
+- <a href="{{ '/assets/codebase/camera.h' | relative_url }}" download>camera.h</a>
+- <a href="{{ '/assets/codebase/image.c' | relative_url }}" download>image.c</a>
+- <a href="{{ '/assets/codebase/image.h' | relative_url }}" download>image.h</a>
+
+If you downloaded them on your local machine, drag and drop them from your file explorer to the RPi's VSCode window. If you wish to download them directly on the Pi, you can navigate to `./lib/` and use `curl`:
+
+```sh
+curl -O https://ecen224/assets/codebase/camera.c
+```
+
+Replace `camera.c` with each of the four file names.
+
+Next:
+
+- add the `#include`s for the two `.h` files you downloaded to `main.c`.
+- Go to your `Makefile` and delete the `#Lab08:` comment tag on lines 3 and 4 to include the four new files into your lab. **Make sure not to delete the `#Lab09:` tag.**
+- Be prepared to implement some of the missing functions in the `.c` files.
+
+### Requirements
+
+- Next, verify your camera is working. To do that, run the following command. If this command succeeds, that means you have correctly connected the camera. If the command fails, such as a camera not found error, then you need to fix the connection.
 
 ```bash
 libcamera-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bmp
 ```
-  
-- Copy the three functions you implemented (`get_entries`, `draw_menu`, and `draw_file`) and your `main` function from last lab into your main.c for this lab.
 
-- Copy your `remove_color_channel` and `or_filter` functions into `image.c` from your Image Lab code. You will be using this code later on.
+- Copy your `remove_color_channel` and `or_filter` functions from your Image Lab code into `image.c`.
 
 - We have changed the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't, fix it before moving on. You should be able to scroll through the list and display the contents of a file by pressing the right button.
 
@@ -117,23 +134,15 @@ Here is a demo showing the different features of the lab:
     </div>
 </div>
 
-## Submission
+### Pass Off & Submission
 
-- To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above. You must also show the TAs where you are calling `free` and `destroy_bmp`.
-
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - Take the Pass off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
+- Follow the instructions to update your `README.md` file with the new features of this lab.
 
 ## Explore More
 
 - [`fwrite()` in C](https://www.tutorialspoint.com/c_standard_library/c_function_fwrite.htm)
-
 - [Memory Allocation in C](https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/)
-
 - [Connect Camera to Raspberry Pi](https://www.arducam.com/raspberry-pi-camera-pinout/)
