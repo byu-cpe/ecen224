@@ -49,7 +49,7 @@ uint32_t y = 40;     // Always 32 bits.
 
 All data types have a maximum and minimum value based on their width. What happens when we try to set a variable beyond these maximum or minimums?
 
-If a variable is at the maximum value, adding one will simply cause the carried over number to be **truncated**, meaning the extra bit is lost or dropped by the processor. This truncation results in **Overflow** and **Underflow** errors, which occur when you exceed the maximum or drop below the minimum.
+If a variable is at the maximum value it can store, adding one will cause the carried bit to be **truncated**, meaning it is "lost", dropped by the processor. This truncation results in **Overflow** errors. In similar manner, when you drop below the minimum value, you cause an **Underflow** error. _Note: overflow and underflow can appear slightly differently if the type is signed or unsigned._
 
 Overflow Example:
 
