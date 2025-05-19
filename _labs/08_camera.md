@@ -68,27 +68,6 @@ After the file is opened, you can then use the `fwrite()` command to write to th
 
 ## Procedure
 
-Download the following files and add them to your `lib/` folder:
-
-- <a href="{{ '/assets/codebase/camera.c' | relative_url }}" download>camera.c</a>
-- <a href="{{ '/assets/codebase/camera.h' | relative_url }}" download>camera.h</a>
-- <a href="{{ '/assets/codebase/image.c' | relative_url }}" download>image.c</a>
-- <a href="{{ '/assets/codebase/image.h' | relative_url }}" download>image.h</a>
-
-If you downloaded them on your local machine, drag and drop them from your file explorer to the RPi's VSCode window. If you wish to download them directly on the Pi, you can navigate to `./lib/` and use `curl`:
-
-```sh
-curl -O https://ecen224/assets/codebase/camera.c
-```
-
-Replace `camera.c` with each of the four file names.
-
-Next:
-
-- add the `#include`s for the two `.h` files you downloaded to `main.c`.
-- Go to your `Makefile` and delete the `#Lab08:` comment tag on lines 3 and 4 to include the four new files into your lab. **Make sure not to delete the `#Lab09:` tag.**
-- Be prepared to implement some of the missing functions in the `.c` files.
-
 ### Requirements
 
 - Next, verify your camera is working. To do that, run the following command. If this command succeeds, that means you have correctly connected the camera. If the command fails, such as a camera not found error, then you need to fix the connection.
@@ -98,8 +77,6 @@ libcamera-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bm
 ```
 
 - Copy your `remove_color_channel` and `or_filter` functions from your Image Lab code into `image.c`.
-
-- We have changed the contents of the viewer folder slightly. Make sure your code works as expected. If it doesn't, fix it before moving on. You should be able to scroll through the list and display the contents of a file by pressing the right button.
 
 - Assign the center button to do the following:
   - Clear the screen and write a message telling the person you are taking a picture. You can write what ever you want (e.g., "Say Cheese!").
@@ -136,7 +113,7 @@ Here is a demo showing the different features of the lab:
 
 ### Pass Off & Submission
 
-- Your program must compile without warnings or errors. You `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
 - Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.

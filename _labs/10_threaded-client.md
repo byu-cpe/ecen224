@@ -206,7 +206,7 @@ Here is a demo showing the different features of the lab:
 
 ### Pass Off & Submission
 
-- Your program must compile without warnings or errors. You `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
 - Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.

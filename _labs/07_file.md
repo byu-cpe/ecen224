@@ -129,7 +129,7 @@ There are a few essential file operations that exist in the `stdio.h` library. T
 
 ### Program Development
 
-Now that you have created you `display_test.c` file, which has some basic menu features, you will begin developing your `main.c` program that actually runs your doorbell. Remember, use `make` or `make main.c` to create your `main` executable. **All the development for the rest of the semester will be on `main.c` and its helper files.**
+Now that you have your `test.c` file from the last lab with basic menu features, you will begin developing your `main.c` program that actually runs your doorbell. Remember, use `make` or `make main.c` to create your `main` executable. **All the development for the rest of the semester will be on `main.c` and its helper files.**
 
 ### Technical Debt
 
@@ -144,7 +144,7 @@ Technical debt often happens when different features are so intertwined with eac
 
 In this lab you should accomplish the following:
 
-- Use the menu functionality you developed in the last lab to list all of the files in the `viewer` folder. You can copy as much of the code from `display_test.c` as you would like into `main.c`.
+- Use the menu functionality you developed in the last lab to list all of the files in the `viewer` folder. You can copy as much of the code from `test.c` as you would like into `main.c`.
 
 - When the right button is pressed, the selected file should be drawn to the screen for two seconds. The menu should then be redrawn.
 
@@ -176,7 +176,7 @@ Here is a demo showing the different features of the lab:
 
 ## Pass Off & Submission
 
-- Your program must compile without warnings or errors. You `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
 - Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.

@@ -115,13 +115,6 @@ If this is not done, unexpected behavior may occur on your system. So remember t
 
 ## Procedure
 
-- Download the following files and add them to your `lib/` folder:
-  - <a href="{{ '/assets/codebase/client.c' | relative_url }}" download>client.c</a>
-  - <a href="{{ '/assets/codebase/client.h' | relative_url }}" download>client.h</a>
-
-- Add `#include client.h` to `main.c`.
-- Go to your `Makefile` and delete the `#Lab09:` comment tag on lines 3 and 4 to include the new files into your lab.
-
 ### Requirements
 
 - Add `lib/client.h` to your list of `#include`s in your `main.c`.
@@ -142,7 +135,7 @@ If this is not done, unexpected behavior may occur on your system. So remember t
 
 ### Pass Off & Submission
 
-- Your program must compile without warnings or errors. You `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
 - Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.

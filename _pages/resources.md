@@ -80,7 +80,7 @@ Note that certain secure networks such as eduroam *will not* work with this conn
 
 Once you have entered all the network information, leave the configuration GUI by selecting `<Finish>`.
 
-You can confirm that your network was properly configured by running `sudo cat /etc/wap_supplicant/wap_supplicant.conf`.  Your network and password should be listed there.
+You can confirm that your network was properly configured by running `sudo cat /etc/wpa_supplicant/wap_supplicant.conf`.  Your network and password should be listed there.
 
 **Step 2: Connecting at home**
 

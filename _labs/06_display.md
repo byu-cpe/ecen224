@@ -82,7 +82,7 @@ Now that the `bcm2835` library is installed, we can use it in any C program that
 
 ### Drawing to the Screen
 
-In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. This is a wrapper file that interacts with the `bcm2835` library we installed. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
+In this lab you will be responsible for writing a `test.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. This is a wrapper file that interacts with the `bcm2835` library we installed. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
 
 Before the LCD can be used, **you will need to call the `display_init()` function** once in your code at the beginning of `main`.
 
@@ -150,7 +150,7 @@ Before the buttons can be used, **you will need to call the `buttons_init()` fun
 
 ### Device delay
 
-You will see in your `main.c` function that your code will loop infinitely. This means that anything inside the `while(true)` loop will repeat over and over until the program is terminated by the user through the shell. Running a `while(true)` loop without any sort of control can cause system resources to be eaten up and cause your program to be run inefficiently. For this, we have provided the `delay_ms()` inside the `device.h` library. This will allow you to essentially create a wait time in the execution of your loop. This is handy if you want to draw something to the screen and have it only appear for a certain amount of time before the logic in your program goes on.
+You will see in your `test.c` function that your code will loop infinitely. This means that anything inside the `while(true)` loop will repeat over and over until the program is terminated by the user through the shell. Running a `while(true)` loop without any sort of control can cause system resources to be eaten up and cause your program to be run inefficiently. For this, we have provided the `delay_ms()` inside the `device.h` library. This will allow you to essentially create a wait time in the execution of your loop. This is handy if you want to draw something to the screen and have it only appear for a certain amount of time before the logic in your program goes on.
 
 ### Logging
 
@@ -161,37 +161,37 @@ We also give you `log.h` and `log.c` files that you can find under the `/lib` fo
 By this point, you also may be realizing that large projects can become unweildy in compiling.  This lab, for example, contains eleven `.c` files.  To compile it yourself, you would have to enumerate each of them in the command line:
 
 ```bash
-gcc -o main -l bcm2835 main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c font16.c font20.c font24.c
+gcc -o test -l bcm2835 main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c font16.c font20.c font24.c
 ```
 
 Compiling like this will work, but has a couple problems:
 
-1. You are recompiling each file each time. If you make a single change to your `main.c` file, each other file would also be recompiled. For large projects, this can take a lot of time.
+1. You are recompiling each file each time. If you make a single change to your `test.c` file, each other file would also be recompiled. For large projects, this can take a lot of time.
 2. Any typo in your command would halt the compilation. Repeatedly typing in this command (or even copy/pasting it) could propogate errors and waste a lot of time.
 
 Early C programmers recognized these issues too. So, just four years after C was released, the Make software was created. Make revolves around a single file called the `Makefile`. The inside of a `Makefile` looks a lot like bash scripts (like the ones you made in Lab 2); you can create "rules" that perform a set of command line operations and generate files for you. So, instead of the long `gcc` command that you used up above, you can run one simple command:
 
 ```bash
-make
+make test
 ```
 
 And everything will be done for you.
 
-Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `main.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. IT then links the new `.o` to all the old, unchanged ones to generate the executable.
+Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `test.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. IT then links the new `.o` to all the old, unchanged ones to generate the executable.
 
 **In this lab going forward, to compile your code, you should use `make` instead of `gcc`.**  The Makefiles will be provided for this class, so you don't need to entirely understand how they work right now. However, you will see them in future classes, so it may be worth taking a look at them.
 
 ### Executing
 
-Compiling with the provided Makefile generates an executable called `main`. You run this executable the same way you run any other, using `./main`, with one exception. Accessing the HAT hardware requires special permissions, so you will need to run the exeutable with `sudo` (e.g., `sudo ./main`), otherwise you will likely see a `segmentation fault`.
+Compiling with the provided Makefile generates an executable called `test`. You run this executable the same way you run any other, using `./test`, with one exception. Accessing the HAT hardware requires special permissions, so you will need to run the exeutable with `sudo` (e.g., `sudo ./main`), otherwise you will likely see a `segmentation fault`.
 
 ## Procedure
 
 ### Creating Test Code
 
-There are two files in this repository that have a `main()` function: `display_test.c` and `main.c`. You can only compile one `main()` function at a time, but having two allows you to develope two separate programs at once.
+There are two files in this repository that have a `main()` function: `test.c` and `main.c`. You can only compile one `main()` function at a time, but having two allows you to develope two separate programs at once.
 
-In this lab, you will start by making `display_test.c` into a test for your screen. **All your code for this lab goes into the `display_test.c` file.** To tell `make` which function to compile with, simply type `make <filename>`. Make defaults to compiling `main.c` if you don't specify. `main.c` compiles into an executable called `main`, and `display_test.c` compiles into `display_test`.
+In this lab, you will start by making `test.c` into a test for your screen. **All your code for this lab goes into the `test.c` file.** To tell `make` which function to compile with, simply type `make <filename>`. Make defaults to compiling `main.c` if you don't specify. `main.c` compiles into an executable called `main`, and `test.c` compiles into `test`.
 
 You will use this code later to create your `main.c` code, and you can keep it as a reference point if you have hardware issues in later labs.
 
@@ -242,7 +242,7 @@ Here is a demo of the completed lab:
 
 ### Pass Off & Submission
 
-- Your program must compile without warnings or errors. You `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
 - Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.
