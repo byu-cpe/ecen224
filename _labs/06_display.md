@@ -11,11 +11,7 @@ layout: lab
 - Associate graphical events with specific inputs.
 - Get experience using a Makefile
 
-## Getting Started
-
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.**
-
-## Overview
+## Introduction
 
 <figure class="image mx-auto" style="max-width: 750px">
   <img src="{% link assets/display/lcd-button-shield.png %}" alt="Units of the course.">
@@ -32,7 +28,7 @@ In this lab we will use the Waveshare 1.44" HAT, which uses all 40 of the GPIO p
 
 #### Installation
 
-In order to interface with the GPIO of the Pi Z2W, we need to install a library.
+In order to interface with the GPIO of the Pi Z2W, we need to install the **BCM2835 library**.
 
 1. First make sure that you are in your home directory on the Pi Z2W:
 
@@ -76,19 +72,19 @@ In order to interface with the GPIO of the Pi Z2W, we need to install a library.
     sudo make install
     ```
 
-The library is now installed and accessible to the operating system! Your terminal is still in the library directory, so be sure to navigate back to your Lab 6 project directory before continuing. 
+The library is now installed and accessible to the operating system! Your terminal is still in the library directory, so be sure to navigate back to your Lab 6 project directory before continuing.
 
 #### Compiling into a Project
 
-Now that the `bcm2835` library is installed, we can use it in any C program that we like! This comes especially in handy for our new LCD and button HAT. However, since this is an installed library and not a default one, we have to let `gcc` know that we are trying to include it in the compilation process. This is done by adding the `-l bcm2835` flag to our normal `gcc` compilation command. The `-l` lets `gcc` know we are including a custom system library, while the `bcm2835` part is just the name of the library itself.
+Now that the `bcm2835` library is installed, we can use it in any C program that we like! This comes especially in handy for our new LCD and button HAT. However, since this is an installed library and not a default one, **we have to let `gcc` know that we are trying to include it** in the compilation process. This is done by adding the `-l bcm2835` flag to our normal `gcc` compilation command. The `-l` lets `gcc` know we are including a custom system library, while the `bcm2835` part is just the name of the library itself.
 
-In this lab you won't actually run `gcc` yourself, so you don't need to worry about including this flag. We will compile our project using Make, which will handle the `gcc` calls for us, including adding the `-l bcm2835` flag. We'll talk more about Make later.
+**In this lab you won't actually run `gcc` yourself**, so you don't need to worry about including this flag. We will compile our project using Make, which will handle the `gcc` calls for us, including adding the `-l bcm2835` flag. We'll talk more about Make later.
 
 ### Drawing to the Screen
 
-In this lab you will be responsible for writing a `main.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. This is a wrapper file that interacts with the `bcm2835` library we installed. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
+In this lab you will be responsible for writing a `test.c` file that will draw shapes and images to the LCD screen. The library responsible for this is found in the `lib/display.h` library file in the lab repository. This is a wrapper file that interacts with the `bcm2835` library we installed. There are many functions that can accomplish various techniques such as drawing shapes or writing text. Become familiar with the `display.h` and read the corresponding comments.
 
-Before the LCD can be used, you will need to call the `display_init()` function once in your code at the beginning of `main`.
+Before the LCD can be used, **you will need to call the `display_init()` function** once in your code at the beginning of `main`.
 
 #### Orientation and Dimensions
 
@@ -148,12 +144,13 @@ else {
 }
 ```
 
-Before the buttons can be used, you will need to call the `buttons_init()` function once in your code at the beginning. *If you don't call `buttons_init()` before you start using the buttons, weird things can happen!* You're code might work, but then when you reboot or rerun your code, it might not!
-Note that you must call `display_init()` before you call `buttons_init()` or you will get a segmentation fault.
+Before the buttons can be used, **you will need to call the `buttons_init()` function** once in your code at the beginning. If you forget this, the buttons may work temporarily, but they will be unpredictable and will often cause seg faults.
+
+*Note that you must call `display_init()` before you call `buttons_init()` or you will get a segmentation fault.*
 
 ### Device delay
 
-You will see in your `main.c` function that your code will loop infinitely. This means that anything inside the `while(true)` loop will repeat over and over until the program is terminated by the user through the shell. Running a `while(true)` loop without any sort of control can cause system resources to be eaten up and cause your program to be run inefficiently. For this, we have provided the `delay_ms()` inside the `device.h` library. This will allow you to essentially create a wait time in the execution of your loop. This is handy if you want to draw something to the screen and have it only appear for a certain amount of time before the logic in your program goes on.
+You will see in your `test.c` function that your code will loop infinitely. This means that anything inside the `while(true)` loop will repeat over and over until the program is terminated by the user through the shell. Running a `while(true)` loop without any sort of control can cause system resources to be eaten up and cause your program to be run inefficiently. For this, we have provided the `delay_ms()` inside the `device.h` library. This will allow you to essentially create a wait time in the execution of your loop. This is handy if you want to draw something to the screen and have it only appear for a certain amount of time before the logic in your program goes on.
 
 ### Logging
 
@@ -164,31 +161,41 @@ We also give you `log.h` and `log.c` files that you can find under the `/lib` fo
 By this point, you also may be realizing that large projects can become unweildy in compiling.  This lab, for example, contains eleven `.c` files.  To compile it yourself, you would have to enumerate each of them in the command line:
 
 ```bash
-gcc -o main -l bcm2835 main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c font16.c font20.c font24.c
+gcc -o test -l bcm2835 main.c buttons.c device.c display.c lcd.c log.c font8.c font12.c font16.c font20.c font24.c
 ```
 
 Compiling like this will work, but has a couple problems:
 
-1. You are recompiling each file each time. If you make a single change to your `main.c` file, each other file would also be recompiled. For large projects, this can take a lot of time.
+1. You are recompiling each file each time. If you make a single change to your `test.c` file, each other file would also be recompiled. For large projects, this can take a lot of time.
 2. Any typo in your command would halt the compilation. Repeatedly typing in this command (or even copy/pasting it) could propogate errors and waste a lot of time.
 
-Early C programmers recognized these issues too. So, just four years after C was released, the Make software was created. Make revolves around a single file called the `Makefile`. The inside of a `Makefile` looks a lot like bash scripts (like the one you made in Lab 2); you can create "rules" that perform a set of command line operations and generate files for you. So, instead of the long `gcc` command that you used up above, you can run one simple command:
+Early C programmers recognized these issues too. So, just four years after C was released, the Make software was created. Make revolves around a single file called the `Makefile`. The inside of a `Makefile` looks a lot like bash scripts (like the ones you made in Lab 2); you can create "rules" that perform a set of command line operations and generate files for you. So, instead of the long `gcc` command that you used up above, you can run one simple command:
 
 ```bash
-make
+make test
 ```
 
 And everything will be done for you.
 
-Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `main.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. IT then links the new `.o` to all the old, unchanged ones to generate the executable.
+Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `test.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. IT then links the new `.o` to all the old, unchanged ones to generate the executable.
 
 **In this lab going forward, to compile your code, you should use `make` instead of `gcc`.**  The Makefiles will be provided for this class, so you don't need to entirely understand how they work right now. However, you will see them in future classes, so it may be worth taking a look at them.
 
 ### Executing
 
-Compiling with the provided Makefile generates an executable called `main`. You run this executable the same way you run any other, using `./main`, with one exception. Accessing the HAT hardware requires special permissions, so you will need to run the exeutable with `sudo` (e.g., `sudo ./main`), otherwise you will likely see a `segmentation fault`.
+Compiling with the provided Makefile generates an executable called `test`. You run this executable the same way you run any other, using `./test`, with one exception. Accessing the HAT hardware requires special permissions, so you will need to run the exeutable with `sudo` (e.g., `sudo ./main`), otherwise you will likely see a `segmentation fault`.
 
-## Requirements
+## Procedure
+
+### Creating Test Code
+
+There are two files in this repository that have a `main()` function: `test.c` and `main.c`. You can only compile one `main()` function at a time, but having two allows you to develope two separate programs at once.
+
+In this lab, you will start by making `test.c` into a test for your screen. **All your code for this lab goes into the `test.c` file.** To tell `make` which function to compile with, simply type `make <filename>`. Make defaults to compiling `main.c` if you don't specify. `main.c` compiles into an executable called `main`, and `test.c` compiles into `test`.
+
+You will use this code later to create your `main.c` code, and you can keep it as a reference point if you have hardware issues in later labs.
+
+### Requirements
 
 You will demonstrate your understanding of the `display` and `buttons` libraries and how to use them by accomplishing the tasks listed below:
 
@@ -204,7 +211,7 @@ You will demonstrate your understanding of the `display` and `buttons` libraries
 
     e. **drawFlag**: Uses at least 5 functions from `display.h` to draw any flag you wish.  3 of the `display_draw_###` functions must be unique.
 
-    Make and test each of these functions *before* you create the menu. You can test functions by calling them in your while(true) loop in main(). 
+    Make and test each of these functions *before* you create the menu. You can test functions by calling them in your while(true) loop in main().
 
 2. Implement a menu functionality using `drawMenu` and `main`.  Your menu should have the following functionality:
 
@@ -233,18 +240,13 @@ Here is a demo of the completed lab:
     </div>
 </div>
 
-## Submission
+### Pass Off & Submission
 
-- Pass off with a TA, by demonstrating your doorbell running your program that fulfills all of the requirements outlined above. Your code should compile without warnings or errors.
-
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
+- **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
+- Follow the instructions to update your `README.md` file with the new features of this lab.
 
 ## Explore More
 
