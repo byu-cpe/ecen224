@@ -177,7 +177,7 @@ make test
 
 And everything will be done for you.
 
-Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `test.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. IT then links the new `.o` to all the old, unchanged ones to generate the executable.
+Using `Make` speeds up the compiling process by performing intermediate steps in the compilation process. Consider the example from above where you only updated `test.c`; to recompile, instead of recompiling every single `.c` file, you can create a `.o` file for each source file. Recall that `.o` files are compiled and assembled, but not yet linked together. Make generates a `.o` for each source file on its first run. For subsequent recompiles, Make is smart enough to only recreate `.o` files if their corresponding `.c` file has been updated. It then links the new `.o` to all the old, unchanged ones to generate the executable.
 
 **In this lab going forward, to compile your code, you should use `make` instead of `gcc`.**  The Makefiles will be provided for this class, so you don't need to entirely understand how they work right now. However, you will see them in future classes, so it may be worth taking a look at them.
 
