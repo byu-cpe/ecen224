@@ -129,7 +129,7 @@ There are a few essential file operations that exist in the `stdio.h` library. T
 
 ### Program Development
 
-Now that you have your `test.c` file from the last lab with basic menu features, you will begin developing your `main.c` program that actually runs your doorbell. Remember, use `make` or `make main.c` to create your `main` executable. **All the development for the rest of the semester will be on `main.c` and its helper files.**
+Now that you have your `test.c` file from the last lab with basic menu features, you will begin developing your `main.c` program that actually runs your doorbell. Remember, the command `make` or `make main` will create your `main` executable. **All the development for the rest of the semester will be on `main.c` and its helper files.**
 
 ### Technical Debt
 
