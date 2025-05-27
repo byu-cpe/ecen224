@@ -4,6 +4,7 @@ short_title: Bomb Lab
 icon: fa-duotone fa-bomb
 number: 1
 layout: lab
+toc: true
 ---
 
 ## Quick References
