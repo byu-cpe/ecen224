@@ -10,11 +10,7 @@ layout: lab
 - Handle raw data in a buffer
 - Send data over a network socket
 
-## Getting Started
-
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.**
-
-## Overview
+## Introduction
 
 You have come very far in understanding how to control your computer! Up until this point, we have covered programming peripheral devices, handling inputs from a user, and many other skills that allow you to control your Pi Z2W to the fullest! In this lab, we will take you from influencing processes on your own system to interacting with programs on other systems! In this lab you will gain practice with network programming by sending some of your saved photos over a network to a server.
 
@@ -117,15 +113,9 @@ If this is not done, unexpected behavior may occur on your system. So remember t
 | `opendir`                                                                                                                              | `closedir`   |
 | `socket` (don't worry about calling this function in this lab, this is done for you already in the provided `client_connect` function) | `close`      |
 
-## Requirements
+## Procedure
 
-- Copy your `main.c`, `viewer` folder, and `lib` folder from the previous lab into the cloned repository. Make sure to keep the `client.h` and `client.c` files in your lib folder. You can run something like this:
-
-```bash
-cp ~/camera/main.c ~/client    # Copy main.c
-cp -r ~/camera/viewer ~/client # Copy viewer folder 
-cp -r ~/camera/lib ~/client    # Copy lib folder
-```
+### Requirements
 
 - Add `lib/client.h` to your list of `#include`s in your `main.c`.
 
@@ -143,25 +133,17 @@ cp -r ~/camera/lib ~/client    # Copy lib folder
 
 - Show the menu.
 
-## Submission
+### Pass Off & Submission
 
-- To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above. You must also show the TAs your implementation of the `client_send_image` function and where you close the socket.
-
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
+- **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
+- Follow the instructions to update your `README.md` file with the new features of this lab.
 
 ## Explore More
 
 - [`memcpy()` in C](https://www.tutorialspoint.com/c_standard_library/c_function_memcpy.htm)
-
 - [`send()` in C](https://man7.org/linux/man-pages/man2/send.2.html)
-
 - [Ultimate Guide to Network Programming in C](https://beej.us/guide/bgnet/html/)
-
 - [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server)

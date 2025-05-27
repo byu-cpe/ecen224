@@ -10,11 +10,7 @@ layout: lab
 - Learn to multitask in C
 - Create a POSIX thread with arguments
 
-## Getting Started
-
-Use the GitHub Classroom link posted in the Learning Suite for the lab to accept the assignment. Next, ssh into your Raspberry Pi using VSCode and clone the repository in your home directory. **This lab should be done in VSCode on your Raspberry Pi. Make sure the lab is top level folder of your VSCode editor.**
-
-## Overview
+## Introduction
 
 One of the last fundamentals to know about programming in general is how to make your program do multiple things at once. Until this point, we have written **single-threaded programs**. This means that our programs have only followed a single path of execution while it runs (i.e., the program can only focus on one task at a time). However, many of the problems that we solve in the real-world are much more complex and may require us to interact with many facets of the problem simultaneously. In the lab for this class, creating a useful smart doorbell is definitely one of those multifaceted problems. Consider the following:
 
@@ -172,20 +168,14 @@ Now that we have provided the address of our integer to `pthread_create()`, let'
 
 To get a return value from a thread in C, you would need to use the `pthread_join()` function. For the purposes of this lab, we will not be using `pthread_join()`, but you can read more about it in the **Explore More!** section. `pthread_join()` is **NOT** recommended for this lab.
 
-### Technical Debt
+## Procedure
 
-Technical debt is the idea that when you code something for the first time, it is normally not the most polished code. When you need to go back and improve the functionality of your code, there will need to be some refactoring done.
-
-You may have noticed at this point that threading is very function heavy. This means that to use it in your doorbell code, you will need to have nice functions that group code together for certain tasks. If you have not been using functions up to this point, you are likely in some technical debt. You will need to encapsulate some functionality into functions as described in the **Requirements** sections below.
-
-## Requirements
-
-- Copy all of your code, except for the `README.md` file from last lab into your newly cloned repository.
+### Requirements
 
 - In order to use the threading library, you need to include the library in source code and your compilation.
   - Add `#include <pthread.h>` and `#include <unistd.h>` to your headers in `main.c`.
   - Add `-pthread` to the `CFLAGS` variable in your Makefile.
-  - Before you go any farther, try making your project to make sure everything is still working.
+  - Before you go any farther, try `make` on your project to make sure everything is still working.
 
 - Write a function called `send_image`. This function should take care of connecting to the server, sending the image, receiving the response, and closing the socket. You need to figure out the correct signature for this function.
 
@@ -214,18 +204,13 @@ Here is a demo showing the different features of the lab:
     </div>
 </div>
 
-## Submission
+### Pass Off & Submission
 
-- To pass off to a TA, demonstrate your doorbell running your program that fulfills all of the requirements outlined above.
-
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
+- **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.
-
-- Follow the instructions in the README file in the repository to write your own README for this lab. Include your name, section, semester, and lab title. A good README should answer the following questions:
-  - What is the purpose of this project and its code/files?
-  - What is the structure/organization of the project files?
-  - How do you build and run the code in this project?
-
-- Add and Commit all of your updated files (and your README) as explained under **Committing and Pushing Files** on the [Lab Setup]({{ site.baseurl }}/lab-setup) page. Remember that while these instructions give general information, you need to add and commit all of the files you have modified or created in this lab.
+- Follow the instructions to update your `README.md` file with the new features of this lab.
 
 ## Explore More
 
