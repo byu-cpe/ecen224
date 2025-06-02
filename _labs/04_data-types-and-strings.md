@@ -331,7 +331,7 @@ Your code will be tested with the following inputs:
 2. Array: {10, 11, 13, 15, 2}, Output: 10.2
 3. Array: {100, 91, 127, 23, 8}, Output: 69.8 -->
 
-##### Any Bit Is One
+##### Any Bit is One
 
 <!-- 1. Input: 0x00000000, Output: 0 (false)
 2. Input: 0xDEADBEEF, Output: 1 (true)
@@ -343,7 +343,7 @@ Your code will be tested with the following inputs:
 2. Input: 0xDEADBEEF, Output: 1 (true)
 3. Input: 0xFFFFFFFF, Output: 0 (true) -->
 
-##### Extract From Word
+##### Extract from Word
 
 <!-- Each of the following words will be tested for each position (0-3):
 
@@ -353,7 +353,7 @@ Your code will be tested with the following inputs:
 
 **SPRING 2025: But You Do Have to Implement These Functions:**
 
-##### Multiply By Base 2
+##### Multiply by Base 2
 
 1. Input: 1 (num) and 0 (power), Output: 1
 2. Input: 8 and 3, Output: 64
