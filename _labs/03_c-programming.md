@@ -260,7 +260,7 @@ Each of these data types has two key components: the type of value that is store
 
 It is also important to note that the size of each of the above types is dependent on the processor on which you will be running the code. For example an `int` on a 16 bit processor will be 16 bits, while on a 32 bit processor an `int` is usually 32 bits, and on a 64-bit processor an `int` is also typically also 32 bits. It is the programmer's responsibility to understand what these data types mean and how they work on your system. Ignoring these important details has led to catastrophies in the past ([including rockets that explode shortly after launch](https://en.wikipedia.org/wiki/Ariane_flight_V88)).
 
-Even though variables are stored binary numbers, **we dont have to interpret the bits as regular binary**. For example, negative numbers are stored by saving the last bit to represent the sign instead of part of the value. This is called **Two's Complement**, and it changes the range of a data type to be `-2^(N-1)` to `2^(N-1)-1`. This is the default storage scheme for all data types that store integers. For decimal or **floating point** numbers, the default scheme is the **IEEE Floating Point** format.
+Even though variables are stored binary numbers, **we dont have to interpret the bits as regular binary**. For example, negative numbers are stored by saving the most significant bit to represent the sign instead of part of the value. This is called **Two's Complement**, and it changes the range of a data type to be `-2^(N-1)` to `2^(N-1)-1`. This is the default storage scheme for all data types that store integers. For decimal or **floating point** numbers, the default scheme is the **IEEE Floating Point** format.
 
 You can control the scheme that a data type uses to maximize its efficiency. For example, the keyword `unsigned` makes the compiler assume the bits to be regular binary instead of Two's Complement, preventing us from storing negative numbers but doubling the range of positive numbers we can store.
 
@@ -289,7 +289,7 @@ This this type of casting is called an **explicit cast** because you put the des
 
 #### stdint.h
 
-Standardized data types that explicitly the number of bits they use (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t`, `uint16_t`, etc. whose widths are *always* indicated in their name. These data types are useful for adding clarity about what values you are storing and avoiding casting errors.
+Standardized data types that explicitly define the number of bits they use (regardless of processor) are defined in the `stdint.h` library. This contains specialized data types such as `uint8_t`, `uint16_t`, etc. whose widths are *always* indicated in their name. These data types are useful for adding clarity about what values you are storing and avoiding casting errors.
 
 Example: If you needed a data type for positive integers less than 256, you could `#include <stdint.h>` and use the `uint8_t` type (`u` for unsigned, `int`, `8` for 8 bits, and `_t` for type). Because this type explicitly defines the number of bits it uses, it is very clear what values this variable expects to receive.
 
@@ -345,15 +345,15 @@ In addition to the format specifiers listed above, there are several **escape ch
 
 | Symbol | Description                                                                |
 | ------ | -------------------------------------------------------------------------- |
-| `\n`   | Newline (moves to the next line)                                           |
-| `\r`   | Carriage Return (moves cursor to the beginning of the same line)           |
-| `\t`   | Tab (adds a horizontal tab space)                                          |
-| `\b`   | Backspace (removes the previous character)                                 |
-| `\\`   | Backslash (\) literal                                                      |
-| `\'`   | Single quote (') literal; avoids confusing the compiler                    |
-| `\"`   | Double quote (") literal; avoids confusing the compiler                    |
-| `\?`   | Question mark (?), helps avoid [trigraph](https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C) issues. (You can just use `?` too) |
-| `\0`   | Null character, used to terminate strings                                  |
+| `\n`   | newline (moves to the next line)                                           |
+| `\r`   | carriage Return (moves cursor to the beginning of the same line)           |
+| `\t`   | tab (adds a horizontal tab space)                                          |
+| `\b`   | backspace (removes the previous character)                                 |
+| `\\`   | backslash (\) literal                                                      |
+| `\'`   | single quote (') literal; avoids confusing the compiler                    |
+| `\"`   | double quote (") literal; avoids confusing the compiler                    |
+| `\?`   | question mark (?), helps avoid [trigraph](https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C) issues. (You can just use `?` too) |
+| `\0`   | null character, used to terminate strings                                  |
 
 ### Part 4: Lab Challenge
 
