@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>C Programming</title>
+  <link rel="stylesheet" href="walkthrough.css">
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">C Programming</h1>
+</header>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Compile a C program using <code>gcc</code></li>
+<li>Understand basic C syntax</li>
+<li>Know the difference between the standard data types</li>
+<li>Experiment with <code>printf</code> and data types</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>The goal of this semester is for you to build a strong foundation in
+C programming. C is a very important language that is still actively
+used today. The creators of C, <a
+href="https://computerhistory.org/profile/dennis-ritchie/">Dennis
+Ritchie</a> and <a
+href="https://computerhistory.org/profile/ken-thompson/">Ken
+Thompson</a>, are also the creators of Unix, the predecessor to the
+Linux system we are using in this class. A good understanding of how C
+and Unix work will provide large insight into how computers work in
+general.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a single line comment.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">This is a multi-line comment.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">Any text that is between the slash-star and</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">the star-slash will be ignored.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Hello, World!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Above is a simple <a
+href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">Hello
+World</a> program written in C. The “Hello World” program is commonly
+used to demonstrate the basics of a programming language.</p>
+<p>In your lab repository, create a new file called
+<code>simple.c</code>. This can be done using the File Explorer tab in
+VS Code, or from the terminal using the <code>nano</code> command (or a
+text editor of your choice. You can also create the file without a text
+editor using <code>touch</code> - google it for details). Inside the
+<code>simple.c</code> file, copy and paste the code above, then save and
+close the file.</p>
+<p>We will use this program to explore the basics of creating,
+compiling, and running a C program. Read each section carefully and make
+sure to complete each step.</p>
+<h2 id="procedure">Procedure</h2>
+<h3 id="part-1-exploring-the-compilation-process">Part 1: Exploring The
+Compilation Process</h3>
+<p>C is a <a
+href="https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/">compiled
+language</a>, meaning that the code you write must be
+<strong>compiled</strong> into a <a
+href="https://en.wikipedia.org/wiki/Executable">binary executable</a>
+before it can be executed. This compilation process is done by a program
+known as the <strong>compiler</strong>. In this class, we will use the
+<code>gcc</code> compiler (short for GNU Compiler Collection).</p>
+<p>Compilers do more than simply convert a higher level language to
+machine language. Many compilers analyze the code being passed in and
+optimize it to be executed in the fewest amount of instructions
+possible. Let’s examine the steps compilers take to build an executable
+version of your program.</p>
+<h4 id="step-1-pre-processing">Step 1: Pre-processing</h4>
+<p>This step runs a pre-compiler program which handles special
+statements in your code called <strong>directives</strong>. Directives,
+which are denoted by the <code>#</code> sign, help decide which parts of
+a written program in C are included during the compilation process.</p>
+<p>One of the most common directives is the <code>#include</code>
+directive, which “includes” an already existing file into your code. In
+our <code>simple.c</code> program, we have included the
+<code>&lt;stdio.h&gt;</code> library, which has several functions to
+assist with the “standard” inputs and outputs in your program
+(i.e. reading from your keyboard and writing to a terminal). This is
+also where the definition of the <code>printf()</code> function resides.
+Without including <code>stdio.h</code>, <code>simple.c</code> would not
+know what <code>printf()</code> was or where it was defined and thus
+would not be able to compile.</p>
+<p>Some other interesting compiler directives are <code>#define</code>,
+<code>#if</code>/<code>#else</code>/<code>#endif</code>. Take a minute
+to look up what they mean for your lab quiz.</p>
+<p>Generate a precompiled version of your <code>simple.c</code> code by
+running the following terminal command:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-E</span> simple.c <span class="op">&gt;</span> simple_preprocessed.txt</span></code></pre></div>
+<p>Look through the generated text file. While a lot has been added, the
+last few lines of the text file are your original code.</p>
+<h4 id="step-2-compiling">Step 2: Compiling</h4>
+<p>In this step, the compiler translates your pre-processed code into <a
+href="https://en.wikipedia.org/wiki/Assembly_language">assembly
+language</a>. Assembly is made up of <strong>instructions</strong> that
+can be executed by your computer processor. For example, all the
+instructions you will study in ECEn 224 use the <a
+href="https://en.wikipedia.org/wiki/X86_instruction_listings">x86
+instruction set</a>. All C programs can be compiled into some set of
+these instructions.</p>
+<p>Many modern compilers will also make optimizing adjustments to your
+code. For example, if your code includes a command to multiply an
+integer by four (ex: <code>newInt = 3 * 4;</code>), your compiler may
+instead use a binary shift operation
+(<code>newInt = 3 &lt;&lt; 2;</code> in C or <code>shr %rdx, 2</code> in
+assembly). These adjustments reduce the number of instructions needed,
+increasing the speed and efficiency of your program.</p>
+<p>Compile your C code into assembly by running the following terminal
+command:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-S</span> simple.c</span></code></pre></div>
+<p>Because different processors and hardware have different instruction
+sets, compiled assembly code can usually only be run on the machine that
+compiled it. For example, The binary <code>simple.c</code> exectuable
+you just compiled on your doorbell uses the <a
+href="https://en.wikipedia.org/wiki/ARM_architecture_family">ARM
+instruction set</a>. The resulting executable would likely work on
+another student’s doorbell, but it would not work on your
+<code>x86</code> lab machine.</p>
+<p>Open the <code>simple.s</code> file you just generated and look
+around. Google one of the commands that you see to try and figure out
+what it means.</p>
+<h4 id="step-3-assembling">Step 3: Assembling</h4>
+<p>The next step is to convert the assembly code into machine code,
+which consists of binary that the processor can execute. This involves
+translating each assembly instruction into its corresponding binary
+<strong>opcode</strong> and arguments and organizing them into larger
+segments such as the <code>code</code> and <code>data</code> segments.
+These segments can then be processed by the operating system.</p>
+<p>Run the following terminal command to generate the binary version of
+your code:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-c</span> simple.c</span></code></pre></div>
+<p>Next, to actually read this code, run the following:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hexdump</span> simple.o <span class="op">&gt;</span> simple_assembled.txt</span></code></pre></div>
+<p>Look through the text file you just generated. While the actual file
+we generated is 0s and 1s, we used the <code>hexdump</code> command to
+read it as hex and make it slightly more interpretable. You should see
+two main sections. What do you think these mean?</p>
+<h4 id="step-4-linking">Step 4: Linking</h4>
+<p>In the final stage of the compilation process, a program called the
+<strong>linker</strong> will find all the external references in your
+assembled code and combine any related <code>.o</code> files together.
+Lets return to the example of <code>#include &lt;stdio.h&gt;</code> in
+our “Hello World” program. While we know that the <code>.h</code> file
+associated with <code>&lt;stdio.h&gt;</code> was included in our
+pre-processing step, the actual implementation of functions like
+<code>printf</code> were compiled and assembled elsewhere. The final
+step to using <code>&lt;stdio.h&gt;</code> is for the linker to combine
+your <code>simple.o</code> code with the <code>stdio.o</code> code
+located elsewhere and create an executable that has all the references
+it needs to be run.</p>
+<p>The output of the linking step is the final product. If you want to
+see the binary of the final linked product, you can run
+<code>hexdump</code> on your executable binary.</p>
+<p>Compile your code into a binary executable program by running the
+following command:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> simple.c</span></code></pre></div>
+<p>Whenever you run <code>gcc</code> without any arugments, it runs
+through all four of the steps automatically. This will create a new file
+in our directory called <code>a.out</code>. We can run our created
+program by typing:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./a.out</span></span></code></pre></div>
+<p>If you followed these steps correctly, your code should output the
+following to the terminal:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello,</span> World!</span></code></pre></div>
+<p>The default name for all compiled programs is <code>a.out</code>. If
+you wish to change that, you can use the <code>-o</code> flag on the
+<code>gcc</code> program to name the output file:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> simple.c <span class="at">-o</span> simple</span></code></pre></div>
+<p>This with create a new executable file named <code>simple</code>
+instead of <code>a.out</code>, which you can run by typing
+<code>./simple</code>.</p>
+<p><span class="lightpink">Requirement: Create a blank file blank.c
+(Remember to use the “touch” command) in a new folder called
+“compilation.” Perform each step of the compilation process within this
+folder and save all your results for the TA to check (Hint: You should
+have 4 files in “compilation”).</span></p>
+<h3 id="part-2-examining-c-code">Part 2: Examining C code</h3>
+<p>Now that we understand the compilation process, let’s examine the
+syntax of <code>simple.c</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a single line comment.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">This is a multi-line comment.</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">Any text that is between the slash-star and</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">the star-slash will be ignored.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Hello, World!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="comments">Comments</h4>
+<p>There are two types of comments: single and multi-line.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a single line comment.</span></span></code></pre></div>
+<p>Any text written after the <code>//</code> symbols wil be ignored
+during the compilation process of the program. These comments are most
+helpful when trying to provide clarity to the purpose of a line code or
+even to demarcate sections of code.</p>
+<p>If you want to take up several lines to describe a complicated
+concept or simply put some detailed notes in your program, you can use
+the multi-line comment.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">This is a multi-line comment.</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">Any text that is between the slash-star and</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">the star-slash will be ignored.</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div>
+<p>Anything between the <code>/*</code> and <code>*/</code> will also be
+ignored during the compilation process of the program. One example for
+good use of multi-line comments is explaining the purpose of a function
+and it parameters right before its declaration.</p>
+<p><em>Where</em> and <em>how</em> you use comments determines how well
+your code can be understood and reused by yourself and others in the
+future. Good comments tell readers how functions work, what their
+purpose is, and how programs should be used.</p>
+<h4 id="the-main-function">The main() Function</h4>
+<p><strong>All C programs must have a <code>main()</code>
+function.</strong> The <code>main()</code> function serves as a starting
+point for your program whenever it is executed. All your code and calls
+to other functions must be contained within the <code>main()</code>
+function.</p>
+<p>To declare a function in C, you must write its <strong>return
+type</strong> (more on that below), its name, and then any parameters it
+accepts in parentheses:</p>
+<p>In the declaration above, we declare the return type for
+<code>main()</code> as an <code>int</code>. We also expect no parameters
+to be passed into it, so the parentheses are empty <code>()</code>.</p>
+<p>Everything written between the curly braces <code>{}</code> is
+considered to be part of the function’s <strong>scope</strong>, meaning
+that all variables and instructions only exist while that function is
+active.</p>
+<h4 id="printf">printf()</h4>
+<p>This function, which comes from <code>stdio.h</code> as we learned
+earlier, is <strong>called by</strong> <code>main()</code> and allows us
+to write values to the terminal screen from our program. In this
+example</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;Hello, World!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>prints out <code>Hello, World!</code>; the <code>\n</code> is an
+<strong>escape character</strong> which moves the cursor to the next
+line.</p>
+<h4 id="return-values">Return Values</h4>
+<p>Whenever a function finishes executing, it has the option to return a
+single value back to the function that called it. The type of value it
+returns is given by the return type. If a function should not return a
+value, its return type is <code>void</code>. For example, a function
+adds two numbers might look like this:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> sum<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>To use <code>sum()</code>, I call this function in my main
+function:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> result <span class="op">=</span> sum<span class="op">(</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d\n</span><span class="st">&quot;</span><span class="op">,</span> result<span class="op">);</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>I can expect that this program will print out <code>5</code> because
+the <strong>return value</strong> of <code>sum()</code> was an
+<code>int</code> whose value is the sum of my two parameters,
+<code>a</code> (2) and <code>b</code> (3).</p>
+<p>If <code>main()</code> is the the starting point of a program, why
+does it have a return value? This return value is often used to indicate
+if the program finished correctly or crashed in a specific way. Take the
+following example:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> result <span class="op">=</span> printf<span class="op">(</span><span class="st">&quot;Hello There!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>result <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span> <span class="co">// If printf fails.</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// A 0 generally denotes no errors.</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The shell that executed the program receives this error code. In Bash
+or ZSH after running a program, you can check the return value of its
+main function by typing in <code>echo $?</code>.</p>
+<h4 id="data-types">Data Types</h4>
+<p>In order to create a meaningful program in any language, you need to
+know how to correctly store information. C is a
+<strong>strongly-typed</strong> language, meaning that we must specify
+the <strong>type</strong> of every new variable we create is. C has the
+following <strong>native</strong> (built-in) data types:</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr>
+<th>type</th>
+<th>Size (Bytes)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>char</code></td>
+<td>1</td>
+<td>Stores an integer</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>2</td>
+<td>Stores an integer (has a greater range than <code>char</code>)</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>4</td>
+<td>Stores an integer (has a greater range than <code>short</code>)</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>8</td>
+<td>Stores an integer (has a greater range than <code>int</code>)</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>4</td>
+<td>Stores decimal numbers</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>8</td>
+<td>Stores decimal numbers (has greater precision than
+<code>float</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Each of these data types has two key components: the type of value
+that is stored (integer, decimal, etc.), and the <strong>size</strong>,
+which determines the range of numbers that type can store. Every data
+type in C has a predetermined <strong>width</strong>, or number of bits
+that it has to store information. A binary number with <code>N</code>
+bits can store numbers from <code>0</code> to <code>(2^N)-1</code>.
+Computers don’t usually do operations down to a single bit, so we
+usually talk about the width of a data type in units of bytes instead of
+bits.</p>
+<p>It is also important to note that the size of each of the above types
+is dependent on the processor on which you will be running the code. For
+example an <code>int</code> on a 16 bit processor will be 16 bits, while
+on a 32 bit processor an <code>int</code> is usually 32 bits, and on a
+64-bit processor an <code>int</code> is also typically also 32 bits. It
+is the programmer’s responsibility to understand what these data types
+mean and how they work on your system. Ignoring these important details
+has led to catastrophies in the past (<a
+href="https://en.wikipedia.org/wiki/Ariane_flight_V88">including rockets
+that explode shortly after launch</a>).</p>
+<p>Even though variables are stored binary numbers, <strong>we dont have
+to interpret the bits as regular binary</strong>. For example, negative
+numbers are stored by saving the most significant bit to represent the
+sign instead of part of the value. This is called <strong>Two’s
+Complement</strong>, and it changes the range of a data type to be
+<code>-2^(N-1)</code> to <code>2^(N-1)-1</code>. This is the default
+storage scheme for all data types that store integers. For decimal or
+<strong>floating point</strong> numbers, the default scheme is the
+<strong>IEEE Floating Point</strong> format.</p>
+<p>You can control the scheme that a data type uses to maximize its
+efficiency. For example, the keyword <code>unsigned</code> makes the
+compiler assume the bits to be regular binary instead of Two’s
+Complement, preventing us from storing negative numbers but doubling the
+range of positive numbers we can store.</p>
+<h4 id="casting">Casting</h4>
+<p>Becuase all the data types have different widths and use different
+schemes, we often need to take the value of one data type and represent
+it as a different type. The process of the translating from one data
+type to another is known as <strong>casting</strong> and will be a very
+useful tool in this and other labs whenever you need to perform an
+operation with two variables of different types.</p>
+<p>For example, given an <code>int</code> and a <code>float</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> num <span class="op">=</span> <span class="dv">7</span><span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> num_f <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span></code></pre></div>
+<p>If I want the <em>float</em> <code>num_f</code> to have the same
+value (<code>7</code>) as the <em>int</em> <code>num</code>, I must
+first cast <code>num</code> to a float by adding <code>(float)</code>
+before it’s name:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>num_f <span class="op">=</span> <span class="op">(</span><span class="dt">float</span><span class="op">)</span> num<span class="op">;</span></span></code></pre></div>
+<p>This this type of casting is called an <strong>explicit cast</strong>
+because you put the desired type in parentheses. There is another kind
+of casting called <strong>implicit casting</strong> that can occur
+automatically when you do operations against mis-matched data types.</p>
+<p><strong>You must be careful</strong> when casting that the value you
+are casting can be stored in both types. For example, if you have the
+number <code>400</code> stored in a <code>short</code> (16 bits) and you
+try to cast it to a <code>char</code> (8 bits), the resulting value will
+appear as <code>-112</code> becuase the number <code>400</code> is too
+large for a <code>char</code> type. This type of error is especially
+dangerous with implicit casts, since you may not know which type is
+being converted. Implicit casting can be prevented by explicitly casting
+variables yourself to ensure this doesn’t happen.</p>
+<p><span class="lightpink">Requirement: Write a function that takes in
+any integer, prints that integer casted to a floating point, and returns
+that floating point.</span></p>
+<h3 id="part-3-stdint-and-printf">Part 3: stdint and printf</h3>
+<h4 id="stdint.h">stdint.h</h4>
+<p>Standardized data types that explicitly define the number of bits
+they use (regardless of processor) are defined in the
+<code>stdint.h</code> library. This contains specialized data types such
+as <code>uint8_t</code>, <code>uint16_t</code>, etc. whose widths are
+<em>always</em> indicated in their name. These data types are useful for
+adding clarity about what values you are storing and avoiding casting
+errors.</p>
+<p>Example: If you needed a data type for positive integers less than
+256, you could <code>#include &lt;stdint.h&gt;</code> and use the
+<code>uint8_t</code> type (<code>u</code> for unsigned,
+<code>int</code>, <code>8</code> for 8 bits, and <code>_t</code> for
+type). Because this type explicitly defines the number of bits it uses,
+it is very clear what values this variable expects to receive.</p>
+<p>To understand more about the types of data types that exist in
+<code>stdint.h</code>, you can check out <a
+href="https://man7.org/linux/man-pages/man0/stdint.h.0p.html">the
+documentation for stdint</a>.</p>
+<h4 id="printf-arguments">printf() arguments</h4>
+<p>In addition to printing text</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;Hello, World!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span></code></pre></div>
+<p><code>printf</code> is capable of printing variables, using
+<strong>print specifiers</strong> such <code>%d</code> or
+<code>%s</code>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> grade <span class="op">=</span> <span class="dv">87</span><span class="op">;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;Final grade: </span><span class="sc">%d</span><span class="st">&quot;</span><span class="op">,</span> grade<span class="op">);</span>  <span class="co">// This prints out &quot;Final grade: 87&quot;</span></span></code></pre></div>
+<p>For each specifier you use, you must also give a value:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> num1 <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> num2 <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> num3 <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;First num:</span><span class="sc">\t%d\n</span><span class="st">Second num:</span><span class="sc">\t%d\n</span><span class="st">Third num:</span><span class="sc">\t%d\n</span><span class="st">&quot;</span><span class="op">,</span> num1<span class="op">,</span> num2<span class="op">,</span> num3<span class="op">);</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">// matching pairs:  ^1               ^2              ^3     ^1    ^2    ^3</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Output:</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">// First num:   0</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Second num:  1</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Third num:   2</span></span></code></pre></div>
+<p>The following table is a useful cheat sheet for the different types
+of formatting specifiers that can be used:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%c</code></td>
+<td>character</td>
+</tr>
+<tr>
+<td><code>%d</code></td>
+<td>decimal (integer) number (base 10)</td>
+</tr>
+<tr>
+<td><code>%e</code></td>
+<td>exponential floating-point number</td>
+</tr>
+<tr>
+<td><code>%f</code></td>
+<td>floating-point number</td>
+</tr>
+<tr>
+<td><code>%i</code></td>
+<td>integer (base 10)</td>
+</tr>
+<tr>
+<td><code>%o</code></td>
+<td>octal number (base 8)</td>
+</tr>
+<tr>
+<td><code>%s</code></td>
+<td>a string of characters</td>
+</tr>
+<tr>
+<td><code>%u</code></td>
+<td>unsigned decimal (integer) number</td>
+</tr>
+<tr>
+<td><code>%x</code></td>
+<td>number in hexadecimal (base 16)</td>
+</tr>
+<tr>
+<td><code>%%</code></td>
+<td>print a percent sign</td>
+</tr>
+<tr>
+<td><code>\%</code></td>
+<td>print a percent sign</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to the format specifiers listed above, there are several
+<strong>escape characters</strong> which tell <code>printf()</code> to
+do things you can’t normally type:</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\n</code></td>
+<td>newline (moves to the next line)</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>carriage Return (moves cursor to the beginning of the same
+line)</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>tab (adds a horizontal tab space)</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>backspace (removes the previous character)</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>backslash () literal</td>
+</tr>
+<tr>
+<td><code>\'</code></td>
+<td>single quote (’) literal; avoids confusing the compiler</td>
+</tr>
+<tr>
+<td><code>\"</code></td>
+<td>double quote (“) literal; avoids confusing the compiler</td>
+</tr>
+<tr>
+<td><code>\?</code></td>
+<td>question mark (?), helps avoid <a
+href="https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C">trigraph</a>
+issues. (You can just use <code>?</code> too)</td>
+</tr>
+<tr>
+<td><code>\0</code></td>
+<td>null character, used to terminate strings</td>
+</tr>
+</tbody>
+</table>
+<div class="lightpink">
+<p>
+<strong>Final Requirements:</strong>
+</p>
+<p>
+To finish this lab, create a new file called <code>data.c</code>. This
+program should do the following. For each requirement, place a comment
+next to or above it so we know you have completed the required step:
+</p>
+<ol>
+<li>
+Print out the hex equivalent of the <code>unsigned int</code>:
+3735928559
+</li>
+<li>
+Use some format specifiers/placeholders in <code>printf()</code> in 2
+unexpected ways (i.e. pass in a <code>char</code> and format it with %d,
+or something similar). Your program must compile. In a comment next to
+or above this statement, explain the behavior and why you think it works
+that way.
+</li>
+<li>
+Create a Madlib using a printf() statement that uses atleast 5 different
+specifier types. You should have defined variables that will hold the
+values used in the Madlib. Example below:
+</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> initial <span class="op">=</span> <span class="ch">&#39;C&#39;</span><span class="op">;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> age <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;There once was a man with </span><span class="sc">%d</span><span class="st"> pet snails. His name was Charlie </span><span class="sc">%c</span><span class="st">...&quot;</span><span class="op">,</span> initial<span class="op">,</span> age<span class="op">);</span></span></code></pre></div>
+<p>
+Compile your code into an executable called <code>data</code>.
+</p>
+</div>
+<h2 id="lab-submission">Lab Submission</h2>
+<ul>
+<li>Your program must compile without warnings or errors. Compile your
+program with the <code>-Werror</code> flag to ensure that it
+doesn’t.</li>
+<li>Pass off with a TA by showing them the source code and program
+execution of <code>data.c</code>. Show the TA how each of the required
+components functions, and why the output appears the way it does (what
+casting occurred, etc.).</li>
+<li>Take the Pass off Quiz on Learning Suite.</li>
+<li>Follow the instructions in the <code>submission.md</code> file in
+the repository to update your README file with what you did in this
+lab.</li>
+</ul>
+<h2 id="explore-more">Explore More</h2>
+<ul>
+<li><a href="https://kitras.io/linux/man-pages/">Understanding
+<code>man</code> pages</a></li>
+<li><a
+href="https://alvinalexander.com/programming/printf-format-cheat-sheet/"><code>printf()</code>
+Cheatsheet</a></li>
+<li><a href="https://en.wikipedia.org/wiki/C_data_types">C data
+types</a></li>
+<li><a
+href="https://www.tutorialspoint.com/cprogramming/c_type_casting.htm">Casting
+in C</a></li>
+<li><a
+href="https://www.cs.binghamton.edu/~rhainin1/walkthroughs/gccbasics.html">GCC
+Basics</a></li>
+<li><a
+href="https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/">Compiled
+v. Interpreted Languages</a></li>
+</ul>
+</body>
+</html>
