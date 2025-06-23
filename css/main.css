@@ -1,0 +1,17 @@
+/* Error: expected "{".
+ *   ,
+ * 6 | @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+ *   |                                                                                    ^
+ *   '
+ *   main.scss 6:84  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: expected \"{\".\a   \2577 \a 6 \2502  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');\d\a   \2502                                                                                     ^\a   \2575 \a   main.scss 6:84  root stylesheet";
+}
