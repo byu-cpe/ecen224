@@ -1,0 +1,30 @@
+// Question Utility Class
+.question {
+  color: #e91e63;        // text color
+  font-size: 1.1em;        // size multiplier (ex. 1.1 = 110% of base size)
+  font-weight: bold;       // bold text
+  display: inline-block;   // ignore
+  margin: 0.25em 0;        // ignore
+}
+
+
+// Bigger, More Questionable Utility Class
+.question-highlight {
+  color: #e91e63;                             // color
+  font-size: 1.2em;                             // size multiplier (ex. 1.2 = 120% of base size)
+  font-weight: bold;                            // bold text       
+  background-color: rgba(233, 30, 99, 0.1);   // Light pinkish background
+  padding: 0.2em 0.4em;                         // ignore
+  border-radius: 15px;                          // Rounded corners
+  display: inline-block;                        // ignore
+  margin: 0.25em 0;                             // ignore
+}
+
+.lightpink {
+    color: lightpink;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.2em;
+    display: inline-block;
+    margin: 0.25em;
+}

@@ -96,8 +96,6 @@ Next, to actually read this code, run the following:
 hexdump simple.o > simple_assembled.txt
 ```
 
-Look through the text file you just generated. While the actual file we generated is 0s and 1s, we used the `hexdump` command to read it as hex and make it slightly more interpretable. You should see two main sections. What do you think these mean?
-
 #### Step 4: Linking
 
 In the final stage of the compilation process, a program called the **linker** will find all the external references in your assembled code and combine any related `.o` files together. Lets return to the example of `#include <stdio.h>` in our "Hello World" program. While we know that the `.h` file associated with `<stdio.h>` was included in our pre-processing step, the actual implementation of functions like `printf` were compiled and assembled elsewhere. The final step to using `<stdio.h>` is for the linker to combine your `simple.o` code with the `stdio.o` code located elsewhere and create an executable that has all the references it needs to be run.
@@ -130,6 +128,9 @@ gcc simple.c -o simple
 ```
 
 This with create a new executable file named `simple` instead of `a.out`, which you can run by typing `./simple`.
+
+<span class="lightpink">Requirement: Create a blank file blank.c (Remember to use the "touch" command) in a new folder called "compilation." Perform each step of the compilation process within this folder and save all your results for the TA to check (Hint: You should have 4 files in "compilation").</span>
+
 
 ### Part 2: Examining C code
 
@@ -285,6 +286,9 @@ This this type of casting is called an **explicit cast** because you put the des
 
 **You must be careful** when casting that the value you are casting can be stored in both types. For example, if you have the number `400` stored in a `short` (16 bits) and you try to cast it to a `char` (8 bits), the resulting value will appear as `-112` becuase the number `400` is too large for a `char` type. This type of error is especially dangerous with implicit casts, since you may not know which type is being converted. Implicit casting can be prevented by explicitly casting variables yourself to ensure this doesn't happen.
 
+<span class="lightpink">Requirement: Write a function that takes in any integer, prints that integer casted to a floating point, and returns that floating point.</span>
+
+
 ### Part 3: stdint and printf
 
 #### stdint.h
@@ -355,17 +359,26 @@ In addition to the format specifiers listed above, there are several **escape ch
 | `\?`   | question mark (?), helps avoid [trigraph](https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C) issues. (You can just use `?` too) |
 | `\0`   | null character, used to terminate strings                                  |
 
-### Part 4: Lab Challenge
+<div class="lightpink">
+<p><strong>Final Requirements:</strong></p>
 
-To finish this lab, create a new file called `data.c`. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:
+<p>To finish this lab, create a new file called <code>data.c</code>. This program should do the following. For each requirement, place a comment next to or above it so we know you have completed the required step:</p>
 
-1. Print out the hex equivalent of the `unsigned int`: 3735928559
-2. Create a function that takes in a `uint8_t` as a parameter and prints the `char` equivalent. Use it at least 3 times in your `main()`.
-3. Use the `printf()` function at least once that has multiple formatting specifiers/placeholders.
-4. Use at least 5 different format specifier types in 5 different `printf()` statements.
-5. Use some format specifiers/placeholders in `printf()` in unexpected ways (i.e. pass in a `char` and format it with %d, or something similar). Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.
+<ol>
+  <li>Print out the hex equivalent of the <code>unsigned int</code>: 3735928559</li>
+  <li>Use some format specifiers/placeholders in <code>printf()</code> in 2 unexpected ways (i.e. pass in a <code>char</code> and format it with %d, or something similar). Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.</li>
+  <li>Create a Madlib using a printf() statement that uses atleast 5 different specifier types. You should have defined variables that will hold the values used in the Madlib. Example below:</li>
+</ol>
 
-Complile your code into an executable called `data`.
+```c
+char initial = 'C';
+int age = 10;
+
+printf("There once was a man with %d pet snails. His name was Charlie %c...", initial, age);
+```
+
+<p>Compile your code into an executable called <code>data</code>.</p>
+</div>
 
 ## Lab Submission
 
