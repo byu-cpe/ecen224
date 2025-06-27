@@ -96,8 +96,6 @@ Next, to actually read this code, run the following:
 hexdump simple.o > simple_assembled.txt
 ```
 
-<span class="question-highlight">Look through the text file you just generated. While the actual file we generated is 0s and 1s, we used the `hexdump` command to read it as hex and make it slightly more interpretable. You should see two main sections. What do you think these mean?</span>
-
 #### Step 4: Linking
 
 In the final stage of the compilation process, a program called the **linker** will find all the external references in your assembled code and combine any related `.o` files together. Lets return to the example of `#include <stdio.h>` in our "Hello World" program. While we know that the `.h` file associated with `<stdio.h>` was included in our pre-processing step, the actual implementation of functions like `printf` were compiled and assembled elsewhere. The final step to using `<stdio.h>` is for the linker to combine your `simple.o` code with the `stdio.o` code located elsewhere and create an executable that has all the references it needs to be run.
