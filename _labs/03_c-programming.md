@@ -96,7 +96,7 @@ Next, to actually read this code, run the following:
 hexdump simple.o > simple_assembled.txt
 ```
 
-Look through the text file you just generated. While the actual file we generated is 0s and 1s, we used the `hexdump` command to read it as hex and make it slightly more interpretable. You should see two main sections. What do you think these mean?
+<span class="question-highlight">Look through the text file you just generated. While the actual file we generated is 0s and 1s, we used the `hexdump` command to read it as hex and make it slightly more interpretable. You should see two main sections. What do you think these mean?</span>
 
 #### Step 4: Linking
 
