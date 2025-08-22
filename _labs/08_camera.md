@@ -73,7 +73,7 @@ After the file is opened, you can then use the `fwrite()` command to write to th
 - Next, verify your camera is working. To do that, run the following command. If this command succeeds, that means you have correctly connected the camera. If the command fails, such as a camera not found error, then you need to fix the connection.
 
 ```bash
-libcamera-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bmp
+rpicam-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bmp
 ```
 
 - Copy your `remove_color_channel` and `or_filter` functions from your Image Lab code into `image.c`.
