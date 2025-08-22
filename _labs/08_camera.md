@@ -87,7 +87,7 @@ rpicam-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bmp
 
   - Update the contents of your menu. It should now include the newly saved file.
 
-  - Display the contents of the picture using the newly added `display_draw_image_data` function. However, before you can use that function, you must convert the raw `uint8_t *` buffer into a `Bitmap` struct. This is because `camera_campture_data` returns the bytes of the BMP image file, which includes the BMP header. `display_draw_image_data` is expecting raw pixels values without a header. To process the header and pixel values, call `create_bmp` located in image.c. This function will parse the header and set the `pxl_data` struct field to just the raw pixel data. A diagram of this process can be seen [here]({% link assets/camera/data_flow.png %}).
+  - Display the contents of the picture using the `display_draw_image_data` function. However, before you can use that function, you must convert the raw `uint8_t *` buffer into a `Bitmap` struct. This is because `camera_campture_data` returns the bytes of the BMP image file, which includes the BMP header. `display_draw_image_data` is expecting raw pixels values without a header. To process the header and pixel values, call `create_bmp` located in image.c. This function will parse the header and set the `pxl_data` struct field to just the raw pixel data. A diagram of this process can be seen [here]({% link assets/camera/data_flow.png %}).
 
   - While the contents of the picture is showing, you must handle the following:
     - If the right button of the d-pad is pressed, filter out the red color of the image.
