@@ -28,7 +28,7 @@ In the C Programming lab, you worked with a few of C's _native_ data types, thos
 
 #### Inconsistant Sizes
 
-It is important to remember that the native integer types in C (`short`, `int`, `long`) do not have a defined length. This peculiarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` would be just fine on a 64-bit computer (like most modern computers), but on a 32-bit computer `int` has a maximum of only around 32,000, causing bugs that are difficult to trace.
+It is important to remember that the native integer types in C (`short`, `int`, `long`) do not have a defined length. This peculiarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` would be just fine on a 64-bit computer (like most modern computers), but on a 16-bit system (still common in embedded devices), `int` has a maximum of only around 32,000, causing bugs that are difficult to trace.
 
 There are several methods to check the width or size of your variables. First, we can use the built-in C function `sizeof()`. This will tell you the number of **bytes** used by a type. `sizeof()` accepts a variable or a data type:
 
@@ -44,6 +44,8 @@ Because the sizes and signedness of the all the data types defined in `stdint.h`
 unsigned int x = 40; // Acceptable, but unreliable.
 uint32_t y = 40;     // Always 32 bits.
 ```
+
+By using `uint32_t` instead of `unsigned int`, you can be sure that your variable will always be 32 bits, regardless of the architecture or compiler. This also makes your code easier to read and understand, as the type itself gives information about the size that you are wanting the variable to be.
 
 #### Overflow and Underflow
 
@@ -78,23 +80,23 @@ Choosing your data types intentionally can be a helpful debugging tool as well. 
 
 The order of operations in C are shown in the following [table](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm) (highest/first priority at the top, lowest/last priority at the bottom):
 
-| Operation(s) | Operator | Associativity |
-| -------- | -------- | ------------- |
-| Postfix (function calls, array/pointer/struct access, and postfix inc/dec) | () [] -> . ++ -- | Left-to-right |
-| Unary (negative, logical/binary not, prefix inc/dec, casting, address reference, sizeof) | - ! ~ ++ -- (type)* & sizeof   | Right-to-left |
-| Multiplicative | * / %                                | Left-to-right |
-| Additive       | + -                                  | Left-to-right |
-| Shift          | << >>                                | Left-to-right |
-| Relational     | < <= > >=                            | Left-to-right |
-| Equality       | == !=                                | Left-to-right |
-| Bitwise AND    | &                                    | Left-to-right |
-| Bitwise XOR    | ^                                    | Left-to-right |
-| Bitwise OR     | \|                                   | Left-to-right |
-| Logical AND    | &&                                   | Left-to-right |
-| Logical OR     | \|\|                                 | Left-to-right |
-| Conditional    | ?:                                   | Right-to-left |
-| Assignment     | = += -= *= /= %=>>= <<= &= ^= \|=    | Right-to-left |
-| Comma          | ,                                    | Left-to-right |
+| Operation(s)                                                                             | Operator                          | Associativity |
+| ---------------------------------------------------------------------------------------- | --------------------------------- | ------------- |
+| Postfix (function calls, array/pointer/struct access, and postfix inc/dec)               | () [] -> . ++ --                  | Left-to-right |
+| Unary (negative, logical/binary not, prefix inc/dec, casting, address reference, sizeof) | - ! ~ ++ -- (type)* & sizeof      | Right-to-left |
+| Multiplicative                                                                           | * / %                             | Left-to-right |
+| Additive                                                                                 | + -                               | Left-to-right |
+| Shift                                                                                    | << >>                             | Left-to-right |
+| Relational                                                                               | < <= > >=                         | Left-to-right |
+| Equality                                                                                 | == !=                             | Left-to-right |
+| Bitwise AND                                                                              | &                                 | Left-to-right |
+| Bitwise XOR                                                                              | ^                                 | Left-to-right |
+| Bitwise OR                                                                               | \|                                | Left-to-right |
+| Logical AND                                                                              | &&                                | Left-to-right |
+| Logical OR                                                                               | \|\|                              | Left-to-right |
+| Conditional                                                                              | ?:                                | Right-to-left |
+| Assignment                                                                               | = += -= *= /= %=>>= <<= &= ^= \|= | Right-to-left |
+| Comma                                                                                    | ,                                 | Left-to-right |
 
 #### Literals in C
 
@@ -140,7 +142,7 @@ int32_t d = c;          // New    Value: 00000000000000001111000100100011 | 32 b
 **Truncation** is the opposite effect of Sign Extension - casting from a larger integer type to a smaller type (either signed or unsigned). When values are truncated, any of the extra bits from the original value are "chopped off" or thrown away by the processor. Anytime that your variable stores a value larger than the maximum of the type it is truncated to, you will lose data:
 
 ```c
-int16_t a = 0xF1F3;     // Binary: 1111000111110011 Decimal: -3597 (0xF123)
+int16_t a = 0xF1F3;     // Binary: 1111000111110011 Decimal: -3597 (0xF1F3)
 int8_t b = a;           // Binary:         11110011 Decimal: -13   (0xF3)
 ```
 
@@ -316,42 +318,38 @@ Note that if you want to include a logging library, you will have to include tha
 
 Your code will be tested with the following inputs:
 
-**SPRING 2025: You Do Not Have to Implement These Functions:**
-
 ##### Calculate Circumfrence
-<!-- 
+
 1. Radius: 1,  Output: 6.28
 2. Radius: 3.14, Output: 19.729
 3. Radius: 0, Output: 0.0
-4. Radius: -10, Output: -1.0 -->
+4. Radius: -10, Output: -1.0
 
 ##### Calculate Average
 
-<!-- 1. Array: {255, 255, 255, 255, 255}, Output: 255.0
+1. Array: {255, 255, 255, 255, 255}, Output: 255.0
 2. Array: {10, 11, 13, 15, 2}, Output: 10.2
-3. Array: {100, 91, 127, 23, 8}, Output: 69.8 -->
+3. Array: {100, 91, 127, 23, 8}, Output: 69.8
 
 ##### Any Bit is One
 
-<!-- 1. Input: 0x00000000, Output: 0 (false)
+1. Input: 0x00000000, Output: 0 (false)
 2. Input: 0xDEADBEEF, Output: 1 (true)
-3. Input: 0xFFFFFFFF, Output: 1 (true) -->
+3. Input: 0xFFFFFFFF, Output: 1 (true)
 
 ##### Any Bit is Zero
 
-<!-- 1. Input: 0x00000000, Output: 1 (true)
+1. Input: 0x00000000, Output: 1 (true)
 2. Input: 0xDEADBEEF, Output: 1 (true)
-3. Input: 0xFFFFFFFF, Output: 0 (true) -->
+3. Input: 0xFFFFFFFF, Output: 0 (true)
 
-##### Extract from Word
+<!-- ##### Extract from Word
 
-<!-- Each of the following words will be tested for each position (0-3):
+Each of the following words will be tested for each position (0-3):
 
 1. 0xDEADBEEF
 2. 0x01234567
 3. 0X00FEED08 -->
-
-**SPRING 2025: But You Do Have to Implement These Functions:**
 
 ##### Multiply by Base 2
 
