@@ -46,6 +46,8 @@ C is a [compiled language](https://www.geeksforgeeks.org/difference-between-comp
 
 Compilers do more than simply convert a higher level language to machine language. Many compilers analyze the code being passed in and optimize it to be executed in the fewest amount of instructions possible. Let's examine the steps compilers take to build an executable version of your program.
 
+**Follow along with the steps below to see how your `simple.c` program is compiled into an executable binary. This is a requirement for the lab.**
+
 #### Step 1: Pre-processing
 
 This step runs a pre-compiler program which handles special statements in your code called **directives**. Directives, which are denoted by the `#` sign, help decide which parts of a written program in C are included during the compilation process.
@@ -368,8 +370,14 @@ Complile your code into an executable called `data`.
 ## Lab Submission
 
 - Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
-- Pass off with a TA by showing them the source code and program execution of `data.c`. Show the TA how each of the required components functions, and why the output appears the way it does (what casting occurred, etc.).
+
+- Pass off with a TA by showing them the following:
+  - The five files you generated in Part 1: `simple_preprocessed.txt`, `simple.s`, `simple.o`, `simple_assembled.txt`, and `a.out` (or `simple` if you renamed it).
+  
+  - The source code and program execution of `data.c`. Show the TA how each of the required components functions, and why the output appears the way it does (what casting occurred, etc.).
+
 - Take the Pass off Quiz on Learning Suite.
+
 - Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
 
 ## Explore More
