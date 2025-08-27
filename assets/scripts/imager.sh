@@ -4,7 +4,7 @@
 set -e
 
 # Variables
-RPI_OS_URL="https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-07-04/2024-07-04-raspios-bookworm-arm64-lite.img.xz"
+RPI_OS_URL="https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/2025-05-13-raspios-bookworm-arm64-lite.img.xz"
 IMG_FILE="raspios_lite_arm64_latest.img"
 IMG_FILE_XZ="$IMG_FILE.xz"
 BOOT_PARTITION="/media/$(whoami)/bootfs"

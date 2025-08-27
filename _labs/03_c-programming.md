@@ -36,9 +36,7 @@ int main()
 
 Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. The "Hello World" program is commonly used to demonstrate the basics of a programming language.
 
-In your lab repository, create a new file called `simple.c`. This can be done using the File Explorer tab in VS Code, or from the terminal using the `nano` command (or a text editor of your choice. You can also create the file without a text editor using `touch` - google it for details). Inside the `simple.c` file, copy and paste the code above, then save and close the file.
-
-We will use this program to explore the basics of creating, compiling, and running a C program. Read each section carefully and make sure to complete each step.
+In your lab repository, create a new file called `simple.c`. This can be done using the File Explorer tab in VS Code. Inside the `simple.c` file, copy and paste the code above, then save and close the file. We will use this program to explore the basics of creating, compiling, and running a C program. Read each section carefully and make sure to complete each step.
 
 ## Procedure
 
@@ -47,6 +45,8 @@ We will use this program to explore the basics of creating, compiling, and runni
 C is a [compiled language](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/), meaning  that the code you write must be **compiled** into a [binary executable](https://en.wikipedia.org/wiki/Executable) before it can be executed. This compilation process is done by a program known as the **compiler**. In this class, we will use the `gcc` compiler (short for GNU Compiler Collection).
 
 Compilers do more than simply convert a higher level language to machine language. Many compilers analyze the code being passed in and optimize it to be executed in the fewest amount of instructions possible. Let's examine the steps compilers take to build an executable version of your program.
+
+**Follow along with the steps below to see how your `simple.c` program is compiled into an executable binary. This is a requirement for the lab.**
 
 #### Step 1: Pre-processing
 
@@ -76,7 +76,7 @@ Compile your C code into assembly by running the following terminal command:
 gcc -S simple.c
 ```
 
-Because different processors and hardware have different instruction sets, compiled assembly code can usually only be run on the machine that compiled it. For example, The binary `simple.c` exectuable you just compiled on your doorbell uses the [ARM instruction set](https://en.wikipedia.org/wiki/ARM_architecture_family). The resulting executable would likely work on another student's doorbell, but it would not work on your `x86` lab machine.
+Because different processors and hardware have different instruction sets, compiled assembly code can usually only be run on the machine that compiled it. For example, the binary `simple.c` exectuable you just compiled on your doorbell uses the [ARM instruction set](https://en.wikipedia.org/wiki/ARM_architecture_family). The resulting executable would likely work on another student's doorbell, but it would not work on your `x86` lab machine.
 
 Open the `simple.s` file you just generated and look around. Google one of the commands that you see to try and figure out what it means.
 
@@ -100,7 +100,7 @@ Look through the text file you just generated. While the actual file we generate
 
 #### Step 4: Linking
 
-In the final stage of the compilation process, a program called the **linker** will find all the external references in your assembled code and combine any related `.o` files together. Lets return to the example of `#include <stdio.h>` in our "Hello World" program. While we know that the `.h` file associated with `<stdio.h>` was included in our pre-processing step, the actual implementation of functions like `printf` were compiled and assembled elsewhere. The final step to using `<stdio.h>` is for the linker to combine your `simple.o` code with the `stdio.o` code located elsewhere and create an executable that has all the references it needs to be run.
+In the final stage of the compilation process, a program called the **linker** will find all the external references in your assembled code and combine any related `.o` files together. Let's return to the example of `#include <stdio.h>` in our "Hello World" program. While we know that the `.h` file associated with `<stdio.h>` was included in our pre-processing step, the actual implementation of functions like `printf` were compiled and assembled elsewhere. The final step to using `<stdio.h>` is for the linker to combine your `simple.o` code with the `stdio.o` code located elsewhere and create an executable that has all the references it needs to be run.
 
 The output of the linking step is the final product. If you want to see the binary of the final linked product, you can run `hexdump` on your executable binary.
 
@@ -249,12 +249,12 @@ In order to create a meaningful program in any language, you need to know how to
 
 | type     | Size (Bytes) | Description                                                 |
 | -------- | ------------ | ----------------------------------------------------------- |
-| `char`   |      1       | Stores an integer                                           |
-| `short`  |      2       | Stores an integer (has a greater range than `char`)         |
-| `int`    |      4       | Stores an integer (has a greater range than `short`)        |
-| `long`   |      8       | Stores an integer (has a greater range than `int`)          |
-| `float`  |      4       | Stores decimal numbers                                      |
-| `double` |      8       | Stores decimal numbers (has greater precision than `float`) |
+| `char`   | 1            | Stores an integer                                           |
+| `short`  | 2            | Stores an integer (has a greater range than `char`)         |
+| `int`    | 4            | Stores an integer (has a greater range than `short`)        |
+| `long`   | 8            | Stores an integer (has a greater range than `int`)          |
+| `float`  | 4            | Stores decimal numbers                                      |
+| `double` | 8            | Stores decimal numbers (has greater precision than `float`) |
 
 Each of these data types has two key components: the type of value that is stored (integer, decimal, etc.), and the **size**, which determines the range of numbers that type can store. Every data type in C has a predetermined **width**, or number of bits that it has to store information. A binary number with `N` bits can store numbers from `0` to `(2^N)-1`. Computers don't usually do operations down to a single bit, so we usually talk about the width of a data type in units of bytes instead of bits.
 
@@ -343,17 +343,17 @@ The following table is a useful cheat sheet for the different types of formattin
 
 In addition to the format specifiers listed above, there are several **escape characters** which tell `printf()` to do things you can't normally type:
 
-| Symbol | Description                                                                |
-| ------ | -------------------------------------------------------------------------- |
-| `\n`   | newline (moves to the next line)                                           |
-| `\r`   | carriage Return (moves cursor to the beginning of the same line)           |
-| `\t`   | tab (adds a horizontal tab space)                                          |
-| `\b`   | backspace (removes the previous character)                                 |
-| `\\`   | backslash (\) literal                                                      |
-| `\'`   | single quote (') literal; avoids confusing the compiler                    |
-| `\"`   | double quote (") literal; avoids confusing the compiler                    |
+| Symbol | Description                                                                                                                                        |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `\n`   | newline (moves to the next line)                                                                                                                   |
+| `\r`   | carriage Return (moves cursor to the beginning of the same line)                                                                                   |
+| `\t`   | tab (adds a horizontal tab space)                                                                                                                  |
+| `\b`   | backspace (removes the previous character)                                                                                                         |
+| `\\`   | backslash (\) literal                                                                                                                              |
+| `\'`   | single quote (') literal; avoids confusing the compiler                                                                                            |
+| `\"`   | double quote (") literal; avoids confusing the compiler                                                                                            |
 | `\?`   | question mark (?), helps avoid [trigraph](https://en.wikipedia.org/wiki/Digraphs_and_trigraphs_(programming)#C) issues. (You can just use `?` too) |
-| `\0`   | null character, used to terminate strings                                  |
+| `\0`   | null character, used to terminate strings                                                                                                          |
 
 ### Part 4: Lab Challenge
 
@@ -370,8 +370,14 @@ Complile your code into an executable called `data`.
 ## Lab Submission
 
 - Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
-- Pass off with a TA by showing them the source code and program execution of `data.c`. Show the TA how each of the required components functions, and why the output appears the way it does (what casting occurred, etc.).
+
+- Pass off with a TA by showing them the following:
+  - The five files you generated in Part 1: `simple_preprocessed.txt`, `simple.s`, `simple.o`, `simple_assembled.txt`, and `a.out` (or `simple` if you renamed it).
+  
+  - The source code and program execution of `data.c`. Show the TA how each of the required components functions, and why the output appears the way it does (what casting occurred, etc.).
+
 - Take the Pass off Quiz on Learning Suite.
+
 - Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
 
 ## Explore More

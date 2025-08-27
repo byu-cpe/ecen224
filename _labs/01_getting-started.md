@@ -271,7 +271,14 @@ After cloning, the code will be available in your Pi Z2W’s filesystem for deve
 
 Next we will proceed to assemble the remaining components of your doorbell kit.
 
-1. Unpack the camera kit and case lid. Use the **brown** ribbon cable (not the white one). The ribbon cables are fragile.Handle them with care, and do not crease or bend them extremely sharply.
+1. Turn off your Raspberry Pi Zero 2 W using the command:
+
+    ```bash
+    sudo shutdown now
+    ``` 
+    And wait for the green LED to turn off. After that, unplug the PoE adapter from the micro USB port.
+
+2. Unpack the camera kit and case lid. Use the **brown** ribbon cable (not the white one). The ribbon cables are fragile.Handle them with care, and do not crease or bend them extremely sharply.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_7_parts.jpeg %}" alt="Step 7 parts">
@@ -281,37 +288,37 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
       <figcaption style="text-align: center;">The Raspberry Pi Zero 2 W with the camera unit and connection cable. In this lab we will be using the larger cable and wrap it around the back of the Pi Z2W.</figcaption>
     </figure>
 
-2. Familiarize yourself with the connector on your camera PCB. Notice the small dark grey shroud around the white plastic of the connector. This shroud "locks" the connector, preventing the cable from being removed. Unlock it by *gently* pulling on the edges of the shroud until it slides out. Again, use caution.
+3. Familiarize yourself with the connector on your camera PCB. Notice the small dark grey shroud around the white plastic of the connector. This shroud "locks" the connector, preventing the cable from being removed. Unlock it by *gently* pulling on the edges of the shroud until it slides out. Again, use caution.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_8_camera_closeup %}" alt="Camera connector closeup">
     </figure>
 
-3. Insert the narrow end of the brown ribbon cable into the Pi's connector. Copper contacts should face downwards toward the circuit board.
+4. Insert the narrow end of the brown ribbon cable into the Pi's connector. Copper contacts should face downwards toward the circuit board.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_10_ribbon %}" alt="Step 10 - ribbon cable inserted, locked.">
     </figure>
 
-4. Route the ribbon cable between the Pi and the display HAT. Avoid bending the metal part of the ribbon near the connector.
+5. Route the ribbon cable between the Pi and the display HAT. Avoid bending the metal part of the ribbon near the connector.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_11_bent.jpeg %}" alt="Bent ribbon cable">
     </figure>
 
-5. Insert the wide end of the cable into the camera module. Copper contacts should face downwards towards the circuit board. Lock the connector after insertion.
+6. Insert the wide end of the cable into the camera module. Copper contacts should face downwards towards the circuit board. Lock the connector after insertion.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_9_ribbon %}" alt="Step 9 - ribbon cable inserted but not locked">
     </figure>
 
-6. There is a small adhesive strip on the back of the camera lens. Remove the protective layer and stick it to the camera's PCB.
+7. There is a small adhesive strip on the back of the camera lens. Remove the protective layer and stick it to the camera's PCB.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/camera_sticker.jpeg %}" alt="Attach camera to PCB board.">
     </figure>
 
-7. In this lab, you were also given a 3D printed enclosure for your Pi Z2W kit.
+8.  In this lab, you were also given a 3D printed enclosure for your Pi Z2W kit.
     <!-- Import maps polyfill -->
     <!-- Remove this when import maps will be widely supported -->
     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
@@ -557,25 +564,25 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
 
     *Notice: Your kit does not contain a button, as the buttons in this model did not function well enough to be produced.*
 
-8. Remove the lens film from the camera. Mount the camera board to the lid of the case using the 4 screws provided.
+9.  Remove the lens film from the camera. Mount the camera board to the lid of the case using the 4 screws provided.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_13_mounted_camera.jpeg %}" alt="Mounted camera and ribbon cable routing">
     </figure>
 
-9. Insert the Pi into the case by aligning the remaining two holes with the case pegs.
+10. Insert the Pi into the case by aligning the remaining two holes with the case pegs.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_14_case_positioning.jpeg %}" alt="Positioning of components in the case">
     </figure>
 
-10. Tuck the slack of the ribbon cable under the camera. Be careful not to pinch or crease the ribbon cable.
+11. Tuck the slack of the ribbon cable under the camera. Be careful not to pinch or crease the ribbon cable.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_15_case.jpeg %}" alt="Positioning of components in the case">
     </figure>
 
-11. Snap the lid onto the bottom of the case.
+12. Snap the lid onto the bottom of the case.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/step_16_completed.jpeg %}" alt="Completed assembly">
