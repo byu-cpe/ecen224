@@ -59,7 +59,6 @@ fonts:
   base: "'Inter', sans-serif"
   header: "DepartureMono, sans-serif"
 
-
 collections:
   labs:
     output: true
@@ -86,6 +85,7 @@ collections:
       - help_queue.md
       - schedule.md
       - schedule225.md
+      - schedule225-2.md
       - recitations.md
 
 defaults:
