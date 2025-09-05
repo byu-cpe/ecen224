@@ -36,7 +36,7 @@ int main()
 
 Above is a simple [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) program written in C. The "Hello World" program is commonly used to demonstrate the basics of a programming language.
 
-In your lab repository, create a new file called `simple.c`. This can be done using the File Explorer tab in VS Code. Inside the `simple.c` file, copy and paste the code above, then save and close the file. We will use this program to explore the basics of creating, compiling, and running a C program. Read each section carefully and make sure to complete each step.
+In the folder for this lab (`starter-labs/03-c-programming/`), create a new file called `simple.c`. This can be done using the File Explorer tab in VS Code. Inside the `simple.c` file, copy and paste the code above, then save and close the file. We will use this program to explore the basics of creating, compiling, and running a C program. Read each section carefully and make sure to complete each step.
 
 ## Procedure
 
