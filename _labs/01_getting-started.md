@@ -312,7 +312,7 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
       <img src="{% link assets/getting-started/assembly/step_9_ribbon %}" alt="Step 9 - ribbon cable inserted but not locked">
     </figure>
 
-7. There is a small adhesive strip on the back of the camera lens. Remove the protective layer and stick it to the camera's PCB.
+7. Some of the camera modules might not be attached to the green board. If yours is already attached, you can skip this step. If it is not, there is a small adhesive strip on the back of the camera lens. Remove the protective layer and stick it to the camera's PCB.
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/assembly/camera_sticker.jpeg %}" alt="Attach camera to PCB board.">
