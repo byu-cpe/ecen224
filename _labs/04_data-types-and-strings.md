@@ -343,13 +343,13 @@ Your code will be tested with the following inputs:
 2. Input: 0xDEADBEEF, Output: 1 (true)
 3. Input: 0xFFFFFFFF, Output: 0 (true)
 
-<!-- ##### Extract from Word
+##### Extract from Word
 
 Each of the following words will be tested for each position (0-3):
 
 1. 0xDEADBEEF
 2. 0x01234567
-3. 0X00FEED08 -->
+3. 0X00FEED08
 
 ##### Multiply by Base 2
 
