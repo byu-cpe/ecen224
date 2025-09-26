@@ -80,6 +80,7 @@ Choosing your data types intentionally can be a helpful debugging tool as well. 
 
 The order of operations in C are shown in the following [table](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm) (highest/first priority at the top, lowest/last priority at the bottom):
 
+
 | Operation(s)                                                                             | Operator                            | Associativity |
 | ---------------------------------------------------------------------------------------- | ----------------------------------- | ------------- |
 | Postfix (function calls, array/pointer/struct access, and postfix inc/dec)               | `() [] -> . ++ --`                  | Left-to-right |
@@ -270,7 +271,7 @@ log_info("The value is %d", value);
 
 ### Part 3: Lab Requirements
 
-In the folder for this lab (`starter-labs/04-data-types-and-strings`), you will find files called `data.c` and `custom_strings.c`, along with their equivalent `.h` files. These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
+In the folder for this lab (`starter-labs/04-data-types-and-strings`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. **For `data.c`, you only need to implement 4 functions, and for `custom_strings.c`, you need to implement 4 functions.** These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
 
 As you are working on these functions, please respect the following restrictions:
 
@@ -279,7 +280,7 @@ As you are working on these functions, please respect the following restrictions
 2. If you need to change a data type to a floating-point
     number, then use `double`, not `float`.  The autograder
     uses `doubles`, not `floats`.
-3. You can use `printf()` statments for debugging `data.c` and
+3. You can use `printf()` statements for debugging `data.c` and
     `custom_strings.c`, but comment them out or remove them
     before you pass off with a TA.
 4. Follow the specific rules in the function descriptions.
@@ -317,6 +318,10 @@ Note that if you want to include a logging library, you will have to include tha
 #### Tests
 
 Your code will be tested with the following inputs:
+
+#### data.c
+
+**You only need to pick and implement 4 of the following 7 functions.  You can choose which ones you want to implement, but you must implement at least 4.**
 
 ##### Calculate Circumfrence
 
@@ -362,6 +367,10 @@ Each of the following words will be tested for each position (0-3):
 1. Input: 3 (val) and 4 (maxBytes), Output: 1
 2. Input: -5 and 2, Output: 0
 3. Input: 10 and 64, Output: 1
+
+#### custom_strings.c
+
+**You only need to pick and implement 4 of the following 5 functions.  You can choose which ones you want to implement, but you must implement at least 4.**
 
 ##### Get String Length
 
