@@ -68,7 +68,7 @@ In this example, to access the width and height of a `struct`, we used the dot s
 
 For example if we wanted to select nothing but the last two bits of the byte (in binary) `11101011` we would AND that byte with a mask consisting of 0s on the values we don't want and 1s on the values we do want in our selection:
 
-```txt
+```
      11101011
 AND  00000011   <--- This value is known as the 'mask'
 -------------
@@ -168,13 +168,13 @@ These images are the answer to your function! If you have done it correctly, you
 
 In this function, you will be turning your image from full color into a grayscaled image. To make an pixel gray, the red, green, and blue values must be combined or made to all be the same. To turn the image grayscale, for each pixel use the following equation:
 
-```txt
+```
 Y = 0.299 R + 0.587 G + 0.114 B
 ```
 
 In the equation above, R is the red pixel value, G is the green pixel value, and B is the blue pixel value. Y is the result. After finding Y you want to set all of the values of R, G, and B to be equal to Y. For example, if a pixel was `RGB(0, 46, 93)`, the new pixel value would be calculated as
 
-```txt
+```
 Y = 0.299 * 0 + 0.587 * 46 + 0.114 * 93 = 37.604 = 37
 ```
 
