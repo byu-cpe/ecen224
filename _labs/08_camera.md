@@ -40,7 +40,7 @@ Malloc takes one argument, the number of bytes to allocate for the buffer. It is
 
 ### Writing to a File
 
-You'll notice in your lab files for this lab, you are provided with a `camera.h` and a partially filled in `camera.c`.
+You'll notice in your lab files, you are provided with a `camera.h` and a partially filled in `camera.c`.
 
 In this lab you will be expected to capture image data from a camera, save it to a file, and then show it on the screen of your new smart doorbell. In order to write information to files in C, you will be expected to know one more function than you already do: `fwrite()`.
 
@@ -70,7 +70,7 @@ After the file is opened, you can then use the `fwrite()` command to write to th
 
 ### Requirements
 
-- Next, verify your camera is working. To do that, run the following command. If this command succeeds, that means you have correctly connected the camera. If the command fails, such as a camera not found error, then you need to fix the connection.
+- Verify your camera is working. To do that, run the following command. If this command succeeds, that means you have correctly connected the camera. If the command fails, such as a camera not found error, then you need to fix the connection.
 
 ```bash
 rpicam-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bmp
