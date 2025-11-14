@@ -122,8 +122,6 @@ If this is not done, unexpected behavior may occur on your system. So remember t
 
 ### Requirements
 
-- Add `lib/client.h` to your list of `#include`s in your `main.c`.
-
 - Same as last lab, when you press the center button, you should take a picture and show the picture, allowing the user to apply different filters. When you press the center button again, instead of exiting the picture and going to the menu right away, first connect to the server and send the picture. Once you have sent the picture, show the menu. Specifically, when the center button gets pressed while showing the picture you should do the following:
   
 - Create an empty `Config` `struct` and load it with the appropriate data. The `port`, `host`, and `hw_id` can be hard-coded. Use the picture buffer obtained in the last lab using the `camera_capture_data` function, fill in the `payload` field. The size of the payload should be the size of the image data.
