@@ -122,23 +122,23 @@ If this is not done, unexpected behavior may occur on your system. So remember t
 
 ### Requirements
 
-- Same as last lab, when you press the center button, you should take a picture and show the picture, allowing the user to apply different filters. When you press the center button again, instead of exiting the picture and going to the menu right away, first connect to the server and send the picture. Once you have sent the picture, show the menu. Specifically, when the center button gets pressed while showing the picture you should do the following:
+Same as last lab, when you press the center button, you should take a picture and show the picture, allowing the user to apply different filters. When you press the center button again, instead of exiting the picture and going to the menu right away, first connect to the server and send the picture. Once you have sent the picture, show the menu. Specifically, when the center button gets pressed while showing the picture you should do the following:
   
-- Create an empty `Config` `struct` and load it with the appropriate data. The `port`, `host`, and `hw_id` can be hard-coded. Use the picture buffer obtained in the last lab using the `camera_capture_data` function, fill in the `payload` field. The size of the payload should be the size of the image data.
+1. Create an empty `Config` `struct` and load it with the appropriate data. The `port`, `host`, and `hw_id` can be hard-coded. Use the picture buffer obtained in the last lab using the `camera_capture_data` function, fill in the `payload` field. The size of the payload should be the size of the image data.
 
-- Start the client connection using `client_connect()` and passing the `Config` `struct`. This function is implemented for you and will print out the status of the connection to the server.
+2. Start the client connection using `client_connect()` and passing the `Config` `struct`. This function is implemented for you and will print out the status of the connection to the server.
 
-- Call the `client_send_image` function to send the data, passing the `Config` `struct`. You will need to implement this function yourself. This function will combine the homework ID and the image data into one buffer and send it to the server using the `send` function. You will need to make sure all of the data is sent correctly.
+3. Call the `client_send_image` function to send the data, passing the `Config` `struct`. You will need to implement this function yourself. This function will combine the homework ID and the image data into one buffer and send it to the server using the `send` function. You will need to make sure all of the data is sent correctly.
 
-- Call the `client_receive_response` function. This function is implemented for you and will print out the response from the server. This function can help debug any problems you might have with sending your image data.
+4. Call the `client_receive_response` function. This function is implemented for you and will print out the response from the server. This function can help debug any problems you might have with sending your image data.
 
-- Close the connection using `client_close()`. You will need to implement this function yourself.
+5. Close the connection using `client_close()`. You will need to implement this function yourself.
 
-- Show the menu.
+6. Show the menu.
 
 ### Pass Off & Submission
 
-- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
+- Your program must compile without warnings or errors.
 - Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
 - **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
 - Take the Pass off Quiz on Learning Suite.
