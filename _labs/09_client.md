@@ -73,7 +73,7 @@ The location you will be connecting to to upload your photos in this lab will be
 
 Now that we know the server name and port that we want to connect to, how do we actually form a connection and transfer data? The answer is surprisingly simple: talking to a different computer in C is much like writing or reading data to a file. However, instead of writing to a file, we will be writing to a **socket**.
 
-When we want to write to a file in C, we need to use the `fopen()` function to open the file. In network programming, opening a socket is a bit more complicated than opening a file, so we have provided The function `client_connect()`, which connects to a server port and opens a socket. Similar to how `fopen()` returns a `FILE` pointer that you use to interact with a file, `client_connect()` returns a file descriptor (with the data type of `int`) that lets your program keep track of which port your computer will use to talk to the remote computer.
+When we want to write to a file in C, we need to use the `fopen()` function to open the file. In network programming, opening a socket is a bit more complicated than opening a file, so we have provided the function `client_connect()`, which connects to a server port and opens a socket. Similar to how `fopen()` returns a `FILE` pointer that you use to interact with a file, `client_connect()` returns a file descriptor (with the data type of `int`) that lets your program keep track of which port your computer will use to talk to the remote computer.
 
 ### Sending Data
 
@@ -126,7 +126,7 @@ Same as last lab, when you press the center button, you should take a picture an
   
 1. Create an empty `Config` `struct` and load it with the appropriate data. The `port`, `host`, and `hw_id` can be hard-coded. Use the picture buffer obtained in the last lab using the `camera_capture_data` function, fill in the `payload` field. The size of the payload should be the size of the image data.
 
-2. Start the client connection using `client_connect()` and passing the `Config` `struct`. This function is implemented for you and will print out the status of the connection to the server.
+2. Start the client connection using `client_connect()` and passing the the filled in `Config` `struct`. This function is implemented for you and will print out the status of the connection to the server.
 
 3. Call the `client_send_image` function to send the data, passing the `Config` `struct`. You will need to implement this function yourself. This function will combine the homework ID and the image data into one buffer and send it to the server using the `send` function. You will need to make sure all of the data is sent correctly.
 
