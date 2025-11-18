@@ -95,7 +95,7 @@ int num_sent = 0
 while total_sent < data_length:
     num_sent = send(socket, data + total_sent, data_length - total_sent, 0)
 
-    if num_sent == 0:
+    if num_sent < 0:
         print("Error while sending data")
         break
 
