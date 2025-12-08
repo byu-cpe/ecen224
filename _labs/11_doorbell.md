@@ -95,7 +95,7 @@ Create your final doorbell program, which should run automatically when you star
 
   - When the center button is pressed, do the following:
 
-    - In a thread, take a picture. save it to your viewer folder, and send the image to the website.
+    - In a thread, take a picture, save it to your viewer folder, and send the image to the website.
 
     - Change the display to show the message to let the user know that doorbell was rung (e.g., "Ding dong!"). Make this message visible for 2 seconds and then change back to the initial welcome message.
 
@@ -107,7 +107,7 @@ Create your final doorbell program, which should run automatically when you star
 
 - Before you set up your program to run on boot, add a 15 second sleep to the first line of your main function. This is because the program that prints the IP addresses also uses the displays and if they run at the same time, the display can get messed up. This ensures that the IP address program is finished before your program starts. Make sure to rebuild your program (`make`) so the change takes effect.
 
-- Set the program to run on boot. Test it out by rebooting your Pi Z2W and making sure your program starts up.
+- Set the program to run on boot by enabling the service. Test it out by rebooting your Pi Z2W and making sure your program starts up.
 
 ### Pass Off & Submission
 
