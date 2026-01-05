@@ -49,8 +49,9 @@ The grade breakdown for ECEn 225 is listed below:
 | Component                  | % of Grade |
 | -------------------------- | ---------- |
 | Lab TA Passoff             | 70         |
-| Lab Passoff Quizzes        | 25         |
-| Github Submissions/README  | 5          |
+| Attendance Quizzes         | 11         |
+| Post-lab Quizzes           | 10         |
+| Github Submissions/README  | 9          |
 
 
 
