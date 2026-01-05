@@ -5,7 +5,12 @@ title: Recitations
 icon: fa-duotone fa-podium
 ---
 
-Because we are in Spring term and you already have 224 or 225 every day, we will not be holding recitations. Material from past semesters can be found here below.
+Recitations are opportunities for your to meet as a group with a TA and review essential material for the course. 
+While not required, the students who attend recitation often do the best in the course. We highly encourage you to attend. 
+
+Check the TA schedule to see when recitation is held.
+
+Material from past semesters can be found here below.
 
 
 <br>
