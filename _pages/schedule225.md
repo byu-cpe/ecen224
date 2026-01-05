@@ -1,6 +1,6 @@
 ---
-title: ECEn 225 Section 1 Schedule
-link: https://learningsuite.byu.edu/.v7d2/cid-3-ZqFtKJj-kP/student/calendar
+title: ECEn 225 Schedule
+link: https://learningsuite.byu.edu/.f3yc/cid-HGu7IcygXYAq/calendar
 new_window: true
 icon: fa-duotone fa-calendar
 ---
