@@ -1,5 +1,5 @@
 ---
-title: Data Types & Strings
+title: title: C Programming - Part 2
 number: 4
 layout: lab
 ---
