@@ -1,5 +1,5 @@
 ---
-title: C Programming
+title: C Programming - Part 1
 number: 3
 layout: lab
 ---
