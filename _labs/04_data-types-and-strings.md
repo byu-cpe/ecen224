@@ -273,7 +273,7 @@ log_info("The value is %d", value);
 
 ## Lab Proceedure
 
-In the folder for this lab (`starter-labs/04-data-types-and-strings`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug.  Descriptions and hints for each function can be found in the `.h` files.
+In the folder for this lab (`starter-labs/04-c-programming-part-2`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug.  Descriptions and hints for each function can be found in the `.h` files.
 
 As you are working on these functions, please respect the following restrictions:
 
