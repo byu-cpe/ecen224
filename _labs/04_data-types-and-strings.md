@@ -20,7 +20,9 @@ A common mistake C programmers make is picking inccorect data types:
 
 As a C programmer, you must weigh all these factors and more. This lab will expose you to some of the nuances of the native C data types and those included in the `stdint.h` library. Additionally, you will practice working with strings in C.
 
-## Procedure
+## Information on C
+
+This section includes information about data types and strings you will find vital to the lab.
 
 ### Part 1: Important Components of C
 
@@ -269,7 +271,7 @@ int value = 42;
 log_info("The value is %d", value);
 ```
 
-### Part 3: Lab Requirements
+## Lab Proceedure
 
 In the folder for this lab (`starter-labs/04-data-types-and-strings`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug.  Descriptions and hints for each function can be found in the `.h` files.
 
