@@ -285,6 +285,8 @@ As you are working on these functions, please respect the following restrictions
     before you pass off with a TA.
 4. Follow the specific rules in the function descriptions (see the `.h` files).
 
+A list of expected inputs/outputs can be found below in **Appendix: Test Cases**.
+
 Your repository includes a `main.c` for your own use to print and debug the code.  To compile and run your program (as defined in `main.c`) you can run the following commands:
 
 ```bash
@@ -322,9 +324,26 @@ The gcc command above will compile your `.c` files and then link them together w
 
 Note that if you want to include a logging library, you will have to include that in the `gcc` commands as well.
 
-#### Tests
+## Lab Submission
 
-Your code will be tested with the following inputs:
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA:
+  - Show the output of the passoff executable
+  - Show how you implemented your functions in `data.c` and `custom_strings.c`
+- Take the Pass off Quiz on Learning Suite.
+- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
+
+## Explore More
+
+- [Data Types in C](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
+- [Automatic Conversions in C](https://en.cppreference.com/w/c/language/conversion)
+- [C Arrays and Their Storage in Memory](https://www.geeksforgeeks.org/c-arrays/?ref=shm)
+- [Functions in String.h](https://cplusplus.com/reference/cstring/) (Note that this website is technically for C++, but the C standard library is included in that language)
+
+
+## Appendix: Test Cases
+
+Your code should work with the following test cases:
 
 #### data.c
 
@@ -405,19 +424,3 @@ Each of the following words will be tested for each position (0-3):
 1. Inputs: "documents" and "resume.pdf", Output: "documents/resume.pdf"
 2. Inputs: "viewer" and "tux.bmp", Output: "viewer/tux.bmp"
 3. Inputs: "ecen224" and "README.md", Output: "ecen224/README.md"
-
-## Lab Submission
-
-- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA:
-  - Show the output of the passoff executable
-  - Show how you implemented your functions in `data.c` and `custom_strings.c`
-- Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
-
-## Explore More
-
-- [Data Types in C](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
-- [Automatic Conversions in C](https://en.cppreference.com/w/c/language/conversion)
-- [C Arrays and Their Storage in Memory](https://www.geeksforgeeks.org/c-arrays/?ref=shm)
-- [Functions in String.h](https://cplusplus.com/reference/cstring/) (note that this website is technically for C++, but the C library is included in that language)
