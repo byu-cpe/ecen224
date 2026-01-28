@@ -12,7 +12,7 @@ layout: lab
 
 ## Introduction
 
-A common mistake C programmers make is picking inccorect data types:
+A common mistake C programmers make is picking incorrect data types:
 
 - types that are inconsistent across different architechtures and compilers,
 - types that are too small or cannot hold the correct values,
@@ -20,7 +20,9 @@ A common mistake C programmers make is picking inccorect data types:
 
 As a C programmer, you must weigh all these factors and more. This lab will expose you to some of the nuances of the native C data types and those included in the `stdint.h` library. Additionally, you will practice working with strings in C.
 
-## Procedure
+## Information on C
+
+This section includes information about data types and strings you will find vital to the lab.
 
 ### Part 1: Important Components of C
 
@@ -269,9 +271,9 @@ int value = 42;
 log_info("The value is %d", value);
 ```
 
-### Part 3: Lab Requirements
+## Lab Proceedure
 
-In the folder for this lab (`starter-labs/04-data-types-and-strings`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. **For `data.c`, you only need to implement 4 functions, and for `custom_strings.c`, you need to implement 4 functions.** These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
+In the folder for this lab (`starter-labs/04-c-programming-part-2`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug.  Descriptions and hints for each function can be found in the `.h` files.
 
 As you are working on these functions, please respect the following restrictions:
 
@@ -283,11 +285,11 @@ As you are working on these functions, please respect the following restrictions
 3. You can use `printf()` statements for debugging `data.c` and
     `custom_strings.c`, but comment them out or remove them
     before you pass off with a TA.
-4. Follow the specific rules in the function descriptions.
+4. Follow the specific rules in the function descriptions (see the `.h` files).
 
-Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
+A list of expected inputs/outputs can be found below in **Appendix: Test Cases**.
 
-To compile and run your program (as defined in `main.c`) you can run the following commands:
+Your repository includes a `main.c` for your own use to print and debug the code.  To compile and run your program (as defined in `main.c`) you can run the following commands:
 
 ```bash
 gcc -Werror main.c data.c custom_strings.c -o lab4_main
@@ -297,6 +299,15 @@ After compiling the program, **check that your program has no warnings or errors
 
 ```bash
 ./lab4_main
+```
+
+
+**For passoff**, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
+
+To pull the `lab4_passoff.o` file into your repository, run this command in your lab 4 directory:
+
+```bash
+wget https://byu-cpe.github.io/ecen224/assets/scripts/lab4_passoff.o
 ```
 
 To compile and run the pass off script, you can run:
@@ -315,13 +326,28 @@ The gcc command above will compile your `.c` files and then link them together w
 
 Note that if you want to include a logging library, you will have to include that in the `gcc` commands as well.
 
-#### Tests
+## Lab Submission
 
-Your code will be tested with the following inputs:
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
+- Pass off to a TA:
+  - Show the output of the passoff executable
+  - Show how you implemented your functions in `data.c` and `custom_strings.c`
+- Take the Pass off Quiz on Learning Suite.
+- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
+
+## Explore More
+
+- [Data Types in C](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
+- [Automatic Conversions in C](https://en.cppreference.com/w/c/language/conversion)
+- [C Arrays and Their Storage in Memory](https://www.geeksforgeeks.org/c-arrays/?ref=shm)
+- [Functions in String.h](https://cplusplus.com/reference/cstring/) (Note that this website is technically for C++, but the C standard library is included in that language)
+
+
+## Appendix: Test Cases
+
+Your code should work with the following test cases:
 
 #### data.c
-
-**You only need to pick and implement 4 of the following 7 functions.  You can choose which ones you want to implement, but you must implement at least 4.**
 
 ##### Calculate Circumfrence
 
@@ -370,8 +396,6 @@ Each of the following words will be tested for each position (0-3):
 
 #### custom_strings.c
 
-**You only need to pick and implement 4 of the following 5 functions.  You can choose which ones you want to implement, but you must implement at least 4.**
-
 ##### Get String Length
 
 1. Input: "ECEN 225 is a really great class!", Output: 33
@@ -402,19 +426,3 @@ Each of the following words will be tested for each position (0-3):
 1. Inputs: "documents" and "resume.pdf", Output: "documents/resume.pdf"
 2. Inputs: "viewer" and "tux.bmp", Output: "viewer/tux.bmp"
 3. Inputs: "ecen224" and "README.md", Output: "ecen224/README.md"
-
-## Lab Submission
-
-- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA:
-  - Show the output of the passoff executable
-  - Show how you implemented your functions in `data.c` and `custom_strings.c`
-- Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
-
-## Explore More
-
-- [Data Types in C](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
-- [Automatic Conversions in C](https://en.cppreference.com/w/c/language/conversion)
-- [C Arrays and Their Storage in Memory](https://www.geeksforgeeks.org/c-arrays/?ref=shm)
-- [Functions in String.h](https://cplusplus.com/reference/cstring/) (note that this library is technically for C++, but the C library is included in that language)
