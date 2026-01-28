@@ -321,8 +321,6 @@ Your code will be tested with the following inputs:
 
 #### data.c
 
-**You only need to pick and implement 4 of the following 7 functions.  You can choose which ones you want to implement, but you must implement at least 4.**
-
 ##### Calculate Circumfrence
 
 1. Radius: 1,  Output: 6.28
@@ -369,8 +367,6 @@ Each of the following words will be tested for each position (0-3):
 3. Input: 10 and 64, Output: 1
 
 #### custom_strings.c
-
-**You only need to pick and implement 4 of the following 5 functions.  You can choose which ones you want to implement, but you must implement at least 4.**
 
 ##### Get String Length
 
