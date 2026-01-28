@@ -12,7 +12,7 @@ layout: lab
 
 ## Introduction
 
-A common mistake C programmers make is picking inccorect data types:
+A common mistake C programmers make is picking incorrect data types:
 
 - types that are inconsistent across different architechtures and compilers,
 - types that are too small or cannot hold the correct values,
