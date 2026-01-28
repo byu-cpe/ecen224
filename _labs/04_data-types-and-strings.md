@@ -271,7 +271,7 @@ log_info("The value is %d", value);
 
 ### Part 3: Lab Requirements
 
-In the folder for this lab (`starter-labs/04-data-types-and-strings`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. **For `data.c`, you only need to implement 4 functions, and for `custom_strings.c`, you need to implement 4 functions.** These files include various functions that you will either need to write or debug.  Descriptions for each function can be found in the `.h` files.
+In the folder for this lab (`starter-labs/04-data-types-and-strings`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug.  Descriptions and hints for each function can be found in the `.h` files.
 
 As you are working on these functions, please respect the following restrictions:
 
@@ -283,11 +283,9 @@ As you are working on these functions, please respect the following restrictions
 3. You can use `printf()` statements for debugging `data.c` and
     `custom_strings.c`, but comment them out or remove them
     before you pass off with a TA.
-4. Follow the specific rules in the function descriptions.
+4. Follow the specific rules in the function descriptions (see the `.h` files).
 
-Your repository includes a `main.c` for your own use to print and debug the code.  However, for pass off, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
-
-To compile and run your program (as defined in `main.c`) you can run the following commands:
+Your repository includes a `main.c` for your own use to print and debug the code.  To compile and run your program (as defined in `main.c`) you can run the following commands:
 
 ```bash
 gcc -Werror main.c data.c custom_strings.c -o lab4_main
@@ -297,6 +295,15 @@ After compiling the program, **check that your program has no warnings or errors
 
 ```bash
 ./lab4_main
+```
+
+
+**For passoff**, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
+
+To pull the `lab4_passoff.o` file into your repository, run this command in your lab 4 directory:
+
+```bash
+wget https://byu-cpe.github.io/ecen224/assets/scripts/lab4_passoff.o
 ```
 
 To compile and run the pass off script, you can run:
@@ -413,4 +420,4 @@ Each of the following words will be tested for each position (0-3):
 - [Data Types in C](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
 - [Automatic Conversions in C](https://en.cppreference.com/w/c/language/conversion)
 - [C Arrays and Their Storage in Memory](https://www.geeksforgeeks.org/c-arrays/?ref=shm)
-- [Functions in String.h](https://cplusplus.com/reference/cstring/) (note that this library is technically for C++, but the C library is included in that language)
+- [Functions in String.h](https://cplusplus.com/reference/cstring/) (note that this website is technically for C++, but the C library is included in that language)
