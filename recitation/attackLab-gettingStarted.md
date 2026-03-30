@@ -5,7 +5,7 @@ permalink: /:path/:basename
 ---
 You must complete this lab on the CAEDM server, `ssh.et.byu.edu` because it has the right configuration to allow stack execution exploits. Conveniently, this server is available through SSH from on or off campus. We recommend completing the task in the lab due to the availabilty of TAs but access from other locations is available.
 
-In [LearningSuite](https://learningsuite.byu.edu/), click on the "Attack Programming Assignment" to download your target. It will be a `.tar` file with a name like `targetK.tar` where `K` is a number. You must be in the lab or on the campus network for the download and scoreboard links to work.
+In [LearningSuite](https://learningsuite.byu.edu/.2RLw/cid-wk9m3Zc7ATmQ/pages/id-pDAT), click on the "Attack Programming Assignment" to download your target. It will be a `.tar` file with a name like `targetK.tar` where `K` is a number. You must be in the lab or on the campus network for the download and scoreboard links to work.
 
 Copy your target to your home directory. This directory is shared between the lab computers and the CAEDM server. So, if you download using a lab computer you can just drop the file where you want it.
 
