@@ -1,0 +1,44 @@
+@use "sass:color";
+
+// Typography
+$base-font-family: sans-serif !default;
+$header-font-family: sans-serif !default;
+$base-font-size: 16px !default;
+$base-font-weight: 300 !default;
+$small-font-size: $base-font-size * 0.875 !default;
+$base-line-height: 1.5 !default;
+
+// Spacing
+$spacing-unit: 30px !default;
+
+// Colors — static
+$grey-color: #424242 !default;
+$grey-color-light: color.adjust($grey-color, $lightness: 40%) !default;
+$grey-color-dark: color.adjust($grey-color, $lightness: -25%) !default;
+
+// Colors — configured from main.scss via @use "variables" with (...)
+$text-color: #ddd !default;
+$frame-color: #333 !default;
+$background-color: #222 !default;
+$brand-color: #60B3BE !default;
+$secondary-color: #52439B !default;
+$selection-color: #FEF081 !default;
+$sidebar-hover-color: #7D5FA9 !default;
+
+// Layout
+$content-width: 800px !default;
+
+// Breakpoints
+$on-palm: 600px !default;
+$on-laptop: 800px !default;
+$on-xs: 575.98px !default;
+$on-sm: 767.98px !default;
+$on-md: 991.98px !default;
+$on-lg: 1199.98px !default;
+
+// Mixins
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}

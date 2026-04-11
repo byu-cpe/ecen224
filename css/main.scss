@@ -3,62 +3,24 @@
 ---
 
 @charset "utf-8";
-@use "sass:color";
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@use "variables" with (
+    $base-font-family: ({{ site.fonts.base }}),
+    $header-font-family: ({{ site.fonts.header }}),
+    $text-color: {{ site.colors.text_color }},
+    $frame-color: {{ site.colors.frame_color }},
+    $background-color: {{ site.colors.background_color }},
+    $brand-color: {{ site.colors.brand_color }},
+    $secondary-color: {{ site.colors.secondary_color }},
+    $selection-color: {{ site.colors.text_selection_color }},
+    $sidebar-hover-color: {{ site.colors.sidebar_hover_color }}
+);
+@use "base";
+@use "fonts";
+@use "syntax-highlighting-fruity";
+@use "simple-sidebar";
+@use "pages";
 
 strong {
     font-weight: 700;
     color: #daa520;
 }
-
-// Our variables
-$base-font-family: {{ site.fonts.base}};
-$header-font-family: {{ site.fonts.header }};
-$base-font-size: 16px;
-$base-font-weight: 300;
-$small-font-size: $base-font-size * 0.875;
-$base-line-height: 1.5;
-
-$spacing-unit: 30px;
-
-$text-color: {{ site.colors.text_color }};
-$frame-color: {{ site.colors.frame_color }};
-$background-color: {{ site.colors.background_color }};
-$brand-color: {{ site.colors.brand_color }};
-$secondary-color: {{ site.colors.secondary_color }};
-
-$selection-color: {{ site.colors.text_selection_color }};
-$sidebar-hover-color: {{ site.colors.sidebar_hover_color }};
-
-$grey-color: #424242;
-$grey-color-light: color.adjust($grey-color, $lightness: 40%);
-$grey-color-dark: color.adjust($grey-color, $lightness: -25%);
-
-// Width of the content area
-$content-width: 800px;
-
-$on-palm: 600px;
-$on-laptop: 800px;
-$on-xs: 575.98px;
-$on-sm: 767.98px;
-$on-md: 991.98px;
-$on-lg: 1199.98px;
-
-// Use media queries like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
-}
-
-// Import partials from `sass_dir` (defaults to `_sass`)
-@import "base", "fonts", "syntax-highlighting-fruity", "simple-sidebar", "pages";
