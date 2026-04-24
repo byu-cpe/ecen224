@@ -282,10 +282,7 @@ As you are working on these functions, please respect the following restrictions
 2. If you need to change a data type to a floating-point
     number, then use `double`, not `float`.  The autograder
     uses `doubles`, not `floats`.
-3. You can use `printf()` statements for debugging `data.c` and
-    `custom_strings.c`, but comment them out or remove them
-    before you pass off with a TA.
-4. Follow the specific rules in the function descriptions (see the `.h` files).
+3. Follow the specific rules in the function descriptions (see the `.h` files).
 
 A list of expected inputs/outputs can be found below in **Appendix: Test Cases**.
 
@@ -324,7 +321,9 @@ After compiling the program, run:
 
 The gcc command above will compile your `.c` files and then link them together with the `lab4_passoff.o` file that contains our test code.
 
-Note that if you want to include a logging library, you will have to include that in the `gcc` commands as well.
+Notes:
+1. If you want to include a logging library, you will have to include that in the `gcc` commands as well.
+2. You can use `printf()` statements for debugging your files.  If you include these statements in `data.c` and `custom_strings.c`, they will be printed to `output.txt` when run with the passoff script.
 
 ## Lab Submission
 
