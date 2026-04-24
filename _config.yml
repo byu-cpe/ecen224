@@ -78,6 +78,7 @@ collections:
     order:
       - overview.md
       - resources.md
+      - ai_policy.md
       - coding_standard.md
       - lab_setup.md
       - craftsmanship.md
