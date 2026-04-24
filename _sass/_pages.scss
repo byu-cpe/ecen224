@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 ::selection {
     // background-color: rgba(237, 63, 149, .2);
     background-color: $selection-color;
