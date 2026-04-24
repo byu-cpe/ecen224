@@ -7,7 +7,7 @@ icon: fa-duotone fa-robot
 
 ## TL;DR
 
-No AI use of any kind, period. First offense gets a warning. Second offense gets a zero on the assignment–no exceptions.
+No AI use of any kind, period (this includes Google's AI overview on google searches). First offense gets a warning. Second offense gets a zero on the assignment–no exceptions.
 
 ## Guiding Principles
 
