@@ -157,12 +157,14 @@ With Raspberry Pi OS Lite installed and the Pi Z2W connected to the lab network,
 4. Once logged in, confirm you are in the Pi by checking the prompt:
 
     ```text
-    NETID@doorbell-NETID:~$
+    ➜ ~
     ```
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/ssh.png %}" alt="ssh">
     </figure>
+
+5. Press the enter key a few times to make sure the prompt is working. It will just repeat itself every time you press enter. 
 
 ### Part 3: Set Up your Development Environment
 <!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
@@ -250,7 +252,7 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
     ```bash
     sudo shutdown now
     ``` 
-    And wait for the green LED to turn off. After that, unplug the PoE adapter from the micro USB port.
+    **Always shut down the Pi Z2W gracefully before unplugging power.** Pulling the power on a running Pi can corrupt the SD card. Linux buffers writes in memory and only flushes them to the SD card periodically; if power is cut before those writes complete, the filesystem can be left in an inconsistent state, which often results in a Pi that will no longer boot. `shutdown` flushes pending writes and halts the system cleanly. Wait until the green activity LED stops blinking before disconnecting power. After that, unplug the PoE adapter from the micro USB port.
 
 2. Unpack the camera kit and case lid. Use the **brown** ribbon cable (not the white one). The ribbon cables are fragile.Handle them with care, and do not crease or bend them extremely sharply.
 
