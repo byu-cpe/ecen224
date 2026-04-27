@@ -108,6 +108,7 @@ In order to see that your Z2W was configured correctly, we need to assemble the 
 7. Set aside the remaining parts of the kit. We will come back to them in **Part 4**.
 
 ### Part 2: Connect to Pi Z2W over SSH
+<!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
 
 Use the Power over Ethernet (PoE) adapters—the white bricks at each lab computer—to power the Pi Z2W. PoE transmits both power and internet through a single Ethernet cable, eliminating the need for separate power cables. While not all Ethernet ports support PoE, every port in the Digital Lab does.
 
@@ -156,42 +157,17 @@ With Raspberry Pi OS Lite installed and the Pi Z2W connected to the lab network,
 4. Once logged in, confirm you are in the Pi by checking the prompt:
 
     ```text
-    NETID@doorbell-NETID:~$
+    ➜ ~
     ```
 
     <figure class="image mx-auto" style="max-width: 750px">
       <img src="{% link assets/getting-started/ssh.png %}" alt="ssh">
     </figure>
 
-5. Download the setup script to install required tools:
-
-    ```bash
-    wget https://byu-cpe.github.io/ecen224/assets/scripts/install.sh
-    ```
-
-6. Make the script executable:
-
-    ```bash
-    chmod +x install.sh
-    ```
-
-7. Execute the script:
-
-    ```bash
-    ./install.sh
-    ```
-
-    You will see various outputs in the terminal as packages install. When prompted for your password, enter the Pi Z2W password you set earlier.
-
-8. Reboot the Pi Z2W:
-
-    ```bash
-    sudo reboot
-    ```
-
-    This will disconnect your Pi Z2W from the lab machine in the process. You will reconnect to it in the next part.
+5. Press the enter key a few times to make sure the prompt is working. It will just repeat itself every time you press enter. 
 
 ### Part 3: Set Up your Development Environment
+<!-- Doing this step at this point because we don't want to make someone do all the assembly work just to realize they flashed their SD wrong and have to take it back apart -->
 
 #### Setting Up VSCode on the Z2W
 
@@ -276,7 +252,7 @@ Next we will proceed to assemble the remaining components of your doorbell kit.
     ```bash
     sudo shutdown now
     ``` 
-    And wait for the green LED to turn off. After that, unplug the PoE adapter from the micro USB port.
+    **Always shut down the Pi Z2W gracefully before unplugging power.** Pulling the power on a running Pi can corrupt the SD card. Linux buffers writes in memory and only flushes them to the SD card periodically; if power is cut before those writes complete, the filesystem can be left in an inconsistent state, which often results in a Pi that will no longer boot. `shutdown` flushes pending writes and halts the system cleanly. Wait until the green activity LED stops blinking before disconnecting power. After that, unplug the PoE adapter from the micro USB port.
 
 2. Unpack the camera kit and case lid. Use the **brown** ribbon cable (not the white one). The ribbon cables are fragile.Handle them with care, and do not crease or bend them extremely sharply.
 
