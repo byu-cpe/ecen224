@@ -43,7 +43,7 @@ Normally, you would use the [Raspberry Pi Imager](https://www.raspberrypi.com/ne
 1. Open a terminal on your lab machine using the **Activities** menu or the shortcut `Ctrl+Alt+T`. Download and run the imaging script by entering:
 
     ```bash
-    wget https://byu-cpe.github.io/ecen224/assets/scripts/imager.sh
+    wget https://raw.githubusercontent.com/philipbl/ecen225-image/refs/heads/main/imager.sh
     chmod +x imager.sh
     ./imager.sh
     ```
