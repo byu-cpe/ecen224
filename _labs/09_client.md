@@ -102,7 +102,7 @@ while total_sent < data_length:
     total_sent += num_sent
 ```
 
-In this lab, **you will need to send your homework ID and your image data together, will no null terminator or space between them**. The easiest way of doing this is combining the data into one block of data (using `malloc` and `memcpy`). Your homework ID must go first, followed by the image data.
+In this lab, **you will need to send your homework ID and your image data together, with no null terminator or space between them**. The easiest way of doing this is combining the data into one block of data (using `malloc` and `memcpy`). Your homework ID must go first, followed by the image data.
 
 The results will be displayed at `http://ecen224.byu.edu:2241/<homework_id>`, replacing `<homework_id>` with your actual homework ID. For example, if your homework ID was 123456789, then the URL where your pictures are stored are at [http://ecen224.byu.edu:2241/123456789](http://ecen224.byu.edu:2241/123456789). Remember, this server is only available when you are on the campus network.
 
@@ -126,7 +126,7 @@ Same as last lab, when you press the center button, you should take a picture an
   
 1. Create an empty `Config` `struct` and load it with the appropriate data. The `port`, `host`, and `hw_id` can be hard-coded. Use the picture buffer obtained in the last lab using the `camera_capture_data` function, fill in the `payload` field. The size of the payload should be the size of the image data.
 
-2. Start the client connection using `client_connect()` and passing the the filled in `Config` `struct`. This function is implemented for you and will print out the status of the connection to the server.
+2. Start the client connection using `client_connect()` and passing the filled in `Config` `struct`. This function is implemented for you and will print out the status of the connection to the server.
 
 3. Call the `client_send_image` function to send the data, passing the `Config` `struct`. You will need to implement this function yourself. This function will combine the homework ID and the image data into one buffer and send it to the server using the `send` function. You will need to make sure all of the data is sent correctly.
 

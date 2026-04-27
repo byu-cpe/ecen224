@@ -11,7 +11,7 @@ Every time you use a **new machine for the first time**, you will need to follow
 
 ### Git Configuration
 
-First, you will need to need to let the `git` program know who is making changes to any repository that you have cloned to your computer. To set the default email address and name your computer (or Raspberry Pi) will use, run the following commands:
+First, you will need to let the `git` program know who is making changes to any repository that you have cloned to your computer. To set the default email address and name your computer (or Raspberry Pi) will use, run the following commands:
 
 ```bash
 git config --global user.name "Your name here"
@@ -54,9 +54,9 @@ You should use the email address you used to sign up for GitHub.
 
 ### Cloning a Repository
 
-Git organizes code into **repositories**, which is just another name for a collection of files. We have two repositories in this class: One that contains several starter labs to teach you basic principles, and one that we will use as the basic template to create our doorbell. They both contain a `README.md` file which gives you instructions on what to do with the code. To organize all your the repositories together as a class, we use **GitHub Classroom**. To get access to a specific repository, click the corresponding lab assignment on Learning Suite.
+Git organizes code into **repositories**, which is just another name for a collection of files. We have two repositories in this class: One that contains several starter labs to teach you basic principles, and one that we will use as the basic template to create our doorbell. They both contain a `README.md` file which gives you instructions on what to do with the code. To organize all your repositories together as a class, we use **GitHub Classroom**. To get access to a specific repository, click the corresponding lab assignment on Learning Suite.
 
-Once you have accepted the assignment on Github Classroom, a copy of the lab repository will be added to the GitHub user account you are using for this class. To **clone** these files (download them to your computer or Pi), you will need to need the repository link. **This NOT just the URL of your repository.** 
+Once you have accepted the assignment on Github Classroom, a copy of the lab repository will be added to the GitHub user account you are using for this class. To **clone** these files (download them to your computer or Pi), you will need the repository link. **This is not just the URL of your repository.** 
 
 To obtain the repository link click on the green `<> Code` button and make sure the **SSH** tab is selected.
 

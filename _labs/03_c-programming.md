@@ -76,7 +76,7 @@ Compile your C code into assembly by running the following terminal command:
 gcc -S simple.c
 ```
 
-Because different processors and hardware have different instruction sets, compiled assembly code can usually only be run on the machine that compiled it. For example, the binary `simple.c` exectuable you just compiled on your doorbell uses the [ARM instruction set](https://en.wikipedia.org/wiki/ARM_architecture_family). The resulting executable would likely work on another student's doorbell, but it would not work on your `x86` lab machine.
+Because different processors and hardware have different instruction sets, compiled assembly code can usually only be run on the machine that compiled it. For example, the binary `simple.c` executable you just compiled on your doorbell uses the [ARM instruction set](https://en.wikipedia.org/wiki/ARM_architecture_family). The resulting executable would likely work on another student's doorbell, but it would not work on your `x86` lab machine.
 
 Open the `simple.s` file you just generated and look around. Google one of the commands that you see to try and figure out what it means.
 
@@ -110,7 +110,7 @@ Compile your code into a binary executable program by running the following comm
 gcc simple.c
 ```
 
-Whenever you run `gcc` without any arugments, it runs through all four of the steps automatically. This will create a new file in our directory called `a.out`. We can run our created program by typing:
+Whenever you run `gcc` without any arguments, it runs through all four of the steps automatically. This will create a new file in our directory called `a.out`. We can run our created program by typing:
 
 ```bash
 ./a.out
@@ -221,7 +221,7 @@ int main()
 
 I can expect that this program will print out `5` because the **return value** of `sum()` was an `int` whose value is the sum of my two parameters, `a` (2) and `b` (3).
 
-If `main()` is the the starting point of a program, why does it have a return value? This return value is often used to indicate if the program finished correctly or crashed in a specific way. Take the following example:
+If `main()` is the starting point of a program, why does it have a return value? This return value is often used to indicate if the program finished correctly or crashed in a specific way. Take the following example:
 
 ```c
 #include <stdio.h>
@@ -258,9 +258,9 @@ In order to create a meaningful program in any language, you need to know how to
 
 Each of these data types has two key components: the type of value that is stored (integer, decimal, etc.), and the **size**, which determines the range of numbers that type can store. Every data type in C has a predetermined **width**, or number of bits that it has to store information. A binary number with `N` bits can store numbers from `0` to `(2^N)-1`. Computers don't usually do operations down to a single bit, so we usually talk about the width of a data type in units of bytes instead of bits.
 
-It is also important to note that the size of each of the above types is dependent on the processor on which you will be running the code. For example an `int` on a 16 bit processor will be 16 bits, while on a 32 bit processor an `int` is usually 32 bits, and on a 64-bit processor an `int` is also typically also 32 bits. It is the programmer's responsibility to understand what these data types mean and how they work on your system. Ignoring these important details has led to catastrophies in the past ([including rockets that explode shortly after launch](https://en.wikipedia.org/wiki/Ariane_flight_V88)).
+It is also important to note that the size of each of the above types is dependent on the processor on which you will be running the code. For example an `int` on a 16 bit processor will be 16 bits, while on a 32 bit processor an `int` is usually 32 bits, and on a 64-bit processor an `int` is also typically also 32 bits. It is the programmer's responsibility to understand what these data types mean and how they work on your system. Ignoring these important details has led to catastrophes in the past ([including rockets that explode shortly after launch](https://en.wikipedia.org/wiki/Ariane_flight_V88)).
 
-Even though variables are stored binary numbers, **we dont have to interpret the bits as regular binary**. For example, negative numbers are stored by saving the most significant bit to represent the sign instead of part of the value. This is called **Two's Complement**, and it changes the range of a data type to be `-2^(N-1)` to `2^(N-1)-1`. This is the default storage scheme for all data types that store integers. For decimal or **floating point** numbers, the default scheme is the **IEEE Floating Point** format.
+Even though variables are stored as binary numbers, **we don't have to interpret the bits as regular binary**. For example, negative numbers are stored by saving the most significant bit to represent the sign instead of part of the value. This is called **Two's Complement**, and it changes the range of a data type to be `-2^(N-1)` to `2^(N-1)-1`. This is the default storage scheme for all data types that store integers. For decimal or **floating point** numbers, the default scheme is the **IEEE Floating Point** format.
 
 You can control the scheme that a data type uses to maximize its efficiency. For example, the keyword `unsigned` makes the compiler assume the bits to be regular binary instead of Two's Complement, preventing us from storing negative numbers but doubling the range of positive numbers we can store.
 
@@ -281,9 +281,9 @@ If I want the *float* `num_f` to have the same value (`7`) as the *int* `num`, I
 num_f = (float) num;
 ```
 
-This this type of casting is called an **explicit cast** because you put the desired type in parentheses. There is another kind of casting called **implicit casting** that can occur automatically when you do operations against mis-matched data types.
+This type of casting is called an **explicit cast** because you put the desired type in parentheses. There is another kind of casting called **implicit casting** that can occur automatically when you do operations against mis-matched data types.
 
-**You must be careful** when casting that the value you are casting can be stored in both types. For example, if you have the number `400` stored in a `short` (16 bits) and you try to cast it to a `char` (8 bits), the resulting value will appear as `-112` becuase the number `400` is too large for a `char` type. This type of error is especially dangerous with implicit casts, since you may not know which type is being converted. Implicit casting can be prevented by explicitly casting variables yourself to ensure this doesn't happen.
+**You must be careful** when casting that the value you are casting can be stored in both types. For example, if you have the number `400` stored in a `short` (16 bits) and you try to cast it to a `char` (8 bits), the resulting value will appear as `-112` because the number `400` is too large for a `char` type. This type of error is especially dangerous with implicit casts, since you may not know which type is being converted. Implicit casting can be prevented by explicitly casting variables yourself to ensure this doesn't happen.
 
 ### Part 3: stdint and printf
 

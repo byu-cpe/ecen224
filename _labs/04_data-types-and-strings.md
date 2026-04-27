@@ -30,7 +30,7 @@ In the C Programming lab, you worked with a few of C's _native_ data types, thos
 
 #### Inconsistent Sizes
 
-It is important to remember that the native integer types in C (`short`, `int`, `long`) do not have a defined length. This peculiarity can have disasterous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` would be just fine on a 64-bit computer (like most modern computers), but on a 16-bit system (still common in embedded devices), `int` has a maximum of only around 32,000, causing bugs that are difficult to trace.
+It is important to remember that the native integer types in C (`short`, `int`, `long`) do not have a defined length. This peculiarity can have disastrous consequences. For example, if you need a variable that expects values ranging from zero to two-million, an `int` would be just fine on a 64-bit computer (like most modern computers), but on a 16-bit system (still common in embedded devices), `int` has a maximum of only around 32,000, causing bugs that are difficult to trace.
 
 There are several methods to check the width or size of your variables. First, we can use the built-in C function `sizeof()`. This will tell you the number of **bytes** used by a type. `sizeof()` accepts a variable or a data type:
 
@@ -112,7 +112,7 @@ if ( check_small_enough(a) == true )    // true
     printf("Yipee!\n");                 // "Yipee!"
 ```
 
-By default, integer literals are treated as `int`s. Decimal literals are treated as `double`s. Adding a suffix to some literals allows to specify what type it should be considered. For example, `125` is an an `int` by default, but `125U` will be treated as an unsigned int. Similarly, `3.14` is assumed to be a `double` by default, but `3.14f` will be treated as a `float`.  
+By default, integer literals are treated as `int`s. Decimal literals are treated as `double`s. Adding a suffix to some literals allows to specify what type it should be considered. For example, `125` is an `int` by default, but `125U` will be treated as an unsigned int. Similarly, `3.14` is assumed to be a `double` by default, but `3.14f` will be treated as a `float`.  
 
 Integer literals can be specified in either decimal, hexadecimal (prefixed by `0x`), and binary (prefixed by `0b`).
 

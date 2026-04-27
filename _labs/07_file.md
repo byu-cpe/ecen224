@@ -97,7 +97,7 @@ FILE *fp;    // This declares a file pointer that is read to be used in file ope
 
 #### File Operations
 
-There are a few essential file operations that exist in the `stdio.h` library. The following is a selection of functions that will help you with to input files into a location in your code.
+There are a few essential file operations that exist in the `stdio.h` library. The following is a selection of functions that will help you input files into a location in your code.
 
 - `fopen()` and `fclose()`
 
@@ -156,7 +156,7 @@ To accomplish these tasks, you will need to:
   - File names should be drawn in either 8pt or 12pt font.
 - Implement the `get_entries` function:
   - Filter out any file that does not end in `.bmp` or `.log`. (Hint: Sounds like you need to **get** the **file extension**).
-  - Populate the `entries` array with the the `.bmp` and `.log` files.
+  - Populate the `entries` array with the `.bmp` and `.log` files.
   - Return the number of files read in.
   - If you find more than 8 files, you need only read in the first 8.
 - Implement the `draw_file` function

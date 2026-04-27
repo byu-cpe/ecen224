@@ -47,7 +47,7 @@ There are too many bombs for us to deal with, so we are giving each student a bo
     | 6              | 15          |
     | Total          | 70          |
 
-    Be careful! Each time that the bomb explodes, you will lose 1/2 a point (up to a max of 20 points). If you have exploded your bomb several times, you can download another bomb and try again. Your highest scoring bomb will be selected as your grade. Keep in mind that the phases of the bombs are randomly generated, meaning downloading a new bomb requires starting over from phase 1 again. Its better to not let it blow up in the first place!
+    Be careful! Each time that the bomb explodes, you will lose 1/2 a point (up to a max of 20 points). If you have exploded your bomb several times, you can download another bomb and try again. Your highest scoring bomb will be selected as your grade. Keep in mind that the phases of the bombs are randomly generated, meaning downloading a new bomb requires starting over from phase 1 again. It's better to not let it blow up in the first place!
 
     You can see your current score by looking at the [Bomb Lab Scoreboard](http://ecen224.byu.edu:5100/scoreboard) which can also found on **Learning Suite**.
 
@@ -120,7 +120,7 @@ When you have completed the assignment (fully or partially) submit the answers t
 
 GDB, or GNU Debugger, is a command-line tool available on virtually every platform, designed for debugging programs in languages like C and C++. It allows you to trace through a program line by line, examine memory and register contents, and inspect both source code and assembly code. For our purposes GDB is essential because it will allow you to reverse-engineer the binary `bomb` file without access to the original source code. By setting breakpoints, monitoring memory changes, and examining assembly instructions, you will systematically analyze the program’s behavior, identify the required inputs, and progress through each bomb "phase" safely.
 
-While we won't go diving into assembly code or how to analye it for the passwords, we will provide some references and tutorials for the basic usage of GDB. As you read through this, try to focus on learning what options you have in GDB for analyzing code, so that when begin your bomb, you can use the tools below to take intentional steps towards debugging instead of guessing.
+While we won't go diving into assembly code or how to analyze it for the passwords, we will provide some references and tutorials for the basic usage of GDB. As you read through this, try to focus on learning what options you have in GDB for analyzing code, so that when you begin your bomb, you can use the tools below to take intentional steps towards debugging instead of guessing.
 
 ### Set up your workspace
 
@@ -175,7 +175,7 @@ This will add the assembly, and then the registers to our window so that we can 
 
 <figure class="image mx-auto" style="max-width: 750px">
   <img src="{% link assets/bomb-lab/terminal_layout.png %}" alt="a nicely laid out terminal">
-  <figcaption style="text-align: center;"> Becuase registers are not memory locations, they are only active at runtime. This means we will see "Register Values Unavailable" until we start running our program.</figcaption>
+  <figcaption style="text-align: center;"> Because registers are not memory locations, they are only active at runtime. This means we will see "Register Values Unavailable" until we start running our program.</figcaption>
 </figure>
 
 Now that you have GDB set up, you can start debugging the program. The next few sections will tell you how to do several things in GDB that you will use to debug the lab.
@@ -211,9 +211,9 @@ which will then ask (to which you respond `y`)
 
     Kill the program being debugged? (y or n)
 
-It will then say `[Inferior 1 (process 34507) killed]` (*the number will not be the same*) which means the program is no longer runnning. **This, in combination with breakpoints, is how you prevent the bomb from exploding.** If you are panicked and you cannot figure out how to get the program to stop, you can also type `quit` to quit GDB entirely, or just close the active terminal session. As long as the code in the function that explodes the bomb does not run, you will not lose any points.
+It will then say `[Inferior 1 (process 34507) killed]` (*the number will not be the same*) which means the program is no longer running. **This, in combination with breakpoints, is how you prevent the bomb from exploding.** If you are panicked and you cannot figure out how to get the program to stop, you can also type `quit` to quit GDB entirely, or just close the active terminal session. As long as the code in the function that explodes the bomb does not run, you will not lose any points.
 
-*Important Notice! Everytime you quit GDB (by closing terminal or typing `quit`, all your breakpoints will be removed). Try to avoid closing the program unless you are done for the day.*
+*Important Notice! Every time you quit GDB (by closing terminal or typing `quit`, all your breakpoints will be removed). Try to avoid closing the program unless you are done for the day.*
 
 #### Helpful Tip: using a text file to pass phases quickly
 
@@ -221,7 +221,7 @@ When you run the bomb in GDB, you can give command line arguments just as you wo
 
     (gdb) run psol.txt
 
-This is the same example in Section 3, and will run the debugger with all the solutions in `psol.txt`. We recommend that you keep a seperate terminal window open so that you can write to that text file without having to close GDB.
+This is the same example in Section 3, and will run the debugger with all the solutions in `psol.txt`. We recommend that you keep a separate terminal window open so that you can write to that text file without having to close GDB.
 
 ### Stepping through code
 
@@ -235,7 +235,7 @@ Once the code is running, you will need to step through the code at various inte
 
 ### Setting breakpoints
 
-*Important Notice! Everytime you quit GDB (by closing terminal or typing `quit`, all your breakpoints will be removed.) Do not quit your session of GDB unless you are prepared to reset your breakpoints!*
+*Important Notice! Every time you quit GDB (by closing terminal or typing `quit`, all your breakpoints will be removed.) Do not quit your session of GDB unless you are prepared to reset your breakpoints!*
 
 You can see a list of all the break points that you have by typing `info break`. Here is an example of the output when I have one breakpoint at the start of the main function.
 
@@ -248,7 +248,7 @@ You can see a list of all the break points that you have by typing `info break`.
 There are three important fields here:
 
 - **NUM**: every breakpoint is given a number, which is unique to that session of GDB. This means that each time you set a new breakpoint, it will get a new number. If you delete a breakpoint and put a new one in the same place, it still gets a new number.
-- **ENB**: Whether or not the breakpoint is enabled. This is important becuase if you disabled a breakpoint, it will no longer protect that part of the code from executing.
+- **ENB**: Whether or not the breakpoint is enabled. This is important because if you disabled a breakpoint, it will no longer protect that part of the code from executing.
 - **ADDR/WHAT**: These are more or less one field, and they represent where the breakpoint is. Notice that the *what* field gives the C code line for main, which is in this case 37. Those line numbers are not useful to us mostly because we don't have the full code to reference. The important address for us is the hex address, which represents where that function is in memory.
 
 The syntax for adding a breakpoint is very simple: `break <expression>` or `b <expression>`
@@ -426,11 +426,11 @@ There is also special syntax for expressing an array:
 At this point, if you have read everything in this document, you have all the info that you need to stop Dr. Evil's plan and defuse your bomb. There is also a help video posted [here](https://youtu.be/9ExMzs8TWoU) that you can watch that goes over most of these things in a visual way. That video also gives you more insight on how to attack the assembly code. Remember the following tips:
 
 - Start big. Don't immediately dive into single instructions to determine what they are doing and why they are in that order. Instead, try to create a big picture idea of what's happening, either in words or pictures. See what the whole function is doing, then "attack" portions of the code to figure out what's happening to your input.
-- None of the names used in this lamb are misnomers - if a function is named `add_two_numbers`, then it is guaranteed to add two numbers. Use the names of functions to make assumptions and save yourself time.
+- None of the names used in this lab are misnomers - if a function is named `add_two_numbers`, then it is guaranteed to add two numbers. Use the names of functions to make assumptions and save yourself time.
   - Speaking of function names, if a function's name starts with `iso_c99` it is a C library function. You should usually avoid stepping into these; they can be quite complex. You can get away with just knowing what parameters they take and what they return.
 - Try to assess specific portions of that code where your input seems to fail at. By identifying specific failure points like `cmp` and `test` lines, you can work backwards to identify what the input you gave was, and what it could have been to pass those tests.
 - Make sure you write everything down! Keep pen and paper on hand. Even if you are making smooth progress, you will want to refer to old structures etc., and unless you finish the bomb in one sitting, you'll want to make sure you have a good amount of notes on hand when you come back for round 2.
-- Remember to go to TA hours, which are usually extended right aroung the time the bomb starts.
+- Remember to go to TA hours, which are usually extended right around the time the bomb starts.
 
 **<span style="color: gold;">Good luck.</span>**
 
@@ -462,7 +462,7 @@ At this point, if you have read everything in this document, you have all the in
  Authentication: EAP-MSCHAPv2
  ```
 
- If you don't already know how to set up a VPN, go to [the CAEDM VPN page](https://caedm.et.byu.edu/wiki/index.php/VPN) and scroll to the bottom, where you will find a table of link to setting up the VPN depending on your operating system. After you have gotten the VPN to connect succesfully, your computer will appear to be coming from inside the CAEDM network. This means that you can SSH in directly with `ssh username@digital-##.ee.byu.edu`, where `username` is your CAEDM username, and `##` is any number between 01 and 60.
+ If you don't already know how to set up a VPN, go to [the CAEDM VPN page](https://caedm.et.byu.edu/wiki/index.php/VPN) and scroll to the bottom, where you will find a table of links to setting up the VPN depending on your operating system. After you have gotten the VPN to connect successfully, your computer will appear to be coming from inside the CAEDM network. This means that you can SSH in directly with `ssh username@digital-##.ee.byu.edu`, where `username` is your CAEDM username, and `##` is any number between 01 and 60.
 
  *If you work in the Engineering Building or Clyde Building in a research position, and already have a VPN set up for that lab, you can try reaching `digital-##.ee.byu.edu` directly with that VPN enabled instead of creating a new one. The "farther" (virtually) your lab is from the EB's main subnet, the less likely this is to work.*
 
