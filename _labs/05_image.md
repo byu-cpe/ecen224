@@ -207,8 +207,8 @@ Make sure to use the `pxl_data_cpy` array as your reference data for your calcul
   - demonstrate your doorbell running your program that fulfills all of the requirements outlined above.
   - Show them your OR filter image, and explain *why* OR-ing makes it look the way it does (not how, because we know how already).
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
-- **Once you have finished updating your `submission.md` file for this lab, it is time to upload it to Learning Suite! Make sure to review the rubric attached to the listing on LS and remove the instructions inside `submission.md`.**
+- Follow the instructions in the `readme_practice.md` file in the repository to update your README file with what you did in this lab.
+- **Once you have finished updating your `readme_practice.md` file for this lab, it is time to upload it to Learning Suite! Make sure to review the rubric attached to the listing on LS and remove the instructions inside `readme_practice.md`.**
 
 ## Explore More
 

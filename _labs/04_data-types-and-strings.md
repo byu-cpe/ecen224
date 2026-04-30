@@ -332,7 +332,7 @@ Notes:
   - Show the output of the passoff executable
   - Show how you implemented your functions in `data.c` and `custom_strings.c`
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `submission.md` file in the repository to update your README file with what you did in this lab.
+- Follow the instructions in the `readme_practice.md` file in the repository to update your README file with what you did in this lab.
 
 ## Explore More
 
