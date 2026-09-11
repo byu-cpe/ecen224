@@ -81,13 +81,8 @@ collections:
       - ai_policy.md
       - coding_standard.md
       - lab_setup.md
-      - craftsmanship.md
-      - ta_hours.md
-      - help_queue.md
-      - embed_queue.md
-      - schedule.md
-      - schedule225.md
-      - schedule225-2.md
+      - digital_queue.md
+      - embedded_queue.md
       - recitations.md
 
 defaults:

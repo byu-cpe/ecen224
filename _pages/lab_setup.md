@@ -1,7 +1,7 @@
 ---
 layout: page
 toc: false
-title: GitHub Setup
+title: Git Setup
 icon: fa-duotone fa-wrench
 ---
 
