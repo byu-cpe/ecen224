@@ -9,19 +9,17 @@ We decided to keep the coding standard simple so you can worry less about the st
 ## C Coding Standard
 
 1. All code must be written in C.
-  
-2. You must use [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html) to format your code with the following options: 
+1. For every function you write, have a block comment before it explaining what the function does.
+
+<!-- 1. You must use [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html) to format your code with the following options: 
 
     - Open up VSCode and type in `Ctrl + ,`
     - In the search bar, type in `clang`
     - Under the section that says **C_Cpp: Clang_format_style**, enter in
-
       ```
       { BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, ColumnLimit: 100, InsertBraces: true }
       ```
-    - Then type in `Format on save` in the search bar and check the box under **Format on Save**
-
-3. For every function you write, have a block comment before it explaining what the function does.
+    - Then type in `Format on save` in the search bar and check the box under **Format on Save** -->
 
 ## Markdown Coding Guidelines
 

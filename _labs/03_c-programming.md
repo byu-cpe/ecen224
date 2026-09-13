@@ -120,7 +120,6 @@ If you followed these steps correctly, your code should output the following to 
 
 ```bash
 Hello, World!
-
 ```
 
 The default name for all compiled programs is `a.out`. If you wish to change that, you can use the `-o` flag on the `gcc` program to name the output file:

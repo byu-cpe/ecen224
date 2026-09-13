@@ -23,19 +23,19 @@ We have designed the lectures and labs to be engaging, practical, and (hopefully
 
 ## Course Makeup
 
-This course is split into two: ECEn 224 forms the lecture/exam/programming-assignment part of the course and ECEn 225 forms the lab portion of the course. 
+This course is split into two: ECEn 224 forms the lecture/exam/programming-assignment part of the course and ECEn 225 forms the lab portion of the course.
 
 Overall the two courses are made up of six major components that all work together to help make you an expert in computer systems.
 
-- **Lectures**. Lectures are one of the most important ways to learn the material. Please come to lecture. Reading the book, though it is important, is not a substitute. While in lecture, take notes. It will help you stay engaged in the lecture, help you remember the content better, and you have a great study resource for the tests.
+- **Lectures**. Lectures are one of the most important ways to learn the material. Please come to lecture. Reading the book, though it is important, is not a substitute. While in lecture, take notes. It will help you stay engaged in the lecture, help you remember the content better, and provide a great study resource for the tests.
 
-- **Homework**. Homeworks are due one week after the unit's material is covered. They will cover information from the lecture and book. The homework will help apply the ideas you have learned from lecture and book and prepare yourself for the exams. 
+- **Homework**. Homework is due one week after a unit's material is covered. Homework will cover information from the lecture and book. Completing the homework will help apply the ideas you have learned and prepare you for the exams.
 
 - **Programming Assignments**. Some of the topics we learn about in this class require extra practice to truly become a master. This mastery will be accomplished through programming assignments. You will have two programming assignments where you will do a deep dive on one or two of the concepts you learned in class.
 
 - **Exams**. There are two midterms and a comprehensive final. No one likes exams, but they are essential to gauge how well you have mastered the content and prove to yourself that you are an expert at computer systems.
 
-- **Labs**. Labs are due every week (with a few exceptions). Labs are passed off with a TA and turned in through Github and via a Learning Suite quiz. For every lab, there is also a feedback component. This feedback gives you a chance to tell me what you liked and did not like about the lab so that I can improve the labs for future years. The purpose of the labs is to learn how to build something complex and apply what you have learned in lecture. Throughout the semester you will be building a smart doorbell system. This project will give you the confidence you need to build interesting projects in the future.
+- **Labs**. Labs are due every week (with a few exceptions). Labs are passed off with a TA and post-lab quizzes are submitted via Learning Suite. For every lab, there is also a feedback component. This feedback gives you a chance to share what you liked and did not like about the lab so that improvements can be made. The purpose of the labs is to learn how to build something complex and apply what you have learned in lecture. Throughout the semester you will be building a smart doorbell system. This project will give you the confidence you need to build interesting projects in the future.
 
 - **Recitations**. Recitations are a chance for you to meet together as students with a TA and go over the content from the class. Initially, recitation will be focused on skills you will need to be a successful electrical and computer engineer, such as command line tools and debugging code. As the semester progresses, the recitations will shift to focus more on course content and help with labs and programming assignments. While recitations are optional, we highly recommend it.
 
@@ -49,22 +49,33 @@ The grade breakdown for ECEn 225 is listed below:
 | Component                  | % of Grade |
 | -------------------------- | ---------- |
 | Lab TA Passoff             | 70         |
-| Attendance Quizzes         | 11         |
+| Attendance Quizzes         | 10         |
 | Post-lab Quizzes           | 10         |
-| Github Submissions/README  | 9          |
-
-
+| Github Submissions/README  | 10         |
 
 ## Attendance and Participation
-This is a sophomore-level class, so I expect participation. I expect all students to attend every lecture and be engaged in the lecture. Asking and answering questions in class is essential. When you are in a lecture, I expect your attention, so students should not be on their phones or doing non-class related things on laptops.
+This is a sophomore-level class, so participation is expected. Students are expected to attend the lectures and the labs. You should be engaged by asking and answering questions. When you are in a lecture, students should not be on their phones or doing non-class related things on laptops.
 
 ## Late Policy
-Don't be late. Homeworks will not receive any late credit. For lab and programming assignments, 10% of the grade will be subtracted for each day late, not including weekends, upto 5 days (1 week). After that, we still want you to do the labs, so you can still turn them in for 50%. However, do not fall behind. The labs all build on one another, so you will not be able to complete the next lab if you have not completed a previous one. Please reach out to the lab instructor or TA if you feel like you are falling behind. Please, just don't turn them in late!
+Homework that is late will not receive any credit. For lab and programming assignments, 10% of the grade will be subtracted for each day late, not including weekends, up to 5 days (1 week). After that, we still want you to do the labs, so you can still turn them in for 50%. However, do not fall behind. The labs all build on one another, so you will not be able to complete the next lab if you have not completed a previous one. Please reach out to the lab instructor or TA if you feel like you are falling behind. Please, just don't turn them in late!
 
 ## Source Code Sharing
 No source code should be shared between students. Students can work on assignments together, but no direct or indirect copying from another student is allowed. This class will use a code similarity checker to determine if students are copying code.
 
 ## Policies
+
+### Use of AI
+The use of AI is not allowed. The class policy is consistant with the [official department policy on AI](https://ece.byu.edu/ai-policy).  Students are expected to develop basic skills and critical thinking *before* they learn how to use advanced tools to assist them in the design process. Prohibited usage includes, but is not limited to:
+
+- Using AI (including Copilot within VS Code) to generate or suggest code for lab assignments.
+- Copying code from AI and submitting it as your own work. This includes agentic tools and Google AI overview.
+- Passing the lab procedures, requirements, or provided code into an AI system.
+- Using AI to generate answers to quizzes, exams, or homework.
+
+Using AI constitutes an unfair advantage. Policy enforcement follows a **one-warning system**:
+
+1. **First offense:** Students using AI are given a clear, friendly, and direct reminder of the policy.
+2. **Second offense:** Students who continue to use AI where prohibited will receive a **0 on that assignment**, without question.
 
 ### Honor Code
 In keeping with the principles of the BYU Honor Code, students are expected to be honest in all of their academic work. Academic honesty means, most fundamentally, that any work you present as your own must in fact be your own work and not that of another. Violations of this principle may result in a failing grade in the course and additional disciplinary action by the university. Students are also expected to adhere to the Dress and Grooming Standards. Adherence demonstrates respect for yourself and others and ensures an effective learning and working environment. It is the university's expectation, and every instructor's expectation in class, that each student will abide by all Honor Code standards. Please call the Honor Code Office at 422-2847 if you have questions about those standards.

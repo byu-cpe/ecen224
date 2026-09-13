@@ -18,7 +18,7 @@ Here are some other resources that might help you:
 - Jan Schaumann has a lot of great videos on [Advance Programming in the UNIX Environment](https://www.youtube.com/@cs631apue/videos).
 
 - Ben Eater has some great [videos](https://www.youtube.com/@BenEater) on how to build a computer, write assembly, and other computer topics.
-  
+
 - [Computerphile](https://www.youtube.com/results?search_query=computerphile) has approachable videos on various computing topics.
 
 - Chris has some tutorials on various Linux topics on his [blog](https://kitras.io).
@@ -66,27 +66,25 @@ If you want even more commands at a glance, check out [this cheat sheet](https:/
 
 ### Setting up Wi-Fi
 
-If you want to connect to your doorbell off campus, you can follow the following steps:
+If you want to connect to your doorbell off campus, you can follow these steps:
 
-**1: Set up Wi-Fi connection**
+**Step 1: Set up Wi-Fi connection**
 
 You will need to do this step in the lab unless you have any other way to connect to your raspberry pi.
 
-When connected to your pi, run the command `sudo raspi-config`.  This will bring up a terminal-based GUI that you can navigate using the arrow and enter keys.
+When connected to your pi, run the command `sudo raspi-config`. This will bring up a terminal-based GUI that you can navigate using the arrow and enter keys.
 
-Once inside, navigate to `1 System Options` > `S1 Wireless Lan`.  Put your network name in the SSID field, and your network password in the passphrase field. You may complete this step as many times as you wish for as many networks as you wish.
+Once inside, navigate to `1 System Options` > `S1 Wireless Lan`. Put your network name in the SSID field, and your network password in the passphrase field. You may complete this step as many times as you wish for as many networks as you wish.
 
 Note that certain secure networks such as eduroam *will not* work with this connection method.
 
 Once you have entered all the network information, leave the configuration GUI by selecting `<Finish>`.
 
-You can confirm that your network was properly configured by running `sudo cat /etc/wpa_supplicant/wap_supplicant.conf`.  Your network and password should be listed there.
+You can confirm that your network was properly configured by running `sudo cat /etc/wpa_supplicant/wap_supplicant.conf`. Your network and password should be listed there.
 
 **Step 2: Connecting at home**
 
-Your pi should now be able to connect to the Wi-Fi network(s) that you entered in at the lab. When you're at home, power your pi with a micro-usb cord plugged into the *bottom port*. On a computer connected to the same network, you can set up VS code to ssh into your computer as we described in Lab 1.
-
-If you use a Mac, you may need to adjust some system security settings to allow the VS code remote connection extension to SSH into your doorbell: Go to the settings app, `Privacy & Security` > `Local Network` > `Visual Studio Code`, and toggle it to allowed.
+Your pi should now be able to connect to the Wi-Fi network(s) that you entered in at the lab. When you're at home, power your pi with a micro-usb cord plugged into the *bottom port*. On a computer connected to the same network, you can ssh into your pi.
 
 You should now be able to control your Pi at home!
 

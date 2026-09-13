@@ -12,9 +12,8 @@ layout: lab
 
 ## Important Notes
 
-- **This lab, and all future labs, should be done on your Raspberry Pi!**
-
-- **This lab, and this lab only, should be completed using your terminal only. Don't use VSCode, as that defeats the purpose of learning the command line.**
+- If you haven't completed the [Lab Setup]({% link _pages/lab_setup.md %}), please take time to do so now.
+- **This lab, and this lab only, use the command line in a terminal window to navigate and view directories. Do not use a file exploring application or the file browsing panel in VS Code, as that defeats the purpose of learning the command line.**
 
 ## Introduction
 
@@ -32,11 +31,11 @@ This first section involves some reading, and a lot of exploring Linux and its c
 
 Work through **Modules 1, 2, 3 (skip the printing commands), and 4** of the [Linux Survival tutorial](http://linuxsurvival.com/). It has a simulated Linux terminal for practicing what you learn in the modules.
 
-For a brief list of commonly used commands, see the [Linux Command Summary]({{site.baseurl}}/resources#linux_commands_summary/).
+For a brief list of commonly used commands, see the [Linux Command Summary]({% link _pages/resources.md %}#linux-command-summary).
 
 #### Keyboard Shortcuts
 
-Even though using the command line to do things in Linux may seem like a lot of typing, there are shortcuts in place that can tremendously reduce the number of keystrokes. With a little practice, the shortcuts become a natural part of doing work on the command line and can even be more efficient than pointing, clicking, and navigating menus in a graphical interface. With a graphical interface, a user will often need to move their hand back and forth between the keyboard and the mouse. This motion is inefficient, even though most of us get used to it. With command line operation, our fingers never need to leave the keyboard and reach for the mouse.
+Even though using the command line to do things in Linux may seem like a lot of typing, there are shortcuts in place that can tremendously reduce the number of keystrokes. With a little practice, the shortcuts become a natural part of doing work on the command line and can even be more efficient than pointing, clicking, and navigating menus in a graphical interface. With a graphical interface, a user will often need to move their hand back and forth between the keyboard and the mouse. This motion is inefficient, even though most of us get used to it. With command line operation, our fingers never need to leave the keyboard and reach for the mouse. You can open a new terminal window by typing `Ctrl`+`Alt`+`T`.
 
 #### Command History
 
@@ -48,7 +47,7 @@ Once you have selected a prior command with the up and down arrow keys, you may 
 
 #### Command Completion
 
-Another helpful shortcut is called tab completion. If the tab key is pressed while a partial command or file name is typed, the shell will complete the rest of the text based on what has already been typed. Open a terminal window to your home directory (you can do this by typing `Ctrl`+`Alt`+`T` and then `ssh`ing into your Raspberry Pi) and type the following and then hit `Tab`.
+Another helpful shortcut is called tab completion. If the tab key is pressed while a partial command or file name is typed, the shell will complete the rest of the text based on what has already been typed. Open a terminal window to your home directory and type the following and then hit `Tab`.
 
 ```bash
 ls /d
@@ -59,10 +58,10 @@ After hitting `Tab` you should see that “/d” was extended to “/dev/”. No
 Command names can also be tab completed. In a terminal window, type the following and then hit `Tab`.
 
 ```bash
-mkd
+fire
 ```
 
-Pressing the tab key should complete the command to mkdir. Press `Enter` to start the web browser. If you press `Tab` and you don’t get a response, you have mistyped the leading characters or there are other options that are ambiguous. Typing `Tab` again a second time will list the remaining options that begin with the characters you have typed. For example, try typing:
+Pressing the tab key should complete the command to “firefox”. Press `Enter` to start the web browser. If you press `Tab` and you don’t get a response, you have mistyped the leading characters or there are other options that are ambiguous. Typing `Tab` again a second time will list the remaining options that begin with the characters you have typed. For example, try typing:
 
 ```bash
 mk
@@ -103,9 +102,9 @@ There are some **system environment variables** that are defined for you when yo
 
 #### Get Familiar with a Command Line Text Editor
 
-Several text editors can be installed on your system, for example, `code`, `gedit`, `nano`, `vim`, and `emacs`. Some applications can only be run from the command line, while others can be launched graphically by clicking on its icon in the application screen. Choose an editor, and use it to create a new file. **Hint: Since you are doing this lab SSHed into your Pi Z2W, `code` and `gedit` will not work because they require a GUI. `emacs` can also be terminal based (and is a great option - google the debate between `vim` and `emacs`) - but will need to be installed before you can use it. Alternatively, you can use pre-installed editors like `nano` or `vim`.**
+Several text editors can be installed on your system, for example, `code`, `nano`, `vim`, and `emacs`. Some applications can only be run from the command line, while others can be launched graphically by clicking on its icon in the application screen. Choose an editor, and use it to create a new file. Debates between favorite editors such as `vim` and `emacs` can be found online.
 
-Open a new file in the cloned lab directory using `nano` and create a note to yourself. Here are some essential `nano` keybindings to help you get started:
+If you choose to use `nano`, here are some essential keybindings to help you get started:
 
 - Save: `Ctrl+O`
 - Exit: `Ctrl+X`
@@ -113,23 +112,25 @@ Open a new file in the cloned lab directory using `nano` and create a note to yo
 - Paste text: `Ctrl+U`
 - Search: `Ctrl+W`
 
-Notice the keybindings at the bottom of the terminal as well. Experiment with creating and deleting text, copying and pasting, and saving files. Quit out of `nano` and type `ls -l` to see details about the text file you created.
+1. Open a new file in the cloned “labs” directory and create a note to yourself.
+2. Experiment with deleting text, copying, and pasting.
+3. Save the file.
+4. Exit your editor and type `ls -l` to see details about the text file you created.
 
 ### Part 2: Complete the Shell Challenge
 
-To round out your shell learning experience, you are **required** to complete the shell challenge. In the folder for this lab (`starter-labs/02-command-line`), uncompress the `challenge.tar.xz` package; you will want to Google on how to do this. Notice that the file has two layers - the .tar and the .xz. In order to view the contents of the folder you must remove both (this can be done in one command). Inside the resulting directory, complete the various levels of the challenge to finish the lab.
+To round out your shell learning experience, you are **required** to complete the shell challenge. In the folder for this lab (`labs/02-command-line`), uncompress the `challenge.tar.xz` package. Notice that the file has two layers - the .tar and the .xz. In order to view the contents of the folder you must remove both (this can be done in one command). Inside the resulting directory, complete the various levels of the challenge to finish the lab. Begin by reading the contained README.txt file.
 
-In order to complete this lab, you will need to use Google. If you don’t know how to do something, Google will help you find the answer. You will likely want to search things like:
+In order to complete this challenge, you will likely need to search online. If what you learned in Part 1 above is not sufficient, a search for the following things may help:
 
 - How to uncompress a tar.xz file
-
 - How to make a script executable in Linux
 
 ## Lab Submission
 
-- Pass off to a TA by showing the correct output of your `tree` command. Make sure to show hidden folders and files.
+- Pass off with a TA by showing the correct output of your `tree` command. Make sure to show hidden folders and files.
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `readme_practice.md` file in the repository to update your README file with what you did in this lab.
+- Follow the instructions in the `readme_practice.md` file in the repository. Add what you did in the lab to this file.
 
 ## Explore More
 
