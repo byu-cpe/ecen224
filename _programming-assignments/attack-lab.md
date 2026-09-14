@@ -2,8 +2,9 @@
 title: "Attack Lab: Understanding Buffer Overflow Bugs"
 short_title: Attack Lab
 icon: fa-duotone fa-bow-arrow
-number: 3
+number: 2
 layout: lab
+toc: true
 ---
 
 ## 0. Getting Started
@@ -683,7 +684,7 @@ farm also contain 2-byte instructions that serve as *functional nops*, i.e., the
 
 Good luck and have fun!
 
-## Appendix A: Using `HEX2RAW`
+## Appendix A: Using HEX2RAW
 `HEX2RAW` takes as input a *hex-formatted string*. In this format, each byte value is represented by two hex digits. For example, the string “`012345`” could be entered in hex format as “`30 31 32 33 34 35 00`." (Recall that the ASCII code for decimal digit *x* is `0x3`*x*, and that the end of a string is indicated by a null byte.)
 
 The hex characters you pass to `HEX2RAW` should be separated by whitespace (blanks or newlines). We recommend separating different parts of your exploit string with newlines while you’re working on it. `HEX2RAW` supports C-style block comments, so you can mark off sections of your exploit string. For example:

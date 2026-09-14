@@ -2,7 +2,7 @@
 title: "Bomb Lab: Mastering x86-64 assembly and GDB"
 short_title: Bomb Lab
 icon: fa-duotone fa-bomb
-number: 2
+number: 1
 layout: lab
 toc: true
 ---

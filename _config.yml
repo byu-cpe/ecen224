@@ -13,9 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: "ECEn 224: Intro to Computer Systems"
+title: "ECEn 224/225: Intro to Computer Systems"
 class_name: Intro to Computer Systems
-class_number: ECEn 224
+class_number: ECEn 224/225
 email: lundrigan@byu.edu
 description:
 baseurl: "/ecen224" # the subpath of your site, e.g. /blog

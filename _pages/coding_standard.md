@@ -1,6 +1,7 @@
 ---
-title: Coding Standard
 layout: page
+toc: true
+title: Coding Standard
 icon: fa-duotone fa-terminal
 ---
 

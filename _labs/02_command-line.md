@@ -121,10 +121,15 @@ If you choose to use `nano`, here are some essential keybindings to help you get
 
 To round out your shell learning experience, you are **required** to complete the shell challenge. In the folder for this lab (`labs/02-command-line`), uncompress the `challenge.tar.xz` package. Notice that the file has two layers - the .tar and the .xz. In order to view the contents of the folder you must remove both (this can be done in one command). Inside the resulting directory, complete the various levels of the challenge to finish the lab. Begin by reading the contained README.txt file.
 
-In order to complete this challenge, you will likely need to search online. If what you learned in Part 1 above is not sufficient, a search for the following things may help:
+Combined with what you learned in Part 1 above, you will likely need to use the `man` command to answer the following questions.
 
-- How to uncompress a tar.xz file
-- How to make a script executable in Linux
+- How to uncompress a tar.xz file?
+  - Type `man tar` from the command line.
+  - Find the option to extract files.
+  - Find the option to specify the archive file.
+- How to make a script executable in Linux?
+  - Type `man chmod` from the command line.
+  - Find the option to add the execute permission to a file.
 
 ## Lab Submission
 

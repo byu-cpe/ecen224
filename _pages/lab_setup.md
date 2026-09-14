@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Lab Setup
 icon: fa-duotone fa-wrench
 ---

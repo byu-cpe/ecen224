@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Doorbell Setup
 icon: fa-duotone fa-wrench
 ---

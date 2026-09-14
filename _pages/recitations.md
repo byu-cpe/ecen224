@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Recitations
 icon: fa-duotone fa-podium
 ---
