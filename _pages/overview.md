@@ -49,9 +49,9 @@ The grade breakdown for ECEn 225 is listed below:
 | Component                  | % of Grade |
 | -------------------------- | ---------- |
 | Lab TA Passoff             | 70         |
-| Attendance Quizzes         | 10         |
 | Post-lab Quizzes           | 10         |
-| Github Submissions/README  | 10         |
+| Attendance Quizzes         | 10         |
+| README, Surveys            | 10         |
 
 ## Attendance and Participation
 This is a sophomore-level class, so participation is expected. Students are expected to attend the lectures and the labs. You should be engaged by asking and answering questions. When you are in a lecture, students should not be on their phones or doing non-class related things on laptops.

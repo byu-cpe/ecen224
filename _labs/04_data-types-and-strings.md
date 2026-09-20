@@ -26,7 +26,7 @@ This section includes information about data types and strings you will find vit
 
 ### Part 1: Important Components of C
 
-In the C Programming lab, you worked with a few of C's _native_ data types, those that are implicitly defined in C without `#include`-ing any other libraries. Some things you need to consider and operations you should know are listed below.
+In the previous C Programming lab, you worked with a few C _native_ data types, those that are implicitly defined in C without `#include`-ing any other libraries. Some things you need to consider and operations you should know are listed below.
 
 #### Inconsistent Sizes
 
@@ -40,7 +40,7 @@ printf("%d\n", sizeof(n));      // Prints the size of n in bytes
 printf("%d\n", sizeof(char));   // Prints the size of a char
 ```
 
-Because the sizes and signedness of the all the data types defined in `stdint.h` are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.  
+Because the sizes and signedness of the all the data types defined in `stdint.h` are defined and constant, it is **good practice** to use the integer values in `stdint.h` instead of the native C integers.
 
 ```c
 unsigned int x = 40; // Acceptable, but unreliable.
@@ -53,13 +53,13 @@ By using `uint32_t` instead of `unsigned int`, you can be sure that your variabl
 
 All data types have a maximum and minimum value based on their width. What happens when we try to set a variable beyond these maximum or minimums?
 
-If a variable is at the maximum value it can store, adding one will cause the carried bit to be **truncated**, meaning it is "lost", dropped by the processor. This truncation results in **Overflow** errors. In similar manner, when you drop below the minimum value, you cause an **Underflow** error. _Note: overflow and underflow can appear slightly differently if the type is signed or unsigned._
+If a variable is at the maximum value it can store, adding one will cause the carried bit to be **truncated**, meaning it is "lost", dropped by the processor. This truncation results in **Overflow** errors. In a similar manner, when you drop below the minimum value, you cause an **Underflow** error. _Note: overflow and underflow can appear slightly differently if the type is signed or unsigned._
 
 Overflow Example:
 
 ```c
 // Because an uint8_t has a maximum value of 255 (and adding 1 will overflow back to 0), 
-// x will always be less than 500.  Thus, this for-loop will never end.
+// x will always be less than 500. Thus, this for-loop will never end.
 for (uint8_t x = 0; x < 500; x++) {
     ...
 }
@@ -80,30 +80,30 @@ Choosing your data types intentionally can be a helpful debugging tool as well. 
 
 #### Order of Operations in C
 
-The order of operations in C are shown in the following [table](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm) (highest/first priority at the top, lowest/last priority at the bottom):
+The order of operations in C are shown in the following [table](https://www.eecs.northwestern.edu/~wkliao/op-prec.htm) (highest/first priority at the top, lowest/last priority at the bottom):
 
 
-| Operation(s)                                                                             | Operator                            | Associativity |
-| ---------------------------------------------------------------------------------------- | ----------------------------------- | ------------- |
-| Postfix (function calls, array/pointer/struct access, and postfix inc/dec)               | `() [] -> . ++ --`                  | Left-to-right |
-| Unary (negative, logical/binary not, prefix inc/dec, casting, address reference, sizeof) | `- ! ~ ++ -- (type)* & sizeof`      | Right-to-left |
-| Multiplicative                                                                           | `* / %`                             | Left-to-right |
-| Additive                                                                                 | `+ -`                               | Left-to-right |
-| Shift                                                                                    | `<< >>`                             | Left-to-right |
-| Relational                                                                               | `< <= > >=`                         | Left-to-right |
-| Equality                                                                                 | `== !=`                             | Left-to-right |
-| Bitwise AND                                                                              | `&`                                 | Left-to-right |
-| Bitwise XOR                                                                              | `^`                                 | Left-to-right |
-| Bitwise OR                                                                               | <code>|</code>                      | Left-to-right |
-| Logical AND                                                                              | `&&`                                | Left-to-right |
-| Logical OR                                                                               | <code>||</code>                     | Left-to-right |
-| Conditional                                                                              | `?:`                                | Right-to-left |
-| Assignment                                                                               | `= += -= *= /= %=>>= <<= &= ^= \|=` | Right-to-left |
-| Comma                                                                                    | `,`                                 | Left-to-right |
+| Operation(s)                                                                              | Operator                            | Associativity |
+| ----------------------------------------------------------------------------------------- | ----------------------------------- | ------------- |
+| Postfix (function calls, array/pointer/struct access, and postfix inc/dec)                | `() [] -> . ++ --`                  | Left-to-right |
+| Unary (negative, logical/binary not, prefix inc/dec, casting, address, reference, sizeof) | `- ! ~ ++ -- (type) * & sizeof`     | Right-to-left |
+| Multiplicative                                                                            | `* / %`                             | Left-to-right |
+| Additive                                                                                  | `+ -`                               | Left-to-right |
+| Shift                                                                                     | `<< >>`                             | Left-to-right |
+| Relational                                                                                | `< <= > >=`                         | Left-to-right |
+| Equality                                                                                  | `== !=`                             | Left-to-right |
+| Bitwise AND                                                                               | `&`                                 | Left-to-right |
+| Bitwise XOR                                                                               | `^`                                 | Left-to-right |
+| Bitwise OR                                                                                | <code>|</code>                      | Left-to-right |
+| Logical AND                                                                               | `&&`                                | Left-to-right |
+| Logical OR                                                                                | <code>||</code>                     | Left-to-right |
+| Conditional                                                                               | `?:`                                | Right-to-left |
+| Assignment                                                                                | `= += -= *= /= %= >>= <<= &= ^= |=` | Right-to-left |
+| Comma                                                                                     | `,`                                 | Left-to-right |
 
 #### Literals in C
 
-A **literal** is any hardcoded values included in your code. These are often numbers, but can be strings, characters, or booleans as well.  
+A **literal** is any hardcoded values included in your code. These are often numbers, but can be strings, characters, or booleans as well.
 
 ```c
 double a = 125 / 3.14;                  // 125 / 3.14
@@ -112,7 +112,7 @@ if ( check_small_enough(a) == true )    // true
     printf("Yipee!\n");                 // "Yipee!"
 ```
 
-By default, integer literals are treated as `int`s. Decimal literals are treated as `double`s. Adding a suffix to some literals allows to specify what type it should be considered. For example, `125` is an `int` by default, but `125U` will be treated as an unsigned int. Similarly, `3.14` is assumed to be a `double` by default, but `3.14f` will be treated as a `float`.  
+By default, integer literals are treated as `int`s. Floating-point literals are treated as `double`s. Adding a suffix to some literals specifies what type it should be considered. For example, `125` is an `int` by default, but `125U` will be treated as an unsigned int. Similarly, `3.14` is assumed to be a `double` by default, but `3.14f` will be treated as a `float`.
 
 Integer literals can be specified in either decimal, hexadecimal (prefixed by `0x`), and binary (prefixed by `0b`).
 
@@ -124,7 +124,7 @@ Integer literals can be specified in either decimal, hexadecimal (prefixed by `0
 
 ##### Sign Extension
 
-Whenever you cast a signed integer type to another signed integer type with a larger _width_ (e.g. `char` to `int`), the data is **sign extended** to the new length. This property of 2's Complement numbers means if you set the extra bits in the casted value to match the **Most Significant Bit** (MSB) of the old value, the casted number retains its decimal value. This is best explained through visual example:
+Whenever you cast a signed integer type to another signed integer type with a larger _width_ (e.g. `char` to `int`), the data is **sign extended** to the new length. This property of 2's Complement numbers means if you set the extra bits in the casted value to match the **Most Significant Bit** (MSB) of the old value, the casted number retains its decimal value. This is best explained through a visual example:
 
 ```c
 int16_t a = 0xF123;     // Binary Value:                 1111000100100011 | 16 bits
@@ -142,7 +142,7 @@ int32_t d = c;          // New    Value: 00000000000000001111000100100011 | 32 b
 
 ##### Truncation
 
-**Truncation** is the opposite effect of Sign Extension - casting from a larger integer type to a smaller type (either signed or unsigned). When values are truncated, any of the extra bits from the original value are "chopped off" or thrown away by the processor. Anytime that your variable stores a value larger than the maximum of the type it is truncated to, you will lose data:
+**Truncation** is the opposite effect of Sign Extension. Truncation may occur when casting from a larger integer type to a smaller type (either signed or unsigned). When values are truncated, any of the extra bits from the original value are "chopped off" or thrown away by the processor. Anytime the source value is larger than the destination type can hold, truncation will occur and data will be lost:
 
 ```c
 int16_t a = 0xF1F3;     // Binary: 1111000111110011 Decimal: -3597 (0xF1F3)
@@ -175,9 +175,9 @@ In all of these cases, after the operation is performed, if the result of the ca
 
 #### Characters and Strings
 
-You have probably noticed by now that C does not include a string data type. Instead, individual letters are represented with the `char` data type, and "strings" can be made with arrays of characters. Each decimal value from  0 to 127 is mapped to a specific character per the ASCII (American Standard Code for Information Interchange) standard. For example, the character `A` is represented by the decimal value 65. This is different from the character `a`, which is represented by the decimal value 97. You can find this standard by simply googling "ASCII Table" or by using a website like [ascii-code.com](https://www.ascii-code.com/).
+You have probably noticed by now that C does not include a string data type. Instead, individual letters are represented with the `char` data type, and "strings" can be made with arrays of characters. Each decimal value from 0 to 127 is mapped to a specific character per the ASCII (American Standard Code for Information Interchange) standard. For example, the character `A` is represented by the decimal value 65. This is different from the character `a`, which is represented by the decimal value 97. You can find this standard by simply googling "ASCII Table" or by using a website like [ascii-code.com](https://www.ascii-code.com/).
 
-To help you with these manipulations, the `string.h` library includes various string manipulation functions.  Some of these include:
+To help you with these manipulations, the `string.h` library includes various string manipulation functions. Some of these include:
 
 - `strlen()`, which returns the length of a string (not including the null terminator)
 - `sprintf()`, which works with the same formatting specifiers as `printf()`, but instead of printing to the terminal, it "prints" to an array or memory location.
@@ -189,9 +189,9 @@ Remember that all strings must end with a **null terminator**, `\0`, which tells
 
 ##### Using Functions with Arrays and Strings
 
-When a function returns, the memory associated with it is released and can be used for other things. As with all variables, this means that an array declared locally in a function "disappears" after the function returns. This causes big problems if somewhere else in the code is still trying to access that memory. Arrays (and strings) that are needed after a function returns **should not** be declared or defined within that function.
+When a function returns, the memory associated with it is released and can be used for other things. As with all variables, this means that an array defined locally in a function "disappears" after the function returns. This causes big problems if somewhere else in the code is still trying to access that memory. Arrays (and strings) that are needed after a function returns **should not** be defined within that function.
 
-Instead, pass a pointer to the array as a parameter function that uses it. Since an array's **base**, or name, is basically a pointer under the hood, passing arrays around like this means changes made to the array by a function will persist, even after the function is done.
+Instead, pass the array as a parameter to the function that uses it. Since an array's **base**, or name, is basically a pointer under the hood, passing arrays around like this means changes made to the array by a function will persist, even after the function is done.
 
 ```c
 // Bad function; the array data will be lost once the function returns
@@ -226,11 +226,11 @@ One form of trace debugging is performing manual checks on data by adding `print
 
 ```c
 // Trace debug print statement (the original string value)
-printf("Original Str:\t%s\n", original_str);    
+printf("Original Str:\t%s\n", original_str);
 // Some function that doesn't work or may be buggy
-modify_string(original_str); 
+modify_string(original_str);
 // Trace debug print statement (the modified string value)
-printf("Modified Str:\t%s\n", original_str);    
+printf("Modified Str:\t%s\n", original_str);
 
 ```
 
@@ -273,20 +273,20 @@ log_info("The value is %d", value);
 
 ## Lab Proceedure
 
-In the folder for this lab (`starter-labs/04-c-programming-part-2`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug.  Descriptions and hints for each function can be found in the `.h` files.
+In the folder for this lab (`labs/04-c-programming-part-2`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug. Descriptions and hints for each function can be found in the `.h` files.
 
 As you are working on these functions, please respect the following restrictions:
 
-1. Do not change data types of parameters or return values
+1. Do not change the data types of parameters or return values
     unless otherwise stated.
 2. If you need to change a data type to a floating-point
-    number, then use `double`, not `float`.  The autograder
+    number, then use `double`, not `float`. The provided passoff code
     uses `doubles`, not `floats`.
 3. Follow the specific rules in the function descriptions (see the `.h` files).
 
 A list of expected inputs/outputs can be found below in **Appendix: Test Cases**.
 
-Your repository includes a `main.c` for your own use to print and debug the code.  To compile and run your program (as defined in `main.c`) you can run the following commands:
+Your repository includes a `main.c` for your own use to print and debug the code. To compile your program (as defined in `main.c`) you can run the following command:
 
 ```bash
 gcc -Werror main.c data.c custom_strings.c -o lab4_main
@@ -298,16 +298,9 @@ After compiling the program, **check that your program has no warnings or errors
 ./lab4_main
 ```
 
+**For passoff**, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file. The binary `.o` file contains compiled test code needed for passoff.
 
-**For passoff**, you will compile the `data.c` and `custom_strings.c` files with the `lab4_passoff.o` file.  This is a binary file that is already compiled and ready to be linked to your code.
-
-To pull the `lab4_passoff.o` file into your repository, run this command in your lab 4 directory:
-
-```bash
-wget https://byu-cpe.github.io/ecen224/assets/scripts/lab4_passoff.o
-```
-
-To compile and run the pass off script, you can run:
+To compile and link the pass off program, enter the command:
 
 ```bash
 gcc -Werror lab4_passoff.o data.c custom_strings.c -o passoff
@@ -319,11 +312,9 @@ After compiling the program, run:
 ./passoff
 ```
 
-The gcc command above will compile your `.c` files and then link them together with the `lab4_passoff.o` file that contains our test code.
-
 Notes:
-1. If you want to include a logging library, you will have to include that in the `gcc` commands as well.
-2. You can use `printf()` statements for debugging your files.  If you include these statements in `data.c` and `custom_strings.c`, they will be printed to `output.txt` when run with the passoff script.
+1. If you want to include a logging library, you will have to include it in the `gcc` commands as well.
+2. You can use `printf()` statements for debugging your files. If you use them in `data.c` and `custom_strings.c`, the output will be printed to `output.txt` when your code is linked with the passoff program.
 
 ## Lab Submission
 
@@ -332,7 +323,7 @@ Notes:
   - Show the output of the passoff executable
   - Show how you implemented your functions in `data.c` and `custom_strings.c`
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `readme_practice.md` file in the repository to update your README file with what you did in this lab.
+- Follow the instructions in the `readme_practice.md` file in the repository. Add what you did in the lab to this file.
 
 ## Explore More
 
@@ -350,7 +341,7 @@ Your code should work with the following test cases:
 
 ##### Calculate Circumfrence
 
-1. Radius: 1,  Output: 6.28
+1. Radius: 1, Output: 6.28
 2. Radius: 3.14, Output: 19.729
 3. Radius: 0, Output: 0.0
 4. Radius: -10, Output: -1.0
