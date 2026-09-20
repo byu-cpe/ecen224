@@ -7,7 +7,7 @@ icon: fa-duotone fa-book
 
 ### Textbook
 
-The class has one required textbook: ***Computer Systems: A Programmer's Perspective, 3rd Edition by Bryant and O'Hallaron***. We will also be using an online Wikibook, [C Programming](https://en.wikibooks.org/wiki/C_Programming), when we learn about C programing.
+The class has one required textbook: ***Computer Systems: A Programmer's Perspective, 3rd Edition by Bryant and O'Hallaron***. We will also be using an online Wikibook, [C Programming](https://en.wikibooks.org/wiki/C_Programming), when we learn about C programming.
 
 ### Learning Resources
 
@@ -98,12 +98,12 @@ You should now be able to control your Pi at home!
 
 - [BYU Computing Bootcamp: Git](https://byu-cpe.github.io/ComputingBootCamp/tutorials/git/)
 - [BYU Computing Bootcamp: GitHub](https://byu-cpe.github.io/ComputingBootCamp/tutorials/github/)
-- [Add WiFi credentials after installation](https://howchoo.com/g/ndy1zte2yjn/how-to-set-up-wifi-on-your-raspberry-pi-without-ethernet)
+- [Add WiFi Credentials After Installation](https://howchoo.com/g/ndy1zte2yjn/how-to-set-up-wifi-on-your-raspberry-pi-without-ethernet)
 - [Install ZSH and Oh My ZSH with Powerlevel10k Theme](https://dev.to/abdfnx/oh-my-zsh-powerlevel10k-cool-terminal-1no0)
 
     - [Meslo LGS NF Font with Icons](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/M/Regular/complete/Meslo%20LG%20M%20Regular%20Nerd%20Font%20Complete.ttf)
-    - [Change terminal font](https://help.gnome.org/users/gnome-terminal/stable/app-fonts.html.en#:~:text=Custom%20font.-,Set%20a%20custom%20font,-To%20set%20a) to the font above.
+    - [Change Terminal Font](https://help.gnome.org/users/gnome-terminal/stable/app-fonts.html.en#:~:text=Custom%20font.-,Set%20a%20custom%20font,-To%20set%20a) to the font above.
 
 - [GitHub Markdown Examples](https://gist.github.com/ww9/44f08d44327a40d2ab309a349bebec57)
 
-- [GDB Cheatsheet](https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf)
+- [GDB Cheat Sheet](https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf)

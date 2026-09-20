@@ -14,7 +14,7 @@ We decided to keep the coding standard simple so you can worry less about the st
 
 <!-- 1. You must use [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html) to format your code with the following options: 
 
-    - Open up VSCode and type in `Ctrl + ,`
+    - Open up VS Code and type in `Ctrl + ,`
     - In the search bar, type in `clang`
     - Under the section that says **C_Cpp: Clang_format_style**, enter in
       ```
@@ -39,7 +39,7 @@ We decided to keep the coding standard simple so you can worry less about the st
 - Inline links should be formatted as `[link text](URL)`.
 
 5. Code Blocks:
-- Indent code blocks with four spaces or use triple backticks ``` for fenced code blocks.
+- Indent code blocks with four spaces or use triple back ticks ``` for fenced code blocks.
 
 6. Escape Characters:
 - Use backslash `\` to escape Markdown characters if needed.

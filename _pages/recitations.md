@@ -25,15 +25,15 @@ These are all the recitations from previous semesters.
   * 🖼️[Slides](/ecen224/recitation/slides_f24/intro_syllabus_help.pdf)
 * R01 (09/16/24) - Information Representation
   * 🖼️[Slides](/ecen224/recitation/slides_f24/information_representation.pdf)
-* R02 (09/20/24) - Git and Github
+* R02 (09/20/24) - Git and GitHub
   * 🖼️[Slides](/ecen224/recitation/slides_f24/git_github.pdf)
-* R03 (09/27/24) VSCode
+* R03 (09/27/24) VS Code
   * 📟[Visual Studio Code Installer](https://code.visualstudio.com/Download)
   * 🚶‍♀️[VS Code Walkthrough](/ecen224/recitation/vscode-walkthrough)
 * R04 (10/04/24) Midterm 1 Review
-  * See Also: LearningSuite >> EC EN 224 >> Content >> Review Materials >> Game 1 Review
+  * See Also: Learning Suite >> ECEN 224 >> Content >> Review Materials >> Game 1 Review
   * 🖼️[Arrays in C](/ecen224/recitation/slides_f24/arrays_in_C.pdf)
-    * presentation on how arrays work both visually, and in computer memory.
+    * Presentation on how arrays work both visually, and in computer memory.
   * 🖼️[Pointers in C](/ecen224/recitation/slides_f24/pointers_in_C.pdf)
     * These slides are not entirely complete, but should get you started.
 * R05 (10/11/24) Make and Makefile

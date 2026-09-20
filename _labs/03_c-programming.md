@@ -50,7 +50,7 @@ Compilers do more than simply convert a higher-level language to machine languag
 
 #### Step 1: Pre-processing
 
-This step runs a pre-compiler program which handles special statements in your code called **directives**. Directives, which are denoted by the `#` sign, help decide which parts of a written program in C are included during the compilation process.
+This step runs a pre-processor program which handles special statements in your code called **directives**. Directives, which are denoted by the `#` sign, help decide which parts of a written program in C are included during the compilation process.
 
 One of the most common directives is the `#include` directive, which "includes" an already existing file into your code. In our `simple.c` program, we have included the `<stdio.h>` library, which has several functions to assist with the "standard" inputs and outputs in your program (i.e. reading from your keyboard and writing to a terminal). This is also where the definition of the `printf()` function resides. Without including `stdio.h`, `simple.c` would not know what `printf()` was or where it was defined and thus would not be able to compile.
 
@@ -66,7 +66,7 @@ Look through the generated text file. While a lot has been added, the last few l
 
 #### Step 2: Compiling
 
-In this step, the compiler translates your pre-processed code into [assembly language](https://en.wikipedia.org/wiki/Assembly_language). Assembly is made up of **instructions** that can be executed by your computer processor. For example, all the instructions you will study in ECEn 224 use the [x86 instruction set](https://en.wikipedia.org/wiki/X86_instruction_listings). All C programs can be compiled into some set of these instructions.
+In this step, the compiler translates your pre-processed code into [assembly language](https://en.wikipedia.org/wiki/Assembly_language). Assembly is made up of **instructions** that can be executed by your computer processor. For example, all the instructions you will study in ECEN 224 use the [x86 instruction set](https://en.wikipedia.org/wiki/X86_instruction_listings). All C programs can be compiled into some set of these instructions.
 
 Many modern compilers will also make optimizing adjustments to your code. For example, if your code includes a command to multiply an integer by four (ex: `newInt = 3 * 4;`), your compiler may instead use a binary shift operation (`newInt = 3 << 2;`  in C or `shr %rdx, 2` in assembly). These adjustments reduce the number of instructions needed, increasing the speed and efficiency of your program.
 
@@ -161,7 +161,7 @@ There are two types of comments: single and multi-line.
 // This is a single line comment.
 ```
 
-Any text written after the `//` symbols wil be ignored during the compilation process of the program. These comments are most helpful when explaining a line of code or even to demarcate sections of code.
+Any text written after the `//` symbols will be ignored during the compilation process of the program. These comments are most helpful when explaining a line of code or even to demarcate sections of code.
 
 If you want to take up several lines to describe a complicated concept or simply put some detailed notes in your program, you can use the multi-line comment.
 
@@ -364,7 +364,7 @@ In the folder for this lab (`labs/03-c-programming-part-1`, create a new file ca
 4. Use at least 5 different format specifier types in 5 different `printf()` statements.
 5. Use some format specifiers/placeholders in `printf()` in unexpected ways. Your program must compile. In a comment next to or above this statement, explain the behavior and why you think it works that way.
 
-Complile your code into an executable called `data`.
+Compile your code into an executable called `data`.
 
 ## Lab Submission
 
@@ -381,9 +381,9 @@ Complile your code into an executable called `data`.
 
 ## Explore More
 
-- [Understanding `man` pages](https://kitras.io/linux/man-pages/)
-- [`printf()` Cheatsheet](https://alvinalexander.com/programming/printf-format-cheat-sheet/)
-- [C data types](https://en.wikipedia.org/wiki/C_data_types)
+- [Understanding `man` Pages](https://kitras.io/linux/man-pages/)
+- [`printf()` Cheat Sheet](https://alvinalexander.com/programming/printf-format-cheat-sheet/)
+- [C Data Types](https://en.wikipedia.org/wiki/C_data_types)
 - [Casting in C](https://www.tutorialspoint.com/cprogramming/c_type_casting.htm)
-- [Compiling C files](https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e78318052)
-- [Compiled v. Interpreted Languages](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/)
+- [Compiling C Files](https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e78318052)
+- [Compiled vs. Interpreted Languages](https://www.geeksforgeeks.org/difference-between-compiled-and-interpreted-language/)

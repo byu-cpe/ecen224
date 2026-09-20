@@ -14,7 +14,7 @@ layout: lab
 
 A common mistake C programmers make is picking incorrect data types:
 
-- types that are inconsistent across different architechtures and compilers,
+- types that are inconsistent across different architectures and compilers,
 - types that are too small or cannot hold the correct values,
 - types that don't reflect their use case or purpose.
 
@@ -271,7 +271,7 @@ int value = 42;
 log_info("The value is %d", value);
 ```
 
-## Lab Proceedure
+## Lab Procedure
 
 In the folder for this lab (`labs/04-c-programming-part-2`), you will find files called `data.c` and `custom_strings.c`, along with their corresponding `.h` files. These files include various functions that you will either need to write or debug. Descriptions and hints for each function can be found in the `.h` files.
 
@@ -339,7 +339,7 @@ Your code should work with the following test cases:
 
 #### data.c
 
-##### Calculate Circumfrence
+##### Calculate Circumference
 
 1. Radius: 1, Output: 6.28
 2. Radius: 3.14, Output: 19.729

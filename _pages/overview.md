@@ -65,7 +65,7 @@ No source code should be shared between students. Students can work on assignmen
 ## Policies
 
 ### Use of AI
-The use of AI is not allowed. The class policy is consistant with the [official department policy on AI](https://ece.byu.edu/ai-policy).  Students are expected to develop basic skills and critical thinking *before* they learn how to use advanced tools to assist them in the design process. Prohibited usage includes, but is not limited to:
+The use of AI is not allowed. The class policy is consistent with the [official department policy on AI](https://ece.byu.edu/ai-policy).  Students are expected to develop basic skills and critical thinking *before* they learn how to use advanced tools to assist them in the design process. Prohibited usage includes, but is not limited to:
 
 - Using AI (including Copilot within VS Code) to generate or suggest code for lab assignments.
 - Copying code from AI and submitting it as your own work. This includes agentic tools and Google AI overview.
