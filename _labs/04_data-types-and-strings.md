@@ -318,10 +318,10 @@ Notes:
 
 ## Lab Submission
 
-- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA:
-  - Show the output of the passoff executable
-  - Show how you implemented your functions in `data.c` and `custom_strings.c`
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't have errors.
+- Pass off with a TA:
+  - Show the output of the passoff executable.
+  - Show how you implemented your functions in `data.c` and `custom_strings.c`.
 - Take the Pass off Quiz on Learning Suite.
 - Follow the instructions in the `readme_practice.md` file in the repository. Add what you did in the lab to this file.
 

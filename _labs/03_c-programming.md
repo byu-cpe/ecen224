@@ -368,7 +368,7 @@ Compile your code into an executable called `data`.
 
 ## Lab Submission
 
-- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't have errors.
 
 - Pass off with a TA by showing them the following:
   - The five files you generated in Part 1: `simple_preprocessed.txt`, `simple.s`, `simple.o`, `simple_assembled.txt`, and `a.out` (or `simple` if you renamed it).

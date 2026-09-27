@@ -64,7 +64,7 @@ In this example, to access the width and height of a `struct`, we used the dot s
 
 ### Bitmasking
 
-**Bitmasking** is a method that allows us to manipulate certain bits of data (e.g., set a bit to 1 or 0). This is done general by making use of bitwise ORs, ANDs, and XORs.
+**Bitmasking** is a method that allows us to manipulate certain bits of data (e.g., set a bit to 1 or 0). This is done by making use of bitwise ORs, ANDs, and XORs.
 
 For example if we wanted to select nothing but the last two bits of the byte (in binary) `11101011` we would AND that byte with a mask consisting of 0s on the values we don't want and 1s on the values we do want in our selection:
 
@@ -77,7 +77,7 @@ AND  00000011   <--- This value is known as the 'mask'
 
 Although this is most obvious when representing the numbers as binary, the masking principles work for any representation of numbers (because everything is just stored as bits!).
 
-If we wanted to recreate the following operation in C with hexademical numbers, it would be the following:
+If we wanted to recreate the above operation in C with hexademical numbers, it would be the following:
 
 ```c
 uint8_t number = 0xEB;
@@ -89,7 +89,7 @@ number = number & mask; // number = 0x03
 
 ### Pixel Values in BMP file
 
-Images are made out of many different colored points, called pixels, all put together in a two dimensional grid. It is often very hard to see an individual pixel, as they are meant to appear as a single color and are typically very small. To visualize this idea, we have broken our picture into a grid. While they are not the actual pixels of the image (the grid cells in my image below are much bigger than the pixels really are), we can see the idea of breaking down an image into tiny pieces come together.
+Images are made out of many different colored points, called pixels, all put together in a two dimensional grid. It is often very hard to see an individual pixel, as they are meant to appear as a single color and are typically very small. To visualize this idea, we have broken our picture into a grid. While they are not the actual pixels of the image (the grid cells in my image below are much bigger than the pixels really are), we can see the idea of breaking down an image into tiny pieces called pixels (short for "picture elements").
 
 <figure class="image mx-auto" style="max-width: 350px">
   <img src="{% link assets/image/image_2d.png %}" alt="Grid representation of an image">
@@ -162,11 +162,11 @@ In this function, you are expected to create logic that will allow a user to spe
   <figcaption style="text-align: center;">Original.bmp with all of the blue values masked out.</figcaption>
 </figure>
 
-These images are the answer to your function! If you have done it correctly, your output should look exactly like whats above.
+These images are the answer to your function! If you have done it correctly, your output should look exactly like what's above.
 
 ### Part 2: Grayscale
 
-In this function, you will be turning your image from full color into a grayscaled image. To make an pixel gray, the red, green, and blue values must be combined or made to all be the same. To turn the image grayscale, for each pixel use the following equation:
+In this function, you will be turning your image from full color into a grayscaled image. To make a pixel gray, the red, green, and blue values must be combined in different proportions. To turn the image grayscale, for each pixel use the following equation:
 
 ```
 Y = 0.299 R + 0.587 G + 0.114 B
@@ -178,7 +178,7 @@ In the equation above, R is the red pixel value, G is the green pixel value, and
 Y = 0.299 * 0 + 0.587 * 46 + 0.114 * 93 = 37.604 = 37
 ```
 
-And the new RGB value would become `RGB(37, 37, 37)`. Even though `Y` is a float, you can truncate its value.
+The new RGB value would become `RGB(37, 37, 37)`. Even though `Y` is a float, you can truncate its value.
 
 After applying the grayscale to the image, it should look like this:
 
@@ -196,19 +196,19 @@ This function will be the culmination of your data manipulation knowledge that y
   <figcaption style="text-align: center;">OR filter or's the color channels of the pixel above and below a specific pixel.</figcaption>
 </figure>
 
- Remember, while visually the pixels are above and below each other, they are actually stored in a long array. As part of this lab, you must figure out how to access the vertically adjacent pixels in the one dimensional array. You will also have to deal with two special cases: when you are on the top row and the bottom row. In those two conditions, you won't be able to or filter like normal because you are missing an expected row.
+ Remember, while visually the pixels are above and below each other, they are actually stored in a long array. As part of this lab, you must figure out how to access the vertically adjacent pixels in the one dimensional array. You will also have to deal with two special cases: when you are on the top row and the bottom row. In those two conditions, you won't be able to access the neighboring pixels because there are none.
 
 Make sure to use the `pxl_data_cpy` array as your reference data for your calculations, then update `pxl_data`. If you use the `pxl_data` as your reference data, you will have compounding effects that will cause the image to be indistinguishable. This is not correct.
 
 ## Lab Submission
 
-- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA:
-  - demonstrate your doorbell running your program that fulfills all of the requirements outlined above.
-  - Show them your OR filter image, and explain *why* OR-ing makes it look the way it does (not how, because we know how already).
+- Your program must compile without warnings or errors. Compile your program with the `-Werror` flag to ensure that it doesn't have errors.
+- Pass off with a TA:
+  - Demonstrate that your program fulfills all of the requirements outlined above.
+  - Show your OR filter image, and explain *why* OR-ing makes it look the way it does (not how, because we know how already).
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions in the `readme_practice.md` file in the repository to update your README file with what you did in this lab.
-- **Once you have finished updating your `readme_practice.md` file for this lab, it is time to upload it to Learning Suite! Make sure to review the rubric attached to the listing on LS and remove the instructions inside `readme_practice.md`.**
+- Follow the instructions in the `readme_practice.md` file in the repository. Add what you did in the lab to this file.
+- **Once you have finished updating your `readme_practice.md` file for this lab, it is time to upload it to Learning Suite! Make sure to review the rubric next to the assignment on Learning Suite and remove the instructions inside `readme_practice.md`.**
 
 ## Explore More
 
