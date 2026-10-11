@@ -102,6 +102,15 @@ You will see in your `test.c` function that your code will loop infinitely. This
 
 We also give you `log.h` and `log.c` files that you can find under the `/lib` folder. The functions in these files (`log_info()` or `log_debug()` for example) can be used like printfs to output data to the terminal (or optionally a log file). However, these only print to the terminal if the current **log level** is equal to or lower than the log command. For example, if the log level is set to `LOG_INFO`, then `log_debug()` messages won't show, but `log_info()` through `log_fatal()` messages will. You can change the current log level with the `log_set_level()` function. These tools can be used to have printfs that you don't need to remove, but can be turned on/off when you are debugging.
 
+## Running Code on the Doorbell
+
+To compile and execute your code, you will need to log in to your doorbell unit through SSH. You can not compile your code on a lab machine and have the resultant binary code execute on the doorbell. If you followed the [Doorbell Setup]({% link _pages/doorbell_setup.md %}) procedure, the Rsync extension in VS Code should be copying your file edits over to the doorbell unit when it is plugged into the lab network. Open a terminal window in VS Code to log in to your doorbell through SSH. Then `cd` (change directory) to the doorbell directory to compile and execute your code.
+
+```bash
+ssh NETID@doorbell-NETID.local
+cd doorbell
+```
+
 ### Compiling with Make
 
 By this point, you may realize that compiling a large project by hand is unwieldy to type. This lab, for example, contains eleven `.c` files. To compile it yourself, you would have to enumerate each file in the command line:
@@ -133,9 +142,7 @@ Compiling with the provided Makefile generates an executable called `test`. You 
 
 ## Procedure
 
-  - Make sure the Rsync extension in VS Code is working so that your doorbell repository on a lab machine is synchronized over to your doorbell unit. Refer to the Doorbell Setup or to a TA if needed.
-
-  - Log into your doorbell unit via SSH to compile and execute your code from the doorbell directory.
+Make sure the Rsync extension in VS Code is working so that your doorbell repository on a lab machine is synchronized with your doorbell unit when saving a file. Refer to the [Doorbell Setup]({% link _pages/doorbell_setup.md %}) or to a TA if needed. You can edit a file on your lab machine in the VS Code edit window and simultaneously, in the terminal window, be logged in to the doorbell unit through SSH to compile and execute your new code (after a save of course). Also, don't forget to properly shut down the doorbell unit before unplugging power. Otherwise, you may corrupt the SD card.
 
 ### Creating Test Code
 
