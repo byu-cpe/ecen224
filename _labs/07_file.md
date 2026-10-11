@@ -6,7 +6,7 @@ layout: lab
 
 ## Objectives
 
-- Read in files into a program
+- Read files into a program
 - Create the necessary logic to handle an interface
 - Filter out files by pattern
 
@@ -51,7 +51,7 @@ With your newly allocated `DIR` pointer, you can use the following functions tha
     // Use dp to read the contents of the folder
     ```
 
-    This opens the `my-folder` directory into code and puts the `dp` pointer at the top of this directory. When you are done iterating through the directory, you will need to close it by using the following call to `closedir()`:
+    This opens the `my-folder` directory and sets `dp` pointer to the beginning of this directory. When you are done iterating through the directory, you will need to close it by using the following call to `closedir()`:
 
     ```c
     closedir(dp);
@@ -81,11 +81,11 @@ With your newly allocated `DIR` pointer, you can use the following functions tha
 
 #### Filtering Files
 
-While reading in your files using the folder operations, you may want to filter out some folders or files that are not of interest to you such as the `.` and `..` files that exist in every directory. To do this, you can check the name of the filename with the `strncmp()`. If the files match a certain value (i.e. the last 3 characters of the name are `bmp` or `log`), you can add them to a list, else you can ignore it. More reading on how to use `strncmp()` is found in the **Explore More** section below.
+While reading in your files using folder operations, you may want to filter out some folders or files that are not of interest to you such as the `.` and `..` files that exist in every directory. To do this, you can check the name of the filename with the `strncmp()`. If the files match a certain value (i.e. the last 3 characters of the name are `bmp` or `log`), you can add them to a list, else you can ignore it. More reading on how to use `strncmp()` is found in the **Explore More** section below.
 
 ### Reading Files
 
-In this lab, you will be expected to read both `.bmp` and `.log` files from the `viewer` folder. Then you must show them on the LCD screen of your Pi Z2W. In order for your program to input these files in code so you can interact with them, you will need to become familiar with some basic C constructs such as `FILE` streams and their associated functions. The information in the following section should help you learn about reading files into C and writing them to a different destination (i.e. in this case, to your LCD screen).
+In this lab, you will be expected to read both `.bmp` and `.log` files from the `viewer` folder. Then you must show them on the LCD screen of your doorbell. In order for your program to input these files and interact with them, you will need to become familiar with some basic C constructs such as `FILE` streams and their associated functions. The information in the following section should help you learn about reading files into C and writing them to a different destination (i.e. in this case, to your LCD screen).
 
 #### FILE Pointers
 
@@ -138,7 +138,7 @@ Technical debt is the idea that when you code something for the first time, it i
 Technical debt often happens when different features are so intertwined with each other that to change, add, or remove a feature requires much of the code to be rewritten. There are a few things you can do to help yourself stay out of technical debt over the next few weeks:
 
 - Be intentional about the choices and names you use for variables etc.
-- Make features independant of the program; in other words, each new feature should not rely on all the other features to work. That way, if something must be removed, it doesn't impact the rest of the development. One example is coding features into functions that can be added/moved, instead of writing all the code directly into `main.c`.
+- Make features independent of the program; in other words, each new feature should not rely on all the other features to work. That way, if something must be removed, it doesn't impact the rest of the development. One example is coding features into functions that can be added/moved, instead of writing all the code directly into `main.c`.
 
 ### Requirements
 
@@ -161,7 +161,7 @@ To accomplish these tasks, you will need to:
   - If you find more than 8 files, you need only read in the first 8.
 - Implement the `draw_file` function
   - If the file is a `.bmp` image, display the corresponding image for 2 seconds and then go back to the menu view with the highlight bar over the selected item.
-  - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item.  You should only show the first 100 characters of the file.
+  - If the file is a `.log` file, display the contents of the file for 2 seconds and then go back to the menu view with the highlight bar over the selected item. You should only show the first 100 characters of the file.
 
 Here is a demo showing the different features of the lab:
 
@@ -176,11 +176,11 @@ Here is a demo showing the different features of the lab:
 
 ## Pass Off & Submission
 
-- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
-- **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't have errors.
+- Pass off with a TA by demonstrating that your main program running on the doorbell fulfills all the requirements outlined above.
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions to update your `README.md` file with the new features of this lab.
+- Follow the instructions in the `README.md` file in the repository. Add the requested detail about features and usage to this file.
+- **Make sure to push your changes back to your Git remote repository. Follow the instructions on the Lab Setup page.**
 
 ## Explore More
 
