@@ -197,7 +197,7 @@ Here is a demo of the completed lab:
     </div>
 </div>
 
-## Lab Submission
+## Pass Off & Submission
 
 - Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't have errors.
 - Pass off with a TA by demonstrating that your test program fulfills all the requirements outlined above.

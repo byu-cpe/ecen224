@@ -13,19 +13,19 @@ layout: lab
 
 ## Introduction
 
-In the past labs, much time has been spent making sure the files of the camera are easily accessible and represented on the LCD screen of your Pi Z2W kits. In this lab you will be expected to integrate a camera module to your design and take pictures.
+In previous labs, much time has been spent making sure image files are easily accessible and also displayable on the LCD screen of your smart doorbell unit. In this lab you will be expected to access a camera module to take pictures.
 
 ### Creating Large Buffers
 
-The skills that you need to complete this lab are very closely related to the skills you needed for the last lab. You are expected to capture a very large buffer of information that comes from a camera and store it in a buffer (`uint8_t *`) in C.
+The skills that you need to complete this lab are very closely related to the skills you needed for the last lab. You are expected to capture a very large amount of picture information that comes from a camera and store it in a C buffer (`uint8_t *`).
 
 Normally, if we knew the size of these buffers, we would be able to create a regular array in C:
 
 ```c
-uint8_t my_new_buf[256];    // Create a buffer of a known size
+uint8_t my_new_buf[256]; // Create a buffer of a known size
 ```
 
-However, this becomes difficult when our buffers become very large. For example, the buffers that you dealt with in the **Image** lab had millions of values in it! This is much too large for variables that are declared on the stack. Instead, you will need to use `malloc()` in conjunction with an unbounded array:
+However, this becomes difficult when the size is unknown and very large. For example, the buffers that you dealt with in the **Image** lab had millions of values in it! This is much too large for a buffer to be declared on the stack. Instead, you will need to use `malloc()` and save the address of the allocated buffer in a pointer variable:
 
 ```c
 uint8_t *my_new_buf = malloc(sizeof(uint8_t) * SIZEOFYOURBUFFER);
@@ -34,13 +34,13 @@ uint8_t *my_new_buf = malloc(sizeof(uint8_t) * SIZEOFYOURBUFFER);
 free(my_new_buf);
 ```
 
-Malloc takes one argument, the number of bytes to allocate for the buffer. It is common to provide the size of the data type the buffer will be (in this case, `uint8_t` so `sizeof(uint8_t)`) and the number of elements you want. This creates your buffer in the *heap* where there is much more space for larger variables like this. However, whenever we use `malloc()` to request memory in C, we must remember to call `free()` on the object once we are done. If this is not done, then there will be memory leaks inside of your program which could potentially grind your system to a halt.
+Malloc takes one argument, the number of bytes to allocate for the buffer. It is common to provide the size of the data type the buffer will be (in this case, `uint8_t` so `sizeof(uint8_t)`) and the number of elements you want. This creates your buffer in the *heap* where there is much more space for larger arrays like this. However, whenever we use `malloc()` to request memory in C, we must remember to call `free()` on the object once we are done. If this is not done, then there will be memory leaks inside of your program which could potentially grind your system to a halt.
 
 ### Writing to a File
 
 You'll notice in your lab files, you are provided with a `camera.h` and a partially filled in `camera.c`.
 
-In this lab you will be expected to capture image data from a camera, save it to a file, and then show it on the screen of your new smart doorbell. In order to write information to files in C, you will be expected to know one more function than you already do: `fwrite()`.
+In this lab, you will be expected to capture image data from a camera, save it to a file, and then show it on the screen of your new smart doorbell. In order to write information to files in C, you will be expected to use the `fwrite()` function.
 
 Much like reading a file as you did in the last lab, to write, you will need to open a file using `fopen()`. You may be thinking, how can I open a file when it doesn't exist yet? With `fopen()` you can name the file you want to create and what kind of mode you want to create it in. For example, to create a new file named "banana.txt", I would do the following:
 
@@ -49,16 +49,16 @@ FILE *fp;
 fp = fopen("banana.txt", "w");
 ```
 
-The second argument in `fopen()` is the mode we want to open the file in. This allows the operating system to know what type of content will be written to the file. In our example above, we want to write ASCII text to the file (as implied with the `.txt` extension), so we use the `w` mode. Other special modes for `fopen()` can be seen in the following table below.
+The second argument in `fopen()` is the mode. It allows the operating system to know what operations are to be done on the file. In our example above, we want to write ASCII text to the file (as implied with the `.txt` extension), so we use the `w` mode. Other special modes for `fopen()` can be seen in the following table below.
 
-| Mode | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `r`  | Open text file for reading.  The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                                                                                             |
-| `r+` | Open for reading and writing.  The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                                                                                           |
-| `w`  | Truncate file to zero length or create text file for writing.  The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                                                           |
-| `w+` | Open for reading and writing.  The file is created if it does not exist, otherwise it is truncated.  The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                     |
-| `a`  | Open for appending (writing at end of file).  The file is created if it does not exist.  The stream is positioned at the end of the file.                                                                                                                                                                                                                                                                       |
-| `a+` | Open for reading and appending (writing at end of file). The file is created if it does not exist.  Output is always appended to the end of the file.  POSIX is silent on what the initial read position is when using this mode. For glibc, the initial file position for reading is at the beginning of the file, but for Android/BSD/MacOS, the initial file position for reading is at the end of the file. |
+| Mode | Description                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `r`  | Open text file for reading. The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                                                                                            |
+| `r+` | Open for reading and writing. The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                                                                                          |
+| `w`  | Truncate file to zero length or create text file for writing. The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                                                          |
+| `w+` | Open for reading and writing. The file is created if it does not exist, otherwise it is truncated. The stream is positioned at the beginning of the file.                                                                                                                                                                                                                                                     |
+| `a`  | Open for appending (writing at end of file). The file is created if it does not exist. The stream is positioned at the end of the file.                                                                                                                                                                                                                                                                       |
+| `a+` | Open for reading and appending (writing at end of file). The file is created if it does not exist. Output is always appended to the end of the file. POSIX is silent on what the initial read position is when using this mode. For glibc, the initial file position for reading is at the beginning of the file, but for Android/BSD/MacOS, the initial file position for reading is at the end of the file. |
 
 It is considered good practice to add a `b` at the end of the letter if you intend to write to a file in a binary format (i.e. `.bmp` files) to indicate your intent, however this extra `b` is not enforced on many modern systems like Linux.
 
@@ -79,20 +79,20 @@ rpicam-still -n --immediate -e bmp --width 128 --height 128 -o camera-test.bmp
 - Assign the center button to do the following:
   - Clear the screen and write a message telling the person you are taking a picture. You can write what ever you want (e.g., "Say Cheese!").
   
-  - Take a picture with the Pi Z2W's camera using the `camera_capture_data` function found in `camera.c`.
+  - Take a picture with the camera using the `camera_capture_data` function found in `camera.c`.
   
-  - Save the raw data received from the capture to a `.bmp` file. You will have to implement the `camera_save_to_file` function found in `camera.c`. The file must be named `doorbell.bmp` and saved in the `viewer` folder.
+  - Save the data received from the capture to a `.bmp` file. You will have to implement the `camera_save_to_file` function found in `camera.c`. The file must be named `doorbell.bmp` and saved in the `viewer` folder.
 
   - Update the contents of your menu. It should now include the newly saved file.
 
-  - Display the contents of the picture using the `display_draw_image_data` function. However, before you can use that function, you must convert the raw `uint8_t *` buffer into a `Bitmap` struct. This is because `camera_capture_data` returns the bytes of the BMP image file, which includes the BMP header. `display_draw_image_data` is expecting raw pixels values without a header. To process the header and pixel values, call `create_bmp` located in image.c. This function will parse the header and set the `pxl_data` struct field to just the raw pixel data. A diagram of this process can be seen [here]({% link assets/camera/data_flow.png %}).
+  - Display the contents of the picture using the `display_draw_image_data` function. However, before you can use that function, you must convert the data captured from the camera (`uint8_t *` buffer) into a `Bitmap` struct. The captured camera data includes a header that must be separated from the pixel values. The `display_draw_image_data` function only takes pixels values, without a header. To process the captured camera data, call `create_bmp` located in image.c. This function will parse the header and set the `pxl_data` struct field to just the pixel values. A diagram of this process can be seen [here]({% link assets/camera/data_flow.png %}).
 
   - While the contents of the picture is showing, you must handle the following:
     - If the right button of the d-pad is pressed, filter out the red color of the image.
     - If the left button of the d-pad is pressed, filter out the blue color of the image.
     - If the up button of the d-pad is pressed, filter out the green color of the image.
     - If the down button of the d-pad is pressed, or-filter the image.
-    - If the center button of the d-pad is pressed, exit from the submenu by clearing the picture and displaying the menu.
+    - If the center button of the d-pad is pressed, exit from the sub menu by clearing the picture and displaying the menu.
 
 - Your program must not have any memory leaks. This means for every `malloc`, you need to have a corresponding `free` call. `create_bmp` allocates memory for the `Bitmap` struct using `malloc`. You must free that space by calling `destroy_bmp` when you are done with the struct.
 
@@ -109,13 +109,13 @@ Here is a demo showing the different features of the lab:
     </div>
 </div>
 
-### Pass Off & Submission
+## Pass Off & Submission
 
-- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
-- **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't have errors.
+- Pass off with a TA by demonstrating that your main program running on the doorbell fulfills all the requirements outlined above.
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions to update your `README.md` file with the new features of this lab.
+- Follow the instructions in the `README.md` file in the repository. Add the requested detail about features and usage to this file.
+- **Make sure to push your changes back to your Git remote repository. Follow the instructions on the Lab Setup page.**
 
 ## Explore More
 
