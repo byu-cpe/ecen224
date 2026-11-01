@@ -59,9 +59,9 @@ typedef struct Config {
 | Data Member    | Description                                                                                                                                                                                                                 |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `port`         | The port number of the application you are trying to connect to. Notice that port is a `char *`, not a number.                                                                                                              |
-| `host`         | The host name of the server you are trying to connect to.                                                                                                                                                                    |
-| `payload`      | The data you want to send to the server. In this lab, it will be the image data.                                                                                                                                          |
-| `payload_size` | The size of the data in `payload`.                                                                                                                                                                                          |
+| `host`         | The host name of the server you are trying to connect to.                                                                                                                                                                   |
+| `payload`      | The data you want to send to the server. In this lab, it will be the image data (bitmap header + pixel data).                                                                                                               |
+| `payload_size` | The size in bytes of the image data in `payload` (e.g., IMG_SIZE).                                                                                                                                                                           |
 | `hw_id`        | Your Learning Suite assigned homework ID for this class. In order to find your unique homework ID, go to Learning Suite > ECEn 225 > Grades and then click on the small link at the top that says "Show Course Homework ID" |
 
 The host server and port to upload your photos in this lab will be:
@@ -104,8 +104,6 @@ while (total_sent < data_length) {
 }
 ```
 
-In this lab, **you will need to send your homework ID and your image data together, with no null terminator or space between them**. The easiest way of doing this is combining the data into one block of data (using `malloc` and `memcpy`). Your homework ID must go first, followed by the image data.
-
 The results will be displayed at `http://ecen224.byu.edu:2241/<homework_id>`, replacing `<homework_id>` with your actual homework ID. For example, if your homework ID was 123456789, then the URL where your pictures are stored are at [http://ecen224.byu.edu:2241/123456789](http://ecen224.byu.edu:2241/123456789). Remember, this server is only available when you are on the campus network.
 
 ### Deallocating Resources
@@ -126,17 +124,19 @@ If this is not done, unexpected behavior may occur on your system. So remember t
 
 Same as last lab, when you press the center button, you should take a picture and show the picture, allowing the user to apply different filters. When you press the center button again, instead of exiting the picture and going to the menu right away, first connect to the server and send the picture. Once you have sent the picture, show the menu. Specifically, when the center button gets pressed while showing the picture, you should do the following:
 
-1. Create an empty `Config` `struct` and load it with the appropriate data. The `port`, `host`, and `hw_id` can be hard-coded. Use the picture buffer filled by the `camera_capture_data` function in the last lab to set the `payload` field. The size of the payload should be the size of the image data.
+1. Create an empty `Config` `struct` and load it with the appropriate data. The `port`, `host`, and `hw_id` can be hard-coded. Use the picture buffer filled by the `camera_capture_data` function in the last lab to set the `payload` field. The size of the payload should be the size of the image data in bytes.
 
 2. Start the client connection using `client_connect()` and pass it the initialized `Config` `struct`. This function is implemented for you and will print out the status of the connection to the server.
 
-3. Call the `client_send_image` function to send the data, passing the `Config` `struct`. You will need to implement this function yourself. This function will combine the homework ID and the image data into one buffer and send it to the server using the `send` function. You will need to make sure all of the data is sent correctly.
+3. Call the `client_send_image` function to send the data, passing the `Config` `struct`. You will need to implement this function yourself. This function will combine the homework ID and the image data in a **new buffer** (using `malloc` and `memcpy`) and send it to the server using the `send` function. _Do not use the `payload` buffer to combine the homework ID and the image data._ Your homework ID must go first, followed by the image data **with no space or null terminator in between.** You will need to make sure all of the data is sent correctly.
 
 4. Call the `client_receive_response` function. This function is implemented for you and will print out the response from the server. This function can help debug any problems you might have with sending your image data.
 
 5. Close the connection using `client_close()`. You will need to implement this function yourself.
 
-6. Show the menu.
+6. Free any remaining memory that was dynamically allocated.
+
+7. Show the menu.
 
 ## Pass Off & Submission
 
