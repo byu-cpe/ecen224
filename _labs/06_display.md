@@ -94,7 +94,7 @@ Before the buttons can be used, **you will need to call the `buttons_init()` fun
 
 *Note that you must call `display_init()` before you call `buttons_init()` or you will get a segmentation fault.*
 
-### Device delay
+### Device Delay
 
 You will see in your `test.c` function that your code will loop infinitely. This means that anything inside the `while (true)` loop will repeat over and over until the program is terminated by the user through the shell. Running a `while (true)` loop without any sort of control can cause system resources to be eaten up and cause your program to be run inefficiently. For this, we have provided the `delay_ms()` inside the `device.h` library. This will allow you to essentially create a wait time in the execution of your loop. This is handy if you want to draw something to the screen and have it only appear for a certain amount of time before the logic in your program goes on.
 

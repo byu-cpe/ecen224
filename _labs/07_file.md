@@ -32,52 +32,52 @@ This pointer will allow us to list the files in our directory by iterating throu
 DIR *dp; // Define a directory pointer dp
 ```
 
-#### Folder operations
+#### Folder Operations
 
 With your newly allocated `DIR` pointer, you can use the following functions that will help us interface with the directory in our code.
 
 - `opendir()` and `closedir()`
 
-    In order to open a directory while using the `DIR` pointer, you can do the following:
+  In order to open a directory while using the `DIR` pointer, you can do the following:
 
-    ```c
-    DIR *dp;
-    dp = opendir("my-folder");
+  ```c
+  DIR *dp;
+  dp = opendir("my-folder");
 
-    if (dp == NULL) {
-        // Directory does not exist
-    }
+  if (dp == NULL) {
+      // Directory does not exist
+  }
 
-    // Use dp to read the contents of the directory
-    // ...
-    ```
+  // Use dp to read the contents of the directory
+  // ...
+  ```
 
-    The preceding code opens the `my-folder` directory and sets `dp` pointer to the beginning of this directory. When you are done iterating through the directory, you will need to close it by using the following call to `closedir()`:
+  The preceding code opens the `my-folder` directory and sets `dp` pointer to the beginning of this directory. When you are done iterating through the directory, you will need to close it by using the following call to `closedir()`:
 
-    ```c
-    closedir(dp);
-    ```
+  ```c
+  closedir(dp);
+  ```
 
-#### Parsing through the Folder
+#### Parsing Through the Folder
 
 After opening a directory, `dp` points to the first directory entry. To retrieve directory entry information, such as the file name and size, you need to use a directory entry struct (`struct dirent`). When you call `readdir()` on a `DIR` pointer, it will return a pointer to the current directory entry, and then move the `DIR` pointer to the next directory entry. You can use this built-in iteration functionality to iterate through the files in a directory. Once you have finished iterating through all the files in a directory, `readdir()` will return `NULL`:
 
 - `readdir()` example:
 
-    ```c
-    struct dirent * entry; // Current directory entry
+  ```c
+  struct dirent * entry; // Current directory entry
 
-    while ((entry = readdir(dp)) != NULL) {
-        // Do something with the directory entry...
-    }
-    ```
+  while ((entry = readdir(dp)) != NULL) {
+      // Do something with the directory entry...
+  }
+  ```
 
 - The `d_name` member of the `dirent` struct holds the file name of the current directory entry. To print the file name, do the following:
 
-    ```c
-    entry = readdir(dp);                      // Get the current directory entry
-    printf("Item name: %s\n", entry->d_name); // Print out file name
-    ```
+  ```c
+  entry = readdir(dp);                      // Get the current directory entry
+  printf("Item name: %s\n", entry->d_name); // Print out file name
+  ```
 
 #### Filtering Files
 
@@ -101,29 +101,29 @@ There are a few essential file operations that exist in the `stdio.h` library. T
 
 - `fopen()` and `fclose()`
 
-    `fopen()` takes a `FILE` stream pointer, a file path, and some special strings to indicate the mode as arguments for opening a file. For example:
+  `fopen()` takes a `FILE` stream pointer, a file path, and some special strings to indicate the mode as arguments for opening a file. For example:
 
-    ```c
-    FILE *fp; // File pointer for interacting with file.
-    fp = fopen("fancy_output.log", "r");
-    ```
+  ```c
+  FILE *fp; // File pointer for interacting with file.
+  fp = fopen("fancy_output.log", "r");
+  ```
 
-    The preceding code defines a `FILE` stream pointer called `fp`. Then, `fopen` is used to open the `fancy_output.log` file in the current directory for reading at the beginning of the file (see the **Explore More!** section for different file modes).
+  The preceding code defines a `FILE` stream pointer called `fp`. Then, `fopen` is used to open the `fancy_output.log` file in the current directory for reading at the beginning of the file (see the **Explore More!** section for different file modes).
 
-    Once you have done everything that you want with the file, you must be responsible and release the pointer back to the system. This is done by closing the file using `fclose()` as shown below.
+  Once you have done everything that you want with the file, you must be responsible and release the pointer back to the system. This is done by closing the file using `fclose()` as shown below.
 
-    ```c
-    fclose(fp); // Closes the file that was attached to the fp pointer
-    ```
+  ```c
+  fclose(fp); // Closes the file that was attached to the fp pointer
+  ```
 
 - `fread()`
 
-    Once you have a file open, how do you use the `FILE` stream pointer to get data? This is where functions like `fread` come into play. This function reads data from a file pointer. Specifically, it takes a buffer to read data into, the size of each item in bytes, the number of items, and the file pointer.
+  Once you have a file open, how do you use the `FILE` stream pointer to get data? This is where functions like `fread` come into play. This function reads data from a file pointer. Specifically, it takes a buffer to read data into, the size of each item in bytes, the number of items, and the file pointer.
 
-    ```c
-    char data[256];          // Creates an array that can hold up to 256 bytes
-    fread(data, 1, 256, fp); // Reads up to 256 bytes (or characters) from the file
-    ```
+  ```c
+  char data[256];          // Creates an array that can hold up to 256 bytes
+  fread(data, 1, 256, fp); // Reads up to 256 bytes (or characters) from the file
+  ```
 
 ## Procedure
 

@@ -294,7 +294,7 @@ Example: If you need a data type for positive integers less than 256, you could 
 
 To understand more about the data types that exist in `stdint.h`, you can check out [the documentation for stdint](https://man7.org/linux/man-pages/man0/stdint.h.0p.html).
 
-#### printf() arguments
+#### printf() Arguments
 
 In addition to printing text
 

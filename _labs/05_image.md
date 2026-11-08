@@ -87,7 +87,7 @@ uint8_t mask   = 0x03;
 number = number & mask; // number = 0x03
 ```
 
-### Pixel Values in BMP file
+### Pixel Values in BMP File
 
 Images are made out of many different colored points, called pixels, all put together in a two dimensional grid. It is often very hard to see an individual pixel, as they are meant to appear as a single color and are typically very small. To visualize this idea, we have broken our picture into a grid. While they are not the actual pixels of the image (the grid cells in my image below are much bigger than the pixels really are), we can see the idea of breaking down an image into tiny pieces called pixels (short for "picture elements").
 

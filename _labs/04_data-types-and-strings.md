@@ -218,7 +218,7 @@ Incremental programming, on the other hand, involves **dividing the solution you
 
 Handling large amounts of data in C is no small task (as you will see in the next lab). It requires attention to detail and a good understanding of the code you are writing and what it does. As the projects you do become more complex and involved, it is important to remember that **the best line of defense against buggy code is a good offense: intentional and incremental programming.**
 
-#### Trace debugging
+#### Trace Debugging
 
 Trace debugging is a technique used to identify the root cause of a problem in a program by logging the values of variables and other information at specific points in time. This trace data can provide insight into how your program is actually behaving.
 
