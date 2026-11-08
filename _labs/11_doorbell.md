@@ -12,23 +12,23 @@ layout: lab
 
 ## Introduction
 
-Welcome to the end of the semester! You have come very far in your abilities to understand how computers work under the hood and how you can control them programmatically. The difference between the computer you are using now and most single-use devices that exist on the market is that your Pi Z2W in its current state still acts as any normal desktop/laptop/phone. When you turn the device on, the operating system loads and then you are expected to start any program that you wish to have running.
+Welcome to the end of the semester! You have come very far in your abilities to understand how computers work under the hood and how you can control them programmatically. The difference between your doorbell unit as currently configured and most single-use devices that exist on the market is it still acts as any normal desktop/laptop/phone. When you turn the device on, the operating system loads and then you are expected to start any program that you wish to have running.
 
-This is not the case for most single-use devices. For example, when you turn on a microwave, it immediately starts heating up your food. When you turn on an electric kettle, it immediately starts heating up your water. When you turn on a doorbell, it immediately starts ringing. This is because these devices are programmed to start running as soon as they are turned on. In this lab, we will work to make the Pi Z2W act as a smart doorbell. This entails having your program run on boot.
+This is not the case for most single-use devices. For example, when you turn on a microwave, it immediately starts heating up your food. When you turn on an electric kettle, it immediately starts heating up your water. When you push the button on a doorbell, it immediately starts ringing. This is because these devices are programmed to start running as soon as they are turned on. In this lab, we will work to make the Raspberry Pi act as a smart doorbell on power up. This entails having your doorbell program run on boot.
 
 ### systemd Daemons
 
-To enable our program to run on boot in Linux, we need to understand how Linux manages its processes. Linux uses a system called `systemd` to manage its processes. `systemd` is a system and service manager that runs as the first thing when your computer boots (process ID 1). It is responsible for starting and stopping processes, as well as managing the boot process.
+To enable the doorbell program to run on boot in Linux, we need to understand how Linux manages its processes. Linux uses a system called `systemd` to manage its processes. `systemd` is a system and service manager that runs as the first thing when your computer boots (process ID 1). It is responsible for starting and stopping processes, as well as managing the boot process.
 
-`systemd` also manages programs that run in the background, called daemons. A daemon is a program that runs in the background and is not directly started by the user. Daemons are often used to provide services to the user, such as the `sshd` daemon that provides the ability to connect to the Pi Z2W over SSH.
+`systemd` also manages programs that run in the background, called daemons. A daemon is a program that runs in the background and is not directly started by the user. Daemons are often used to provide services to the user, such as the `sshd` daemon that provides the ability to connect to the doorbell over SSH.
 
 #### Service Files
 
-For our doorbell to run on boot, we need to create a daemon that runs our program. This is done by creating a `systemd` service file. A `systemd` service file is a file that contains information about a service that `systemd` can be used to start and stop the service.
+For our doorbell to run on boot, we need to create a daemon that runs our program. This is done by creating a `systemd` service file. A `systemd` service file is a file that contains information about a service that can be used by `systemd` to start and stop the service.
 
 One specific command that can be used to monitor and control the operations of daemons in `systemd` is called `systemctl`. `systemctl` is a command line utility that can be used to control the `systemd` system and service manager. It can be used to start, stop, restart, and check the status of services.
 
-For example, let's say we want to observe the `sshd` daemon on our Pi Z2W. We can use the following command to see the status of the `sshd` daemon:
+For example, let's say we want to observe the `sshd` daemon on our doorbell unit. We can use the following command to see the status of the `sshd` daemon:
 
 ```bash
 sudo systemctl status sshd    # Shows status of the sshd daemon
@@ -41,7 +41,7 @@ sudo systemctl start sshd     # Starts the sshd daemon
 sudo systemctl stop sshd      # Stops the sshd daemon
 ```
 
-However, these commands only work for daemons that are already installed on the Pi Z2W. If we want to create our own daemon, we need to create a service file that `systemd` can use to start and stop our program.
+However, these commands only work for daemons that are already installed on the doorbell unit. If we want to create our own daemon, we need to create a service file that `systemd` can use to start and stop our program.
 
 To create a service file, we need to create a file in the `/etc/systemd/system` directory. The name of the file must end in `.service`. The contents of the file must be in the following format:
 
@@ -57,7 +57,7 @@ ExecStart=<Absolute command to start your program>
 WantedBy=multi-user.target
 ```
 
-**The file path to your executable must be absolute.** This means if your ran your code by doing:
+**The file path to your executable must be absolute.** This means if you ran your code by doing:
 
 ```bash
 ./my-program
@@ -77,7 +77,7 @@ Once we have created the `.service` file, we can use the commands above to start
 sudo systemctl enable my-service.service    # Enables the my-service service
 ```
 
-This will make it so that my-service.service will run whenever I turn on the Pi Z2W. If I don't want my program to run when my Pi Z2W boots, I can use the following command to disable my service:
+This will make it so that my-service.service will run whenever I turn on the doorbell unit. If I don't want my program to run when the doorbell boots, I can use the following command to disable my service:
 
 ```bash
 sudo systemctl disable my-service.service    # Disables the my-service service
@@ -107,20 +107,21 @@ Create your final doorbell program, which should run automatically when you star
 
 - Before you set up your program to run on boot, add a 15 second sleep to the first line of your main function. This is because the program that prints the IP addresses also uses the displays and if they run at the same time, the display can get messed up. This ensures that the IP address program is finished before your program starts. Make sure to rebuild your program (`make`) so the change takes effect.
 
-- Set the program to run on boot by enabling the service. Test it out by rebooting your Pi Z2W and making sure your program starts up.
+- Set the program to run on boot by enabling the service. Test it out by rebooting your doorbell unit and making sure your program starts up.
 
-### Pass Off & Submission
+## Pass Off & Submission
 
-- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
-- **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't have errors.
+- Pass off with a TA by demonstrating that your main program running on the doorbell fulfills all the requirements outlined above.
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions to update your `README.md` file with the new features of this lab.
-- **Once you have finished updating your `README.md` file for this lab, it is time to upload it to Learning Suite! Make sure to review the rubric attached to the listing on LS and remove the instructions inside `README.md`.**
+- Follow the instructions in the `README.md` file in the repository. Add the requested detail about features and usage to this file.
+- **Once you have finished updating your `README.md` file for this lab, it is time to upload it to Learning Suite! Make sure to review the rubric link in the description of the assignment on Learning Suite and remove the instructions inside `README.md`.**
+- **Make sure to push your changes back to your Git remote repository. Follow the instructions on the Lab Setup page.**
+
 
 ## Explore More
 
 - [What is systemd?](https://en.wikipedia.org/wiki/Systemd)
 - [systemd's website](https://systemd.io/)
 - [Creating a systemd Service](https://medium.com/@benmorel/creating-a-linux-service-with-systemd-611b5c8b91d6)
-- [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server)
+<!-- - [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server) -->

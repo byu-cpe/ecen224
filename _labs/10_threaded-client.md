@@ -71,7 +71,7 @@ Let's take a closer look at what is going on in the `pthread_create()` function.
 
 2. This argument expects a special `pthread_attr_t` struct pointer. Since we are covering the basics of threading in this class, this field is ignored by putting a `NULL` in its place.
 
-3. A pointer to the function we are calling. Function pointers can be provided by giving the name of the function. Make sure you only provide the name, and don't *call* the function (eg. `print_msg` instead of `print_msg()`). If you like, you can put a `&` in front of the function name to make it more obvious it's a function pointer (eg. `&print_msg`), but this is not required by the compiler.
+3. A pointer to the function we are calling. Function pointers can be provided by giving the name of the function. Make sure you only provide the name, and don't *call* the function (e.g., `print_msg` instead of `print_msg()`). If you like, you can put a `&` in front of the function name to make it more obvious it's a function pointer (e.g., `&print_msg`), but this is not required by the compiler.
 
 4. A pointer you provide to this argument will be passed as an argument to the function you are running in the new thread. This is a great way to provide information to the new thread. Notice that for this example it is `NULL` since our function doesn't require any special arguments. The next section has more information about how to pass arguments into a thread.
 
@@ -95,7 +95,7 @@ I'm in main!
 
 ### Passing in Arguments to a Thread
 
-While the previous example may have been interesting in the sense that we've learned to use threads, it is pretty lackluster in the sense that we can't get any information into or out of the thread. To do this, we will need to understand working with `void *` and allocating memory.
+While the previous example may have been interesting in the sense that we've learned to use threads, it is pretty lackluster in the sense that we can't get any information into or out of the thread. To do this, we will need to understand how to work with `void *` and allocating memory.
 
 #### void *: The Generic Pointer
 
@@ -172,8 +172,8 @@ To get a return value from a thread in C, you would need to use the `pthread_joi
 
 ### Requirements
 
-- In order to use the threading library, you need to include the library in source code and your compilation.
-  - Add `#include <pthread.h>` and `#include <unistd.h>` to your headers in `main.c`.
+- In order to use the threading library, you need to include the library in your source code and in your Makefile.
+  - Add `#include <pthread.h>` and `#include <unistd.h>` to `main.c` with your other headers.
   - Add `-pthread` to the `CFLAGS` variable in your Makefile.
   - Before you go any farther, try `make` on your project to make sure everything is still working.
 
@@ -189,7 +189,7 @@ To get a return value from a thread in C, you would need to use the `pthread_joi
 
   - When your image is sent successfully (i.e. the thread reached the end successfully), change the color of the status bar to green and show "Sent!" as the text. *How are you going to know when the thread is done sending? A global variable that helps you to maintain what state you are in might be helpful.*
 
-  - The status bar should should stay green with the sent message for 2 seconds. After the 2 seconds hide the status bar. *How do you know when it has been 2 seconds? Consider editing your `send_image`.*
+  - The status bar should stay green with the sent message for 2 seconds. After the 2 seconds hide the status bar. *How do you know when it has been 2 seconds? Consider editing your `send_image`.*
 
 - Ensure that your menu is still responsive and you can navigate the menu while the status bar is on screen (while the image is being sent and for the two seconds after).
 
@@ -204,13 +204,13 @@ Here is a demo showing the different features of the lab:
     </div>
 </div>
 
-### Pass Off & Submission
+## Pass Off & Submission
 
-- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't.
-- Pass off to a TA by demonstrating your doorbell running your program that fulfills all of the requirements outlined above.
-- **Make sure to upload your changes back to your GitHub repository. Follow the instructions on the Github Setup page.**
+- Your program must compile without warnings or errors. Your `Makefile` has the `-Werror` flag to ensure that it doesn't have errors.
+- Pass off with a TA by demonstrating that your main program running on the doorbell fulfills all the requirements outlined above.
 - Take the Pass off Quiz on Learning Suite.
-- Follow the instructions to update your `README.md` file with the new features of this lab.
+- Follow the instructions in the `README.md` file in the repository. Add the requested detail about features and usage to this file.
+- **Make sure to push your changes back to your Git remote repository. Follow the instructions on the Lab Setup page.**
 
 ## Explore More
 
@@ -218,4 +218,4 @@ Here is a demo showing the different features of the lab:
 - [`pthread_create()` man page](https://man7.org/linux/man-pages/man3/pthread_create.3.html)
 - [`pthread_join()` man page](https://man7.org/linux/man-pages/man3/pthread_join.3.html)
 - [pthreads in C](https://www.geeksforgeeks.org/multithreading-in-c/#)
-- [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server)
+<!-- - [Code for the server part of this lab](https://github.com/byu-ecen-224-classroom/client_server) -->
