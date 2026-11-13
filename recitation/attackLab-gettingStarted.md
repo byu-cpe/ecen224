@@ -1,11 +1,12 @@
 ---
-title: AttackLab Getting Started
+title: Attack Lab Getting Started
 layout: walkthrough
 permalink: /:path/:basename
 ---
+
 You must complete this lab on the CAEDM server, `ssh.et.byu.edu` because it has the right configuration to allow stack execution exploits. Conveniently, this server is available through SSH from on or off campus. We recommend completing the task in the lab due to the availabilty of TAs but access from other locations is available.
 
-In [LearningSuite](https://learningsuite.byu.edu/.2RLw/cid-wk9m3Zc7ATmQ/pages/id-pDAT), click on the "Attack Programming Assignment" to download your target. It will be a `.tar` file with a name like `targetK.tar` where `K` is a number. You must be in the lab or on the campus network for the download and scoreboard links to work.
+Obtain your attack target from the [Attack Target Download](http://ecen224.byu.edu:5110/) page. It will be a `.tar` file with a name like `targetK.tar` where `K` is a number. You must be in the lab or on the campus network for the download and scoreboard links to work.
 
 Copy your target to your home directory. This directory is shared between the lab computers and the CAEDM server. So, if you download using a lab computer you can just drop the file where you want it.
 
@@ -19,7 +20,7 @@ scp targetK.tar username@ssh.et.byu.edu:~
 
 Substitute your CADEM username for `username` and the actual name of your target .tar file for `targetK.tar`. The ~ tilde character at the end of the path indicates to copy into your home directory on the server. It will prompt you for your password.
 
-In similar manner, you can use `scp` to copy other files both ways between computers.
+In a similar manner, you can use `scp` to copy other files both ways between computers.
 
 ### Connect to the CADEM server
 
@@ -74,7 +75,7 @@ The second disassemble will give you the address of touch1.
 ### Hint: Jumping to addresses
 All jumps in x86 machine code are relative. That is, the address in the `jmp` command is added to the current `rip` instruction pointer. A negative number will jump to a lower address and a positive number will jump to a higher address. This is done so that code can be *relocated* without having to change all of the jump commands.
 
-Because of this, when you follow the tips in *Appendix B* to generate machine code, it's hard to a `jmp` that will go to an exact address. To do so, you need to know the address of where your code will land and then take the difference between the two addresses. An easy alternative is to `push` the address you want on the stack and then use `ret` to go to that address.
+Because of this, when you follow the tips in *Appendix B* to generate machine code, it's hard to create a `jmp` that will go to an exact address. To do so, you need to know the address of where your code will land and then take the difference between the two addresses. An easy alternative is to `push` the address you want on the stack and then use `ret` to go to that address.
 
 ```
 pushq $0xabcdefgh

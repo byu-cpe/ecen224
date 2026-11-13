@@ -9,7 +9,7 @@ toc: true
 
 ## Quick Reference
 
-These links are also provided throughout the lab report when needed.
+These links are also provided throughout the lab instructions when needed.
 
 - [Bomb Lab Download](http://ecen224.byu.edu:5100/)
 - [Bomb Lab Scoreboard](http://ecen224.byu.edu:5100/scoreboard)

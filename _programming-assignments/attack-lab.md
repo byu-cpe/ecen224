@@ -7,48 +7,49 @@ layout: lab
 toc: true
 ---
 
-## 0. Getting Started
+## Quick Reference
 
-You must complete this lab on the CAEDM server (`ssh.et.byu.edu`) to perform this lab. You can ssh into the server by running the following command:
+- [Attack Target Download](http://ecen224.byu.edu:5110/)
+- [Attack Lab Scoreboard](http://ecen224.byu.edu:5110/scoreboard)
+- [GDB Quick Reference]({% link assets/GDB_quick_ref_v2.pdf %}) 
+- [x86-64 Reference Sheet](https://web.stanford.edu/class/cs107/resources/x86-64-reference.pdf)
+- [Attack Lab - Getting Started]({% link recitation/attackLab-gettingStarted.md %})
 
-```bash
-ssh <caedm_username>@ssh.et.byu.edu
-```
-
-Replace `<caedm_username>` with your actual CAEDM username. Your home directory is mounted between `ssh.et.byu.edu`, the Digital Lab computers, and the Embedded Lab computers, so you can download the target from any of those locations.
-
-
-### Download Instructions
-Go to the `Attack Programming Assignment` entry in *LearningSuite* where you will find a link to download your attack target and one to view the scoreboard.
-
-For more detail, view the [Attack Lab - Getting Started](/ecen224/recitation/attackLab-gettingStarted) script from class.
-
-## 1. Introduction
+## Introduction
 This assignment involves generating a total of five attacks on two programs having different security vulnerabilities. Outcomes you will gain from this lab include:
 - You will learn different ways that attackers can exploit security vulnerabilities when programs do not safeguard themselves well enough against buffer overflows.
 - Through this, you will get a better understanding of how to write programs that are more secure, as well as some of the features provided by compilers and operating systems to make programs less vulnerable.
 - You will gain a deeper understanding of the stack and parameter-passing mechanisms of x86-64 machine code.
 - You will gain a deeper understanding of how x86-64 instructions are encoded.
-- You will gain more experience with debugging tools such as `GDB` and `OBJDUMP`
+- You will gain more experience with debugging tools such as `gdb` and `objdump`
 
 <!-- https://getbootstrap.com/docs/5.3/components/alerts/ -->
 <div class="alert alert-warning" role="alert">
     <b>Note:</b> In this lab, you will gain firsthand experience with methods used to exploit security weaknesses in operating systems and network servers. Our purpose is to help you learn about the runtime operation of programs and to understand the nature of these security weaknesses so that you can avoid them when you write system code. We do not condone the use of any form of attack to gain unauthorized access to any system resources.
 </div>
 
-You will want to study Sections 3.10.3 and 3.10.4 of the CS:APP3e book as reference material for this lab.
+You will want to study Sections 3.10.3 and 3.10.4 of the textbook "Computer Systems: A Programmer's Perspective (Third Edition)" as reference material for this lab.
 
-## 2. Logistics
+## Getting Started
 
-### 2.1 Getting Files
-To obtain the your unique file, follow the instructions on the webpage for this lab. (You point your Web browser at a particular server and the server builds your files and returns them to your browser in a `tar` file called `targetK.tar`, where `K` is the unique number of your target programs.)
+You must complete this lab on the CAEDM server, `ssh.et.byu.edu` because it has the right configuration to allow stack execution exploits. Conveniently, this server is available through SSH from on or off campus. We recommend completing the task in the lab due to the availability of TAs, but access from other locations is available.
 
-Save the `targetK`.tar file in a (protected) Linux directory in which you plan to do your work. Then give the command: `tar -xvf targetK.tar`. This will extract a directory `targetK` containing the files described below.
+### Download Instructions
+Obtain your unique attack target from the [Attack Target Download](http://ecen224.byu.edu:5110/) page. You must be in the lab or on the campus network for the download and scoreboard links to work. The server will build your files and return them to your browser in a `tar` file called `targetK.tar`, where `K` is the unique number of your target programs.
 
-You should only download one set of files. If for some reason you download multiple targets, choose one target to work on and delete the rest.
+Save the `targetK`.tar file to a directory on your J-Drive where you plan to work. Your J-Drive is shared between the lab computers and the CAEDM server. So, if you download using a lab computer, you can just drop the file where you want it. You should only download one set of files. If for some reason you download multiple targets, choose one target to work on and delete the rest.
+
+### Extract Files
+From a command line terminal, `cd` to where you downloaded your target and give the following command. This will create a directory `targetK` containing the extracted files.
+
+```bash
+tar -xvf targetK.tar
+```
+
+Substitute the actual name of your `.tar` file.
 
 <div class="alert alert-danger" role="alert">
-    <b>Warning:</b> If you expand your <code>targetK.tar</code> on a PC, by using a utility such as Winzip, or letting your browser do the extraction, you’ll risk resetting permission bits on the executable files.
+    <b>Warning:</b> If you expand your <code>targetK.tar</code> on a PC by using a utility such as WinZip, or letting your browser do the extraction, you’ll risk resetting permission bits on the executable files.
 </div>
 
 The files in `targetK` include:
@@ -59,9 +60,16 @@ The files in `targetK` include:
 - `farm.c`: The source code of your target’s “gadget farm,” which you will use in generating return-oriented programming attacks.
 - `hex2raw`: A utility to generate attack strings.
 
-In the following instructions, we will assume that you have copied the files to a protected local directory, and that you are executing the programs in that local directory.
+### Connect to the CADEM Server
+Now, make an SSH connection to the CAEDM server.
 
-### 2.2 Important Points
+```bash
+ssh username@ssh.et.byu.edu
+```
+
+Replace `username` with your actual CAEDM username. Now, you are ready to begin the lab.
+
+### Important Points
 Here is a summary of some important rules regarding valid solutions for this lab. These points will not make much sense when you read this document for the first time. They are presented here as a central reference of rules once you get started.
 - You must do the assignment on a machine that is similar to the one that generated your targets.
 - Your solutions may not use attacks to circumvent the validation code in the programs. Specifically, any address you incorporate into an attack string for use by a `ret` instruction should be to one of the following destinations:
@@ -70,9 +78,10 @@ Here is a summary of some important rules regarding valid solutions for this lab
     - The address of one of your gadgets from the gadget farm.
 - You may only construct gadgets from file `rtarget` with addresses ranging between those for functions `start_farm` and `end_farm`
 
-## 3. Target Programs
-<!-- The words "CTARGET" and "RTARGET" are drawn in small caps on the PDF. I've rendered them as code snippets. If they need to be small caps, it looks like we would achieve this by placing them in <span style="font-variant:small-caps;">ctarget</span> -->
-Both `CTARGET` and `RTARGET` read strings from standard input. They do so with the function `getbuf` defined below:
+## Target Programs
+In the following instructions, we will assume that you have extracted the files to a directory `targetK` on your J-Drive, and that you are executing the programs from that directory.
+
+Both `ctarget` and `rtarget` read strings from standard input. They do so with the function `getbuf` defined below:
 
 ```c
 unsigned getbuf()
@@ -104,18 +113,18 @@ Ouch!: You caused a segmentation fault!
 Better luck next time
 ```
 
-(Note that the value of the cookie shown will differ from yours.) Program `RTARGET` will have the same behavior. As the error message indicates, overrunning the buffer typically causes the program state to be corrupted, leading to a memory access error. Your task is to be more clever with the strings you feed `CTARGET` and `RTARGET` so that they do more interesting things. These are called *exploit* strings.
+(Note that the value of the cookie shown will differ from yours.) Program `rtarget` will have the same behavior. As the error message indicates, overrunning the buffer typically causes the program state to be corrupted, leading to a memory access error. Your task is to be more clever with the strings you feed `ctarget` and `rtarget` so that they do more interesting things. These are called *exploit* strings.
 
-Both `CTARGET` and `RTARGET` take several different command line arguments:
+Both `ctarget` and `rtarget` take several different command line arguments:
 - `-h`: Print list of possible command line arguments
 - `-q`: Don’t send results to the grading server
 - `-i FILE`: Supply input from a file, rather than from standard input
 
-Your exploit strings will typically contain byte values that do not correspond to the ASCII values for printing characters. The program `HEX2RAW` will enable you to generate these raw strings. See [Appendix A](#appendix-a-using-hex2raw) for more information on how to use `HEX2RAW`.
+Your exploit strings will typically contain byte values that do not correspond to the ASCII values for printing characters. The program `hex2raw` will enable you to generate these raw strings. See [Appendix A](#appendix-a-using-hex2raw) for more information on how to use `hex2raw`.
 
-**Important points:**
+**Important Points:**
 - Your exploit string must not contain byte value `0x0a` at any intermediate position, since this is the ASCII code for newline (‘`\n`’). When `Gets` encounters this byte, it will assume you intended to terminate the string.
-- `HEX2RAW` expects two-digit hex values separated by one or more white spaces. So if you want to create a byte with a hex value of 0, you need to write it as `00`. To create the word `0xdeadbeef` you should pass “`ef be ad de`” to `HEX2RAW` (note the reversal required for little-endian byte ordering).
+- `hex2raw` expects two-digit hex values separated by one or more white spaces. So if you want to create a byte with a hex value of 0, you need to write it as `00`. To create the word `0xdeadbeef` you should pass “`ef be ad de`” to `hex2raw` (note the reversal required for little-endian byte ordering).
 
 When you have correctly solved one of the levels, your target program will automatically send a notification to the grading server. For example:
 ```
@@ -126,17 +135,11 @@ Valid solution for level 2 with target ctarget
 PASSED: Sent exploit string to server to be validated.
 NICE JOB!
 ```
-The server will test your exploit string to make sure it really works, and it will update the Attacklab scoreboard page indicating that your userid (listed by your target number for anonymity) has completed this phase.
+The server will test your exploit string to make sure it really works, and it will update the [Attack Lab Scoreboard](http://ecen224.byu.edu:5110/scoreboard) page indicating that your userid (listed by your target number for anonymity) has completed this phase. Unlike the Bomb Lab, there is no penalty for making mistakes in this lab. Feel free to fire away at `ctarget` and `rtarget` with any strings you like.
 
-You can view the scoreboard by pointing your Web browser at the link given on the class Web page for this class. Unlike the Bomb Lab, there is no penalty for making mistakes in this lab. Feel free to fire away at `CTARGET` and `RTARGET` with any strings you like.
+[Figure 1](#figure-1-summary-of-attack-lab-phases) summarizes the five phases of the lab. As can be seen, the first three involve code-injection (CI) attacks on ctarget, while the last two involve return-oriented-programming (ROP) attacks on `rtarget`.
 
-<!-- IMPORTANT NOTE: You can work on your solution on any Linux machine, but in order to submit your solution, you will need to be running on one of the ECEn Department’s spice machines. -->
-
-[Figure 1](#figure-1-summary-of-attack-lab-phases) summarizes the five phases of the lab. As can be seen, the first three involve code-injection (CI) attacks on CTARGET, while the last two involve return-oriented-programming (ROP) attacks on `RTARGET`.
-
----
-
-### Figure 1: Summary of attack lab phases
+### Figure 1: Summary of Attack Lab Phases
 
 <style>
     tr#fig-1-Table { border-top: solid; }
@@ -154,7 +157,7 @@ You can view the scoreboard by pointing your Web browser at the link given on th
         </tr>
         <tr>
             <td>1</td>
-            <td>CTARGET</td>
+            <td>ctarget</td>
             <td>1</td>
             <td>CI</td>
             <td><code>touch1</code></td>
@@ -162,7 +165,7 @@ You can view the scoreboard by pointing your Web browser at the link given on th
         </tr>
         <tr>
             <td>2</td>
-            <td>CTARGET</td>
+            <td>ctarget</td>
             <td>2</td>
             <td>CI</td>
             <td><code>touch2</code></td>
@@ -170,7 +173,7 @@ You can view the scoreboard by pointing your Web browser at the link given on th
         </tr>
         <tr>
             <td>3</td>
-            <td>CTARGET</td>
+            <td>ctarget</td>
             <td>3</td>
             <td>CI</td>
             <td><code>touch3</code></td>
@@ -178,7 +181,7 @@ You can view the scoreboard by pointing your Web browser at the link given on th
         </tr>
         <tr id="fig-1-Table">
             <td>4</td>
-            <td>RTARGET</td>
+            <td>rtarget</td>
             <td>2</td>
             <td>ROP</td>
             <td><code>touch2</code></td>
@@ -186,7 +189,7 @@ You can view the scoreboard by pointing your Web browser at the link given on th
         </tr>
         <tr>
             <td>5</td>
-            <td>RTARGET</td>
+            <td>rtarget</td>
             <td>3</td>
             <td>ROP</td>
             <td><code>touch3</code></td>
@@ -196,18 +199,16 @@ You can view the scoreboard by pointing your Web browser at the link given on th
 </div>
 
 CI: Code injection
- 
+
 ROP: Return-oriented programming
 
----
+## Part I: Code Injection Attacks
+For the first three phases, your exploit strings will attack `ctarget`. This program is set up in a way that the stack positions will be consistent from one run to the next and so that data on the stack can be treated as executable code. These features make the program vulnerable to attacks where the exploit strings contain the byte encodings of executable code.
 
-## 4. Part I: Code Injection Attacks
-For the first three phases, your exploit strings will attack `CTARGET`. This program is set up in a way that the stack positions will be consistent from one run to the next and so that data on the stack can be treated as executable code. These features make the program vulnerable to attacks where the exploit strings contain the byte encodings of executable code.
-
-### 4.1 Phase 1 Level 1
+### Phase 1 Level 1
 For Phase 1, you will not inject new code. Instead, your exploit string will redirect the program to execute an existing procedure.
 
-Function `getbuf` is called within `CTARGET` by a function `test` having the following C code:
+Function `getbuf` is called within `ctarget` by a function `test` having the following C code:
 ```c
 void test()
 {
@@ -228,16 +229,16 @@ void touch1()
 }
 ```
 
-Your task is to get `CTARGET` to execute the code for `touch1` when `getbuf` executes its return statement, rather than returning to `test`. Note that your exploit string may also corrupt parts of the stack not directly related to this stage, but this will not cause a problem, since `touch1` causes the program to exit directly.
+Your task is to get `ctarget` to execute the code for `touch1` when `getbuf` executes its return statement, rather than returning to `test`. Note that your exploit string may also corrupt parts of the stack not directly related to this stage, but this will not cause a problem, since `touch1` causes the program to exit directly.
 
-**Some Advice**:
-- All the information you need to devise your exploit string for this level can be determined by examining a disassembled version of `CTARGET`. Use `objdump -d` to get this dissembled version.
+**Some Advice:**
+- All the information you need to devise your exploit string for this level can be determined by examining a disassembled version of `ctarget`. Use `objdump -d` to get this dissembled version.
 - The idea is to position a byte representation of the starting address for `touch1` so that the `ret` instruction at the end of the code for `getbuf` will transfer control to `touch1`.
 - Be careful about byte ordering.
-- You might want to use GDB to step the program through the last few instructions of `getbuf` to make sure it is doing the right thing.
-- The placement of `buf` within the stack frame for `getbuf` depends on the value of compile-time constant `BUFFER_SIZE`, as well the allocation strategy used by GCC. You will need to examine the disassembled code to determine its position.
+- You might want to use `gdb` to step the program through the last few instructions of `getbuf` to make sure it is doing the right thing.
+- The placement of `buf` within the stack frame for `getbuf` depends on the value of compile-time constant `BUFFER_SIZE`, as well the allocation strategy used by `gcc`. You will need to examine the disassembled code to determine its position.
 
-### 4.2 Phase 2 Level 2
+### Phase 2 Level 2
 Phase 2 involves injecting a small amount of code as part of your exploit string.
 
 Within the file `ctarget` there is code for a function `touch2` having the following C representation:
@@ -255,7 +256,7 @@ void touch2(unsigned val)
     exit(0);
 }
 ```
-Your task is to get `CTARGET` to execute the code for `touch2` rather than returning to `test`. In this case, however, you must make it appear to `touch2` as if you have passed your cookie as its argument.
+Your task is to get `ctarget` to execute the code for `touch2` rather than returning to `test`. In this case, however, you must make it appear to `touch2` as if you have passed your cookie as its argument.
 
 **Some Advice:**
 - You will want to position a byte representation of the address of your injected code in such a way that `ret` instruction at the end of the code for `getbuf` will transfer control to it.
@@ -264,12 +265,12 @@ Your task is to get `CTARGET` to execute the code for `touch2` rather than retur
 - Do not attempt to use `jmp` or `call` instructions in your exploit code. The encodings of destination addresses for these instructions are difficult to formulate. Use `ret` instructions for all transfers of control, even when you are not returning from a call.
 - See the discussion in [Appendix B](#appendix-b-generating-byte-codes) on how to use tools to generate the byte-level representations of instruction sequences.
 
-### 4.3 Phase 3 Level 3
+### Phase 3 Level 3
 Phase 3 also involves a code injection attack, but passing a string as argument.
 
 Within the file `ctarget` there is code for functions `hexmatch` and `touch3` having the following C representations:
 ```c
-/* Compare string to hex represention of unsigned value */
+/* Compare string to hex representation of unsigned value */
 int hexmatch(unsigned val, char *sval)
 {
     char cbuf[110];
@@ -293,7 +294,7 @@ void touch3(char *sval)
 }
 ```
 
-Your task is to get `CTARGET` to execute the code for `touch3` rather than returning to `test`. You must make it appear to `touch3` as if you have passed a string representation of your cookie as its argument.
+Your task is to get `ctarget` to execute the code for `touch3` rather than returning to `test`. You must make it appear to `touch3` as if you have passed a string representation of your cookie as its argument.
 
 **Some Advice:**
 - You will need to include a string representation of your cookie in your exploit string. The string should consist of the eight hexadecimal digits (ordered from most to least significant) without a leading “`0x.`”
@@ -301,20 +302,17 @@ Your task is to get `CTARGET` to execute the code for `touch3` rather than retur
 - Your injected code should set register `%rdi` to the address of this string.
 - When functions `hexmatch` and `strncmp` are called, they push data onto the stack, overwriting portions of memory that held the buffer used by `getbuf`. As a result, you will need to be careful where you place the string representation of your cookie.
 
-
-
-## 5. Part II: Return-Oriented Programming
-Performing code-injection attacks on program `RTARGET` is much more difficult than it is for `CTARGET`, because it uses two techniques to thwart such attacks:
+## Part II: Return-Oriented Programming
+Performing code-injection attacks on program `rtarget` is much more difficult than it is for `ctarget`, because it uses two techniques to thwart such attacks:
 - It uses randomization so that the stack positions differ from one run to another. This makes it impossible to determine where your injected code will be located.
-- It marks the section of memory holding the stack as nonexecutable, so even if you could set the program counter to the start of your injected code, the program would fail with a segmentation fault.
+- It marks the section of memory holding the stack as non-executable, so even if you could set the program counter to the start of your injected code, the program would fail with a segmentation fault.
 
 <!--Footnote syntax: https://www.markdownguide.org/extended-syntax/#footnotes -->
 Fortunately, clever people have devised strategies for getting useful things done in a program by executing existing code, rather than injecting new code. The most general form of this is referred to as *return-oriented programming* (ROP)[^1] [^2]. The strategy with ROP is to identify byte sequences within an existing program that consist of one or more instructions followed by the instruction `ret`. Such a segment is referred to as a `gadget`. [Figure 2](#figure-2) illustrates how the stack can be set up to execute a sequence of *n* gadgets. In this figure, the stack contains a sequence of gadget addresses. Each gadget consists of a series of instruction bytes, with the final one being `0xc3`, encoding the `ret` instruction. When the program executes a `ret` instruction
 starting with this configuration, it will initiate a chain of gadget executions, with the `ret` instruction at the end of each gadget causing the program to jump to the beginning of the next.
 
-
-### Figure 2
-<figure class="image mx-auto" style="max-width: 1000px" id="figure-2">
+### Figure 2: Gadget Pointers
+<figure class="image mx-auto" style="max-width: 750px" id="figure-2">
     <img src="{% link assets/attack-lab/rop.png %}" alt="stack-diagram">
 </figure>
 
@@ -336,22 +334,20 @@ The chances of this function being useful for attacking a system seem pretty sli
 
 The byte sequence `48 89 c7` encodes the instruction `movq %rax, %rdi`. (See [Figure 3-A](#figure-3-a) for the encodings of useful `movq` instructions.) This sequence is followed by byte value `c3`, which encodes the `ret` instruction. The function starts at address `0x400f15`, and the sequence starts on the fourth byte of the function. Thus, this code contains a gadget, having a starting address of `0x400f18`, that will copy the 64-bit value in register `%rax` to register `%rdi`.
 
-Your code for `RTARGET` contains a number of functions similar to the `setval_210` function shown above in a region we refer to as the *gadget farm*. Your job will be to identify useful gadgets in the gadget farm and use these to perform attacks similar to those you did in Phases 2 and 3.
+Your code for `rtarget` contains a number of functions similar to the `setval_210` function shown above in a region we refer to as the *gadget farm*. Your job will be to identify useful gadgets in the gadget farm and use these to perform attacks similar to those you did in Phases 2 and 3.
 
 <div class="alert alert-info" role="alert">
     <b>Important</b>: The gadget farm is demarcated by functions <code>start_farm</code> and <code>end_farm</code> in your copy of <code>rtarget</code>. Do not attempt to construct gadgets from other portions of the program code.
 </div>
 
-
-### 5.1 Phase 4 Level 2
-For Phase 4, you will repeat the attack of Phase 2, but do so on program `RTARGET` using gadgets from your gadget farm. You can construct your solution using gadgets consisting of the following instruction types, and using only the first eight x86-64 registers (`%rax`–`%rdi`).
+### Phase 4 Level 2
+For Phase 4, you will repeat the attack of Phase 2, but do so on program `rtarget` using gadgets from your gadget farm. You can construct your solution using gadgets consisting of the following instruction types, and using only the first eight x86-64 registers (`%rax`–`%rdi`).
 
 - `movq` : The codes for these are shown in [Figure 3-A](#figure-3-a).
 - `popq` : The codes for these are shown in [Figure 3-B](#figure-3-b).
 - `ret` : This instruction is encoded by the single byte `0xc3`.
 - `nop` : This instruction (pronounced “no op,” which is short for “no operation”) is  encoded by the single byte `0x90`. Its only effect is to cause the program counter to be incremented by 1.
 
----
 ### Figure 3-A. 
 Encodings of `movq` instructions.
 
@@ -469,7 +465,6 @@ Encodings of `movq` instructions.
     </table>
 </div>
 
-----
 ### Figure 3-B.
 Encodings of `popq` instructions
 
@@ -501,7 +496,6 @@ Encodings of `popq` instructions
     </tr>
 </table>
 
----
 ### Figure 3-C.
 Encodings of `movl` instructions
 
@@ -614,7 +608,6 @@ Encodings of `movl` instructions
     </table>
 </div>
 
----
 ### Figure 3-D.
 Encodings of 2-byte functional nop instructions
 
@@ -661,41 +654,39 @@ Encodings of 2-byte functional nop instructions
     </table>
 </div>
 
----
-
 Figure 3: Byte encodings of instructions. All values are shown in hexadecimal.
 
-**Some Advice**:
+**Some Advice:**
 - All the gadgets you need can be found in the region of the code for `rtarget` demarcated by the functions `start_farm` and `mid_farm`.
 - You can do this attack with just two gadgets.
 - When a gadget uses a `popq` instruction, it will pop data from the stack. As a result, your exploit string will contain a combination of gadget addresses and data.
 
-### 5.2 - Phase 5 Level 3 (Extra Credit)
-Before you take on Phase 5, pause to consider what you have accomplished so far. In Phases 2 and 3, you caused a program to execute machine code of your own design. If `CTARGET` had been a network server, you could have injected your own code into a distant machine. In Phase 4, you circumvented two of the main devices modern systems use to thwart buffer overflow attacks. Although you did not inject your own code, you were able inject a type of program that operates by stitching together sequences of existing code.
+### Phase 5 Level 3 (Extra Credit)
+Before you take on Phase 5, pause to consider what you have accomplished so far. In Phases 2 and 3, you caused a program to execute machine code of your own design. If `ctarget` had been a network server, you could have injected your own code into a distant machine. In Phase 4, you circumvented two of the main devices modern systems use to thwart buffer overflow attacks. Although you did not inject your own code, you were able inject a type of program that operates by stitching together sequences of existing code.
 
-Phase 5 requires you to do an ROP attack on `RTARGET` to invoke function `touch3` with a pointer to a string representation of your cookie. That may not seem significantly more difficult than using an ROP attack to invoke `touch2`, except that we have made it so. Moreover, Phase 5 counts for only 5 extra credit points, which is not a true measure of the effort it will require. This phase is challenging. If you have other pressing obligations consider stopping right now.
+Phase 5 requires you to do an ROP attack on `rtarget` to invoke function `touch3` with a pointer to a string representation of your cookie. That may not seem significantly more difficult than using an ROP attack to invoke `touch2`, except that we have made it so. Moreover, Phase 5 counts for only 5 extra credit points, which is not a true measure of the effort it will require. This phase is challenging. If you have other pressing obligations consider stopping right now.
 
 To solve Phase 5, you can use gadgets in the region of the code in `rtarget` demarcated by functions `start_farm` and `end_farm`. In addition to the gadgets used in Phase 4, this expanded farm includes the encodings of different `movl` instructions, as shown in [Figure 3-C](#figure-3-c). The byte sequences in this part of the
 farm also contain 2-byte instructions that serve as *functional nops*, i.e., they do not change any register or memory values. These include instructions, shown in [Figure 3-D](#figure-3-d), such as `andb %al,%al`, that operate on the low-order bytes of some of the registers but do not change their values.
 
-**Some Advice**:
+**Some Advice:**
 - You’ll want to review the effect a `movl` instruction has on the upper 4 bytes of a register, as is described on page 183 of the text.
 - The official solution requires eight gadgets (not all of which are unique).
 
-Good luck and have fun!
+**<span style="color: gold;">Good luck and have fun!</span>**
 
-## Appendix A: Using HEX2RAW
-`HEX2RAW` takes as input a *hex-formatted string*. In this format, each byte value is represented by two hex digits. For example, the string “`012345`” could be entered in hex format as “`30 31 32 33 34 35 00`." (Recall that the ASCII code for decimal digit *x* is `0x3`*x*, and that the end of a string is indicated by a null byte.)
+## Appendix A: Using hex2raw
+`hex2raw` takes as input a *hex-formatted string*. In this format, each byte value is represented by two hex digits. For example, the string “`012345`” could be entered in hex format as “`30 31 32 33 34 35 00`." (Recall that the ASCII code for decimal digit *x* is `0x3`*x*, and that the end of a string is indicated by a null byte.)
 
-The hex characters you pass to `HEX2RAW` should be separated by whitespace (blanks or newlines). We recommend separating different parts of your exploit string with newlines while you’re working on it. `HEX2RAW` supports C-style block comments, so you can mark off sections of your exploit string. For example:
+The hex characters you pass to `hex2raw` should be separated by whitespace (blanks or newlines). We recommend separating different parts of your exploit string with newlines while you’re working on it. `hex2raw` supports C-style block comments, so you can mark off sections of your exploit string. For example:
 ```c
 48 c7 c1 f0 11 40 00 /* mov $0x40011f0,%rcx */
 ```
 Be sure to leave space around both the starting and ending comment strings (“`/*`”, “`*/`”), so that the comments will be properly ignored.
 
-If you generate a hex-formatted exploit string in the file `exploit.txt`, you can apply the raw string to `CTARGET` or `RTARGET` in several different ways:
+If you generate a hex-formatted exploit string in the file `exploit.txt`, you can apply the raw string to `ctarget` or `rtarget` in several different ways:
 
-1. You can set up a series of pipes to pass the string through `HEX2RAW`.
+1. You can set up a series of pipes to pass the string through `hex2raw`.
     ```
     unix> cat exploit.txt | ./hex2raw | ./ctarget
     ```
@@ -705,7 +696,7 @@ If you generate a hex-formatted exploit string in the file `exploit.txt`, you ca
     unix> ./hex2raw < exploit.txt > exploit-raw.txt
     unix> ./ctarget < exploit-raw.txt
     ```
-    This approach can also be used when running from within GDB:
+    This approach can also be used when running from within `gdb`:
     ```
     unix> gdb ctarget
     (gdb) run < exploit-raw.txt
@@ -715,10 +706,10 @@ If you generate a hex-formatted exploit string in the file `exploit.txt`, you ca
     unix> ./hex2raw < exploit.txt > exploit-raw.txt
     unix> ./ctarget -i exploit-raw.txt
     ```
-    This approach also can be used when running from within GDB.
+    This approach also can be used when running from within `gdb`.
 
 ## Appendix B: Generating Byte Codes
-Using `GCC` as an assembler and `OBJDUMP` as a disassembler makes it convenient to generate the byte codes for instruction sequences. For example, suppose you write a file `example.s` containing the following assembly code:
+Using `gcc` as an assembler and `objdump` as a disassembler makes it convenient to generate the byte codes for instruction sequences. For example, suppose you write a file `example.s` containing the following assembly code:
 
 ```asm
 # Example of hand-generated assembly code
@@ -753,14 +744,14 @@ From this file, you can get the byte sequence for the code:
 ```
 68 ef cd ab 00 48 83 c0 11 89 c2
 ```
-This string can then be passed through `HEX2RAW` to generate an input string for the target programs.. Alternatively, you can edit example.d to omit extraneous values and to contain C-style comments for readability, yielding:
+This string can then be passed through `hex2raw` to generate an input string for the target programs.. Alternatively, you can edit example.d to omit extraneous values and to contain C-style comments for readability, yielding:
 ```
 68 ef cd ab 00      /* pushq $0xabcdef */
 48 83 c0 11         /* add $0x11,%rax */
 89 c2               /* mov %eax,%edx */
 ```
 
-This is also a valid input you can pass through `HEX2RAW` before sending to one of the target programs.
+This is also a valid input you can pass through `hex2raw` before sending to one of the target programs.
 
 ## Resources
 
