@@ -175,23 +175,27 @@ To get a return value from a thread in C, you would need to use the `pthread_joi
 - In order to use the threading library, you need to include the library in your source code and in your Makefile.
   - Add `#include <pthread.h>` and `#include <unistd.h>` to `main.c` with your other headers.
   - Add `-pthread` to the `CFLAGS` variable in your Makefile.
-  - Before you go any farther, try `make` on your project to make sure everything is still working.
+  - Before you go any farther, try `make` on your project to verify everything is still working.
 
-- Write a function called `send_image`. This function should take care of connecting to the server, sending the image, receiving the response, and closing the socket. You need to figure out the correct signature for this function.
+- Write a function called `send_image`. This function should connect to the server, send the image, receive the response, and close the socket. You need to figure out the correct function signature (return type and arguments) for this function. You will likely want to pass the image buffer as an argument and free the image buffer within this function when sending is complete.
 
-- Run your code using this newly created function (not using threads) to make sure that everything is still working as expected. Notice that sending data to the server is slow and your menu gets blocked while you are waiting to send the data.
+- Run your code using this newly created `send_image` function (not using threads) to verify that everything still works as expected. Notice that sending data to the server is slow and that the menu gets blocked while waiting for the send to complete.
 
-- Instead of calling `send_image` directly, use a thread to call the function instead. Now that calling `send_image` is no longer blocking, you might need to refactor your code to not call `free` right after the thread is started. **Warning: you should not call any display functions in a thread.** The display functions are not thread-safe, meaning that if multiple threads call the same function, weird things can happen. You should only call the display functions in your main loop.
+- Instead of calling `send_image` directly, create a thread for this function.
+  - Now that calling `send_image` is no longer blocking, make sure that you are not calling `free` on the image buffer right after the thread is started.
+
+  - **Warning: you should not call any display functions in a thread.** The display functions are not thread-safe, meaning that if multiple threads call the same function, weird things can happen. You should only call the display functions in your main loop.
 
 - Create a status bar the size of your highlight bar at the bottom of the screen with a blue background:
+  - Consider adding the status bar code to your draw menu function.
 
-  - When your image is being sent in a thread, the text of the bar should say "Sending..." with the bar as a blue background.
+  - When your image is being sent in a thread, the status bar text should say "Sending..." with a blue background.
 
-  - When your image is sent successfully (i.e. the thread reached the end successfully), change the color of the status bar to green and show "Sent!" as the text. *How are you going to know when the thread is done sending? A global variable that helps you to maintain what state you are in might be helpful.*
+  - When your image is sent successfully (i.e. after calling `client_close`), change the color of the status bar to green and show "Sent!" as the text. *How will the main thread (which is displaying the status bar) know when the send image thread is done sending? A global status variable set by the send image thread may be helpful.*
 
-  - The status bar should stay green with the sent message for 2 seconds. After the 2 seconds hide the status bar. *How do you know when it has been 2 seconds? Consider editing your `send_image`.*
+  - The status bar should stay green with the sent message for 2 seconds. After the 2 seconds, hide the status bar. *How do you know when it has been 2 seconds? Consider adding a call to `delay_ms` in your `send_image` function before updating the status variable to a hide state.*
 
-- Ensure that your menu is still responsive and you can navigate the menu while the status bar is on screen (while the image is being sent and for the two seconds after).
+- Ensure that your menu is still responsive and that you can navigate the menu while the status bar is visible.
 
 Here is a demo showing the different features of the lab:
 

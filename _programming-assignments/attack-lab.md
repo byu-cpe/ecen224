@@ -60,7 +60,7 @@ The files in `targetK` include:
 - `farm.c`: The source code of your target’s “gadget farm,” which you will use in generating return-oriented programming attacks.
 - `hex2raw`: A utility to generate attack strings.
 
-### Connect to the CADEM Server
+### Connect to the CAEDM Server
 Now, make an SSH connection to the CAEDM server.
 
 ```bash
