@@ -32,7 +32,7 @@ You will want to study Sections 3.10.3 and 3.10.4 of the textbook "Computer Syst
 
 ## Getting Started
 
-You must complete this lab on the CAEDM server, `ssh.et.byu.edu` because it has the right configuration to allow stack execution exploits. Conveniently, this server is available through SSH from on or off campus. We recommend completing the task in the lab due to the availability of TAs, but access from other locations is available.
+You must complete this lab on the CAEDM server, `ssh.et.byu.edu` because it has a configuration that allows stack execution exploits. Conveniently, this server is available through SSH from on or off campus. We recommend completing the task in the lab due to the availability of TAs, but access from other locations is available.
 
 ### Download Instructions
 Obtain your unique attack target from the [Attack Target Download](http://ecen224.byu.edu:5110/) page. You must be in the lab or on the campus network for the download and scoreboard links to work. The server will build your files and return them to your browser in a `tar` file called `targetK.tar`, where `K` is the unique number of your target programs.
@@ -236,7 +236,7 @@ Your task is to get `ctarget` to execute the code for `touch1` when `getbuf` exe
 - The idea is to position a byte representation of the starting address for `touch1` so that the `ret` instruction at the end of the code for `getbuf` will transfer control to `touch1`.
 - Be careful about byte ordering.
 - You might want to use `gdb` to step the program through the last few instructions of `getbuf` to make sure it is doing the right thing.
-- The placement of `buf` within the stack frame for `getbuf` depends on the value of compile-time constant `BUFFER_SIZE`, as well the allocation strategy used by `gcc`. You will need to examine the disassembled code to determine its position.
+- The placement of `buf` within the stack frame for `getbuf` depends on the compile-time constant `BUFFER_SIZE` and the `gcc` allocation strategy. You will need to examine the disassembled code to determine its position.
 
 ### Phase 2 Level 2
 Phase 2 involves injecting a small amount of code as part of your exploit string.
@@ -259,7 +259,7 @@ void touch2(unsigned val)
 Your task is to get `ctarget` to execute the code for `touch2` rather than returning to `test`. In this case, however, you must make it appear to `touch2` as if you have passed your cookie as its argument.
 
 **Some Advice:**
-- You will want to position a byte representation of the address of your injected code in such a way that `ret` instruction at the end of the code for `getbuf` will transfer control to it.
+- You will want to position a byte representation of the address of your injected code in such a way that the `ret` instruction at the end of the code for `getbuf` will transfer control to it.
 - Recall that the first argument to a function is passed in register `%rdi`.
 - Your injected code should set the register to your cookie, and then use a `ret` instruction to transfer control to the first instruction in `touch2`.
 - Do not attempt to use `jmp` or `call` instructions in your exploit code. The encodings of destination addresses for these instructions are difficult to formulate. Use `ret` instructions for all transfers of control, even when you are not returning from a call.
@@ -662,9 +662,9 @@ Figure 3: Byte encodings of instructions. All values are shown in hexadecimal.
 - When a gadget uses a `popq` instruction, it will pop data from the stack. As a result, your exploit string will contain a combination of gadget addresses and data.
 
 ### Phase 5 Level 3 (Extra Credit)
-Before you take on Phase 5, pause to consider what you have accomplished so far. In Phases 2 and 3, you caused a program to execute machine code of your own design. If `ctarget` had been a network server, you could have injected your own code into a distant machine. In Phase 4, you circumvented two of the main devices modern systems use to thwart buffer overflow attacks. Although you did not inject your own code, you were able inject a type of program that operates by stitching together sequences of existing code.
+Before you take on Phase 5, pause to consider what you have accomplished so far. In Phases 2 and 3, you caused a program to execute machine code of your own design. If `ctarget` had been a network server, you could have injected your own code into a distant machine. In Phase 4, you circumvented two of the main devices modern systems use to thwart buffer overflow attacks. Although you did not inject your own code, you were able to inject a type of program that operates by stitching together sequences of existing code.
 
-Phase 5 requires you to do an ROP attack on `rtarget` to invoke function `touch3` with a pointer to a string representation of your cookie. That may not seem significantly more difficult than using an ROP attack to invoke `touch2`, except that we have made it so. Moreover, Phase 5 counts for only 5 extra credit points, which is not a true measure of the effort it will require. This phase is challenging. If you have other pressing obligations consider stopping right now.
+Phase 5 requires you to do an ROP attack on `rtarget` to invoke function `touch3` with a pointer to a string representation of your cookie. This may not seem significantly more difficult to complete than the previous ROP phase, but in practice it is. Moreover, Phase 5 counts for only 5 extra credit points, which is not a true measure of the effort it will require. This phase is challenging. If you have other pressing obligations, consider the time cost versus the benefit before proceeding.
 
 To solve Phase 5, you can use gadgets in the region of the code in `rtarget` demarcated by functions `start_farm` and `end_farm`. In addition to the gadgets used in Phase 4, this expanded farm includes the encodings of different `movl` instructions, as shown in [Figure 3-C](#figure-3-c). The byte sequences in this part of the
 farm also contain 2-byte instructions that serve as *functional nops*, i.e., they do not change any register or memory values. These include instructions, shown in [Figure 3-D](#figure-3-d), such as `andb %al,%al`, that operate on the low-order bytes of some of the registers but do not change their values.
@@ -744,7 +744,7 @@ From this file, you can get the byte sequence for the code:
 ```
 68 ef cd ab 00 48 83 c0 11 89 c2
 ```
-This string can then be passed through `hex2raw` to generate an input string for the target programs.. Alternatively, you can edit example.d to omit extraneous values and to contain C-style comments for readability, yielding:
+This string can then be passed through `hex2raw` to generate an input string for the target programs. Alternatively, you can edit example.d to omit extraneous values and to contain C-style comments for readability, yielding:
 ```
 68 ef cd ab 00      /* pushq $0xabcdef */
 48 83 c0 11         /* add $0x11,%rax */
