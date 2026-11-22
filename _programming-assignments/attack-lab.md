@@ -678,11 +678,11 @@ farm also contain 2-byte instructions that serve as *functional nops*, i.e., the
 ## Appendix A: Using hex2raw
 `hex2raw` takes as input a *hex-formatted string*. In this format, each byte value is represented by two hex digits. For example, the string “`012345`” could be entered in hex format as “`30 31 32 33 34 35 00`." (Recall that the ASCII code for decimal digit *x* is `0x3`*x*, and that the end of a string is indicated by a null byte.)
 
-The hex characters you pass to `hex2raw` should be separated by whitespace (blanks or newlines). We recommend separating different parts of your exploit string with newlines while you’re working on it. `hex2raw` supports C-style block comments, so you can mark off sections of your exploit string. For example:
-```c
-48 c7 c1 f0 11 40 00 /* mov $0x40011f0,%rcx */
+The hex characters you pass to `hex2raw` should be separated by whitespace (blanks or newlines). We recommend separating different parts of your exploit string with newlines while you’re working on it. `hex2raw` supports C-style line comments (not `/* */`), so you can mark off sections of your exploit string. For example:
 ```
-Be sure to leave space around both the starting and ending comment strings (“`/*`”, “`*/`”), so that the comments will be properly ignored.
+48 c7 c1 f0 11 40 00 // mov $0x40011f0,%rcx
+```
+Be sure to leave space around the comment indicator `//`, so that comments will be properly ignored.
 
 If you generate a hex-formatted exploit string in the file `exploit.txt`, you can apply the raw string to `ctarget` or `rtarget` in several different ways:
 
@@ -744,11 +744,11 @@ From this file, you can get the byte sequence for the code:
 ```
 68 ef cd ab 00 48 83 c0 11 89 c2
 ```
-This string can then be passed through `hex2raw` to generate an input string for the target programs. Alternatively, you can edit example.d to omit extraneous values and to contain C-style comments for readability, yielding:
+This string can then be passed through `hex2raw` to generate an input string for the target programs. Alternatively, you can edit example.d to omit extraneous values and to contain C-style line comments (not `/* */`) for readability, yielding:
 ```
-68 ef cd ab 00      /* pushq $0xabcdef */
-48 83 c0 11         /* add $0x11,%rax */
-89 c2               /* mov %eax,%edx */
+68 ef cd ab 00      // pushq $0xabcdef
+48 83 c0 11         // add $0x11,%rax
+89 c2               // mov %eax,%edx
 ```
 
 This is also a valid input you can pass through `hex2raw` before sending to one of the target programs.
