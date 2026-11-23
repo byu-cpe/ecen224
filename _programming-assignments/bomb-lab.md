@@ -32,12 +32,12 @@ There are too many bombs for us to deal with, so we are giving each student a bo
 
 ### Lab Policy
 
-1. **<span style="color: gold;">You must complete this lab on one of the Digital Lab computers.</span>** The bomb files are specifically compiled for the architecture used on the digital lab machines, and they will *not* run elsewhere. Because all your J-Drive files are stored remotely on CAEDM servers, it doesn't matter which computer you log into. You can either:
+1. <span style="color: gold;">You must complete this lab on one of the Digital Lab computers.</span> The bomb files are specifically compiled for the Digital Lab machines, and they will *not* run elsewhere. Because all your J-Drive files are stored remotely on CAEDM servers, it doesn't matter which computer you log into. You can either:
 
-    - Go physically into the lab and use one of the digital lab machines (make sure that another class is not in session)
+    - Go physically into the lab and use one of the Digital Lab machines (make sure that another class is not in session)
     - SSH into a Digital Lab machine from your own machine and run GDB (See **[Appendix A](#appendix-a-sshing-into-the-digital-lab-machines)** for SSH instruction).
 
-2. **<span style="color: gold;">Grading for this Lab:</span>** This lab is worth 70 points. Each time a phase is diffused, your score increases. The phases are weighted according to the following table:
+2. <span style="color: gold;">Grading for this Lab:</span> This lab is worth 70 points. Each time a phase is diffused, your score increases. The phases are weighted according to the following table:
 
     | Phase          | Point Value |
     | :---:          | :---------: |
@@ -62,11 +62,11 @@ These two are absolutely must-haves when it comes to GDB and understanding assem
 
 There are also some additional resources listed in **[Appendix B](#appendix-b-additional-resources)** that you may find helpful.
 
-## Part 2: Download and Unpack The Bomb
+## Part 2: Download and Unpack the Bomb
 
-**<span style="color: gold;">Please make sure you are in the digital lab for this step!</span>** To obtain your bomb, go to the [Bomb Lab Download page](http://ecen224.byu.edu:5100/). Follow the instructions on the web page (fill out a bomb request form, and the server will deliver a custom bomb to you in a `tar` file named `bombK.tar`, where `K` is the unique number of your bomb.)
+**<span style="color: gold;">Please make sure you are in the Digital Lab for this step!</span>** To obtain your bomb, go to the [Bomb Lab Download page](http://ecen224.byu.edu:5100/). Follow the instructions on the web page (fill out a bomb request form, and the server will deliver a custom bomb to you in a `tar` file named `bombK.tar`, where `K` is the unique number of your bomb.)
 
-**<span style="color: gold;">You have to have the bomb stored on your J-Drive for a digital lab machine to run it.</span>** If you downloaded it onto your own computer, you'll have to use the `scp` command (something we won't cover here) to copy it to your J-Drive, or just download a new one on a digital lab machine.
+**<span style="color: gold;">You have to have the bomb stored on your J-Drive for a Digital Lab machine to run it.</span>** If you downloaded it onto your own computer, you'll have to use the `scp` command (something we won't cover here) to copy it to your J-Drive, or just download a new one on a Digital Lab machine.
 
 Save the `bombK.tar` file to a directory in your J-Drive in which you plan to do your work. Then, open a terminal, navigate to the tar file, and give the command: `tar -xvf bombK.tar`. This will create a directory called `./bombK` with the following files:
 
@@ -134,7 +134,7 @@ Whenever you run GDB, you should make sure that you do it in a terminal that has
 
 <figure class="image mx-auto" style="max-width: 750px">
   <img src="{% link assets/bomb-lab/split_screen.png %}" alt="a nicely laid out terminal">
-  <figcaption style="text-align: center;"> Note that these images were generated on my local machine (which is SSH-ed into a digital lab machine), so my terminal is themed different. The results are the same.</figcaption>
+  <figcaption style="text-align: center;"> Note that these images were generated on my local machine (which is SSH-ed into a Digital Lab machine), so my terminal is themed different. The results are the same.</figcaption>
 </figure>
 
 This setup provides a nice balance between having space to see what's happening in GDB, and having another window to read documentation, etc.

@@ -13,7 +13,6 @@ toc: true
 - [Attack Lab Scoreboard](http://ecen224.byu.edu:5110/scoreboard)
 - [GDB Quick Reference]({% link assets/GDB_quick_ref_v2.pdf %}) 
 - [x86-64 Reference Sheet](https://web.stanford.edu/class/cs107/resources/x86-64-reference.pdf)
-- [Attack Lab - Getting Started]({% link recitation/attackLab-gettingStarted.md %})
 
 ## Introduction
 This assignment involves generating a total of five attacks on two programs having different security vulnerabilities. Outcomes you will gain from this lab include:
@@ -32,12 +31,14 @@ You will want to study Sections 3.10.3 and 3.10.4 of the textbook "Computer Syst
 
 ## Getting Started
 
-You must complete this lab on the CAEDM server, `ssh.et.byu.edu` because it has a configuration that allows stack execution exploits. Conveniently, this server is available through SSH from on or off campus. We recommend completing the task in the lab due to the availability of TAs, but access from other locations is available.
+- Reminder: No internet searches for "attack lab" help are allowed. No AI use is allowed (see [class policy]({% link _pages/overview.md %}#policies)).
+- <span style="color: gold;">You must complete this lab on one of the Digital Lab computers.</span> The attack files are specifically compiled for the Digital Lab machines, and they will *not* run elsewhere. Because all your J-Drive files are stored remotely on CAEDM servers, it doesn't matter which computer you log into. We recommend completing the assignment in the lab due to the availability of TAs; however,  [remote access is available through SSH]({% link _programming-assignments/bomb-lab.md %}#appendix-a-sshing-into-the-digital-lab-machines)
+- <span style="color: gold;">Make sure you read *all* the documentation here!</span>
 
 ### Download Instructions
 Obtain your unique attack target from the [Attack Target Download](http://ecen224.byu.edu:5110/) page. You must be in the lab or on the campus network for the download and scoreboard links to work. The server will build your files and return them to your browser in a `tar` file called `targetK.tar`, where `K` is the unique number of your target programs.
 
-Save the `targetK`.tar file to a directory on your J-Drive where you plan to work. Your J-Drive is shared between the lab computers and the CAEDM server. So, if you download using a lab computer, you can just drop the file where you want it. You should only download one set of files. If for some reason you download multiple targets, choose one target to work on and delete the rest.
+Save the `targetK`.tar file to a directory on your J-Drive where you plan to work. If you download using a lab computer, you can just drop the file where you want it. You should only download one set of files. If for some reason you download multiple targets, choose one target to work on and delete the rest.
 
 ### Extract Files
 From a command line terminal, `cd` to where you downloaded your target and give the following command. This will create a directory `targetK` containing the extracted files.
@@ -60,14 +61,14 @@ The files in `targetK` include:
 - `farm.c`: The source code of your target’s “gadget farm,” which you will use in generating return-oriented programming attacks.
 - `hex2raw`: A utility to generate attack strings.
 
-### Connect to the CAEDM Server
+<!--### Connect to the CAEDM Server
 Now, make an SSH connection to the CAEDM server.
 
 ```bash
 ssh username@ssh.et.byu.edu
 ```
 
-Replace `username` with your actual CAEDM username. Now, you are ready to begin the lab.
+Replace `username` with your actual CAEDM username. Now, you are ready to begin the lab.-->
 
 ### Important Points
 Here is a summary of some important rules regarding valid solutions for this lab. These points will not make much sense when you read this document for the first time. They are presented here as a central reference of rules once you get started.
